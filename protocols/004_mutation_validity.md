@@ -1,4 +1,4 @@
-# Protocol 003: does the judge respond to evidence? Controlled logbook edits (pilot)
+# Protocol 004: does the judge respond to evidence? Controlled logbook edits (pilot)
 
 Frozen 2026-10-17, before any mutation code was run on real logbooks and before
 any call. Experiment E4 of the PSE9 study. Formal frame: the invariance and
