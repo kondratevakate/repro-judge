@@ -1,0 +1,2 @@
+# Keep LF on every platform so rubric and code hashes in run manifests match any checkout.
+* text=auto eol=lf

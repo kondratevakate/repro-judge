@@ -179,11 +179,14 @@ def judge_item(item: dict, run_no: int, cfg: dict, rubric: str, token: str) -> d
 
 
 def code_sha256() -> str:
-    """Hash of the judging code, so a run is traceable even before anything is committed."""
+    """Hash of the judging code, so a run is traceable even before anything is committed.
+
+    Line endings are normalised so a Windows checkout with CRLF hashes the same.
+    """
     h = hashlib.sha256()
     for p in [ROOT / "judge.py", *sorted((ROOT / "repro_judge").glob("*.py"))]:
         h.update(p.name.encode())
-        h.update(p.read_bytes())
+        h.update(p.read_bytes().replace(b"\r\n", b"\n"))
     return h.hexdigest()
 
 
