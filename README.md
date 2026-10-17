@@ -53,6 +53,16 @@ The logbook is untrusted text. Version 2:
 Counts of everything removed are stored in each record. In these 53 logbooks no
 hidden instruction, invisible character or fake header was found.
 
+Protocol 003 then replaced the fence regular expression with the block tokens of
+`markdown-it-py` (CommonMark preset), after a security review showed that a fence
+opened in the middle of a line let a renderer-hidden comment through. Fenced and
+indented code blocks are now located exactly as a CommonMark renderer does. The
+criterion fixed in advance was met: the assembled logbook text is byte-identical to
+version 2 on all 53 calibration logbooks, with identical cleaning counts, so
+`calib_002` applies to this code without a new paid run. Known conservative choice:
+an HTML comment inside inline code (`` `<!-- x -->` ``) is still removed, although a
+renderer shows it.
+
 ## Setup
 
 ```powershell
@@ -96,6 +106,13 @@ Results, manifests and reports are never overwritten; a failed judgment is writt
 to `runs/<run>/pass<X>/errors/` and retried on the next run. `calib_001` was produced
 by commit `3fe9e7c`; its settings no longer match the defaults, so `run` refuses to
 extend it.
+
+Line endings: results are written with LF, and `--copy-from` records `sha256_lf`
+over LF-normalised bytes. `calib_002/population.json` predates this and records
+`sha256` of the CRLF bytes on the Windows disk
+(`4fe35894...93b25dd`); over the LF bytes Git stores, the same source file hashes to
+`6666dbda8714828aaec08bb372cec79e92570b07d520ac1e8f0897e13f712aa2`. The recorded value
+is left unchanged.
 
 ## Data handling
 

@@ -45,8 +45,14 @@ def write_new(path: Path, obj) -> None:
         raise FileExistsError(f"{path} exists; results are never overwritten")
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
+    # LF on every platform, so the bytes on disk match what Git stores and hashes agree
+    tmp.write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
     tmp.replace(path)
+
+
+def lf_sha256(raw: bytes) -> str:
+    """sha256 over LF-normalised bytes, stable across Windows and Git checkouts."""
+    return hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest()
 
 
 def require_token() -> str:
@@ -122,7 +128,7 @@ def cmd_prepare(a) -> None:
         src = RUNS / a.copy_from / "population.json"
         raw = src.read_bytes()
         pop = json.loads(raw)
-        pop["copied_from"] = {"run": a.copy_from, "sha256": hashlib.sha256(raw).hexdigest(), "at": now()}
+        pop["copied_from"] = {"run": a.copy_from, "sha256_lf": lf_sha256(raw), "at": now()}
         write_new(out, pop)
         print(f"population copied from {a.copy_from}: {pop['n']} logbooks, official total {pop['official_total']}")
         return
@@ -168,7 +174,7 @@ def cached_logbook(space_id: str, sha: str, token: str) -> tuple[str, list[str],
         pages, failed = logbook.fetch_space_pages(space_id, sha, token)
         if not failed:  # only complete fetches are cached
             CACHE.mkdir(exist_ok=True)
-            path.write_text(json.dumps({"pages": pages}), encoding="utf-8")
+            path.write_text(json.dumps({"pages": pages}), encoding="utf-8", newline="\n")
     text, stats = logbook.assemble(pages)
     return text, failed, stats
 
@@ -307,7 +313,8 @@ def cmd_run(a) -> None:
                 err = out_dir / "errors" / f"{safe_name(it['space_id'])}__r{k}__{int(time.time())}.json"
                 err.parent.mkdir(parents=True, exist_ok=True)
                 err.write_text(json.dumps({"space_id": it["space_id"], "run": k, "at": now(),
-                                           "error": f"{type(e).__name__}: {e}"[:500]}), encoding="utf-8")
+                                           "error": f"{type(e).__name__}: {e}"[:500]}), encoding="utf-8",
+                                    newline="\n")
                 print(f"ERROR {it['space_id']} r{k}: {type(e).__name__}: {str(e)[:160]}")
                 continue
             write_new(out_dir / f"{safe_name(it['space_id'])}__r{k}.json", rec)

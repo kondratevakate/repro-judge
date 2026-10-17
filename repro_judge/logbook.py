@@ -10,24 +10,69 @@ import unicodedata
 
 import httpx
 from huggingface_hub import HfApi, hf_hub_url
+from markdown_it import MarkdownIt
 
 MAX_LOGBOOK_CHARS = 120_000
 MAX_RAW_BLOCK_CHARS = 4_000
 
-_FENCED_BLOCK = re.compile(r"(`{3,4}|~{3,4})([^\n]*)\n([\s\S]*?)\n\1")
+# Code regions come from a CommonMark parser, not a regular expression, so the cleaner
+# agrees with the renderer about what is code and what is a hidden comment.
+_MD = MarkdownIt("commonmark")
 _COMMENT = re.compile(r"<!--[\s\S]*?-->")
 _FAKE_HEADER = re.compile(r"^(\s*=====)", re.M)
 _FAKE_TAG = re.compile(r"<(/?)logbook-", re.I)
 
 
-def _shrink_block(match: re.Match) -> str:
-    fence, info, body = match.group(1), match.group(2), match.group(3)
+def _shrink_fence(marker: str, info: str, body: str, original: str) -> str:
     lang = info.strip().split()[0].lower() if info.strip() else ""
     if lang == "html":
         return f"[html figure removed, {len(body)} characters]"
     if lang == "raw" and len(body) > MAX_RAW_BLOCK_CHARS:
-        return f"{fence}raw\n{body[:MAX_RAW_BLOCK_CHARS]}\n[raw block truncated]\n{fence}"
-    return match.group(0)
+        return f"{marker}raw\n{body[:MAX_RAW_BLOCK_CHARS]}\n[raw block truncated]\n{marker}"
+    return original
+
+
+def _code_spans(text: str) -> list[tuple[int, int, str]]:
+    """(start, end, replacement) for every fenced or indented code block, in order.
+
+    A fence span runs from the opening marker to the end of the closing marker run;
+    an unclosed fence runs to the end of its container, as CommonMark renders it.
+    """
+    lines = text.split("\n")
+    offsets, pos = [], 0
+    for line in lines:
+        offsets.append(pos)
+        pos += len(line) + 1
+
+    def line_end(i: int) -> int:
+        return offsets[i] + len(lines[i])
+
+    spans = []
+    for tok in _MD.parse(text):
+        if tok.map is None or tok.type not in ("fence", "code_block"):
+            continue
+        first, last = tok.map  # last line is exclusive
+        if tok.type == "code_block":
+            start, end = offsets[first], line_end(last - 1)
+            spans.append((start, end, text[start:end]))
+            continue
+        marker = tok.markup
+        start = text.index(marker, offsets[first])
+        body_start = offsets[first + 1] if first + 1 < len(lines) else len(text)
+        close = None
+        if last - 1 > first:
+            tail = lines[last - 1].rstrip(" \t\r")
+            m = re.search(re.escape(marker[0]) + "{%d,}$" % len(marker), tail)
+            if m and tail[:m.start()].strip(" >") == "":
+                close = (last - 1, m.end())
+        if close:
+            body = text[body_start:max(body_start, offsets[close[0]] - 1)]
+            end = offsets[close[0]] + close[1]
+        else:
+            end = line_end(last - 1)
+            body = text[body_start:end]
+        spans.append((start, end, _shrink_fence(marker, tok.info, body, text[start:end])))
+    return spans
 
 
 def _strip_comments(prose: str, stats: dict) -> str:
@@ -65,13 +110,13 @@ def clean_page(text: str, stats: dict | None = None) -> str:
     stats = stats if stats is not None else new_stats()
     text = _strip_format_chars(text, stats)
     out, pos = [], 0
-    for m in _FENCED_BLOCK.finditer(text):
-        prose = _strip_comments(text[pos:m.start()], stats)
+    for start, end, replacement in _code_spans(text):
+        prose = _strip_comments(text[pos:start], stats)
         out.append(prose)
         if stats["unterminated_comment"]:
             break  # the rest of the page is hidden in the rendered view
-        out.append(_shrink_block(m))
-        pos = m.end()
+        out.append(replacement)
+        pos = end
     else:
         out.append(_strip_comments(text[pos:], stats))
     return _neutralise("".join(out), stats)
