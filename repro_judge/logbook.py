@@ -32,46 +32,74 @@ def _shrink_fence(marker: str, info: str, body: str, original: str) -> str:
     return original
 
 
+# markdown-it splits lines on exactly this pattern (rules_core/normalize.py, 4.0.0);
+# line numbers in its token maps are only meaningful against the same split.
+_NEWLINE = re.compile(r"\r\n?|\n")
+
+
+class SpanMismatch(ValueError):
+    """The parser's line map does not fit the text; the caller must fail closed."""
+
+
+def _line_table(text: str) -> tuple[list[int], list[str]]:
+    starts, contents, pos = [], [], 0
+    for m in _NEWLINE.finditer(text):
+        starts.append(pos)
+        contents.append(text[pos:m.start()])
+        pos = m.end()
+    starts.append(pos)
+    contents.append(text[pos:])
+    return starts, contents
+
+
 def _code_spans(text: str) -> list[tuple[int, int, str]]:
     """(start, end, replacement) for every fenced or indented code block, in order.
 
     A fence span runs from the opening marker to the end of the closing marker run;
     an unclosed fence runs to the end of its container, as CommonMark renders it.
+    Raises SpanMismatch when the token map and the text disagree in any way.
     """
-    lines = text.split("\n")
-    offsets, pos = [], 0
-    for line in lines:
-        offsets.append(pos)
-        pos += len(line) + 1
+    starts, contents = _line_table(text)
+    n = len(starts)
 
     def line_end(i: int) -> int:
-        return offsets[i] + len(lines[i])
+        # one character before the next line start: for CRLF this keeps the "\r" inside
+        # the line, which is what version 2 did and keeps calibration inputs identical
+        return starts[i + 1] - 1 if i + 1 < n else len(text)
 
-    spans = []
+    spans, previous_end = [], 0
     for tok in _MD.parse(text):
         if tok.map is None or tok.type not in ("fence", "code_block"):
             continue
         first, last = tok.map  # last line is exclusive
+        if not (0 <= first < last <= n):
+            raise SpanMismatch(f"token map {tok.map} outside {n} lines")
         if tok.type == "code_block":
-            start, end = offsets[first], line_end(last - 1)
-            spans.append((start, end, text[start:end]))
-            continue
-        marker = tok.markup
-        start = text.index(marker, offsets[first])
-        body_start = offsets[first + 1] if first + 1 < len(lines) else len(text)
-        close = None
-        if last - 1 > first:
-            tail = lines[last - 1].rstrip(" \t\r")
-            m = re.search(re.escape(marker[0]) + "{%d,}$" % len(marker), tail)
-            if m and tail[:m.start()].strip(" >") == "":
-                close = (last - 1, m.end())
-        if close:
-            body = text[body_start:max(body_start, offsets[close[0]] - 1)]
-            end = offsets[close[0]] + close[1]
+            start, end, replacement = starts[first], line_end(last - 1), None
         else:
-            end = line_end(last - 1)
-            body = text[body_start:end]
-        spans.append((start, end, _shrink_fence(marker, tok.info, body, text[start:end])))
+            marker = tok.markup
+            col = contents[first].find(marker)
+            if not marker or col < 0:
+                raise SpanMismatch(f"fence marker {marker!r} not on line {first}")
+            start = starts[first] + col
+            body_start = starts[first + 1] if first + 1 < n else len(text)
+            close = None
+            if last - 1 > first:
+                tail = contents[last - 1].rstrip(" \t")
+                m = re.search(re.escape(marker[0]) + "{%d,}$" % len(marker), tail)
+                if m and tail[:m.start()].strip(" >") == "":
+                    close = (last - 1, m.end())
+            if close:
+                body = text[body_start:max(body_start, starts[close[0]] - 1)]
+                end = starts[close[0]] + close[1]
+            else:
+                end = line_end(last - 1)
+                body = text[body_start:end]
+            replacement = _shrink_fence(marker, tok.info, body, text[start:end])
+        if start < previous_end or end < start:
+            raise SpanMismatch(f"span {start}:{end} overlaps or precedes {previous_end}")
+        spans.append((start, end, text[start:end] if replacement is None else replacement))
+        previous_end = end
     return spans
 
 
@@ -102,15 +130,25 @@ def _neutralise(text: str, stats: dict) -> str:
 
 def new_stats() -> dict:
     return {"comments": 0, "format_chars": 0, "headers_neutralised": 0, "tags_neutralised": 0,
-            "unterminated_comment": False}
+            "unterminated_comment": False, "failed_closed": None}
 
 
 def clean_page(text: str, stats: dict | None = None) -> str:
-    """Return the text a reader of the rendered page would see, made safe to embed."""
+    """Return the text a reader of the rendered page would see, made safe to embed.
+
+    If the parser's code regions cannot be mapped onto the text, the page fails
+    closed: no region counts as code, so every comment on it is removed, and the
+    reason is recorded in stats["failed_closed"].
+    """
     stats = stats if stats is not None else new_stats()
     text = _strip_format_chars(text, stats)
+    try:
+        spans = _code_spans(text)
+    except Exception as e:  # SpanMismatch, or anything unexpected from the parser
+        stats["failed_closed"] = f"{type(e).__name__}: {str(e)[:200]}"
+        spans = []
     out, pos = [], 0
-    for start, end, replacement in _code_spans(text):
+    for start, end, replacement in spans:
         prose = _strip_comments(text[pos:start], stats)
         out.append(prose)
         if stats["unterminated_comment"]:
@@ -133,6 +171,7 @@ def assemble(pages: list[tuple[str, str]], max_chars: int = MAX_LOGBOOK_CHARS) -
     """Join cleaned pages under file headers, stopping at the character budget."""
     stats = new_stats()
     stats["pages_with_unterminated_comment"] = 0
+    stats["pages_failed_closed"] = 0
     parts, used = [], 0
     for path, text in pages:
         page_stats = new_stats()
@@ -140,6 +179,7 @@ def assemble(pages: list[tuple[str, str]], max_chars: int = MAX_LOGBOOK_CHARS) -
         for k in ("comments", "format_chars", "headers_neutralised", "tags_neutralised"):
             stats[k] += page_stats[k]
         stats["pages_with_unterminated_comment"] += page_stats["unterminated_comment"]
+        stats["pages_failed_closed"] += page_stats["failed_closed"] is not None
         block = f"\n\n===== FILE {path} =====\n{body}"
         room = max_chars - used
         if room <= 0:

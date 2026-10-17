@@ -248,13 +248,13 @@ def dry_run(todo: list, cfg: dict, rubric: str, token: str) -> None:
     pricing = provider_pricing(cfg["model"], cfg["provider"])
     chars, failures = 0, []
     cleaned = {k: 0 for k in ("comments", "format_chars", "headers_neutralised", "tags_neutralised",
-                              "pages_with_unterminated_comment")}
+                              "pages_with_unterminated_comment", "pages_failed_closed")}
     for it, _ in todo:
         text, failed, stats = cached_logbook(it["space_id"], it["sha"], token)
         if failed:
             failures.append((it["space_id"], failed))
         for k in cleaned:
-            cleaned[k] += stats[k]
+            cleaned[k] += stats.get(k, 0)
         msgs = prompt.build_messages(rubric, {"title": it["title"], "orid": it["orid"],
                                               "authors": it["authors"]}, it["claims"], text)
         chars += sum(len(m["content"]) for m in msgs)
@@ -387,8 +387,9 @@ def summarize(pop: dict, A: dict, B: dict, pricing: dict | None) -> dict:
                    grounding_flagged_list=flagged)
     if any("cleaning" in r for r in A.values()):
         keys = ("comments", "format_chars", "headers_neutralised", "tags_neutralised",
-                "pages_with_unterminated_comment")
-        res["cleaning_totals_pass_a"] = {k: sum(r["cleaning"][k] for r in A.values()) for k in keys}
+                "pages_with_unterminated_comment", "pages_failed_closed")
+        # records written before protocol 003 have no pages_failed_closed field
+        res["cleaning_totals_pass_a"] = {k: sum(r["cleaning"].get(k, 0) for r in A.values()) for k in keys}
     recs = list(A.values()) + list(B.values())
     tok_in = sum(r["usage"]["prompt_tokens"] for r in recs)
     tok_out = sum(r["usage"]["completion_tokens"] for r in recs)

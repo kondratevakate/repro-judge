@@ -59,7 +59,14 @@ opened in the middle of a line let a renderer-hidden comment through. Fenced and
 indented code blocks are now located exactly as a CommonMark renderer does. The
 criterion fixed in advance was met: the assembled logbook text is byte-identical to
 version 2 on all 53 calibration logbooks, with identical cleaning counts, so
-`calib_002` applies to this code without a new paid run. Known conservative choice:
+`calib_002` applies to this code without a new paid run. A second review then found
+that splitting lines only on LF, while markdown-it also splits on a lone CR, let two
+lone CRs shift a code range onto a hidden comment. Lines are now split exactly as
+markdown-it splits them, and any mismatch between its token map and the text (out of
+range, marker not on its line, overlapping ranges, a parser error) fails closed: the
+page is treated as having no code, so every comment on it is removed, and the reason
+is recorded. The byte-identity check was repeated: 53 of 53, no page failed closed.
+Known conservative choice:
 an HTML comment inside inline code (`` `<!-- x -->` ``) is still removed, although a
 renderer shows it.
 
