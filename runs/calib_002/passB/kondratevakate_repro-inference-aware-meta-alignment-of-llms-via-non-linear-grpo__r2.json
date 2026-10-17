@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-inference-aware-meta-alignment-of-llms-via-non-linear-grpo",
+ "sha": "e7ab06265579359edb5187a36a79636b282fd8f6",
+ "run": 2,
+ "judged_at": "2026-10-17T18:49:44+00:00",
+ "logbook_chars": 10182,
+ "cleaning": {
+  "comments": 11,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "9cf0fe3f5bcfb204",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Numerical experiments on K-bin discrete policies show the objective is non-linear (chord gap [1.037e-4, 8.139e-2] vs 2.22e-16 for linear baseline), multi-criterion adaptation outperforms naive in 60/60 cases, and the N=1 mutation collapses non-linearity to 3.33e-16 with identical optima.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Functional derivative matches finite differences to max abs error 8.285e-10 over 80 cases; drop-in replacement on standard GRPO reaches true optimum (max suboptimality 5.55e-16); empirical π̂ approximation shows O(1/M) convergence (log-log slope −1.024); plain-reward mutation is strictly worse in 30/30 instances.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Across 90 instances and 2250 bound evaluations with numerically estimated L, zero violations above 1e-12 (44 raw ratio>1 rows are all double-precision noise at LHS ≤3.33e-16); step-size mutation (η=20/L) yields 11 macroscopic violations and plain-reward mutation yields 36/36 violations.",
+   "grounding": {
+    "cited": 9,
+    "grounded": 9,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Over 60 configs × 200 runs, the full bound with 2(ε+δ)/β is never violated (max ratio 0.2611); dropping the bias term violates 36/36 noisy configs (max ratio 1.65e10); plateau grows monotonically with noise in 12/12 cells.",
+   "grounding": {
+    "cited": 8,
+    "grounded": 8,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Sympy confirms the density normalizes; first-order optimality at claimed π* holds to machine precision (span ≤5.84e-16 for N=2–16); naive optimum puts mass 1.0 at y≈0.5 (δ_0.5 collapse) vs 0.922 bimodal mass for IAMA N=8; exponent mutation (1/N vs 1/(N−1)) breaks optimality by 14 orders of magnitude.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were run; the logbook reports blocking constraints including GPU-cluster scale for 7B RL training, unreleased author-trained reward models, no public code, and no numeric table behind Fig. 6b.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 10,
+ "overall": "The logbook provides thorough numerical verification of the paper's five theoretical claims through discrete-distribution experiments with mutation tests, cross-checks against independent solvers, and finite-difference validation. The empirical LLM claim (Claim 6) is honestly reported as unreproduced due to GPU scale, unreleased models, and missing code.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 4712,
+  "completion_tokens": 3388
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Numerical experiments on K-bin discrete policies show the objective is non-linear (chord gap [1.037e-4, 8.139e-2] vs 2.22e-16 for linear baseline), multi-criterion adaptation outperforms naive in 60/60 cases, and the N=1 mutation collapses non-linearity to 3.33e-16 with identical optima.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Functional derivative matches finite differences to max abs error 8.285e-10 over 80 cases; drop-in replacement on standard GRPO reaches true optimum (max suboptimality 5.55e-16); empirical π̂ approximation shows O(1/M) convergence (log-log slope −1.024); plain-reward mutation is strictly worse in 30/30 instances.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Across 90 instances and 2250 bound evaluations with numerically estimated L, zero violations above 1e-12 (44 raw ratio>1 rows are all double-precision noise at LHS ≤3.33e-16); step-size mutation (η=20/L) yields 11 macroscopic violations and plain-reward mutation yields 36/36 violations.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Over 60 configs × 200 runs, the full bound with 2(ε+δ)/β is never violated (max ratio 0.2611); dropping the bias term violates 36/36 noisy configs (max ratio 1.65e10); plateau grows monotonically with noise in 12/12 cells.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Sympy confirms the density normalizes; first-order optimality at claimed π* holds to machine precision (span ≤5.84e-16 for N=2–16); naive optimum puts mass 1.0 at y≈0.5 (δ_0.5 collapse) vs 0.922 bimodal mass for IAMA N=8; exponent mutation (1/N vs 1/(N−1)) breaks optimality by 14 orders of magnitude.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were run; the logbook reports blocking constraints including GPU-cluster scale for 7B RL training, unreleased author-trained reward models, no public code, and no numeric table behind Fig. 6b.\"}\n  ],\n  \"overall\": \"The logbook provides thorough numerical verification of the paper's five theoretical claims through discrete-distribution experiments with mutation tests, cross-checks against independent solvers, and finite-difference validation. The empirical LLM claim (Claim 6) is honestly reported as unreproduced due to GPU scale, unreleased models, and missing code.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 39.2
+}

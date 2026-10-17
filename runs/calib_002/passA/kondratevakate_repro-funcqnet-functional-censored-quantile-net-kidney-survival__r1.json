@@ -1,0 +1,55 @@
+{
+ "space_id": "kondratevakate/repro-funcqnet-functional-censored-quantile-net-kidney-survival",
+ "sha": "7c7166b190b0e66249029a363ddfb3a61a244ab8",
+ "run": 1,
+ "judged_at": "2026-10-17T18:47:36+00:00",
+ "logbook_chars": 11681,
+ "cleaning": {
+  "comments": 7,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "159d839f2b06e632",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only runs simulation experiments on synthetic data testing single-quantile (τ=0.5) coefficient-function RMSE, not multi-quantile prediction precision on real kidney transplant data; the real-data UNOS/OPTN experiments are explicitly noted as not reproducible due to private data access.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "The simulation shows interaction-aware models reduce coefficient RMSE by 58–85% versus Z-agnostic models in synthetic data with generic covariates, structurally supporting the interaction concept, but using a simplified LP estimator rather than the neural network, generic covariates rather than donor type/age, and no clinical significance assessment.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 1,
+ "overall": "The logbook runs CPU simulation experiments with a simplified linear-program censored quantile estimator (not the FunCQNet neural network) on synthetic data, showing interaction-aware models reduce coefficient RMSE by 58–85% versus Z-agnostic models. The real-data kidney transplant claims are not addressed because UNOS/OPTN data is access-controlled and no code was released by the authors.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4292,
+  "completion_tokens": 4494
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\n      \"claim\": 1,\n      \"verdict\": \"inconclusive\",\n      \"evidence\": \"The logbook only runs simulation experiments on synthetic data testing single-quantile (τ=0.5) coefficient-function RMSE, not multi-quantile prediction precision on real kidney transplant data; the real-data UNOS/OPTN experiments are explicitly noted as not reproducible due to private data access.\"\n    },\n    {\n      \"claim\": 2,\n      \"verdict\": \"toy\",\n      \"evidence\": \"The simulation shows interaction-aware models reduce coefficient RMSE by 58–85% versus Z-agnostic models in synthetic data with generic covariates, structurally supporting the interaction concept, but using a simplified LP estimator rather than the neural network, generic covariates rather than donor type/age, and no clinical significance assessment.\"\n    }\n  ],\n  \"overall\": \"The logbook runs CPU simulation experiments with a simplified linear-program censored quantile estimator (not the FunCQNet neural network) on synthetic data, showing interaction-aware models reduce coefficient RMSE by 58–85% versus Z-agnostic models. The real-data kidney transplant claims are not addressed because UNOS/OPTN data is access-controlled and no code was released by the authors.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 50.4
+}

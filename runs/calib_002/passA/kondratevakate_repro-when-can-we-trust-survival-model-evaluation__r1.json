@@ -1,0 +1,55 @@
+{
+ "space_id": "kondratevakate/repro-when-can-we-trust-survival-model-evaluation",
+ "sha": "7ea7f86fbf778c87573f9d9b323d4a8df97b7242",
+ "run": 1,
+ "judged_at": "2026-10-17T18:44:22+00:00",
+ "logbook_chars": 8520,
+ "cleaning": {
+  "comments": 7,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "151b32f5f93a7560",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "Real experiments on a synthetic DGP (n=4000, 8 reps) show IBS bias ranging from −0.0795 under administrative censoring to ~0.000 under covariate-dependent censoring at 80%, and C-index bias increasing monotonically with censoring rate, directly demonstrating mechanism- and rate-dependent distortions — but only 2 metric families are tested on fully synthetic data with no real clinical datasets or full model panel.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Near-tied model ranking agreement with the oracle drops from 100% at 0% censoring to 29–42% at 80% across mechanisms (24 reps), directly showing unreliable model comparison under heavy censoring, while widely-separated models retain 100% agreement — but this is on the same reduced synthetic setup with only C-index and 4 fixed risk scores.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook provides real, executed experiments with concrete numbers that directionally support both claims, but on a clearly reduced synthetic setup (no real clinical data, subset of metrics and models) rather than the paper's semi-synthetic design on PBC/FLCHAIN/METABRIC with a full model panel.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3100,
+  "completion_tokens": 2401
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"Real experiments on a synthetic DGP (n=4000, 8 reps) show IBS bias ranging from −0.0795 under administrative censoring to ~0.000 under covariate-dependent censoring at 80%, and C-index bias increasing monotonically with censoring rate, directly demonstrating mechanism- and rate-dependent distortions — but only 2 metric families are tested on fully synthetic data with no real clinical datasets or full model panel.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Near-tied model ranking agreement with the oracle drops from 100% at 0% censoring to 29–42% at 80% across mechanisms (24 reps), directly showing unreliable model comparison under heavy censoring, while widely-separated models retain 100% agreement — but this is on the same reduced synthetic setup with only C-index and 4 fixed risk scores.\"}\n  ],\n  \"overall\": \"The logbook provides real, executed experiments with concrete numbers that directionally support both claims, but on a clearly reduced synthetic setup (no real clinical data, subset of metrics and models) rather than the paper's semi-synthetic design on PBC/FLCHAIN/METABRIC with a full model panel.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 29.0
+}

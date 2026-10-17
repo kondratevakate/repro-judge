@@ -1,0 +1,55 @@
+{
+ "space_id": "kondratevakate/repro-when-can-we-trust-survival-model-evaluation",
+ "sha": "7ea7f86fbf778c87573f9d9b323d4a8df97b7242",
+ "run": 3,
+ "judged_at": "2026-10-17T18:52:51+00:00",
+ "logbook_chars": 8520,
+ "cleaning": {
+  "comments": 7,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "b57739a17c2bb9c3",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "The ST-vs-OR synthetic experiment (n=4000, 8 reps, 3 censoring mechanisms × 4 rates) produces concrete bias numbers showing IBS is strongly mechanism-dependent (admin −0.0795 vs cov-dep 0.0000 at 80%) while C-index drifts with rate but is mechanism-agnostic, supporting the claim; however the setup uses a fully synthetic Cox-exponential DGP rather than the paper's semi-synthetic real clinical datasets (PBC, FLCHAIN, METABRIC) and only two metric families.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Ranking-agreement experiments on near-tied models show oracle-ranking recovery dropping from 100% at 0% censoring to 29–42% at 80% across mechanisms (24 reps), while widely-separated models stay at 100%, directly supporting the claim's boundary; but the setup uses synthetic fixed risk scores rather than the paper's real model panel (DeepHit, NMTLR, etc.) on real datasets.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook runs real experiments with internally consistent numbers that support both claims—mechanism-dependent IBS distortion and ranking instability under heavy censoring for near-tied models—but on a clearly reduced fully-synthetic setup rather than the paper's semi-synthetic real-data design with its full model and metric panels.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3100,
+  "completion_tokens": 3279
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\n      \"claim\": 1,\n      \"verdict\": \"toy\",\n      \"evidence\": \"The ST-vs-OR synthetic experiment (n=4000, 8 reps, 3 censoring mechanisms × 4 rates) produces concrete bias numbers showing IBS is strongly mechanism-dependent (admin −0.0795 vs cov-dep 0.0000 at 80%) while C-index drifts with rate but is mechanism-agnostic, supporting the claim; however the setup uses a fully synthetic Cox-exponential DGP rather than the paper's semi-synthetic real clinical datasets (PBC, FLCHAIN, METABRIC) and only two metric families.\"\n    },\n    {\n      \"claim\": 2,\n      \"verdict\": \"toy\",\n      \"evidence\": \"Ranking-agreement experiments on near-tied models show oracle-ranking recovery dropping from 100% at 0% censoring to 29–42% at 80% across mechanisms (24 reps), while widely-separated models stay at 100%, directly supporting the claim's boundary; but the setup uses synthetic fixed risk scores rather than the paper's real model panel (DeepHit, NMTLR, etc.) on real datasets.\"\n    }\n  ],\n  \"overall\": \"The logbook runs real experiments with internally consistent numbers that support both claims—mechanism-dependent IBS distortion and ranking instability under heavy censoring for near-tied models—but on a clearly reduced fully-synthetic setup rather than the paper's semi-synthetic real-data design with its full model and metric panels.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 38.2
+}

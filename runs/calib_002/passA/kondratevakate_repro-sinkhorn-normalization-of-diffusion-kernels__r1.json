@@ -1,0 +1,105 @@
+{
+ "space_id": "kondratevakate/repro-sinkhorn-normalization-of-diffusion-kernels",
+ "sha": "5238f594df9f340f223c0c61b614b90bb7f9adea",
+ "run": 1,
+ "judged_at": "2026-10-17T18:38:22+00:00",
+ "logbook_chars": 22519,
+ "cleaning": {
+  "comments": 8,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "e883533226c92ae1",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "On Gaussian/exponential kernels in 2D/3D/5D (n=80–120), the Sinkhorn construction yields row-sum errors ~1e-13 and mass-weighted self-adjointness relative errors ~1e-16; breaking kernel symmetry or using row normalization raises the error to 1e-2–1e-1, confirming the property is discriminating.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 5,
+    "share": 0.8333333333333334,
+    "flagged": false,
+    "ungrounded": [
+     1e-13
+    ]
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Sup-norm errors of T_N f − T_ref f decrease monotonically with clean algebraic rates (1D: ~2nd order; 2D: ~1st–1.3rd order) across N=32→256 (1D) and 10²→32² (2D) for both Gaussian and exponential kernels on bounded domains; the sign-oscillating kernel mutation causes divergence, confirming positivity is load-bearing.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Across 40 configurations (dim 2/3, two kernel families, five bandwidths, uniform/non-uniform mass, n=200), iteration counts to reach 1e-3 relative error are min 6, median 9.5, max 11, with 90% landing in the 5–10 window; the extreme-mass-range mutation needing 14 iterations is honestly reported as a boundary case.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The Sinkhorn operator scores 4/4 properties (symmetry ~1e-16, mass ~1e-12, positivity, spectrum [0,1]) for prescribed non-uniform mass, but row normalization evaluated against its own degree measure also satisfies all four (sym err 2.2e-16, mass err 4.4e-16, spectrum [5.4e-4, 1.0]), a genuine counter-example to the exclusivity sub-clause.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "All three data types (point cloud n=900, sparse voxel shell n=773, GMM n=300) show Dirichlet-energy decay, monotone damping, and constant-annihilation, but the jaw-bone voxel scan is replaced by a synthetic 24³ hollow shell proxy, so the paper's actual assets are not used.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "Cross-modality group-mean eigenvalue deviations on a unit-sphere proxy (n=900, three sampling modalities) are 1.9–3.1% and grow with mode index, qualitatively matching the claim, but the Armadillo mesh is unavailable and the sphere is a synthetic stand-in.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides concrete, mutation-tested numerical evidence supporting the two theorems (Claims 1–2) and the empirical iteration-count claim (Claim 3), while honestly surfacing a counter-example to Claim 4's exclusivity sub-clause. Claims 5–6 are addressed only on synthetic proxy geometries (sphere, synthetic shell) rather than the paper's actual jaw-bone and Armadillo assets, limiting them to toy-level reproductions of qualitative behavior.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 7986,
+  "completion_tokens": 3045
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"On Gaussian/exponential kernels in 2D/3D/5D (n=80–120), the Sinkhorn construction yields row-sum errors ~1e-13 and mass-weighted self-adjointness relative errors ~1e-16; breaking kernel symmetry or using row normalization raises the error to 1e-2–1e-1, confirming the property is discriminating.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Sup-norm errors of T_N f − T_ref f decrease monotonically with clean algebraic rates (1D: ~2nd order; 2D: ~1st–1.3rd order) across N=32→256 (1D) and 10²→32² (2D) for both Gaussian and exponential kernels on bounded domains; the sign-oscillating kernel mutation causes divergence, confirming positivity is load-bearing.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Across 40 configurations (dim 2/3, two kernel families, five bandwidths, uniform/non-uniform mass, n=200), iteration counts to reach 1e-3 relative error are min 6, median 9.5, max 11, with 90% landing in the 5–10 window; the extreme-mass-range mutation needing 14 iterations is honestly reported as a boundary case.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The Sinkhorn operator scores 4/4 properties (symmetry ~1e-16, mass ~1e-12, positivity, spectrum [0,1]) for prescribed non-uniform mass, but row normalization evaluated against its own degree measure also satisfies all four (sym err 2.2e-16, mass err 4.4e-16, spectrum [5.4e-4, 1.0]), a genuine counter-example to the exclusivity sub-clause.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"All three data types (point cloud n=900, sparse voxel shell n=773, GMM n=300) show Dirichlet-energy decay, monotone damping, and constant-annihilation, but the jaw-bone voxel scan is replaced by a synthetic 24³ hollow shell proxy, so the paper's actual assets are not used.\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"Cross-modality group-mean eigenvalue deviations on a unit-sphere proxy (n=900, three sampling modalities) are 1.9–3.1% and grow with mode index, qualitatively matching the claim, but the Armadillo mesh is unavailable and the sphere is a synthetic stand-in.\"}\n  ],\n  \"overall\": \"The logbook provides concrete, mutation-tested numerical evidence supporting the two theorems (Claims 1–2) and the empirical iteration-count claim (Claim 3), while honestly surfacing a counter-example to Claim 4's exclusivity sub-clause. Claims 5–6 are addressed only on synthetic proxy geometries (sphere, synthetic shell) rather than the paper's actual jaw-bone and Armadillo assets, limiting them to toy-level reproductions of qualitative behavior.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 38.2
+}

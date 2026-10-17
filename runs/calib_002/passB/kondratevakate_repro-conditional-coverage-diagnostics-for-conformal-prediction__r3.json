@@ -1,0 +1,107 @@
+{
+ "space_id": "kondratevakate/repro-conditional-coverage-diagnostics-for-conformal-prediction",
+ "sha": "4d6129fc368f2e93d86105849cc812a22a460408",
+ "run": 3,
+ "judged_at": "2026-10-17T18:50:04+00:00",
+ "logbook_chars": 9530,
+ "cleaning": {
+  "comments": 9,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "ec427ee5b85f4204",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "An independent numerical audit checks the supporting-score identity f(h)+(p-h)f'(h)≤f(p) for L1, L2, and KL on a 99×100 grid, yielding max oracle identity error 0, max constant-target score 0, and max supporting-plane violation 1.11e-16, confirming the constant 1-alpha predictor is unbeatable under perfect conditional coverage.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "A deterministic re-aggregation of the authors' pinned 5,600-row results.csv yields LightGBM relative L1 power 68.929% vs PartitionWise 33.671%, close to the paper's 68.4%/38.3% and matching the current official notebook to <1e-5 percentage points; the qualitative gap is clearly supported though the PartitionWise value differs by ~4.6 points from the paper, likely due to code updates.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 6,
+    "share": 0.8571428571428571,
+    "flagged": false,
+    "ungrounded": [
+     4.6
+    ]
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "An independent synthetic experiment on the paper's 8D heteroscedastic model (theoretical L1 miscoverage 0.0948) shows L1-ERT rising from 0.0210 at 1k to 0.0866 at 30k test points (92% of truth), while unaligned CovGap falls from 0.0232 to 0.0049 (5% of truth), with oracle-group CovGap staying near 0.095.",
+   "grounding": {
+    "cited": 9,
+    "grounded": 8,
+    "share": 0.8888888888888888,
+    "flagged": false,
+    "ungrounded": [
+     30.0
+    ]
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "The same 30,000-point synthetic run estimates over-coverage at 0.0445 (analytic 0.0460) and under-coverage at 0.0464 (analytic 0.0488), both nonzero and close to theory, confirming the asymmetric decomposition separates the two error directions.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Reading all 80 rows of the official released classification CSV confirms the additive identity between total KL-ERT and directional components (max residual 8.94e-8) and shows all 8 dataset/method groups have directional gaps >0.01 (e.g., CIFAR100/likelihood: 0.0852 vs 0.3234), though this is a released-output replay, not independent retraining.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "A mutation control with 20 seeds, 2,000 observations, and 5 folds shows a label memorizer produces false in-sample L2-ERT of 0.08886 but cross-fitted null ERT of 0 (max train/eval overlap 0), while a genuine two-region signal is still detected at 0.01013, directly demonstrating that k-fold cross-fitting removes overfitting artifacts without erasing real conditional signal.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 12,
+ "overall": "The logbook provides concrete evidence for all six claims: four through independent experiments or mathematical audits (C1, C3, C4, C6) and two through deterministic re-aggregation of the authors' hash-pinned released outputs (C2, C5). The main limitations are that C2 and C5 are not independent reproductions, and C2's PartitionWise value (33.671%) differs from the paper's 38.3%, though the qualitative claim is strongly supported.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3709,
+  "completion_tokens": 5304
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"An independent numerical audit checks the supporting-score identity f(h)+(p-h)f'(h)≤f(p) for L1, L2, and KL on a 99×100 grid, yielding max oracle identity error 0, max constant-target score 0, and max supporting-plane violation 1.11e-16, confirming the constant 1-alpha predictor is unbeatable under perfect conditional coverage.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"A deterministic re-aggregation of the authors' pinned 5,600-row results.csv yields LightGBM relative L1 power 68.929% vs PartitionWise 33.671%, close to the paper's 68.4%/38.3% and matching the current official notebook to <1e-5 percentage points; the qualitative gap is clearly supported though the PartitionWise value differs by ~4.6 points from the paper, likely due to code updates.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"An independent synthetic experiment on the paper's 8D heteroscedastic model (theoretical L1 miscoverage 0.0948) shows L1-ERT rising from 0.0210 at 1k to 0.0866 at 30k test points (92% of truth), while unaligned CovGap falls from 0.0232 to 0.0049 (5% of truth), with oracle-group CovGap staying near 0.095.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"The same 30,000-point synthetic run estimates over-coverage at 0.0445 (analytic 0.0460) and under-coverage at 0.0464 (analytic 0.0488), both nonzero and close to theory, confirming the asymmetric decomposition separates the two error directions.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Reading all 80 rows of the official released classification CSV confirms the additive identity between total KL-ERT and directional components (max residual 8.94e-8) and shows all 8 dataset/method groups have directional gaps >0.01 (e.g., CIFAR100/likelihood: 0.0852 vs 0.3234), though this is a released-output replay, not independent retraining.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"A mutation control with 20 seeds, 2,000 observations, and 5 folds shows a label memorizer produces false in-sample L2-ERT of 0.08886 but cross-fitted null ERT of 0 (max train/eval overlap 0), while a genuine two-region signal is still detected at 0.01013, directly demonstrating that k-fold cross-fitting removes overfitting artifacts without erasing real conditional signal.\"}\n  ],\n  \"overall\": \"The logbook provides concrete evidence for all six claims: four through independent experiments or mathematical audits (C1, C3, C4, C6) and two through deterministic re-aggregation of the authors' hash-pinned released outputs (C2, C5). The main limitations are that C2 and C5 are not independent reproductions, and C2's PartitionWise value (33.671%) differs from the paper's 38.3%, though the qualitative claim is strongly supported.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 59.2
+}

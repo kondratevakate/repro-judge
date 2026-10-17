@@ -1,0 +1,105 @@
+{
+ "space_id": "kondratevakate/repro-conditional-coverage-diagnostics-for-conformal-prediction",
+ "sha": "4d6129fc368f2e93d86105849cc812a22a460408",
+ "run": 1,
+ "judged_at": "2026-10-17T18:32:38+00:00",
+ "logbook_chars": 9530,
+ "cleaning": {
+  "comments": 9,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "09d53b8987c805a5",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "An independent numerical audit checks the supporting-score identity for L1, L2, and KL on 99×100 grids, finding max oracle identity error and constant-target score of 0 and supporting-plane violations at machine precision (1.11e-16), confirming the constant 1-alpha predictor is unbeatable under perfect conditional coverage.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only re-aggregates the authors' released results.csv (not an independent run) and obtains 68.9% and 33.7%, which do not match the paper's claimed 68.4% and 38.3%; the PartitionWise value differs by ~4.6 percentage points with no explanation.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 4,
+    "share": 0.8,
+    "flagged": false,
+    "ungrounded": [
+     4.6
+    ]
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "An independent synthetic experiment on the paper's 8D heteroscedastic model shows L1-ERT recovering 92% of the analytic violation (0.0866 vs 0.0948) at 30,000 test points while unaligned CovGap recovers only 5% (0.0049), with the convergence trend visible already at 3,000 samples.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "The same 30,000-point synthetic run evaluates both clipped convex components, finding over-coverage 0.0445 (analytic 0.0460) and under-coverage 0.0464 (analytic 0.0488), both nonzero and close to theory.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only reads the authors' released classification CSV and checks additivity (residual 8.94e-8) and directional gaps; no classification experiments are independently executed, so this is a sanity check on released artifacts rather than experimental verification.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "A mutation control with 20 seeds and 5 folds shows a label memorizer produces false in-sample ERT of 0.08886 but cross-fitted null ERT of 0, while a genuine two-region signal still yields cross-fitted ERT of 0.01013, directly demonstrating that k-fold cross-fitting removes overfitting artifacts without erasing real signal.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides solid independent experimental evidence for the metric identity foundations (C1), synthetic convergence behavior (C3), asymmetric decomposition (C4), and Algorithm 1 cross-fitting mechanism (C6). Claims C2 and C5 are unsupported because they merely re-aggregate or read the authors' own released data without running independent experiments, and C2's replayed numbers do not match the paper's Table 2 values.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3719,
+  "completion_tokens": 5860
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"An independent numerical audit checks the supporting-score identity for L1, L2, and KL on 99×100 grids, finding max oracle identity error and constant-target score of 0 and supporting-plane violations at machine precision (1.11e-16), confirming the constant 1-alpha predictor is unbeatable under perfect conditional coverage.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only re-aggregates the authors' released results.csv (not an independent run) and obtains 68.9% and 33.7%, which do not match the paper's claimed 68.4% and 38.3%; the PartitionWise value differs by ~4.6 percentage points with no explanation.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"An independent synthetic experiment on the paper's 8D heteroscedastic model shows L1-ERT recovering 92% of the analytic violation (0.0866 vs 0.0948) at 30,000 test points while unaligned CovGap recovers only 5% (0.0049), with the convergence trend visible already at 3,000 samples.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"The same 30,000-point synthetic run evaluates both clipped convex components, finding over-coverage 0.0445 (analytic 0.0460) and under-coverage 0.0464 (analytic 0.0488), both nonzero and close to theory.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only reads the authors' released classification CSV and checks additivity (residual 8.94e-8) and directional gaps; no classification experiments are independently executed, so this is a sanity check on released artifacts rather than experimental verification.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"A mutation control with 20 seeds and 5 folds shows a label memorizer produces false in-sample ERT of 0.08886 but cross-fitted null ERT of 0, while a genuine two-region signal still yields cross-fitted ERT of 0.01013, directly demonstrating that k-fold cross-fitting removes overfitting artifacts without erasing real signal.\"}\n  ],\n  \"overall\": \"The logbook provides solid independent experimental evidence for the metric identity foundations (C1), synthetic convergence behavior (C3), asymmetric decomposition (C4), and Algorithm 1 cross-fitting mechanism (C6). Claims C2 and C5 are unsupported because they merely re-aggregate or read the authors' own released data without running independent experiments, and C2's replayed numbers do not match the paper's Table 2 values.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 64.6
+}

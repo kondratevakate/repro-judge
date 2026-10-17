@@ -1,0 +1,55 @@
+{
+ "space_id": "kondratevakate/repro-explicitly-modeling-censoring-produces-superior-survival-predictors",
+ "sha": "a885d542d0c9218faa446f3f154ff9fc8f079819",
+ "run": 1,
+ "judged_at": "2026-10-17T18:46:17+00:00",
+ "logbook_chars": 9098,
+ "cleaning": {
+  "comments": 4,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "9af653d792675812",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "falsified",
+   "evidence": "On semi-SUPPORT (coupled by construction via shared factor h2), SALaD vs baseline gives ΔC-index = −0.0019 (SALaD better in only 1/5 paired seeds), ΔIBS = 0.0000, ΔMAE-Hinge = +0.04 — a statistical tie, not an improvement. On real SUPPORT, SALaD loses on all 5 paired splits (ΔC = −0.0052, 0/5 seeds). Independent seeds 100–102 reportedly show the same pattern.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "The claim specifies 'consistent gains on 10 datasets,' but the logbook only tests 2 datasets (SUPPORT, semi-SUPPORT) with 1 survival layer (N-MTLR) out of 4. On those 2 datasets SALaD shows no gains over baseline, but the reduced scope (2/10 datasets, 1/4 layers) cannot confirm or fully refute the 10-dataset consistency claim, and the 'four disjoint factor categories' aspect is not directly evaluated.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 3,
+ "overall": "The logbook runs the authors' own SALaD code verbatim on real SUPPORT data and a semi-synthetic coupled dataset with a proper paired-seed protocol, finding that SALaD does not beat the plain baseline in the coupled regime (tie) and loses on real SUPPORT. The scope is limited to 1 of 4 survival layers and 2 of 10 datasets, so it falsifies the coupled-regime improvement claim for the tested slice but cannot fully assess the broader 10-dataset consistency claim.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3511,
+  "completion_tokens": 3442
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"falsified\", \"evidence\": \"On semi-SUPPORT (coupled by construction via shared factor h2), SALaD vs baseline gives ΔC-index = −0.0019 (SALaD better in only 1/5 paired seeds), ΔIBS = 0.0000, ΔMAE-Hinge = +0.04 — a statistical tie, not an improvement. On real SUPPORT, SALaD loses on all 5 paired splits (ΔC = −0.0052, 0/5 seeds). Independent seeds 100–102 reportedly show the same pattern.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"The claim specifies 'consistent gains on 10 datasets,' but the logbook only tests 2 datasets (SUPPORT, semi-SUPPORT) with 1 survival layer (N-MTLR) out of 4. On those 2 datasets SALaD shows no gains over baseline, but the reduced scope (2/10 datasets, 1/4 layers) cannot confirm or fully refute the 10-dataset consistency claim, and the 'four disjoint factor categories' aspect is not directly evaluated.\"}\n  ],\n  \"overall\": \"The logbook runs the authors' own SALaD code verbatim on real SUPPORT data and a semi-synthetic coupled dataset with a proper paired-seed protocol, finding that SALaD does not beat the plain baseline in the coupled regime (tie) and loses on real SUPPORT. The scope is limited to 1 of 4 survival layers and 2 of 10 datasets, so it falsifies the coupled-regime improvement claim for the tested slice but cannot fully assess the broader 10-dataset consistency claim.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 39.2
+}

@@ -1,0 +1,105 @@
+{
+ "space_id": "kondratevakate/repro-conditional-coverage-diagnostics-for-conformal-prediction",
+ "sha": "4d6129fc368f2e93d86105849cc812a22a460408",
+ "run": 2,
+ "judged_at": "2026-10-17T18:49:45+00:00",
+ "logbook_chars": 9530,
+ "cleaning": {
+  "comments": 9,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "bc479e49a37e2892",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "The audit runs audit_metric_identities.py evaluating the supporting-score inequality for L1, L2, and KL on a 99×100 grid, finding max oracle identity error 0, max constant-target score 0, and max supporting-plane violation 1.11e-16, confirming the core mathematical principle.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only re-aggregates the authors' released results.csv (not an independent classifier run), and the obtained values (68.929% and 33.671%) do not match the paper's claimed 68.4% and 38.3%, particularly for PartitionWise.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "An independent synthetic experiment with X~U([-1,1]^8), Y~N(0,sigma(X_1)), 3000 calibration samples shows L1-ERT recovering 92% of the analytic violation (0.0866 vs 0.0948) at 30k test points while unaligned CovGap recovers only 5% (0.0049 vs 0.0948).",
+   "grounding": {
+    "cited": 9,
+    "grounded": 8,
+    "share": 0.8888888888888888,
+    "flagged": false,
+    "ungrounded": [
+     30.0
+    ]
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "The same 30,000-point synthetic run estimates over-coverage at 0.0445 (analytic 0.0460) and under-coverage at 0.0464 (analytic 0.0488), both nonzero and close to theory, demonstrating the asymmetric decomposition.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only reads the official released classification CSV (80 rows) and checks internal consistency; it explicitly does not retrain image classifiers, so no independent experiment is performed to verify the reported divergent KL components.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "A controlled experiment with 20 seeds, 2000 observations, and 5 folds shows a label memorizer produces false in-sample L2-ERT of 0.08886 but cross-fitted null ERT of 0, while a genuine two-region signal yields cross-fitted ERT of 0.01013, with zero train/evaluation overlap.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides independent numerical and synthetic-experiment evidence supporting claims 1, 3, 4, and 6, but for claims 2 and 5 it only re-aggregates the authors' released output files without independent model training, and the claim-2 numbers do not match the paper's reported values.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3714,
+  "completion_tokens": 3603
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"The audit runs audit_metric_identities.py evaluating the supporting-score inequality for L1, L2, and KL on a 99×100 grid, finding max oracle identity error 0, max constant-target score 0, and max supporting-plane violation 1.11e-16, confirming the core mathematical principle.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only re-aggregates the authors' released results.csv (not an independent classifier run), and the obtained values (68.929% and 33.671%) do not match the paper's claimed 68.4% and 38.3%, particularly for PartitionWise.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"An independent synthetic experiment with X~U([-1,1]^8), Y~N(0,sigma(X_1)), 3000 calibration samples shows L1-ERT recovering 92% of the analytic violation (0.0866 vs 0.0948) at 30k test points while unaligned CovGap recovers only 5% (0.0049 vs 0.0948).\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"The same 30,000-point synthetic run estimates over-coverage at 0.0445 (analytic 0.0460) and under-coverage at 0.0464 (analytic 0.0488), both nonzero and close to theory, demonstrating the asymmetric decomposition.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only reads the official released classification CSV (80 rows) and checks internal consistency; it explicitly does not retrain image classifiers, so no independent experiment is performed to verify the reported divergent KL components.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"A controlled experiment with 20 seeds, 2000 observations, and 5 folds shows a label memorizer produces false in-sample L2-ERT of 0.08886 but cross-fitted null ERT of 0, while a genuine two-region signal yields cross-fitted ERT of 0.01013, with zero train/evaluation overlap.\"}\n  ],\n  \"overall\": \"The logbook provides independent numerical and synthetic-experiment evidence supporting claims 1, 3, 4, and 6, but for claims 2 and 5 it only re-aggregates the authors' released output files without independent model training, and the claim-2 numbers do not match the paper's reported values.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 39.9
+}

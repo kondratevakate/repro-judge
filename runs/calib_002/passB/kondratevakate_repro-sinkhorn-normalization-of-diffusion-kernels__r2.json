@@ -1,0 +1,105 @@
+{
+ "space_id": "kondratevakate/repro-sinkhorn-normalization-of-diffusion-kernels",
+ "sha": "5238f594df9f340f223c0c61b614b90bb7f9adea",
+ "run": 2,
+ "judged_at": "2026-10-17T18:51:32+00:00",
+ "logbook_chars": 22519,
+ "cleaning": {
+  "comments": 8,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "3bf268a51d7330c1",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "On Gaussian/exponential kernels in 2D/3D/5D (n=80–120), the Sinkhorn iteration drives row-sum error to ~1e-13 and mass-weighted self-adjointness relative error to ~1e-16 or 0.0; mutations breaking symmetry or using row normalization raise the error to 1e-2–3e-1, confirming the test is discriminating.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 5,
+    "share": 0.8333333333333334,
+    "flagged": false,
+    "ungrounded": [
+     1e-13
+    ]
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Sup-norm errors of T_N f − T_ref f decrease monotonically with clean algebraic rates (1D: ~2.0, 2D: ~1.0–1.3) for both Gaussian and exponential kernels on [0,1] and [0,1]^2 across increasing resolutions; the sign-oscillating kernel mutation causes divergence, confirming positivity is load-bearing.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Across 40 configurations (n=200, dims 2/3, multiple bandwidths and mass types), iteration counts to reach <0.1% error are min 6, median 9.5, max 11, with 90% landing in the 5–10 window; the extreme-mass-range mutation needing 14 iterations is honestly reported as a boundary case.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The Sinkhorn operator scores 4/4 properties (symmetry err ~1e-16, mass err ~1e-12, positive, spectrum in [0,1]) and baselines score 3/4 and 2/4 against a prescribed mass, but row normalization evaluated against its own degree measure also achieves 4/4 (sym err 2.2e-16, mass err 4.4e-16), a concrete counter-example to the exclusivity sub-clause.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "All three data types show Laplacian-like behavior (Dirichlet energy decay, monotone damping, constant annihilation) on real runs, but the jaw-bone voxel scan is replaced by a synthetic 24³ sparse shell and the GMM uses n=300, so the paper's actual assets and Section-5 figures are not matched.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "The Armadillo mesh is unavailable and replaced by a unit sphere proxy (n=900, three sampling modalities); multiplet group means deviate 1.9–3.1% across modalities with divergence growing at higher modes, qualitatively reproducing the claimed phenomenon but not on the paper's asset.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides concrete numerical verification for the construction-intrinsic theoretical claims (1–3) through independent re-implementations with discriminating mutations, while honestly identifying a counter-example to the baseline-exclusivity sub-clause of Claim 4. Claims 5–6 are addressed only with synthetic proxies for unavailable data assets, yielding qualitative but not full reproduction.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 7996,
+  "completion_tokens": 7116
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"On Gaussian/exponential kernels in 2D/3D/5D (n=80–120), the Sinkhorn iteration drives row-sum error to ~1e-13 and mass-weighted self-adjointness relative error to ~1e-16 or 0.0; mutations breaking symmetry or using row normalization raise the error to 1e-2–3e-1, confirming the test is discriminating.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Sup-norm errors of T_N f − T_ref f decrease monotonically with clean algebraic rates (1D: ~2.0, 2D: ~1.0–1.3) for both Gaussian and exponential kernels on [0,1] and [0,1]^2 across increasing resolutions; the sign-oscillating kernel mutation causes divergence, confirming positivity is load-bearing.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Across 40 configurations (n=200, dims 2/3, multiple bandwidths and mass types), iteration counts to reach <0.1% error are min 6, median 9.5, max 11, with 90% landing in the 5–10 window; the extreme-mass-range mutation needing 14 iterations is honestly reported as a boundary case.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The Sinkhorn operator scores 4/4 properties (symmetry err ~1e-16, mass err ~1e-12, positive, spectrum in [0,1]) and baselines score 3/4 and 2/4 against a prescribed mass, but row normalization evaluated against its own degree measure also achieves 4/4 (sym err 2.2e-16, mass err 4.4e-16), a concrete counter-example to the exclusivity sub-clause.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"All three data types show Laplacian-like behavior (Dirichlet energy decay, monotone damping, constant annihilation) on real runs, but the jaw-bone voxel scan is replaced by a synthetic 24³ sparse shell and the GMM uses n=300, so the paper's actual assets and Section-5 figures are not matched.\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"The Armadillo mesh is unavailable and replaced by a unit sphere proxy (n=900, three sampling modalities); multiplet group means deviate 1.9–3.1% across modalities with divergence growing at higher modes, qualitatively reproducing the claimed phenomenon but not on the paper's asset.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical verification for the construction-intrinsic theoretical claims (1–3) through independent re-implementations with discriminating mutations, while honestly identifying a counter-example to the baseline-exclusivity sub-clause of Claim 4. Claims 5–6 are addressed only with synthetic proxies for unavailable data assets, yielding qualitative but not full reproduction.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 83.8
+}

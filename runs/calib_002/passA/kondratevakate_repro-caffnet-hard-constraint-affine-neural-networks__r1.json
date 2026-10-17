@@ -1,0 +1,97 @@
+{
+ "space_id": "kondratevakate/repro-caffnet-hard-constraint-affine-neural-networks",
+ "sha": "9693236a712459acb34dfa9b3903afd74a9348af",
+ "run": 1,
+ "judged_at": "2026-10-17T18:36:36+00:00",
+ "logbook_chars": 9621,
+ "cleaning": {
+  "comments": 11,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "5af9b413f40de524",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Numpy implementation of the proof equations tested across 3200 instances (n_out 1-4, various m, p-norms, 25 seeds, 807 Case-2 infeasible instances) reports 0 bound violations with worst ratio 0.265; mutation tests breaking premise (28) or replacing argmin with argmax produce hundreds of violations, confirming the bound depends on the stated hypotheses.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Across 280 instances, T1 shows sub-constraint satisfaction (max violation 1.8e-13) for arbitrary w_phi, T2 shows the null-space term spans the entire feasible set (max error 1.7e-14), T3 confirms w_phi=0 recovers the fixed projection, and T4 shows joint optimization beats fixed projection on 29/38 instances; deleting the null-space term eliminates all gains.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Exhaustive testing of 27,900 cases (E1) and 8,800 random cases (E2) including 1,275 rank-deficient systems reports 0 CAffNet feasibility failures, while HardNet's single pseudo-inverse correction fails 59.2% (E1) and 77.3% (E2); cardinality formula |Gamma| = sum_{k<=min(m,n_out)} C(m,k) verified for m=1..10, n_out=1..5; truncating Gamma causes 24%+ failures.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 3,
+    "share": 0.5,
+    "flagged": false,
+    "ungrounded": [
+     27900.0,
+     8800.0,
+     1275.0
+    ]
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Reduced-scale CPU run with 8000 epochs (paper: 50000) and 5 seeds achieves 75.58% MSE reduction (paper: 73.33%) with zero CAffNet-TF violations and 26% soft-NN violations; results align closely but training is at 16% of paper epochs on CPU.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 5,
+    "share": 0.8333333333333334,
+    "flagged": false,
+    "ungrounded": [
+     16.0
+    ]
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "Reduced-scale CPU run with 20 initial states (paper: 300) and 60 epochs shows CAffNet with 0 collisions and soft-NN with 3 collisions, but HardNet also reports 0 collisions (only constraint violations), partially contradicting the claim that both HardNet and soft-NN fail to avoid obstacles.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides strong numerical verification of the three theoretical claims through exhaustive grid testing and mutation controls. The two experimental claims are addressed only at reduced scale (CPU, fewer epochs/states), with claim 4 closely matching paper numbers but claim 5 partially contradicting the paper since HardNet shows zero collisions in the reduced run.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4067,
+  "completion_tokens": 3137
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Numpy implementation of the proof equations tested across 3200 instances (n_out 1-4, various m, p-norms, 25 seeds, 807 Case-2 infeasible instances) reports 0 bound violations with worst ratio 0.265; mutation tests breaking premise (28) or replacing argmin with argmax produce hundreds of violations, confirming the bound depends on the stated hypotheses.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Across 280 instances, T1 shows sub-constraint satisfaction (max violation 1.8e-13) for arbitrary w_phi, T2 shows the null-space term spans the entire feasible set (max error 1.7e-14), T3 confirms w_phi=0 recovers the fixed projection, and T4 shows joint optimization beats fixed projection on 29/38 instances; deleting the null-space term eliminates all gains.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Exhaustive testing of 27,900 cases (E1) and 8,800 random cases (E2) including 1,275 rank-deficient systems reports 0 CAffNet feasibility failures, while HardNet's single pseudo-inverse correction fails 59.2% (E1) and 77.3% (E2); cardinality formula |Gamma| = sum_{k<=min(m,n_out)} C(m,k) verified for m=1..10, n_out=1..5; truncating Gamma causes 24%+ failures.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Reduced-scale CPU run with 8000 epochs (paper: 50000) and 5 seeds achieves 75.58% MSE reduction (paper: 73.33%) with zero CAffNet-TF violations and 26% soft-NN violations; results align closely but training is at 16% of paper epochs on CPU.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"Reduced-scale CPU run with 20 initial states (paper: 300) and 60 epochs shows CAffNet with 0 collisions and soft-NN with 3 collisions, but HardNet also reports 0 collisions (only constraint violations), partially contradicting the claim that both HardNet and soft-NN fail to avoid obstacles.\"}\n  ],\n  \"overall\": \"The logbook provides strong numerical verification of the three theoretical claims through exhaustive grid testing and mutation controls. The two experimental claims are addressed only at reduced scale (CPU, fewer epochs/states), with claim 4 closely matching paper numbers but claim 5 partially contradicting the paper since HardNet shows zero collisions in the reduced run.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 41.8
+}

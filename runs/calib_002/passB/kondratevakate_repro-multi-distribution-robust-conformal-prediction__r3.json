@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-multi-distribution-robust-conformal-prediction",
+ "sha": "178965c8297b9b25b29b8e7171425ec816faef77",
+ "run": 3,
+ "judged_at": "2026-10-17T18:52:01+00:00",
+ "logbook_chars": 17431,
+ "cleaning": {
+  "comments": 10,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "1dd324b1010503ab",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "10-seed experiment on the paper's Linear DGP (K=3, n_k=2000, alpha=0.1) shows MDCP worst-case coverage of 0.905 (classification) and 0.909 (regression), both clearing the 0.90 nominal target; parametric-fit deviation is reasonable for Linear DGP and shared across methods.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "500 seeded finite-measure LP instances (3 sources, 24 outcomes, alpha=0.1) solved via linprog show max primal-dual gap 2.23e-8, max complementary-slackness error 2.23e-8, max superlevel-structure violation 1.26e-8, and all 500 instances have at least one active source.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Convergence tested across 8 sample sizes (100–25,000) with 20 seeds each on 64-outcome categorical distributions: calibrated-set symmetric difference drops from 18.45 to 1.80 (within oracle boundary measure of 3), and a frozen-dual-weight destructive control fails to converge, isolating the theorem's consistency assumption.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "Measured reduction is 4.73% (SE 1.68) vs claimed 34.39%; even a cheating oracle constant-lambda search only achieves 13.49%, but documented deviations (no scipy/sklearn, full-batch Adam instead of minibatch with early stopping) plausibly confound the result, and the official 100-trial panel was not completed.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Measured reduction is 8.71% (SE 1.85) vs claimed 22.44%; oracle constant-lambda achieves 11.91%, still far below the claim, but the same optimizer deviations as Claim 4 apply and the full official panel was not run.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states FMoW was not attempted: no FMoW images, DenseNet-121 checkpoint, or six-region prediction artifacts were used.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 6,
+ "overall": "The logbook provides concrete numerical evidence supporting the three theorem claims through direct computational experiments (coverage validity, LP duality/KKT checks, and asymptotic convergence with destructive controls). The two empirical efficiency claims remain unresolved because measured reductions fall far short of claimed magnitudes under documented implementation deviations, and the FMoW claim was not attempted at all.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5639,
+  "completion_tokens": 4803
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"10-seed experiment on the paper's Linear DGP (K=3, n_k=2000, alpha=0.1) shows MDCP worst-case coverage of 0.905 (classification) and 0.909 (regression), both clearing the 0.90 nominal target; parametric-fit deviation is reasonable for Linear DGP and shared across methods.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"500 seeded finite-measure LP instances (3 sources, 24 outcomes, alpha=0.1) solved via linprog show max primal-dual gap 2.23e-8, max complementary-slackness error 2.23e-8, max superlevel-structure violation 1.26e-8, and all 500 instances have at least one active source.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Convergence tested across 8 sample sizes (100–25,000) with 20 seeds each on 64-outcome categorical distributions: calibrated-set symmetric difference drops from 18.45 to 1.80 (within oracle boundary measure of 3), and a frozen-dual-weight destructive control fails to converge, isolating the theorem's consistency assumption.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"Measured reduction is 4.73% (SE 1.68) vs claimed 34.39%; even a cheating oracle constant-lambda search only achieves 13.49%, but documented deviations (no scipy/sklearn, full-batch Adam instead of minibatch with early stopping) plausibly confound the result, and the official 100-trial panel was not completed.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Measured reduction is 8.71% (SE 1.85) vs claimed 22.44%; oracle constant-lambda achieves 11.91%, still far below the claim, but the same optimizer deviations as Claim 4 apply and the full official panel was not run.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states FMoW was not attempted: no FMoW images, DenseNet-121 checkpoint, or six-region prediction artifacts were used.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical evidence supporting the three theorem claims through direct computational experiments (coverage validity, LP duality/KKT checks, and asymptotic convergence with destructive controls). The two empirical efficiency claims remain unresolved because measured reductions fall far short of claimed magnitudes under documented implementation deviations, and the FMoW claim was not attempted at all.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 57.1
+}

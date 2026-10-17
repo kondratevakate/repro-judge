@@ -173,6 +173,17 @@ def cached_logbook(space_id: str, sha: str, token: str) -> tuple[str, list[str],
     return text, failed, stats
 
 
+def ground_rows(rows: list[dict], visible: str) -> None:
+    """Attach the grounding diagnostic. It runs after a paid call, so a failure in it is
+    recorded on the row instead of discarding the verdict."""
+    for row in rows:
+        try:
+            row["grounding"] = grounding.check_verdict(row["evidence"], row["verdict"], visible)
+        except Exception as e:
+            row["grounding"] = {"error": f"{type(e).__name__}: {str(e)[:200]}", "flagged": False,
+                                "cited": 0, "grounded": 0, "share": None, "ungrounded": []}
+
+
 def judge_item(item: dict, run_no: int, cfg: dict, rubric: str, token: str) -> dict:
     t0 = time.time()
     text, failed, clean_stats = cached_logbook(item["space_id"], item["sha"], token)
@@ -185,10 +196,9 @@ def judge_item(item: dict, run_no: int, cfg: dict, rubric: str, token: str) -> d
                             temperature=cfg["temperature"], max_tokens=cfg["max_tokens"],
                             attempts=cfg["attempts"])
     rows = verdicts.normalize(res["parsed"], len(item["claims"]))
-    visible = text + "\n" + "\n".join(item["claims"])
-    for row in rows:
-        row["grounding"] = grounding.check_verdict(row["evidence"], row["verdict"], visible)
+    ground_rows(rows, text + "\n" + "\n".join(item["claims"]))
     return {"space_id": item["space_id"], "sha": item["sha"], "run": run_no, "judged_at": now(),
+            "code_sha256": code_sha256(),
             "logbook_chars": len(text), "cleaning": clean_stats, "nonce": nonce,
             "verdicts": rows, "points": verdicts.points(rows),
             "overall": str(res["parsed"].get("overall", "")), "quality": str(res["parsed"].get("quality", "")),
@@ -361,6 +371,8 @@ def summarize(pop: dict, A: dict, B: dict, pricing: dict | None) -> dict:
                     "ungrounded": v["grounding"]["ungrounded"], "evidence": v["evidence"]}
                    for s, v in point_rows if v["grounding"]["flagged"]]
         with_numbers = [v for _, v in point_rows if v["grounding"]["cited"]]
+        res["grounding_errors"] = sum(1 for r in A.values() for v in r["verdicts"]
+                                      if "error" in v.get("grounding", {}))
         res.update(grounding_point_verdicts=len(point_rows), grounding_with_numbers=len(with_numbers),
                    grounding_flagged=len(flagged), grounding_flagged_share=len(flagged) / len(point_rows),
                    grounding_mean_share=(sum(v["grounding"]["share"] for v in with_numbers) / len(with_numbers)
@@ -382,9 +394,22 @@ def cmd_report(a) -> None:
     run_dir = RUNS / a.run
     pop = json.loads((run_dir / "population.json").read_text(encoding="utf-8"))
     man = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
-    A = load_pass(run_dir, "A")
-    res = {"run": a.run, "manifest": man,
-           **summarize(pop, A, load_pass(run_dir, "B"), man.get("pricing_per_million"))}
+    A, B = load_pass(run_dir, "A"), load_pass(run_dir, "B")
+    regrounded = 0
+    if any("grounding" in v for r in A.values() for v in r["verdicts"]):
+        # The diagnostic is deterministic over saved evidence and the cached text the model
+        # saw, so every record is re-checked with the current code for a consistent report.
+        by_id = {x["space_id"]: x for x in pop["items"]}
+        for rec in list(A.values()) + list(B.values()):
+            it = by_id[rec["space_id"]]
+            text, failed, _ = cached_logbook(it["space_id"], it["sha"], None)
+            if failed:
+                sys.exit(f"cannot re-check grounding, logbook incomplete: {it['space_id']}")
+            ground_rows(rec["verdicts"], text + "\n" + "\n".join(it["claims"]))
+            regrounded += 1
+    res = {"run": a.run, "manifest": man, "grounding_code_sha256": code_sha256() if regrounded else None,
+           "grounding_rechecked_records": regrounded,
+           **summarize(pop, A, B, man.get("pricing_per_million"))}
     if a.baseline:
         base = load_pass(RUNS / a.baseline, "A")
         x, y = [], []
@@ -401,7 +426,7 @@ def cmd_report(a) -> None:
     for k in ["n_judged", "n_claims", "exact_agreement", "cohen_kappa", "mean_abs_point_diff_per_claim",
               "official_total", "judge_total", "max_total", "retest_logbooks", "retest_claims",
               "retest_identical_share", "retest_fleiss_kappa", "baseline", "baseline_claims",
-              "baseline_exact_agreement", "baseline_cohen_kappa", "grounding_point_verdicts",
+              "baseline_exact_agreement", "baseline_cohen_kappa", "grounding_errors", "grounding_point_verdicts",
               "grounding_with_numbers", "grounding_flagged", "grounding_flagged_share",
               "grounding_mean_share", "cleaning_totals_pass_a", "tokens_in", "tokens_out", "cost_usd"]:
         if k in res:
@@ -433,9 +458,7 @@ def cmd_judge(a) -> None:
     messages = prompt.build_messages(rubric, {"title": a.title or "", "orid": a.orid or ""}, claims, text)
     res = router.judge_call(messages, token=token, model=a.model, provider=a.provider)
     rows = verdicts.normalize(res["parsed"], len(claims))
-    visible = text + "\n" + "\n".join(claims)
-    for row in rows:
-        row["grounding"] = grounding.check_verdict(row["evidence"], row["verdict"], visible)
+    ground_rows(rows, text + "\n" + "\n".join(claims))
     print(json.dumps({"verdicts": rows, "points": verdicts.points(rows), "max_points": 2 * len(claims),
                       "overall": res["parsed"].get("overall"), "quality": res["parsed"].get("quality"),
                       "cleaning": stats, "model_id": res["model_id"], "served_by": res["served_by"],

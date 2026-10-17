@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-allocating-variance-to-maximize-expectation",
+ "sha": "f710a82abce466ddf3a0dd4a9c7ed004f5187506",
+ "run": 1,
+ "judged_at": "2026-10-17T18:40:38+00:00",
+ "logbook_chars": 10439,
+ "cleaning": {
+  "comments": 8,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "dd5dc921e869a699",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "Grid PTAS tested on n=4,5 instances with a fine-grid proxy reference optimum; gaps are within ε (e.g., 0.0034 for ε=0.5) and mutation test breaks the property, but the scale is clearly reduced and the reference is not a true optimum.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "Correlated PTAS tested at n=3,4 against a 120k-sample MC reference with SE ~0.001; the ~4.5e-3 gap is within MC noise, and the mutation test (halving budget) did not discriminate, leaving the claim uncertified.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "12 GraphVarAlloc instances at n=6,8,10 with m=12,16,20 show ratios above 1/ln(n) (min 0.506 > 0.481), and the mutation test breaks, but this is a reduced-scale empirical check of a worst-case approximation guarantee, not a full verification.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "Tested at n=8,12,16; the asymptotic signature (k·p in a constant band, k non-increasing in p) is not uniformly reproduced — k·p wanders outside a constant band at n=8 and monotonicity fails at n=12 — though qualitative concentration is visible.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Direct numerical test across ε=0.5…0.02 shows the ratio E_max0/(ε√ln(1/ε)) stays bounded (C∈[1.26,1.77]) for independent and correlated cases, and the mutation test (removing the per-coordinate cap) causes C to diverge, confirming the bound and its conditions.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "n=8 ER graphs with 16k MC samples reproduce qualitative concentration (top-2 mass profiles) but strict concavity fails (second differences include positive segments) and concentration is not monotonically increasing in the independent setting.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook runs real experiments with mutation tests for all six claims, but scales are small (n=3–16) and three claims remain inconclusive due to MC noise, finite-size asymptotic mismatch, or partial reproduction of illustrative properties. Only the Lemma 2.1 bound (Claim 5) is convincingly verified through direct numerical testing; Claims 1 and 3 are supported but only on reduced setups.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4689,
+  "completion_tokens": 4634
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"Grid PTAS tested on n=4,5 instances with a fine-grid proxy reference optimum; gaps are within ε (e.g., 0.0034 for ε=0.5) and mutation test breaks the property, but the scale is clearly reduced and the reference is not a true optimum.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"Correlated PTAS tested at n=3,4 against a 120k-sample MC reference with SE ~0.001; the ~4.5e-3 gap is within MC noise, and the mutation test (halving budget) did not discriminate, leaving the claim uncertified.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"12 GraphVarAlloc instances at n=6,8,10 with m=12,16,20 show ratios above 1/ln(n) (min 0.506 > 0.481), and the mutation test breaks, but this is a reduced-scale empirical check of a worst-case approximation guarantee, not a full verification.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"Tested at n=8,12,16; the asymptotic signature (k·p in a constant band, k non-increasing in p) is not uniformly reproduced — k·p wanders outside a constant band at n=8 and monotonicity fails at n=12 — though qualitative concentration is visible.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Direct numerical test across ε=0.5…0.02 shows the ratio E_max0/(ε√ln(1/ε)) stays bounded (C∈[1.26,1.77]) for independent and correlated cases, and the mutation test (removing the per-coordinate cap) causes C to diverge, confirming the bound and its conditions.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"n=8 ER graphs with 16k MC samples reproduce qualitative concentration (top-2 mass profiles) but strict concavity fails (second differences include positive segments) and concentration is not monotonically increasing in the independent setting.\"}\n  ],\n  \"overall\": \"The logbook runs real experiments with mutation tests for all six claims, but scales are small (n=3–16) and three claims remain inconclusive due to MC noise, finite-size asymptotic mismatch, or partial reproduction of illustrative properties. Only the Lemma 2.1 bound (Claim 5) is convincingly verified through direct numerical testing; Claims 1 and 3 are supported but only on reduced setups.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 58.0
+}

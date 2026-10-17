@@ -1,0 +1,91 @@
+{
+ "space_id": "kondratevakate/repro-learning-treatment-allocations-with-risk-control-under-partial-identifiability",
+ "sha": "b21e448c01075452e77cb47caca2da458e1e00b2",
+ "run": 1,
+ "judged_at": "2026-10-17T18:44:56+00:00",
+ "logbook_chars": 13331,
+ "cleaning": {
+  "comments": 7,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "1b473afa3d4bb488",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "An exact finite-state audit using Fraction arithmetic performed 268,800 checks across observational and randomized-trial regimes with max excess over bound = 0 and Gamma=1 equality error = 0; destructive controls with underestimated Gamma produced violations (+0.24/+0.40 and +0.24/+0.50), confirming the bounds behave as claimed.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook identifies a proof defect at Eq. (18) via a two-atom counterexample showing excess over tolerance of +0.25 for a data-dependent policy, but also shows the Bentkus UCB has correct coverage (165/165 instances) and the finite-grid certificate has zero counterexamples through grid size 10 under extra assumptions; the evidence is mixed rather than conclusively verifying or falsifying the theorem as stated.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "A full reproduction at paper scale (m=n=1000, 1000 datasets per arm, four arms) with exact closed-form risk evaluation shows all valid-Gamma arms achieve ≥0.988 minimum coverage across all eight tolerances, while the invalid-Gamma arm drops to 0.257 coverage at tau=0.25, matching the paper's claimed behavior.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states the Tennessee STAR data were not available and no empirical statement about STAR was made; the claim was not attempted.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states the International Stroke Trial data were not available locally and no empirical statement about IST was made; the claim was not attempted.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook provides strong finite-state and simulation evidence supporting Lemma 4.1 and the Section 5.1 synthetic experiments, while identifying a genuine proof defect in Theorem 4.3 that is partially repairable under extra assumptions. The two real-data claims (STAR and IST) were honestly not attempted due to unavailable data.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 4542,
+  "completion_tokens": 4142
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"An exact finite-state audit using Fraction arithmetic performed 268,800 checks across observational and randomized-trial regimes with max excess over bound = 0 and Gamma=1 equality error = 0; destructive controls with underestimated Gamma produced violations (+0.24/+0.40 and +0.24/+0.50), confirming the bounds behave as claimed.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook identifies a proof defect at Eq. (18) via a two-atom counterexample showing excess over tolerance of +0.25 for a data-dependent policy, but also shows the Bentkus UCB has correct coverage (165/165 instances) and the finite-grid certificate has zero counterexamples through grid size 10 under extra assumptions; the evidence is mixed rather than conclusively verifying or falsifying the theorem as stated.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"A full reproduction at paper scale (m=n=1000, 1000 datasets per arm, four arms) with exact closed-form risk evaluation shows all valid-Gamma arms achieve ≥0.988 minimum coverage across all eight tolerances, while the invalid-Gamma arm drops to 0.257 coverage at tau=0.25, matching the paper's claimed behavior.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states the Tennessee STAR data were not available and no empirical statement about STAR was made; the claim was not attempted.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states the International Stroke Trial data were not available locally and no empirical statement about IST was made; the claim was not attempted.\"}\n  ],\n  \"overall\": \"The logbook provides strong finite-state and simulation evidence supporting Lemma 4.1 and the Section 5.1 synthetic experiments, while identifying a genuine proof defect in Theorem 4.3 that is partially repairable under extra assumptions. The two real-data claims (STAR and IST) were honestly not attempted due to unavailable data.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 48.7
+}

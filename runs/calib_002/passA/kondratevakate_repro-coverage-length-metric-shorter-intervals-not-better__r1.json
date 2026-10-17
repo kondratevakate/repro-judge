@@ -1,0 +1,91 @@
+{
+ "space_id": "kondratevakate/repro-coverage-length-metric-shorter-intervals-not-better",
+ "sha": "1ae72240183b2ad6b3fc89494b2966c7be65e686",
+ "run": 1,
+ "judged_at": "2026-10-17T18:37:23+00:00",
+ "logbook_chars": 12436,
+ "cleaning": {
+  "comments": 10,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "bf2e0ce9fb2cd93c",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Sympy confirms the identity p·(1−α′)=1−α exactly; Monte Carlo over 20 seeds (n=2000) shows PT coverage within 2·SEM of nominal and PT length < VCP length in all tested cells; mutation tests confirm the α′ adjustment carries coverage and that length reduction is conditional on misspecification as the paper states.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Across 16 configurations (20 seeds, α=0.10, p=0.96), all yield PT shorter than VCP with coverage 0.898–0.903; the closest configuration reproduces VCP 22.837±0.058 and PT 22.489±0.063, both within the paper's own standard errors of the published 22.894/22.614, with the μ=20 interpretation discrepancy documented and resolved.",
+   "grounding": {
+    "cited": 13,
+    "grounded": 13,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "Only 6 of 10 datasets were attempted; all three MEPS datasets (explicitly named in the claim) and star are missing due to gated downloads, so the literal '9 of 10' count cannot be confirmed or refuted. On the 6 attempted datasets, 4 show PT shorter with coverage within 0.02 of nominal, qualitatively consistent but incomplete.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Sympy returns Var = p(1−p)L² matching Proposition 2 exactly; Monte Carlo IS over 35 cells matches the closed form within 2.47% worst case and is strictly positive (minimum 4.96) while deterministic VCP gives IS≈3e-26; mutation with p=1 drives IS to ≈0, confirming the randomization is the source.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "With σ̂(x) drawn as {ε, 1} with probabilities {1−p, p}, localized CP intervals are structurally identical to PT (μ̂±Q·ε ≈ null w.p. 1−p, μ̂±Q w.p. p), shorter than VCP on all 40 seed×p cells, and flagged by IS≥10.08 in every cell; mutation with deterministic σ̂≡1 collapses to VCP with IS≈0.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides strong evidence for the theoretical and synthetic-data claims (1, 2, 4, 5) through symbolic verification, Monte Carlo simulations, and mutation tests that confirm mechanisms rather than mere correlation. Claim 3 remains inconclusive because four of ten real-world datasets—including all MEPS datasets named in the claim—were not attempted due to data access barriers.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 5237,
+  "completion_tokens": 1954
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Sympy confirms the identity p·(1−α′)=1−α exactly; Monte Carlo over 20 seeds (n=2000) shows PT coverage within 2·SEM of nominal and PT length < VCP length in all tested cells; mutation tests confirm the α′ adjustment carries coverage and that length reduction is conditional on misspecification as the paper states.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Across 16 configurations (20 seeds, α=0.10, p=0.96), all yield PT shorter than VCP with coverage 0.898–0.903; the closest configuration reproduces VCP 22.837±0.058 and PT 22.489±0.063, both within the paper's own standard errors of the published 22.894/22.614, with the μ=20 interpretation discrepancy documented and resolved.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"Only 6 of 10 datasets were attempted; all three MEPS datasets (explicitly named in the claim) and star are missing due to gated downloads, so the literal '9 of 10' count cannot be confirmed or refuted. On the 6 attempted datasets, 4 show PT shorter with coverage within 0.02 of nominal, qualitatively consistent but incomplete.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Sympy returns Var = p(1−p)L² matching Proposition 2 exactly; Monte Carlo IS over 35 cells matches the closed form within 2.47% worst case and is strictly positive (minimum 4.96) while deterministic VCP gives IS≈3e-26; mutation with p=1 drives IS to ≈0, confirming the randomization is the source.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"With σ̂(x) drawn as {ε, 1} with probabilities {1−p, p}, localized CP intervals are structurally identical to PT (μ̂±Q·ε ≈ null w.p. 1−p, μ̂±Q w.p. p), shorter than VCP on all 40 seed×p cells, and flagged by IS≥10.08 in every cell; mutation with deterministic σ̂≡1 collapses to VCP with IS≈0.\"}\n  ],\n  \"overall\": \"The logbook provides strong evidence for the theoretical and synthetic-data claims (1, 2, 4, 5) through symbolic verification, Monte Carlo simulations, and mutation tests that confirm mechanisms rather than mere correlation. Claim 3 remains inconclusive because four of ten real-world datasets—including all MEPS datasets named in the claim—were not attempted due to data access barriers.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 24.5
+}

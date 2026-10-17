@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-scratio-release-audit",
+ "sha": "77c14aaed924116840cda2d61b912a5b5e7b9b04",
+ "run": 1,
+ "judged_at": "2026-10-17T18:41:59+00:00",
+ "logbook_chars": 9331,
+ "cleaning": {
+  "comments": 15,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "428a14e5db3f0b25",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "The released estimate_log_density_ratio path was tested against an analytic Gaussian oracle with exact vector fields and scores, recovering three known log-ratio values with max absolute error 1.06e-07, confirming the divergence and score-correction terms are implemented as described.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The executed MI notebook produced MAEs (e.g., d=160: 1.027 vs paper 0.11, d=320: 0.455 vs paper 1.16) with 0/5 matching Table 1, and the raw ratio arrays are external; the best/second-best ranking claim was not checked.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "The executed DA notebook reproduces Table 2 at displayed precision, showing scRatio variants with corr_auc_score_p=0.99 and mean_auc_score=0.96, matching the claimed Spearman 0.99 and AUC 0.96, though raw per-cell inputs are external.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The NeurIPS and C. elegans notebooks preserve executed LLR matrix shapes and condition-group counts (90,261 and 89,701 cells), but the raw NPZ ratio arrays are absent, so the before/after magnitude decrease is not numerically recomputable.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Independent recomputation over 23 printed ComboSciPlex pairs yields Pearson 0.9449 and Spearman 0.9071, confirming positive correlation between scRatio likelihood ratios and classifier log-odds scores.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "A small 1,200-step CPU run shows direct MSE 1.6455 vs naive 5.1616 with only 1.04x speedup, and cached CSV shows 30/30 comparisons favoring direct with 1.89x–3.09x speedup, but TSM and Conditional TSM baselines are never mentioned, and paper-scale retraining is absent.",
+   "grounding": {
+    "cited": 8,
+    "grounded": 8,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 6,
+ "overall": "The logbook verifies the core ODE estimator via a tight analytic oracle and reproduces the differential-abundance metrics and ComboSciPlex positive correlation from executed notebooks. However, mutual-information numbers do not match Table 1, batch-correction magnitude decrease is not recomputable due to missing raw arrays, and the Gaussian TSM baseline comparison is entirely unaddressed.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4000,
+  "completion_tokens": 4432
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"The released estimate_log_density_ratio path was tested against an analytic Gaussian oracle with exact vector fields and scores, recovering three known log-ratio values with max absolute error 1.06e-07, confirming the divergence and score-correction terms are implemented as described.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The executed MI notebook produced MAEs (e.g., d=160: 1.027 vs paper 0.11, d=320: 0.455 vs paper 1.16) with 0/5 matching Table 1, and the raw ratio arrays are external; the best/second-best ranking claim was not checked.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"The executed DA notebook reproduces Table 2 at displayed precision, showing scRatio variants with corr_auc_score_p=0.99 and mean_auc_score=0.96, matching the claimed Spearman 0.99 and AUC 0.96, though raw per-cell inputs are external.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The NeurIPS and C. elegans notebooks preserve executed LLR matrix shapes and condition-group counts (90,261 and 89,701 cells), but the raw NPZ ratio arrays are absent, so the before/after magnitude decrease is not numerically recomputable.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Independent recomputation over 23 printed ComboSciPlex pairs yields Pearson 0.9449 and Spearman 0.9071, confirming positive correlation between scRatio likelihood ratios and classifier log-odds scores.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"A small 1,200-step CPU run shows direct MSE 1.6455 vs naive 5.1616 with only 1.04x speedup, and cached CSV shows 30/30 comparisons favoring direct with 1.89x–3.09x speedup, but TSM and Conditional TSM baselines are never mentioned, and paper-scale retraining is absent.\"}\n  ],\n  \"overall\": \"The logbook verifies the core ODE estimator via a tight analytic oracle and reproduces the differential-abundance metrics and ComboSciPlex positive correlation from executed notebooks. However, mutual-information numbers do not match Table 1, batch-correction magnitude decrease is not recomputable due to missing raw arrays, and the Gaussian TSM baseline comparison is entirely unaddressed.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 50.5
+}

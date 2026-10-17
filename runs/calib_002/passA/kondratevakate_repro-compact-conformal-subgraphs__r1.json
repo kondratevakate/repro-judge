@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-compact-conformal-subgraphs",
+ "sha": "109bd4dfbd9f165c8a873a35df1746d2ac03290c",
+ "run": 1,
+ "judged_at": "2026-10-17T18:34:51+00:00",
+ "logbook_chars": 9024,
+ "cleaning": {
+  "comments": 8,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "db94746012fbf41d",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "120 instances (24 graphs × 5 κ values) show 0/120 loss-bound and 0/120 size-bound violations, with max ratios at 1.000 (tight); mutation tests confirm θ=κ/(1+κ) is specifically required, as θ/3 breaks size in 70/120 and inflated θ breaks loss in 32/120.",
+   "grounding": {
+    "cited": 8,
+    "grounded": 8,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Parametric min-cut implementation on 10 graphs × 21 τ-points yields 0/200 nesting violations; non-monotone price mutation produces 44 violations, confirming monotonicity of the parametric structure drives nestedness.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Divide-and-conquer breakpoint enumeration on 5 graph sizes (n=8–24) shows γ≤n+1, bounded calls per breakpoint (≈21–25), and empirical scaling exponent α=1.02≤2; naive uniform-grid mutation uses more cut solves with no additional breakpoints.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Split-conformal calibration with 4000 trials per φ shows empirical coverage ≥ φ−δ at all φ (0.70–0.95) with no model probabilities; distribution-shift mutation drops coverage below φ−δ, and dropping the +1 correction also lowers coverage, confirming both assumptions are load-bearing.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Brute-force equivalence checking of the clique reduction over all 1024 labelled n=5 graphs (4092 decision instances, agreement 1.000) and 386 random n=7,8 instances (agreement 1.000); slack mutation breaks equivalence on 637/4092, confirming the threshold is exactly C(k,2).",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "On a 6×6 grid with 50 train/test routes over 10 trials, LP yields 41.5 edges at φ=0.75 (vs claimed 52) and does not clearly outperform greedy-route at φ≤0.8 (tied or worse at φ=0.60–0.70); the logbook notes unspecified protocol details (route generator, edge weighting, calibration-set-size definition) prevent exact reproduction.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 10,
+ "overall": "The logbook provides solid empirical support for the five theoretical claims through executed experiments with mutation tests on small but appropriate problem instances, including exhaustive brute-force verification of the NP-hardness reduction. The single experimental claim (Section 5) is not reproduced: the edge count differs substantially (41.5 vs 52) and the claimed advantage over greedy baselines for φ≤0.8 does not clearly hold, with the logbook attributing the mismatch to unspecified protocol details.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4153,
+  "completion_tokens": 4583
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"120 instances (24 graphs × 5 κ values) show 0/120 loss-bound and 0/120 size-bound violations, with max ratios at 1.000 (tight); mutation tests confirm θ=κ/(1+κ) is specifically required, as θ/3 breaks size in 70/120 and inflated θ breaks loss in 32/120.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Parametric min-cut implementation on 10 graphs × 21 τ-points yields 0/200 nesting violations; non-monotone price mutation produces 44 violations, confirming monotonicity of the parametric structure drives nestedness.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Divide-and-conquer breakpoint enumeration on 5 graph sizes (n=8–24) shows γ≤n+1, bounded calls per breakpoint (≈21–25), and empirical scaling exponent α=1.02≤2; naive uniform-grid mutation uses more cut solves with no additional breakpoints.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Split-conformal calibration with 4000 trials per φ shows empirical coverage ≥ φ−δ at all φ (0.70–0.95) with no model probabilities; distribution-shift mutation drops coverage below φ−δ, and dropping the +1 correction also lowers coverage, confirming both assumptions are load-bearing.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Brute-force equivalence checking of the clique reduction over all 1024 labelled n=5 graphs (4092 decision instances, agreement 1.000) and 386 random n=7,8 instances (agreement 1.000); slack mutation breaks equivalence on 637/4092, confirming the threshold is exactly C(k,2).\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"On a 6×6 grid with 50 train/test routes over 10 trials, LP yields 41.5 edges at φ=0.75 (vs claimed 52) and does not clearly outperform greedy-route at φ≤0.8 (tied or worse at φ=0.60–0.70); the logbook notes unspecified protocol details (route generator, edge weighting, calibration-set-size definition) prevent exact reproduction.\"}\n  ],\n  \"overall\": \"The logbook provides solid empirical support for the five theoretical claims through executed experiments with mutation tests on small but appropriate problem instances, including exhaustive brute-force verification of the NP-hardness reduction. The single experimental claim (Section 5) is not reproduced: the edge count differs substantially (41.5 vs 52) and the claimed advantage over greedy baselines for φ≤0.8 does not clearly hold, with the logbook attributing the mismatch to unspecified protocol details.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 53.8
+}

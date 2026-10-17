@@ -1,0 +1,91 @@
+{
+ "space_id": "kondratevakate/repro-safety-generalization-diabetes-testbed",
+ "sha": "e0e6c83e3ff32d195b9569f7834a1fa4d19a8b5b",
+ "run": 1,
+ "judged_at": "2026-10-17T18:48:13+00:00",
+ "logbook_chars": 13962,
+ "cleaning": {
+  "comments": 13,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "078565fb243ca689",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "Three environment IDs (t1d-v0, t2d-v0, t2d_no_pump-v0) execute with 14-dim observations, MultiDiscrete([5,5]) actions, deterministic trajectories, and pass 22 GlucoSim tests, but the eight-algorithm benchmark was explicitly not rerun.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "A reconstructed CPO/T1D/adolescent/seed-0 checkpoint shows ID TIR 100% and risk 1.12 vs OOD mean TIR 89.0% and risk 3.10 across patients 2-10, demonstrating a gap, but only for one algorithm, one age cohort (adolescents), and one seed—not the full age-stratified, multi-algorithm aggregate.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "BA-NODE, ITransformer, and NODE were not trained or executed; source-level inspection of the released shield code found path mismatches, incorrect cohort indices, and a finite logit penalty rather than hard pruning, so the mechanism was neither run nor confirmed to match the described architecture.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No experiments measuring TIR improvements from shielding were executed; the released predictive shield was found not runnable as documented due to path and cohort-index contract failures.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No risk-index reduction experiments comparing shielding to a Low Glucose Suspend baseline were run; only source-level inspection of the shield code was performed, revealing reproducibility-breaking contract mismatches.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook verifies the GlucoSim simulator environments at full scale and demonstrates a safety generalization gap in a narrowly scoped CPO/adolescent/seed-0 run, but does not execute the BA-NODE predictor, the predictive shield, or any clinical-gain experiments for the remaining claims.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5959,
+  "completion_tokens": 3593
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"Three environment IDs (t1d-v0, t2d-v0, t2d_no_pump-v0) execute with 14-dim observations, MultiDiscrete([5,5]) actions, deterministic trajectories, and pass 22 GlucoSim tests, but the eight-algorithm benchmark was explicitly not rerun.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"A reconstructed CPO/T1D/adolescent/seed-0 checkpoint shows ID TIR 100% and risk 1.12 vs OOD mean TIR 89.0% and risk 3.10 across patients 2-10, demonstrating a gap, but only for one algorithm, one age cohort (adolescents), and one seed—not the full age-stratified, multi-algorithm aggregate.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"BA-NODE, ITransformer, and NODE were not trained or executed; source-level inspection of the released shield code found path mismatches, incorrect cohort indices, and a finite logit penalty rather than hard pruning, so the mechanism was neither run nor confirmed to match the described architecture.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments measuring TIR improvements from shielding were executed; the released predictive shield was found not runnable as documented due to path and cohort-index contract failures.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No risk-index reduction experiments comparing shielding to a Low Glucose Suspend baseline were run; only source-level inspection of the shield code was performed, revealing reproducibility-breaking contract mismatches.\"}\n  ],\n  \"overall\": \"The logbook verifies the GlucoSim simulator environments at full scale and demonstrates a safety generalization gap in a narrowly scoped CPO/adolescent/seed-0 run, but does not execute the BA-NODE predictor, the predictive shield, or any clinical-gain experiments for the remaining claims.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 41.8
+}

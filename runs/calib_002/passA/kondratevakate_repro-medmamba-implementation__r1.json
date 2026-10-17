@@ -1,0 +1,91 @@
+{
+ "space_id": "kondratevakate/repro-medmamba-implementation",
+ "sha": "77f213a24cd4ea2d6487f745a1f98cba26a26416",
+ "run": 1,
+ "judged_at": "2026-10-17T18:43:37+00:00",
+ "logbook_chars": 8091,
+ "cleaning": {
+  "comments": 15,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "cb1f814b63d69f2e",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook states the five datasets (ADFTD, APAVA, PTB, PTB-XL, TDBRAIN) with seeds 41-45 were never run; only an APAVA shell script was found in the released repository, with no checkpoints or cached metrics.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "No dataset experiments were executed, so the 20 top-1 and 3 top-2 results out of 30 entries cannot be verified or refuted.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "falsified",
+   "evidence": "The temporal-difference operator's first step equals the input (max abs 72.0) instead of zero as declared, and the frequency filter has shape [12] (feature-wise only) broadcast across all 9 FFT bins with no frequency axis, meaning it cannot selectively amplify or suppress physiological bands.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "falsified",
+   "evidence": "Two strongly different inputs produce identical adjacency (max |delta|=0.0), mutating graph parameters changes adjacency by 0.502 but changes the output by exactly 0.0, and all classification-proxy gradients to graph parameters (nodevec1, nodevec2, dynamic_gate) are null, showing the graph is static and disconnected from the classifier.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook does not address computational complexity scaling; no FLOPs, timing, or asymptotic scaling experiments were performed.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook provides concrete structural, mutation, and gradient tests showing that the released MedMamba implementation does not match the paper's described TDSSE or SGM modules: the difference operator and frequency filter are mis-implemented, and the learned graph is static and disconnected from the output. The five-dataset accuracy claims and the complexity claim are not addressed by any executed experiments.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3283,
+  "completion_tokens": 2768
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook states the five datasets (ADFTD, APAVA, PTB, PTB-XL, TDBRAIN) with seeds 41-45 were never run; only an APAVA shell script was found in the released repository, with no checkpoints or cached metrics.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"No dataset experiments were executed, so the 20 top-1 and 3 top-2 results out of 30 entries cannot be verified or refuted.\"},\n    {\"claim\": 3, \"verdict\": \"falsified\", \"evidence\": \"The temporal-difference operator's first step equals the input (max abs 72.0) instead of zero as declared, and the frequency filter has shape [12] (feature-wise only) broadcast across all 9 FFT bins with no frequency axis, meaning it cannot selectively amplify or suppress physiological bands.\"},\n    {\"claim\": 4, \"verdict\": \"falsified\", \"evidence\": \"Two strongly different inputs produce identical adjacency (max |delta|=0.0), mutating graph parameters changes adjacency by 0.502 but changes the output by exactly 0.0, and all classification-proxy gradients to graph parameters (nodevec1, nodevec2, dynamic_gate) are null, showing the graph is static and disconnected from the classifier.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook does not address computational complexity scaling; no FLOPs, timing, or asymptotic scaling experiments were performed.\"}\n  ],\n  \"overall\": \"The logbook provides concrete structural, mutation, and gradient tests showing that the released MedMamba implementation does not match the paper's described TDSSE or SGM modules: the difference operator and frequency filter are mis-implemented, and the learned graph is static and disconnected from the output. The five-dataset accuracy claims and the complexity claim are not addressed by any executed experiments.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 31.3
+}

@@ -1,0 +1,93 @@
+{
+ "space_id": "kondratevakate/repro-off-policy-evaluation-for-missingness-aware-policies-in-mdps-with-rewards-missing-not-at-r",
+ "sha": "3b7667b50e955886c7b17aff4a8e18b43b401c3e",
+ "run": 1,
+ "judged_at": "2026-10-17T18:35:54+00:00",
+ "logbook_chars": 120045,
+ "cleaning": {
+  "comments": 11,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "3b8f1768901fe5c1",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "falsified",
+   "evidence": "A wrapped-Gaussian counterexample (R~Uniform[-π,π), S_next=(R+ε)mod 2π, σ=0.25) satisfies all named assumptions (positivity in [0.172,0.828], relevance, completeness via nonzero Fourier multipliers) yet the bridge's inverse sine coefficients grow as exp(σ²k²)/k, yielding partial L² norms 3.88→21.25→3.99e8→6.13e21, so no square-integrable bridge exists. The logbook also confirms the paper itself appends Hilbert-Schmidt and Picard summability conditions the claim omits.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Source text matching confirms the exact condition S_{t+1}⊥̸R_t|S_t,A_t,O_t=1; an independent 60,000-sample simulation of the official DGP yields 52,580 observed transitions with residualized Pearson r=0.2529 (p≈0) between reward and next-state signal, and adding S_next reduces conditional MSE from 0.01706 to 0.01596.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 4,
+    "share": 0.8,
+    "flagged": false,
+    "ungrounded": [
+     0.2529
+    ]
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "Source text matching confirms the theorem statement contains the L2 error, τ_tδ_t factor, norm factor, and probability 1-3ζ, but the only numerical experiment is a finite-dimensional check of ||e||≤τ||Te|| across 2000 random errors in dimensions [3,5,8,13]—an identity that holds by definition of τ=1/σ_min and does not exercise the actual RKHS empirical-process bound.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Source matching confirms T², τ_max, log factors, and the nonparametric exponent in the theorem; the numerical work unrolls the backward-induction recurrence for horizons up to 32 (identity holds), checks concentrability products against K=3.46, and verifies exponent α/(2α+1)<1/2, but these are algebraic/rate-substitution checks on proxy sequences, not an empirical estimation experiment at the paper's scale.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Source text matching confirms O_t⊥(S_{t+1:T},R_{t+1:T})|S_t,A_t,R_t; AST inspection of the official generator confirms the missingness logit uses only current state, action, and reward; a nested logistic regression on 60,000 samples gives likelihood-ratio p=0.1468 and per-sample NLL gain 3.2e-5 when adding future states, supporting conditional independence.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides a mathematically sound counterexample falsifying Claim 1 as written (the named assumptions alone do not guarantee bridge existence), and empirically verifies Claims 2 and 5 via independent simulations of the official DGP. Claims 3 and 4 receive only source-text matching plus reduced algebraic checks of proof components, which do not constitute full reproduction or refutation of the statistical learning bounds.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 32630,
+  "completion_tokens": 4266
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"falsified\", \"evidence\": \"A wrapped-Gaussian counterexample (R~Uniform[-π,π), S_next=(R+ε)mod 2π, σ=0.25) satisfies all named assumptions (positivity in [0.172,0.828], relevance, completeness via nonzero Fourier multipliers) yet the bridge's inverse sine coefficients grow as exp(σ²k²)/k, yielding partial L² norms 3.88→21.25→3.99e8→6.13e21, so no square-integrable bridge exists. The logbook also confirms the paper itself appends Hilbert-Schmidt and Picard summability conditions the claim omits.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Source text matching confirms the exact condition S_{t+1}⊥̸R_t|S_t,A_t,O_t=1; an independent 60,000-sample simulation of the official DGP yields 52,580 observed transitions with residualized Pearson r=0.2529 (p≈0) between reward and next-state signal, and adding S_next reduces conditional MSE from 0.01706 to 0.01596.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"Source text matching confirms the theorem statement contains the L2 error, τ_tδ_t factor, norm factor, and probability 1-3ζ, but the only numerical experiment is a finite-dimensional check of ||e||≤τ||Te|| across 2000 random errors in dimensions [3,5,8,13]—an identity that holds by definition of τ=1/σ_min and does not exercise the actual RKHS empirical-process bound.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Source matching confirms T², τ_max, log factors, and the nonparametric exponent in the theorem; the numerical work unrolls the backward-induction recurrence for horizons up to 32 (identity holds), checks concentrability products against K=3.46, and verifies exponent α/(2α+1)<1/2, but these are algebraic/rate-substitution checks on proxy sequences, not an empirical estimation experiment at the paper's scale.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Source text matching confirms O_t⊥(S_{t+1:T},R_{t+1:T})|S_t,A_t,R_t; AST inspection of the official generator confirms the missingness logit uses only current state, action, and reward; a nested logistic regression on 60,000 samples gives likelihood-ratio p=0.1468 and per-sample NLL gain 3.2e-5 when adding future states, supporting conditional independence.\"}\n  ],\n  \"overall\": \"The logbook provides a mathematically sound counterexample falsifying Claim 1 as written (the named assumptions alone do not guarantee bridge existence), and empirically verifies Claims 2 and 5 via independent simulations of the official DGP. Claims 3 and 4 receive only source-text matching plus reduced algebraic checks of proof components, which do not constitute full reproduction or refutation of the statistical learning bounds.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 56.0
+}

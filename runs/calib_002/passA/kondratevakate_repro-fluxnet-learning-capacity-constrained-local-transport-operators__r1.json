@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-fluxnet-learning-capacity-constrained-local-transport-operators",
+ "sha": "915ec3d2fc1136c102cd54bd36f70552c53ec9c6",
+ "run": 1,
+ "judged_at": "2026-10-17T18:40:37+00:00",
+ "logbook_chars": 14166,
+ "cleaning": {
+  "comments": 13,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "adecbeb6c8249e72",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Symbolic simplification of sum(u^{t+1})-sum(u^t) to 0 for N=3,4,5,6 on periodic rings; numeric drift of 4.436e-16 (float64) and 7.392e-08 (float32) across 240 configs; mutation tests (asymmetric inflow, non-periodic) produce ≥1.3e5× larger drift, confirming the shared-flux/periodic-BC mechanism.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Symbolic worst-case margins a(1-α)>0 and b(1-β)>0; numeric tests across 540 configs (including adversarial logit scale 20 and cells starting on-bound) yield 0/540 violations with worst excursions of 3.55e-15 (L-head) and 1.11e-15 (U-head); mutation test replacing σ with 1.6σ causes 120/120 violations, attributing the guarantee to the capacity fraction.",
+   "grounding": {
+    "cited": 8,
+    "grounded": 8,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were run: no code released, SWE dataset unreleased, training outside CPU budget; no toy substitute produced. The logbook also records that the quoted MAE comparison crosses backbone categories (ResNet FluxNet vs FNO baseline).",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were run due to same data/training blockers as Claim 3; the logbook records a discrepancy where the claimed 1.87% violation rate matches neither the 2.87% (ResNet) nor 2.01% (FNO) printed in Table 4.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were run: the 17.3× speedup is defined relative to a GPU solver unavailable in the environment, and requires three trained FluxNet-D models on unreleased Cahn-Hilliard trajectories; no toy substitute produced.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "Untrained independent branch logits produce violations in 6/6 seeds (mean lb rate 3.27%, ub rate 2.65%), confirming no architectural guarantee; minimizing L_DCL on logits drives violations to 0.00% in 6/6 seeds (L_DCL 0.195→1.04e-8); sign-flip mutation causes violations to persist and grow; Spearman ρ=0.903 between √L_DCL and violation magnitude.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 6,
+ "overall": "The logbook provides strong numerical and symbolic evidence with mutation tests for the mathematical propositions (Claims 1, 2, 6) by testing the update rule and head parameterizations with randomly sampled fluxes—a valid and arguably stronger test of those propositions. Claims 3–5 (trained-model accuracy and GPU speedup) are honestly left inconclusive with documented blockers and no synthetic stand-ins.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 5278,
+  "completion_tokens": 2723
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Symbolic simplification of sum(u^{t+1})-sum(u^t) to 0 for N=3,4,5,6 on periodic rings; numeric drift of 4.436e-16 (float64) and 7.392e-08 (float32) across 240 configs; mutation tests (asymmetric inflow, non-periodic) produce ≥1.3e5× larger drift, confirming the shared-flux/periodic-BC mechanism.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Symbolic worst-case margins a(1-α)>0 and b(1-β)>0; numeric tests across 540 configs (including adversarial logit scale 20 and cells starting on-bound) yield 0/540 violations with worst excursions of 3.55e-15 (L-head) and 1.11e-15 (U-head); mutation test replacing σ with 1.6σ causes 120/120 violations, attributing the guarantee to the capacity fraction.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were run: no code released, SWE dataset unreleased, training outside CPU budget; no toy substitute produced. The logbook also records that the quoted MAE comparison crosses backbone categories (ResNet FluxNet vs FNO baseline).\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were run due to same data/training blockers as Claim 3; the logbook records a discrepancy where the claimed 1.87% violation rate matches neither the 2.87% (ResNet) nor 2.01% (FNO) printed in Table 4.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were run: the 17.3× speedup is defined relative to a GPU solver unavailable in the environment, and requires three trained FluxNet-D models on unreleased Cahn-Hilliard trajectories; no toy substitute produced.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"Untrained independent branch logits produce violations in 6/6 seeds (mean lb rate 3.27%, ub rate 2.65%), confirming no architectural guarantee; minimizing L_DCL on logits drives violations to 0.00% in 6/6 seeds (L_DCL 0.195→1.04e-8); sign-flip mutation causes violations to persist and grow; Spearman ρ=0.903 between √L_DCL and violation magnitude.\"}\n  ],\n  \"overall\": \"The logbook provides strong numerical and symbolic evidence with mutation tests for the mathematical propositions (Claims 1, 2, 6) by testing the update rule and head parameterizations with randomly sampled fluxes—a valid and arguably stronger test of those propositions. Claims 3–5 (trained-model accuracy and GPU speedup) are honestly left inconclusive with documented blockers and no synthetic stand-ins.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 31.4
+}

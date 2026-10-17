@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-sparse-bayesian-functional-deep-learning",
+ "sha": "f6906e055b71d349f21f89a0d532c8a220eb55a7",
+ "run": 1,
+ "judged_at": "2026-10-17T18:43:53+00:00",
+ "logbook_chars": 9594,
+ "cleaning": {
+  "comments": 15,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "2b79a8c4bc7ac7d8",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "An independent group-normal Bayes derivation matches the released plug-in PIP at 1201 column norms with max absolute error 7.22e-15, and an independent clamped-knot support implementation matches the basis-to-region mapping with interval_mapping_max_error 0.0.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "falsified",
+   "evidence": "A concrete counterexample with E_n=1/n, width 1, constant X(t)=1, beta(t)=1, g(u)=u shows all admissible network outputs are O(1/n) while the true mean is 1, yielding uniform error near 1 as the claimed rate tends to 0; error/rate ratios grow from 8.91 to 319.00 across six scales.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The logbook identifies a proof gap—the statement gives ε_n² ≤ C·complexity_n but the proof requires the reverse inequality—and shows the ratio complexity/ε² diverges from 10 to 1000000, but explicitly does not construct a posterior sequence where contraction fails.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The logbook identifies that the proof transfers posterior q_j results to MAP plug-in ĥat q_j via an unstated hyperparameter condition, but provides no counterexample to the selection-consistency conclusion itself.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No ECG preprocessing, split, baseline, or evaluation pipeline was executed; the logbook only notes the released pipeline is missing.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No Tecator preprocessing, split, baseline, or evaluation pipeline was executed; no RMSE or spectral-region analysis was independently run.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook provides concrete numerical verification of the spike-and-slab mechanism (Claim 1) and a mathematical counterexample falsifying Theorem 5.4 as stated (Claim 2), but only identifies proof gaps without refuting conclusions for Theorems 5.7 and 5.9, and executes no experiments for the ECG and Tecator empirical claims.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4014,
+  "completion_tokens": 1701
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"An independent group-normal Bayes derivation matches the released plug-in PIP at 1201 column norms with max absolute error 7.22e-15, and an independent clamped-knot support implementation matches the basis-to-region mapping with interval_mapping_max_error 0.0.\"},\n    {\"claim\": 2, \"verdict\": \"falsified\", \"evidence\": \"A concrete counterexample with E_n=1/n, width 1, constant X(t)=1, beta(t)=1, g(u)=u shows all admissible network outputs are O(1/n) while the true mean is 1, yielding uniform error near 1 as the claimed rate tends to 0; error/rate ratios grow from 8.91 to 319.00 across six scales.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook identifies a proof gap—the statement gives ε_n² ≤ C·complexity_n but the proof requires the reverse inequality—and shows the ratio complexity/ε² diverges from 10 to 1000000, but explicitly does not construct a posterior sequence where contraction fails.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook identifies that the proof transfers posterior q_j results to MAP plug-in ĥat q_j via an unstated hyperparameter condition, but provides no counterexample to the selection-consistency conclusion itself.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No ECG preprocessing, split, baseline, or evaluation pipeline was executed; the logbook only notes the released pipeline is missing.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No Tecator preprocessing, split, baseline, or evaluation pipeline was executed; no RMSE or spectral-region analysis was independently run.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical verification of the spike-and-slab mechanism (Claim 1) and a mathematical counterexample falsifying Theorem 5.4 as stated (Claim 2), but only identifies proof gaps without refuting conclusions for Theorems 5.7 and 5.9, and executes no experiments for the ECG and Tecator empirical claims.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 19.7
+}

@@ -16,6 +16,17 @@ def test_identifiers_are_not_numbers_but_dates_are_visible_numbers():
     assert values("run on 2026-07-29") == [2026, 7, 29]  # the hyphen is a separator, not a minus
 
 
+def test_hex_hash_is_not_a_number_and_huge_exponent_does_not_overflow():
+    # Regression: "199e996c..." in the LVCG logbook raised OverflowError after a paid call.
+    assert values("commit 199e996c0ffee") == []
+    assert values("value 199e996 here") == [float("inf")]
+    assert grounding.check_verdict("bound 1e999 and 2.5e-400", "verified", "x 3.1") is not None
+
+
+def test_units_after_numbers_still_parse():
+    assert values("1.89x speedup in 12ms") == [1.89, 12]
+
+
 def test_rounded_citation_is_grounded():
     r = grounding.check_verdict("bias 0.0866 at 30,000 points", "verified", "bias = 0.086612, n = 30000")
     assert r == {"cited": 2, "grounded": 2, "share": 1.0, "flagged": False, "ungrounded": []}

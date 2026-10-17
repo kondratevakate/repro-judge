@@ -1,0 +1,96 @@
+{
+ "space_id": "kondratevakate/repro-caffnet-hard-constraint-affine-neural-networks",
+ "sha": "9693236a712459acb34dfa9b3903afd74a9348af",
+ "run": 2,
+ "judged_at": "2026-10-17T18:50:08+00:00",
+ "logbook_chars": 9621,
+ "cleaning": {
+  "comments": 11,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "a0915b2658ada05b",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "3200 numpy instances across n_out, m, rank-deficiency, and p-norm grid satisfy the proof hypotheses; 0/3200 violations of the bound, worst ratio 0.265; mutation tests (violating w_phi norm premise, replacing argmin with argmax) produce 617 and 728 violations respectively, confirming mechanism dependence.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "280 instances show null-space term preserves constraint satisfaction (max violation 1.8e-13), spans entire feasible set (T2, error 1.7e-14), reduces to fixed projection when w_phi=0 (T3), and joint optimization beats fixed projection on 29/38 instances; mutation deleting the term eliminates all gains.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "27,900 exhaustive cases and 8,800 random cases (1,275 rank-deficient) yield 0 CAffNet feasibility failures with max violation 0.0; HardNet baseline fails 59.2% and 77.3% respectively; cardinality formula verified for m=1..10, n_out=1..5; truncating Gamma to min(m,n_out)-1 causes 24.4% and 23.8% failures.",
+   "grounding": {
+    "cited": 8,
+    "grounded": 4,
+    "share": 0.5,
+    "flagged": false,
+    "ungrounded": [
+     27900.0,
+     8800.0,
+     1275.0,
+     -1.0
+    ]
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Real training run but reduced scale: 8000 epochs vs paper's 50000, CPU only, 5 seeds; achieved 75.58% MSE reduction (paper: 73.33%) with 0 CAffNet-TF violations and 26% soft NN violations, qualitatively matching but not at full scale.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "Reduced-scale run (20 vs 300 initial states, 60 epochs, CPU, 3 seeds): CAffNet has 0 collisions and 0 test violations, soft NN has 3 collisions, but HardNet also has 0 collisions (contradicting the claim that HardNet fails to avoid obstacles), though HardNet does have 1.70 mean test violations; partial match on reduced setup.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides strong numerical verification of the three theoretical claims through exhaustive grid testing, mutation controls, and concrete violation counts. The two experimental claims are only partially reproduced on reduced CPU-scale setups, with claim 5 showing a discrepancy where HardNet achieves zero collisions despite the paper claiming it fails to avoid obstacles.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4062,
+  "completion_tokens": 1931
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"3200 numpy instances across n_out, m, rank-deficiency, and p-norm grid satisfy the proof hypotheses; 0/3200 violations of the bound, worst ratio 0.265; mutation tests (violating w_phi norm premise, replacing argmin with argmax) produce 617 and 728 violations respectively, confirming mechanism dependence.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"280 instances show null-space term preserves constraint satisfaction (max violation 1.8e-13), spans entire feasible set (T2, error 1.7e-14), reduces to fixed projection when w_phi=0 (T3), and joint optimization beats fixed projection on 29/38 instances; mutation deleting the term eliminates all gains.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"27,900 exhaustive cases and 8,800 random cases (1,275 rank-deficient) yield 0 CAffNet feasibility failures with max violation 0.0; HardNet baseline fails 59.2% and 77.3% respectively; cardinality formula verified for m=1..10, n_out=1..5; truncating Gamma to min(m,n_out)-1 causes 24.4% and 23.8% failures.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Real training run but reduced scale: 8000 epochs vs paper's 50000, CPU only, 5 seeds; achieved 75.58% MSE reduction (paper: 73.33%) with 0 CAffNet-TF violations and 26% soft NN violations, qualitatively matching but not at full scale.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"Reduced-scale run (20 vs 300 initial states, 60 epochs, CPU, 3 seeds): CAffNet has 0 collisions and 0 test violations, soft NN has 3 collisions, but HardNet also has 0 collisions (contradicting the claim that HardNet fails to avoid obstacles), though HardNet does have 1.70 mean test violations; partial match on reduced setup.\"}\n  ],\n  \"overall\": \"The logbook provides strong numerical verification of the three theoretical claims through exhaustive grid testing, mutation controls, and concrete violation counts. The two experimental claims are only partially reproduced on reduced CPU-scale setups, with claim 5 showing a discrepancy where HardNet achieves zero collisions despite the paper claiming it fails to avoid obstacles.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 23.7
+}

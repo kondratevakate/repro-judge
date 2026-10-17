@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-model-monotonicity-in-autobidding-auctions-when-do-better-pr",
+ "sha": "c948ff22d9da7d0cfa7afd8f078673844761851b",
+ "run": 1,
+ "judged_at": "2026-10-17T18:35:35+00:00",
+ "logbook_chars": 7498,
+ "cleaning": {
+  "comments": 9,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "a3c38395d4187b89",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "20,000 random instance pairs with 0 violations of Rev(fine) ≥ Rev(coarse) (min gap −8.9e-16, float noise); mutation tests breaking calibration (3,964 violations) and swapping max for min (19,626 violations) confirm the test is non-vacuous.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Convexity of f(p)=max_i t_i p_i checked across 200,000 random convex combinations with 0 violations; Rev(fine)−Rev(coarse) equals the summed Jensen gap to 1.6e-15; mutation to concave min yields negative gaps in 4,898/5,000 instances, confirming convexity is load-bearing.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "2,000 instances × 300 multiplier profiles show 0 feasible profiles beating mu=1 on revenue, welfare (v=t), or unilateral conversion deviations; Corollary 5.3 welfare-monotonicity has 0 violations; mutation with v≠t breaks welfare-optimality in 1,732/2,000 instances.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "22/150 second-price instances show simultaneous revenue and welfare drops under refinement (up to −73.96%/−70.42%); first-price mutation yields 0 drops, confirming mechanism specificity; the exact 6.2%/6.2% pair is not matched but existence and mechanism are confirmed.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "93/150 budget-constrained FPA instances show revenue drops under refinement; closest sampled loss is 16.82%, matching the paper's 16.8% to two significant figures; multipliers shift downward on refined partition as stated; removing budgets (mutation) yields 0 drops, recovering Theorem 5.1.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "Theorem 5.11 half is reproduced: 0 welfare-monotonicity violations across 400 LP instances, lifting is exactly feasibility-preserving (error 4.4e-16); however, the Table 1 completeness claim ('exactly three monotone settings') is untested because the paper's table could not be retrieved.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 10,
+ "overall": "The logbook provides substantial numerical evidence with mutation testing supporting claims 1–5, including verification of proof mechanisms (convexity, Jensen gaps, equilibrium properties) and counterexample existence for non-monotonicity results. Claim 6 is only partially addressed: the LP lifting theorem is verified, but the Table 1 completeness characterization remains untested.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3390,
+  "completion_tokens": 3966
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"20,000 random instance pairs with 0 violations of Rev(fine) ≥ Rev(coarse) (min gap −8.9e-16, float noise); mutation tests breaking calibration (3,964 violations) and swapping max for min (19,626 violations) confirm the test is non-vacuous.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Convexity of f(p)=max_i t_i p_i checked across 200,000 random convex combinations with 0 violations; Rev(fine)−Rev(coarse) equals the summed Jensen gap to 1.6e-15; mutation to concave min yields negative gaps in 4,898/5,000 instances, confirming convexity is load-bearing.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"2,000 instances × 300 multiplier profiles show 0 feasible profiles beating mu=1 on revenue, welfare (v=t), or unilateral conversion deviations; Corollary 5.3 welfare-monotonicity has 0 violations; mutation with v≠t breaks welfare-optimality in 1,732/2,000 instances.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"22/150 second-price instances show simultaneous revenue and welfare drops under refinement (up to −73.96%/−70.42%); first-price mutation yields 0 drops, confirming mechanism specificity; the exact 6.2%/6.2% pair is not matched but existence and mechanism are confirmed.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"93/150 budget-constrained FPA instances show revenue drops under refinement; closest sampled loss is 16.82%, matching the paper's 16.8% to two significant figures; multipliers shift downward on refined partition as stated; removing budgets (mutation) yields 0 drops, recovering Theorem 5.1.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"Theorem 5.11 half is reproduced: 0 welfare-monotonicity violations across 400 LP instances, lifting is exactly feasibility-preserving (error 4.4e-16); however, the Table 1 completeness claim ('exactly three monotone settings') is untested because the paper's table could not be retrieved.\"}\n  ],\n  \"overall\": \"The logbook provides substantial numerical evidence with mutation testing supporting claims 1–5, including verification of proof mechanisms (convexity, Jensen gaps, equilibrium properties) and counterexample existence for non-monotonicity results. Claim 6 is only partially addressed: the LP lifting theorem is verified, but the Table 1 completeness characterization remains untested.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 44.2
+}

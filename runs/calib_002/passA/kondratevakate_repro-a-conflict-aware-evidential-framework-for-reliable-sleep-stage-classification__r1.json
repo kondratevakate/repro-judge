@@ -1,0 +1,91 @@
+{
+ "space_id": "kondratevakate/repro-a-conflict-aware-evidential-framework-for-reliable-sleep-stage-classification",
+ "sha": "4a9bfaf1053561fe6c1921559eaeea910998bd6e",
+ "run": 1,
+ "judged_at": "2026-10-17T18:47:13+00:00",
+ "logbook_chars": 6559,
+ "cleaning": {
+  "comments": 8,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "5d6aa983417a72ab",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only transcribes the CMAM aggregation equations (Eq. 4-9) in numpy; it does not implement multi-view evidence extraction from EEG/EOG or demonstrate the integrated ConfSleepNet system for sleep staging.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "Explicitly marked BLOCKED: no upstream model code (repo is README-only) and SleepEDF data still downloading; no experiments were run on the hybrid 5-class/3-class category structures or evidence-mapping layer.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "Explicitly marked BLOCKED: no ConfSleepNet training runs were executed on any dataset; no accuracy numbers were produced to compare against the claimed 87.2%/85.3%/88.9%/88.2%.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No ablation experiments were run on MASS-SS3; the logbook states the full pipeline is blocked by absent code and pending data, so neither the 88.9%/84.2 nor the 87.4%/82.5 figures were tested.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "The logbook transcribed Eq. 4-9 and analytically checked the C→0 and C→1 limits: Proposition 1 holds under both formulations, and Proposition 2 holds under the paper's normalization constraint (u = 1 - Σb); a concrete finding is that the printed Eq. 8 fails Prop. 2 at C→1 (limit gives u_a·u_b/(u_a+u_b) < u_o), suggesting a typo, but the propositions themselves are confirmed.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook provides a concrete analytic verification of Propositions 1-2 (Claim 5), confirming they hold under the paper's normalization while identifying a likely typo in the printed Equation 8. All four empirical/architectural claims (1-4) are inconclusive because no model code existed and no training runs were executed.",
+ "quality": "low",
+ "usage": {
+  "prompt_tokens": 2690,
+  "completion_tokens": 4831
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only transcribes the CMAM aggregation equations (Eq. 4-9) in numpy; it does not implement multi-view evidence extraction from EEG/EOG or demonstrate the integrated ConfSleepNet system for sleep staging.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"Explicitly marked BLOCKED: no upstream model code (repo is README-only) and SleepEDF data still downloading; no experiments were run on the hybrid 5-class/3-class category structures or evidence-mapping layer.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"Explicitly marked BLOCKED: no ConfSleepNet training runs were executed on any dataset; no accuracy numbers were produced to compare against the claimed 87.2%/85.3%/88.9%/88.2%.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation experiments were run on MASS-SS3; the logbook states the full pipeline is blocked by absent code and pending data, so neither the 88.9%/84.2 nor the 87.4%/82.5 figures were tested.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"The logbook transcribed Eq. 4-9 and analytically checked the C→0 and C→1 limits: Proposition 1 holds under both formulations, and Proposition 2 holds under the paper's normalization constraint (u = 1 - Σb); a concrete finding is that the printed Eq. 8 fails Prop. 2 at C→1 (limit gives u_a·u_b/(u_a+u_b) < u_o), suggesting a typo, but the propositions themselves are confirmed.\"}\n  ],\n  \"overall\": \"The logbook provides a concrete analytic verification of Propositions 1-2 (Claim 5), confirming they hold under the paper's normalization while identifying a likely typo in the printed Equation 8. All four empirical/architectural claims (1-4) are inconclusive because no model code existed and no training runs were executed.\",\n  \"quality\": \"low\"\n}\n```",
+ "elapsed_s": 54.9
+}

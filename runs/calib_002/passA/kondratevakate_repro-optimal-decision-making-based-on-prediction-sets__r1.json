@@ -1,0 +1,79 @@
+{
+ "space_id": "kondratevakate/repro-optimal-decision-making-based-on-prediction-sets",
+ "sha": "86a9ebcfc9d5743c4925732a09aa80618001e6a0",
+ "run": 1,
+ "judged_at": "2026-10-17T18:41:08+00:00",
+ "logbook_chars": 8709,
+ "cleaning": {
+  "comments": 7,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "394d8ea84cb87806",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "An independent LP solver (audit_claim1.py) matches the closed-form adversarial optimum l_in + alpha*max(l_out-l_in,0) across 28,950 comparisons (exhaustive 2-label/2-action family plus 120 seeded 3-label cases, five alpha values) with max absolute error 1.42e-14, and a destructive control example confirms the out-of-set penalty changes the minimizing action as theory predicts.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states this claim was not attempted, noting that the finite discrete audits used for other claims do not satisfy the non-atomic feature-space assumption required for Proposition 3.1 and Theorem 3.3.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "An exhaustive exchangeability audit (14,850 orbit/alpha checks over all permutation orbits for n+1 in {3,4,5,6}) confirms the finite-sample coverage bound to numerical precision, and fresh empirical runs on 20 COVID seeds and 20 BDD splits show mean miscoverage within 0.00244 of alpha across seven alpha values.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Evaluating official cached probabilities at a pinned commit, ROCP shows lower critical-mistake rates than RAC on COVID (e.g., 1.19%/10.59%/4.77% vs 1.54%/12.95%/5.94% under Lambda0) and zero critical mistakes under high-cost Lambda1 where RAC remains nonzero; on BDD, ROCP realized loss is 2.320±0.019 vs RAC 2.981±0.075 with reduced collision rates across hazard states.",
+   "grounding": {
+    "cited": 10,
+    "grounded": 10,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 6,
+ "overall": "The logbook provides concrete computational and empirical evidence supporting Claims 1, 3, and 4, including independent LP verification of the minimax policy, exhaustive exchangeability checks plus real-data coverage runs, and cached-artifact evaluations on COVID and BDD showing reduced critical mistakes. Claim 2 is explicitly unaddressed because the finite discrete audits do not cover the non-atomic setting the claim requires.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3125,
+  "completion_tokens": 2343
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"An independent LP solver (audit_claim1.py) matches the closed-form adversarial optimum l_in + alpha*max(l_out-l_in,0) across 28,950 comparisons (exhaustive 2-label/2-action family plus 120 seeded 3-label cases, five alpha values) with max absolute error 1.42e-14, and a destructive control example confirms the out-of-set penalty changes the minimizing action as theory predicts.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states this claim was not attempted, noting that the finite discrete audits used for other claims do not satisfy the non-atomic feature-space assumption required for Proposition 3.1 and Theorem 3.3.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"An exhaustive exchangeability audit (14,850 orbit/alpha checks over all permutation orbits for n+1 in {3,4,5,6}) confirms the finite-sample coverage bound to numerical precision, and fresh empirical runs on 20 COVID seeds and 20 BDD splits show mean miscoverage within 0.00244 of alpha across seven alpha values.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Evaluating official cached probabilities at a pinned commit, ROCP shows lower critical-mistake rates than RAC on COVID (e.g., 1.19%/10.59%/4.77% vs 1.54%/12.95%/5.94% under Lambda0) and zero critical mistakes under high-cost Lambda1 where RAC remains nonzero; on BDD, ROCP realized loss is 2.320±0.019 vs RAC 2.981±0.075 with reduced collision rates across hazard states.\"}\n  ],\n  \"overall\": \"The logbook provides concrete computational and empirical evidence supporting Claims 1, 3, and 4, including independent LP verification of the minimax policy, exhaustive exchangeability checks plus real-data coverage runs, and cached-artifact evaluations on COVID and BDD showing reduced critical mistakes. Claim 2 is explicitly unaddressed because the finite discrete audits do not cover the non-atomic setting the claim requires.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 30.0
+}

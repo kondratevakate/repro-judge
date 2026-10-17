@@ -1,0 +1,91 @@
+{
+ "space_id": "kondratevakate/repro-ophiuchus-release-audit",
+ "sha": "ebbaa8166e58db8e32acada149715ed3c6d337a1",
+ "run": 1,
+ "judged_at": "2026-10-17T18:47:53+00:00",
+ "logbook_chars": 5207,
+ "cleaning": {
+  "comments": 10,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "e67eefbd3189ce1a",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The three training-stage scripts (cold-start SFT, reflection SFT, ATRL) exist with decomposed rewards, but the preprocessor raises NameError, ATRL uses placeholder data/model paths, KL config mismatches the paper, and only 4 of the claimed 64k records are released—so the pipeline cannot be run or its data sizes confirmed.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The trained Ophiuchus checkpoint, evaluation commands, benchmark inputs/splits, and baseline predictions are all absent; no benchmark was rerun.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No checkpoint or evaluation artifacts exist in the release; the in-domain GPT-5 comparison was not rerun or addressed by any executed experiment.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No trained checkpoint, benchmark data, or evaluation outputs are available, so comparisons against VILA-M3-40B and MMedAgent-7B could not be executed.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Focused tests confirm three tool handlers, multi-image state, format/answer/tool rewards, and a working zoom path (zoom + correct answer yields reward 4.0), but released SFT trajectories fail to parse, duplicate tool calls do not early-stop, and list-valued mask_path raises TypeError—so the framework is only partially functional with significant bugs.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 0,
+ "overall": "The logbook audits the official Ophiuchus repository and finds partial code infrastructure (tool handlers, training-stage scripts, reward computation) but no runnable training pipeline, no 64k corpus, no trained checkpoint, and no evaluation artifacts. All paper-level benchmark and training claims remain unverified; only the tool-loop design is partially supported by executed unit-level tests that also reveal parsing and runtime bugs.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 2539,
+  "completion_tokens": 2608
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The three training-stage scripts (cold-start SFT, reflection SFT, ATRL) exist with decomposed rewards, but the preprocessor raises NameError, ATRL uses placeholder data/model paths, KL config mismatches the paper, and only 4 of the claimed 64k records are released—so the pipeline cannot be run or its data sizes confirmed.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The trained Ophiuchus checkpoint, evaluation commands, benchmark inputs/splits, and baseline predictions are all absent; no benchmark was rerun.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No checkpoint or evaluation artifacts exist in the release; the in-domain GPT-5 comparison was not rerun or addressed by any executed experiment.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No trained checkpoint, benchmark data, or evaluation outputs are available, so comparisons against VILA-M3-40B and MMedAgent-7B could not be executed.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Focused tests confirm three tool handlers, multi-image state, format/answer/tool rewards, and a working zoom path (zoom + correct answer yields reward 4.0), but released SFT trajectories fail to parse, duplicate tool calls do not early-stop, and list-valued mask_path raises TypeError—so the framework is only partially functional with significant bugs.\"}\n  ],\n  \"overall\": \"The logbook audits the official Ophiuchus repository and finds partial code infrastructure (tool handlers, training-stage scripts, reward computation) but no runnable training pipeline, no 64k corpus, no trained checkpoint, and no evaluation artifacts. All paper-level benchmark and training claims remain unverified; only the tool-loop design is partially supported by executed unit-level tests that also reveal parsing and runtime bugs.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 31.0
+}

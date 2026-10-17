@@ -1,0 +1,105 @@
+{
+ "space_id": "kondratevakate/repro-a-graphop-analysis-of-graph-neural-networks-on-sparse-graphs",
+ "sha": "7bf34f397492a91deab77c34c6e2b1d9f02e2c33",
+ "run": 1,
+ "judged_at": "2026-10-17T18:36:59+00:00",
+ "logbook_chars": 36042,
+ "cleaning": {
+  "comments": 26,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "19b8e9c84d8c8d2b",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Self-adjointness errors at machine precision (≈1e-17 for dense graphon, 2.22e-16 for sparse 4-regular graph) with zero positivity violations in both instances; mutation tests with antisymmetric and symmetric signed kernels independently break the two properties, confirming probe independence.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Sweep over n∈{100,…,1600} shows bounded-degree graphs have constant fiber sup (4,4,4,4,4, exponent ≈0) while dense ER (exponent 0.947) and √n-hub graphs (0.413) grow, confirming the definition discriminates sparse from dense patterns.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 3,
+    "share": 0.75,
+    "flagged": false,
+    "ungrounded": [
+     1600.0
+    ]
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Empirical Lipschitz ratios (4.195 and 0.157) are below the computed theoretical bound C_theory=20.5, with the operator term computed exactly via SVD; dense-ER mutation yields ratio 94.63>20.5, confirming the fiber bound is necessary for finiteness.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Finite ε-net sizes saturate for bofop-DIDMs (2/3/3 at N=10/20/40) but not for unbounded-fiber families (9/19/35), and a dense-graph DIDM sits at W₁ distance 66.85 from all bofop samples; however, the logbook itself states this is a finite surrogate for a topological compactness statement, not a proof.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Sup-norm test error for a continuous DIDM target drops 8× with width (0.0516→0.0068, 0.47% of target range) across 220 train/120 test graphs, while a discontinuous target plateaus at ≈0.5–0.6 (the jump size) at every width, confirming the continuity hypothesis is necessary.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "Generalization gap |test−train MSE| vanishes with training size m (2.78e-3→2.23e-4, log-log slope −0.871, steeper than m^{-1/2}); the non-bofop mutation has a larger gap at every m, though its steeper slope (−1.35) means compactness is not isolated as strictly necessary for the asymptotic rate—an honestly reported caveat.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 11,
+ "overall": "The logbook provides concrete numerical evidence from finite-dimensional discretizations supporting claims 1–3, 5, and 6, with mutation tests that remove key hypotheses and observe the predicted failures. Claim 4 (compactness) is addressed only through a finite ε-net proxy that the logbook itself acknowledges is evidence rather than proof, making it a reduced surrogate for the topological statement.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 12222,
+  "completion_tokens": 6566
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Self-adjointness errors at machine precision (≈1e-17 for dense graphon, 2.22e-16 for sparse 4-regular graph) with zero positivity violations in both instances; mutation tests with antisymmetric and symmetric signed kernels independently break the two properties, confirming probe independence.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Sweep over n∈{100,…,1600} shows bounded-degree graphs have constant fiber sup (4,4,4,4,4, exponent ≈0) while dense ER (exponent 0.947) and √n-hub graphs (0.413) grow, confirming the definition discriminates sparse from dense patterns.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Empirical Lipschitz ratios (4.195 and 0.157) are below the computed theoretical bound C_theory=20.5, with the operator term computed exactly via SVD; dense-ER mutation yields ratio 94.63>20.5, confirming the fiber bound is necessary for finiteness.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Finite ε-net sizes saturate for bofop-DIDMs (2/3/3 at N=10/20/40) but not for unbounded-fiber families (9/19/35), and a dense-graph DIDM sits at W₁ distance 66.85 from all bofop samples; however, the logbook itself states this is a finite surrogate for a topological compactness statement, not a proof.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Sup-norm test error for a continuous DIDM target drops 8× with width (0.0516→0.0068, 0.47% of target range) across 220 train/120 test graphs, while a discontinuous target plateaus at ≈0.5–0.6 (the jump size) at every width, confirming the continuity hypothesis is necessary.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"Generalization gap |test−train MSE| vanishes with training size m (2.78e-3→2.23e-4, log-log slope −0.871, steeper than m^{-1/2}); the non-bofop mutation has a larger gap at every m, though its steeper slope (−1.35) means compactness is not isolated as strictly necessary for the asymptotic rate—an honestly reported caveat.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical evidence from finite-dimensional discretizations supporting claims 1–3, 5, and 6, with mutation tests that remove key hypotheses and observe the predicted failures. Claim 4 (compactness) is addressed only through a finite ε-net proxy that the logbook itself acknowledges is evidence rather than proof, making it a reduced surrogate for the topological statement.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 83.5
+}

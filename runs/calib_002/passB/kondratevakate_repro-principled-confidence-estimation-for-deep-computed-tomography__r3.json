@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-principled-confidence-estimation-for-deep-computed-tomography",
+ "sha": "1f27999340834eaf8272a67881b6a20d12d9ea0b",
+ "run": 3,
+ "judged_at": "2026-10-17T18:53:38+00:00",
+ "logbook_chars": 6123,
+ "cleaning": {
+  "comments": 7,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "dae197bf10dd9e33",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "The SLM confidence-set construction is instantiated with a classical log-domain SART reconstructor on a synthetic phantom (r=32, 40 views, I0=1e4), confirming the mechanism works for classical algorithms, but no U-Net, ensemble, or diffusion models were run (explicitly flagged as blocked).",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "300 Poisson realizations on a synthetic phantom yield empirical coverage of 1.000 (300/300) at δ=0.10 and δ=0.05, consistent with the coverage guarantee, but only on a small synthetic setup rather than the paper's real CT data and reconstruction pipelines.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The Lamino dataset and intensity-10⁹ NLL-gap comparisons across diffusion, MLE, and FBP are not addressed; the logbook only uses a synthetic phantom.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No experiments on the Lamino dataset are reported; the coverage tests use a synthetic phantom, not the paper's Figure 4 setup.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The Composite materials dataset, diffusion miscoverage rates, and tightness comparisons against worst-case optimization and bootstrap baselines are not addressed at all.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The hallucination-detection application (conditioning PSNR on confidence-set membership) is not mentioned or tested in the logbook.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook reproduces only the classical-path coverage guarantee of the SLM framework on a small synthetic phantom (numpy/CPU), showing conservative 1.000 coverage at δ=0.10 and 0.05. It does not address any of the paper's deep-learning reconstructions, the Lamino or Composite materials datasets, or the hallucination-detection application.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 2625,
+  "completion_tokens": 2232
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"The SLM confidence-set construction is instantiated with a classical log-domain SART reconstructor on a synthetic phantom (r=32, 40 views, I0=1e4), confirming the mechanism works for classical algorithms, but no U-Net, ensemble, or diffusion models were run (explicitly flagged as blocked).\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"300 Poisson realizations on a synthetic phantom yield empirical coverage of 1.000 (300/300) at δ=0.10 and δ=0.05, consistent with the coverage guarantee, but only on a small synthetic setup rather than the paper's real CT data and reconstruction pipelines.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The Lamino dataset and intensity-10⁹ NLL-gap comparisons across diffusion, MLE, and FBP are not addressed; the logbook only uses a synthetic phantom.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments on the Lamino dataset are reported; the coverage tests use a synthetic phantom, not the paper's Figure 4 setup.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The Composite materials dataset, diffusion miscoverage rates, and tightness comparisons against worst-case optimization and bootstrap baselines are not addressed at all.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The hallucination-detection application (conditioning PSNR on confidence-set membership) is not mentioned or tested in the logbook.\"}\n  ],\n  \"overall\": \"The logbook reproduces only the classical-path coverage guarantee of the SLM framework on a small synthetic phantom (numpy/CPU), showing conservative 1.000 coverage at δ=0.10 and 0.05. It does not address any of the paper's deep-learning reconstructions, the Lamino or Composite materials datasets, or the hallucination-detection application.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 24.6
+}

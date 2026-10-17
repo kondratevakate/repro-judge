@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-stable-localized-conformal-prediction-via-transduction",
+ "sha": "a9ac821d4adb05be4f8f6f9bcdd4c54f695de05a",
+ "run": 1,
+ "judged_at": "2026-10-17T18:46:18+00:00",
+ "logbook_chars": 11969,
+ "cleaning": {
+  "comments": 15,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "9506dcc9720eda3c",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook's 'Claim 1' page addresses a law-of-total-variance decomposition for set-size stability, not the methodological construction of StCP/SLCP (conditional CDF estimator, empirical marginal distribution, regularized optimization with λ). No experiment tests the method's components as described in Equation 7.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook constructs a mathematical counterexample (Uniform[0,2] target, random source quantile) showing a proof step fails: unconditional coverage deviation is 0.25 while realized δ_S=0 on a positive-probability event, making that step's RHS zero. This identifies a proof gap (using realized δ_S instead of E[δ_S]) but does not show the bound itself is false with the corrected term.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "A Gaussian surrogate experiment with 200,000 repetitions reproduces the m⁻¹ + [n(1+λ)²]⁻¹ rate algebra with max relative error 0.0025, and confirms variance decreases with λ. However, this is a synthetic stand-in, not the actual conformal prediction setup, and the logbook identifies unstated smoothness assumptions and an O_p-to-second-moment gap in the proof.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The logbook detects bundled DermaMNIST and TissueMNIST data plus author checkpoints but explicitly states no fresh multi-repeat execution was run. No prediction-set-size standard deviations or coverage numbers are reported for any of the five datasets.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Only a single-repeat, reduced-training smoke run of the LogAbs pipeline was executed, which the logbook itself deems insufficient to estimate stability. No 50-repeat canonical run was performed, and a metric denominator mismatch (R vs R−1) was noted but not resolved with fresh results.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "falsified",
+   "evidence": "For continuous exchangeable scores at n=30, α=0.1, α_tol=0.02, the lower-endpoint index k=ceil(np)=27 gives exact coverage 27/31=0.871, below the claimed lower bound 1−α−α_tol=0.88. A grid search found 8960 (n,p) pairs where ceil(np)/(n+1) < p, directly violating the theorem's stated coverage interval.",
+   "grounding": {
+    "cited": 9,
+    "grounded": 9,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 3,
+ "overall": "The logbook provides a concrete mathematical counterexample that falsifies Theorem 4.7's coverage lower bound and identifies proof gaps in Theorems 4.2 and 4.6, while a Gaussian surrogate toy experiment partially reproduces the stability-rate algebra. No real empirical experiments were run for the real-data or synthetic-data claims, leaving those unaddressed.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4562,
+  "completion_tokens": 6349
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook's 'Claim 1' page addresses a law-of-total-variance decomposition for set-size stability, not the methodological construction of StCP/SLCP (conditional CDF estimator, empirical marginal distribution, regularized optimization with λ). No experiment tests the method's components as described in Equation 7.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook constructs a mathematical counterexample (Uniform[0,2] target, random source quantile) showing a proof step fails: unconditional coverage deviation is 0.25 while realized δ_S=0 on a positive-probability event, making that step's RHS zero. This identifies a proof gap (using realized δ_S instead of E[δ_S]) but does not show the bound itself is false with the corrected term.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"A Gaussian surrogate experiment with 200,000 repetitions reproduces the m⁻¹ + [n(1+λ)²]⁻¹ rate algebra with max relative error 0.0025, and confirms variance decreases with λ. However, this is a synthetic stand-in, not the actual conformal prediction setup, and the logbook identifies unstated smoothness assumptions and an O_p-to-second-moment gap in the proof.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook detects bundled DermaMNIST and TissueMNIST data plus author checkpoints but explicitly states no fresh multi-repeat execution was run. No prediction-set-size standard deviations or coverage numbers are reported for any of the five datasets.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Only a single-repeat, reduced-training smoke run of the LogAbs pipeline was executed, which the logbook itself deems insufficient to estimate stability. No 50-repeat canonical run was performed, and a metric denominator mismatch (R vs R−1) was noted but not resolved with fresh results.\"},\n    {\"claim\": 6, \"verdict\": \"falsified\", \"evidence\": \"For continuous exchangeable scores at n=30, α=0.1, α_tol=0.02, the lower-endpoint index k=ceil(np)=27 gives exact coverage 27/31=0.871, below the claimed lower bound 1−α−α_tol=0.88. A grid search found 8960 (n,p) pairs where ceil(np)/(n+1) < p, directly violating the theorem's stated coverage interval.\"}\n  ],\n  \"overall\": \"The logbook provides a concrete mathematical counterexample that falsifies Theorem 4.7's coverage lower bound and identifies proof gaps in Theorems 4.2 and 4.6, while a Gaussian surrogate toy experiment partially reproduces the stability-rate algebra. No real empirical experiments were run for the real-data or synthetic-data claims, leaving those unaddressed.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 71.3
+}

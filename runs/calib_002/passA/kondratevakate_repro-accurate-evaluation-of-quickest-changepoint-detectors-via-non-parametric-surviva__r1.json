@@ -1,0 +1,105 @@
+{
+ "space_id": "kondratevakate/repro-accurate-evaluation-of-quickest-changepoint-detectors-via-non-parametric-surviva",
+ "sha": "cc6850d50aa7365e73bfe69d6cc6193fad7644a0",
+ "run": 1,
+ "judged_at": "2026-10-17T18:33:57+00:00",
+ "logbook_chars": 17653,
+ "cleaning": {
+  "comments": 11,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "9f6b763f965c10a6",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Derivation audit identifies H(t)^(N-1) as the sole N-dependent term giving exponential contraction; numerical audit with 500K datasets per N∈{2,4,8,16,32,64} shows bias contracting from +0.574 to +0.0016 with all intervals inside analytic bounds; destructive control removing independent censoring makes the upper bound fail by >10x.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Derivation audit confirms ADD-specific reduction to Eq. (9) bounds via Stute substitutions; numerical audit with 500K datasets per N''∈{2..64} (event rate 0.5, censoring rate 0.3, b=5) shows all bias±5SE intervals inside integrated bounds; shared destructive control confirms independent censoring is load-bearing.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "GSR detector on Gaussian stream with N=1000, 9 non-degenerate ARL configurations × 10 seeds: |KM bias| < |LB bias| in all 9 configurations, 10/10 seeds each (e.g., KM -0.175 vs LB -0.522 at heaviest censoring); ADD side shows KM-ADD beats LB-ADD in 29/30 seed-runs.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Both directions of the support condition tested with 10 seeds per N∈{50,200,1000,5000,20000}: bias converges from -0.023 to +0.003 (sd shrinking 2.65→0.46) when support satisfied (T=5000), but plateaus at -0.107 and does not vanish when support violated (T=100).",
+   "grounding": {
+    "cited": 10,
+    "grounded": 9,
+    "share": 0.9,
+    "flagged": false,
+    "ungrounded": [
+     50200100.0
+    ]
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states the WISDM real-data variance claim was not attempted; no experiments or data from the WISDM Actitracker dataset were run.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "Gaussian sweep covers prevalence 0.1–0.9 with KM-ARL relative bias -0.014 to -0.028 (within ±5%) across fixed and irregular lengths; Poisson repair (λ_pre=1, λ_post=4, 14 GSR thresholds, N=10K, both length regimes) shows KM beats LB on curve error in 95.0% of 60 seed-cells with median ratio 0.567, and 1.001 in the null zone.",
+   "grounding": {
+    "cited": 10,
+    "grounded": 10,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 10,
+ "overall": "The logbook provides concrete numerical evidence supporting five of six claims through proof audits, 500K-dataset finite-sample bound checks, and multi-seed simulations on both Gaussian and Poisson changepoint models with destructive controls. The WISDM real-data variance claim (Claim 5) is explicitly not attempted, leaving it inconclusive.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 6016,
+  "completion_tokens": 5344
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Derivation audit identifies H(t)^(N-1) as the sole N-dependent term giving exponential contraction; numerical audit with 500K datasets per N∈{2,4,8,16,32,64} shows bias contracting from +0.574 to +0.0016 with all intervals inside analytic bounds; destructive control removing independent censoring makes the upper bound fail by >10x.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Derivation audit confirms ADD-specific reduction to Eq. (9) bounds via Stute substitutions; numerical audit with 500K datasets per N''∈{2..64} (event rate 0.5, censoring rate 0.3, b=5) shows all bias±5SE intervals inside integrated bounds; shared destructive control confirms independent censoring is load-bearing.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"GSR detector on Gaussian stream with N=1000, 9 non-degenerate ARL configurations × 10 seeds: |KM bias| < |LB bias| in all 9 configurations, 10/10 seeds each (e.g., KM -0.175 vs LB -0.522 at heaviest censoring); ADD side shows KM-ADD beats LB-ADD in 29/30 seed-runs.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Both directions of the support condition tested with 10 seeds per N∈{50,200,1000,5000,20000}: bias converges from -0.023 to +0.003 (sd shrinking 2.65→0.46) when support satisfied (T=5000), but plateaus at -0.107 and does not vanish when support violated (T=100).\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states the WISDM real-data variance claim was not attempted; no experiments or data from the WISDM Actitracker dataset were run.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"Gaussian sweep covers prevalence 0.1–0.9 with KM-ARL relative bias -0.014 to -0.028 (within ±5%) across fixed and irregular lengths; Poisson repair (λ_pre=1, λ_post=4, 14 GSR thresholds, N=10K, both length regimes) shows KM beats LB on curve error in 95.0% of 60 seed-cells with median ratio 0.567, and 1.001 in the null zone.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical evidence supporting five of six claims through proof audits, 500K-dataset finite-sample bound checks, and multi-seed simulations on both Gaussian and Poisson changepoint models with destructive controls. The WISDM real-data variance claim (Claim 5) is explicitly not attempted, leaving it inconclusive.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 63.2
+}

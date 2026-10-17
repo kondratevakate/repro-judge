@@ -1,0 +1,94 @@
+{
+ "space_id": "kondratevakate/repro-fixed-budget-no-harder-than-fixed-confidence-bai",
+ "sha": "e3f37330275cb9b32851e535d9029da334bdd77d",
+ "run": 1,
+ "judged_at": "2026-10-17T18:37:44+00:00",
+ "logbook_chars": 13105,
+ "cleaning": {
+  "comments": 10,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "c9acef6328ccba00",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Grid of 432 configurations tested against the Theorem 3.2 bound with 0 violations when B≥2·B_min; exponential decay shown by error falling from 7.758e-01 to 1.604e-28 over 128× budget (linear fit R²=0.983); MC cross-check with 5 seeds×200k runs matches exact to 2.87e-04; mutation tests confirm the doubly-exponential schedule is load-bearing.",
+   "grounding": {
+    "cited": 8,
+    "grounded": 8,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Exact integer bisection over 420 grid points (A up to 10⁶, δ down to 10⁻¹⁰) shows max B_req/F = 24.41 with per-A maxima non-increasing (24.41→12.63), confirming the O(·); mutation test dropping the inner log shows ratio growing unboundedly (24.41→168.58), proving the log factor is necessary.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Exhaustive multinomial enumeration over 8 target δ values shows 0 violations of Props 4.2/4.3; strongness verified by fitting T*_δ = L·f(δ₀) yielding slope 578.07 vs predicted 577.08 (R²=0.99993); event simulation matches exact to 2.4e-20; mutation replacing majority voting yields error 0.9935 with no decay.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Structural check confirms phase lengths T_i=2^i·Q depend only on (i,Q) with standing recommendation at all t∈[1,5000); Props D.3/D.4 show 0 violations over 80,004 horizons; Theorem D.5 shows 0 violations over 21 pairs with error dropping by 4.29e9×; mutation tests show constant phases stall at error 1.0 and sub-geometric growth fails Prop D.4.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 2,
+    "share": 0.5,
+    "flagged": false,
+    "ungrounded": [
+     1500.0,
+     80004.0
+    ]
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Heterogeneous-noise component is verified (Theorem 5.1 with 0/3 violations, end-to-end FC2FB(PE-KHN) showing monotone error decay, K⁷ vs K⁹ confirmed via sympy, mutation showing 4.85× budget blowup), but linear bandits (Cor 5.4) and unimodal bandits (Cor 5.7) were not attempted due to dependence on external algorithms.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides concrete numerical verification of Claims 1–4 through grid searches, exact computations, Monte Carlo cross-checks, and mutation tests that confirm the mechanisms are load-bearing. Claim 5 is only partially addressed: the heterogeneous-noise application is thoroughly verified, but the linear and unimodal bandit applications are not attempted.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 5708,
+  "completion_tokens": 2445
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Grid of 432 configurations tested against the Theorem 3.2 bound with 0 violations when B≥2·B_min; exponential decay shown by error falling from 7.758e-01 to 1.604e-28 over 128× budget (linear fit R²=0.983); MC cross-check with 5 seeds×200k runs matches exact to 2.87e-04; mutation tests confirm the doubly-exponential schedule is load-bearing.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Exact integer bisection over 420 grid points (A up to 10⁶, δ down to 10⁻¹⁰) shows max B_req/F = 24.41 with per-A maxima non-increasing (24.41→12.63), confirming the O(·); mutation test dropping the inner log shows ratio growing unboundedly (24.41→168.58), proving the log factor is necessary.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Exhaustive multinomial enumeration over 8 target δ values shows 0 violations of Props 4.2/4.3; strongness verified by fitting T*_δ = L·f(δ₀) yielding slope 578.07 vs predicted 577.08 (R²=0.99993); event simulation matches exact to 2.4e-20; mutation replacing majority voting yields error 0.9935 with no decay.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Structural check confirms phase lengths T_i=2^i·Q depend only on (i,Q) with standing recommendation at all t∈[1,5000); Props D.3/D.4 show 0 violations over 80,004 horizons; Theorem D.5 shows 0 violations over 21 pairs with error dropping by 4.29e9×; mutation tests show constant phases stall at error 1.0 and sub-geometric growth fails Prop D.4.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Heterogeneous-noise component is verified (Theorem 5.1 with 0/3 violations, end-to-end FC2FB(PE-KHN) showing monotone error decay, K⁷ vs K⁹ confirmed via sympy, mutation showing 4.85× budget blowup), but linear bandits (Cor 5.4) and unimodal bandits (Cor 5.7) were not attempted due to dependence on external algorithms.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical verification of Claims 1–4 through grid searches, exact computations, Monte Carlo cross-checks, and mutation tests that confirm the mechanisms are load-bearing. Claim 5 is only partially addressed: the heterogeneous-noise application is thoroughly verified, but the linear and unimodal bandit applications are not attempted.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 29.2
+}

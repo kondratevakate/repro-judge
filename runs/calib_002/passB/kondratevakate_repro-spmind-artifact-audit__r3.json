@@ -1,0 +1,91 @@
+{
+ "space_id": "kondratevakate/repro-spmind-artifact-audit",
+ "sha": "d9284f6a6c1b4be5ab413cd93997bc1d44116a8a",
+ "run": 3,
+ "judged_at": "2026-10-17T18:53:47+00:00",
+ "logbook_chars": 91402,
+ "cleaning": {
+  "comments": 13,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "ef0aa3c4618933b5",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "An AST-based audit of the released code found 19 registered tools, 8 skill documents, all 8 benchmark stage modules present, and a Claude Agent SDK streaming loop with a stepwise tool-use system prompt, but the pipeline was never executed end-to-end, the ReAct loop is delegated to the SDK rather than locally implemented, and the 'first' priority claim was not evaluated.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "No benchmark execution was performed; the logbook reports that the original model (claude-sonnet-4-20250514) is retired, the 306 traces/predictions are not released, and no automatic success judge exists in the repository. Only source-token concordance (finding '\\textbf{68.9}' in .tex files) was checked, which the logbook itself states is not reproduction evidence.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "An independent JSONL parser executed on sp_bench.jsonl found 102 records with 102 unique IDs and 102 unique queries, recomputed 18 categories and 8 stages, and produced tier counts {advanced:21, basic:40, challenging:13, intermediate:28} matching the claimed split exactly.",
+   "grounding": {
+    "cited": 8,
+    "grounded": 8,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No CRC-CODEX evaluation was run; the logbook states the official dataset lacks the evaluation inputs, generated quantification outputs, and complete ground-truth bundle needed to recompute the reported 0.953/0.902/0.368 values. Only source-token concordance was checked.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Ground-truth files (2,013,525 rows) passed structural schema checks, but original agent predictions are absent, so the reported 0.681 average similarity cannot be recomputed. The logbook also identified evaluator issues (row-order sensitivity, repeated cellLabel values in one ground-truth file) but did not execute any annotation evaluation.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 3,
+ "overall": "The logbook independently verifies the structural composition of SP-Bench (102 queries, 18 categories, 8 stages, correct tier split) and partially confirms the agent's code architecture (19 tools, 8 stage modules, Claude Agent SDK loop) through static AST/JSONL analysis. All three numerical performance claims (SP-Bench accuracy, CRC-CODEX metrics, cell-annotation similarity) remain unreproduced because original traces, predictions, and evaluation inputs are missing and no agent execution was attempted.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 21637,
+  "completion_tokens": 5810
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"An AST-based audit of the released code found 19 registered tools, 8 skill documents, all 8 benchmark stage modules present, and a Claude Agent SDK streaming loop with a stepwise tool-use system prompt, but the pipeline was never executed end-to-end, the ReAct loop is delegated to the SDK rather than locally implemented, and the 'first' priority claim was not evaluated.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"No benchmark execution was performed; the logbook reports that the original model (claude-sonnet-4-20250514) is retired, the 306 traces/predictions are not released, and no automatic success judge exists in the repository. Only source-token concordance (finding '\\\\textbf{68.9}' in .tex files) was checked, which the logbook itself states is not reproduction evidence.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"An independent JSONL parser executed on sp_bench.jsonl found 102 records with 102 unique IDs and 102 unique queries, recomputed 18 categories and 8 stages, and produced tier counts {advanced:21, basic:40, challenging:13, intermediate:28} matching the claimed split exactly.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No CRC-CODEX evaluation was run; the logbook states the official dataset lacks the evaluation inputs, generated quantification outputs, and complete ground-truth bundle needed to recompute the reported 0.953/0.902/0.368 values. Only source-token concordance was checked.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Ground-truth files (2,013,525 rows) passed structural schema checks, but original agent predictions are absent, so the reported 0.681 average similarity cannot be recomputed. The logbook also identified evaluator issues (row-order sensitivity, repeated cellLabel values in one ground-truth file) but did not execute any annotation evaluation.\"}\n  ],\n  \"overall\": \"The logbook independently verifies the structural composition of SP-Bench (102 queries, 18 categories, 8 stages, correct tier split) and partially confirms the agent's code architecture (19 tools, 8 stage modules, Claude Agent SDK loop) through static AST/JSONL analysis. All three numerical performance claims (SP-Bench accuracy, CRC-CODEX metrics, cell-annotation similarity) remain unreproduced because original traces, predictions, and evaluation inputs are missing and no agent execution was attempted.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 65.5
+}

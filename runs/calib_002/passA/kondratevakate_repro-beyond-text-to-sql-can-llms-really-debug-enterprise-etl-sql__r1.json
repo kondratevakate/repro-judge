@@ -1,0 +1,79 @@
+{
+ "space_id": "kondratevakate/repro-beyond-text-to-sql-can-llms-really-debug-enterprise-etl-sql",
+ "sha": "0c399a52579506c47144ce9b7fac7f4d82c7be54",
+ "run": 1,
+ "judged_at": "2026-10-17T18:48:08+00:00",
+ "logbook_chars": 6552,
+ "cleaning": {
+  "comments": 9,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "485f4efec26b1bf2",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only parsed the paper's own Table 1 and confirmed the numbers (469/516 tasks, >140 lines, width >11, depth >8.7) match the claim; no benchmark data was independently loaded or measured.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only parsed the paper's Table 2 and performed arg-max over its 24 rows; no model was run on the benchmark, so Claude-4-Sonnet's scores were not independently reproduced.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The three specific per-model numbers were confirmed by reading Table 2, and the 'most LLMs ≤20%' sub-claim was shown inconsistent with the paper's own Syntax-split table data (10/24 ≤20%), but no independent experiments were executed.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only parsed Table 1 for token counts (496.90/425.93) and function counts (21.62/17.34); no scripts were independently tokenized or analyzed.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 0,
+ "overall": "The logbook performs only paper-internal consistency checks—parsing the paper's own tables and counting rows—without loading benchmark data, running any LLM, or conducting any independent measurement. It therefore neither establishes nor refutes any claim through executed experiments.",
+ "quality": "low",
+ "usage": {
+  "prompt_tokens": 3110,
+  "completion_tokens": 2605
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only parsed the paper's own Table 1 and confirmed the numbers (469/516 tasks, >140 lines, width >11, depth >8.7) match the claim; no benchmark data was independently loaded or measured.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only parsed the paper's Table 2 and performed arg-max over its 24 rows; no model was run on the benchmark, so Claude-4-Sonnet's scores were not independently reproduced.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The three specific per-model numbers were confirmed by reading Table 2, and the 'most LLMs ≤20%' sub-claim was shown inconsistent with the paper's own Syntax-split table data (10/24 ≤20%), but no independent experiments were executed.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only parsed Table 1 for token counts (496.90/425.93) and function counts (21.62/17.34); no scripts were independently tokenized or analyzed.\"}\n  ],\n  \"overall\": \"The logbook performs only paper-internal consistency checks—parsing the paper's own tables and counting rows—without loading benchmark data, running any LLM, or conducting any independent measurement. It therefore neither establishes nor refutes any claim through executed experiments.\",\n  \"quality\": \"low\"\n}\n```",
+ "elapsed_s": 31.4
+}

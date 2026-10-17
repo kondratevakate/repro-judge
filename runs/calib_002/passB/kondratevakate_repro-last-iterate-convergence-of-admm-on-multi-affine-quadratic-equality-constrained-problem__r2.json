@@ -1,0 +1,105 @@
+{
+ "space_id": "kondratevakate/repro-last-iterate-convergence-of-admm-on-multi-affine-quadratic-equality-constrained-problem",
+ "sha": "4571f56275d307db57bceb84c29f14e433b5f677",
+ "run": 2,
+ "judged_at": "2026-10-17T18:52:41+00:00",
+ "logbook_chars": 14806,
+ "cleaning": {
+  "comments": 11,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "29a9f802b7835781",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "450 runs on small synthetic problems all converged (res < 1e-8, violation < 2.2e-16, blockwise optimality error 5.2e-10); mutation removing Assumption 2.6 (Q full row rank) led to infeasibility, confirming the mechanism. But all experiments are on clearly reduced toy instances, not the full problem class.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Toy problem with ||C|| swept showed contraction factor ~0.059 for ||C|| ≤ 1 (linear regime) vs. ≥ 0.998 for ||C|| ≥ 25 (convergence destroyed); exact threshold untestable because constants m1,m2,m3 are unspecified in the paper. Real numbers but on a synthetic stand-in.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "Toy problem with box constraints (polyhedral) showed Theorem-3.3 gap decay factor ≤ 0.088 with all constraints active (no second-order differentiability); 19,200 local-min probes found no better point; mutation breaking eq. 4 destroyed convergence. Reduced synthetic setup only.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 2,
+    "share": 0.6666666666666666,
+    "flagged": false,
+    "ungrounded": [
+     19200.0
+    ]
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Sympy derivation confirmed all quadratic coefficients have Δt-exponent exactly 3 (fit p = 3.0000, match to 2.78e-17); simulation on T=6, N=2 instance showed contraction ~0.71 at all Δt tested; mutation removing Δt³ scaling destroyed convergence. Symbolic part is exact but simulation is on a small instance.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Sweep over q ∈ {0.5,…,50} × 6 hyperparameter settings × 6 seeds found all q values already linear with no transition at q = 10 (and q = 50 worse than q = 10); baseline comparison (PADMM, IPDS-ADMM, IADMM) was not performed at all due to missing problem instances, dimensions, and hyperparameters.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No hardware, code, robot models, or logs were available for the humanoid jump and quadruped bounding experiments; 2D simulation parameters (T, CoM target, contact schedule, ρ) were not reported, so Figure 5 curves cannot be matched. No simulated stand-in was produced for the hardware results.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook provides toy-level numerical evidence on small synthetic problems supporting the four theoretical convergence claims (Theorems 3.1–3.3, Corollary 4.2), with mutation tests confirming mechanisms, but does not reproduce the empirical baseline comparisons or real-robot experiments due to missing details and hardware.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5862,
+  "completion_tokens": 7543
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"450 runs on small synthetic problems all converged (res < 1e-8, violation < 2.2e-16, blockwise optimality error 5.2e-10); mutation removing Assumption 2.6 (Q full row rank) led to infeasibility, confirming the mechanism. But all experiments are on clearly reduced toy instances, not the full problem class.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Toy problem with ||C|| swept showed contraction factor ~0.059 for ||C|| ≤ 1 (linear regime) vs. ≥ 0.998 for ||C|| ≥ 25 (convergence destroyed); exact threshold untestable because constants m1,m2,m3 are unspecified in the paper. Real numbers but on a synthetic stand-in.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"Toy problem with box constraints (polyhedral) showed Theorem-3.3 gap decay factor ≤ 0.088 with all constraints active (no second-order differentiability); 19,200 local-min probes found no better point; mutation breaking eq. 4 destroyed convergence. Reduced synthetic setup only.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Sympy derivation confirmed all quadratic coefficients have Δt-exponent exactly 3 (fit p = 3.0000, match to 2.78e-17); simulation on T=6, N=2 instance showed contraction ~0.71 at all Δt tested; mutation removing Δt³ scaling destroyed convergence. Symbolic part is exact but simulation is on a small instance.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Sweep over q ∈ {0.5,…,50} × 6 hyperparameter settings × 6 seeds found all q values already linear with no transition at q = 10 (and q = 50 worse than q = 10); baseline comparison (PADMM, IPDS-ADMM, IADMM) was not performed at all due to missing problem instances, dimensions, and hyperparameters.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No hardware, code, robot models, or logs were available for the humanoid jump and quadruped bounding experiments; 2D simulation parameters (T, CoM target, contact schedule, ρ) were not reported, so Figure 5 curves cannot be matched. No simulated stand-in was produced for the hardware results.\"}\n  ],\n  \"overall\": \"The logbook provides toy-level numerical evidence on small synthetic problems supporting the four theoretical convergence claims (Theorems 3.1–3.3, Corollary 4.2), with mutation tests confirming mechanisms, but does not reproduce the empirical baseline comparisons or real-robot experiments due to missing details and hardware.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 84.2
+}

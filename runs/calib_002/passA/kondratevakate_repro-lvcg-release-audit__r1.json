@@ -1,0 +1,106 @@
+{
+ "space_id": "kondratevakate/repro-lvcg-release-audit",
+ "sha": "d5309345120c1f76ac96b80dd6ee78d232049dc3",
+ "run": 1,
+ "judged_at": "2026-10-17T18:56:57+00:00",
+ "code_sha256": "4e005625650aa7f360828742f4cf1ade48bde296fde42baaee4d312b5f8e7429",
+ "logbook_chars": 20100,
+ "cleaning": {
+  "comments": 15,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "2b6d920fd157f21f",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "A synthetic geometry check recovered latent trajectories with max error 6.90e-06 and reprojection error 3.74e-06, passing a 1e-4 threshold, but this used synthetic stand-in data and the official package cannot import due to missing lvcg.data modules.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 2,
+    "share": 0.6666666666666666,
+    "flagged": false,
+    "ungrounded": [
+     0.0001
+    ]
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "Training cannot import (ModuleNotFoundError), no training was executed; code inspection found the released code adds a unit-weight base-beat loss absent from Equation 7 and required a post-paper GRU shape fix, but no experiments ran to confirm or refute the objective as described.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "Splits were verified disjoint and table averages are arithmetically consistent (calculated 67.30 vs printed 67.3), but no checkpoints or result files exist and no model was trained or evaluated to reproduce the reported AUCs.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The repository contains no checkpoints, reconstruction predictions, per-lead outputs, or metric files; Table 2 cannot be regenerated and no reconstruction experiments were run.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No ablation configs, checkpoints, seeds, or outputs are released; the ablation tables are display-only with no executed experiments behind them.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The paper evaluates MIMIC-IV-ECG-Ext-ICD but the repository supplies an AI-READI provider instead, with no paper-dataset loader, folds, labels, checkpoint, or outputs; no experiments were run.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 1,
+ "overall": "The logbook confirms only that the VCG geometry math works on synthetic data and that released data splits are disjoint with arithmetically consistent table averages. No pretrained checkpoints, result files, or runnable training/evaluation pipelines exist, so none of the empirical claims (AUCs, reconstruction metrics, ablations) were reproduced or refuted.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 6916,
+  "completion_tokens": 1839
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"A synthetic geometry check recovered latent trajectories with max error 6.90e-06 and reprojection error 3.74e-06, passing a 1e-4 threshold, but this used synthetic stand-in data and the official package cannot import due to missing lvcg.data modules.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"Training cannot import (ModuleNotFoundError), no training was executed; code inspection found the released code adds a unit-weight base-beat loss absent from Equation 7 and required a post-paper GRU shape fix, but no experiments ran to confirm or refute the objective as described.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"Splits were verified disjoint and table averages are arithmetically consistent (calculated 67.30 vs printed 67.3), but no checkpoints or result files exist and no model was trained or evaluated to reproduce the reported AUCs.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The repository contains no checkpoints, reconstruction predictions, per-lead outputs, or metric files; Table 2 cannot be regenerated and no reconstruction experiments were run.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation configs, checkpoints, seeds, or outputs are released; the ablation tables are display-only with no executed experiments behind them.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The paper evaluates MIMIC-IV-ECG-Ext-ICD but the repository supplies an AI-READI provider instead, with no paper-dataset loader, folds, labels, checkpoint, or outputs; no experiments were run.\"}\n  ],\n  \"overall\": \"The logbook confirms only that the VCG geometry math works on synthetic data and that released data splits are disjoint with arithmetically consistent table averages. No pretrained checkpoints, result files, or runnable training/evaluation pipelines exist, so none of the empirical claims (AUCs, reconstruction metrics, ablations) were reproduced or refuted.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 22.9
+}

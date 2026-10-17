@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-sprout-release-audit",
+ "sha": "51459d062ca982fa5cb3c9379532475d43d890e1",
+ "run": 1,
+ "judged_at": "2026-10-17T18:46:46+00:00",
+ "logbook_chars": 60242,
+ "cleaning": {
+  "comments": 15,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "bde027134aed883e",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "The release contains the intended pipeline stages without a training loop, and the self-reference prototype branch executes on a synthetic 128×128 image with 9 synthetic nuclei (precision 1.0, recall 0.607), but end-to-end execution is blocked by a canonical POT crash, unresolved backbone, empty dataset link, and external SAM2 dependency.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The audit found zero released empirical artifacts (no processed splits, predictions, checkpoints, or metric tables); no MoNuSeg experiments were executed or metrics computed.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "Same as Claim 2: no CPM17 data, predictions, or cached outputs exist in the release, and no benchmark experiments were run.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The OT solver crashes with AttributeError on missing numItermax; after manual patching it produces a plan with real mass 2.4 instead of the paper's 0.6, and no real SAM prompting experiments were conducted to verify the full feature-alignment workflow.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No ablation experiments were executed; the only related test is containment-aware soft-NMS on synthetic 20×20 masks (large mask penalized 0.9→0.211), which does not constitute the multi-factor ablation or hyperparameter-sensitivity analysis claimed.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No TNBC runtime experiments were performed; the logbook explicitly states runtime results exist only in the paper with no released run-level artifacts.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 1,
+ "overall": "The logbook audits the SPROUT code release on synthetic inputs, confirming that the self-reference and containment-aware NMS components execute, but finding that the canonical POT solver crashes and the release contains no benchmark data, predictions, or timing artifacts. No full-scale reproduction on MoNuSeg, CPM17, or TNBC was attempted, leaving all quantitative claims unsupported.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 16586,
+  "completion_tokens": 2253
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"The release contains the intended pipeline stages without a training loop, and the self-reference prototype branch executes on a synthetic 128×128 image with 9 synthetic nuclei (precision 1.0, recall 0.607), but end-to-end execution is blocked by a canonical POT crash, unresolved backbone, empty dataset link, and external SAM2 dependency.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The audit found zero released empirical artifacts (no processed splits, predictions, checkpoints, or metric tables); no MoNuSeg experiments were executed or metrics computed.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"Same as Claim 2: no CPM17 data, predictions, or cached outputs exist in the release, and no benchmark experiments were run.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The OT solver crashes with AttributeError on missing numItermax; after manual patching it produces a plan with real mass 2.4 instead of the paper's 0.6, and no real SAM prompting experiments were conducted to verify the full feature-alignment workflow.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation experiments were executed; the only related test is containment-aware soft-NMS on synthetic 20×20 masks (large mask penalized 0.9→0.211), which does not constitute the multi-factor ablation or hyperparameter-sensitivity analysis claimed.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No TNBC runtime experiments were performed; the logbook explicitly states runtime results exist only in the paper with no released run-level artifacts.\"}\n  ],\n  \"overall\": \"The logbook audits the SPROUT code release on synthetic inputs, confirming that the self-reference and containment-aware NMS components execute, but finding that the canonical POT solver crashes and the release contains no benchmark data, predictions, or timing artifacts. No full-scale reproduction on MoNuSeg, CPM17, or TNBC was attempted, leaving all quantitative claims unsupported.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 29.0
+}

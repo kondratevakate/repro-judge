@@ -1,0 +1,91 @@
+{
+ "space_id": "kondratevakate/repro-robust-bayesian-optimisation-with-unbounded-corruptions",
+ "sha": "e3c3c2c7c7efc4a845152fbdbe596d01dc84492a",
+ "run": 1,
+ "judged_at": "2026-10-17T18:37:15+00:00",
+ "logbook_chars": 10447,
+ "cleaning": {
+  "comments": 10,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "8ab1aa048f1b9d3b",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Sympy symbolic substitution of T_c=T^α into the stated bound yields growth exponent e(α)=2α+1/2, giving the α<1/4 threshold exactly; mutation test removing Ψ changes threshold to α<1/2, matching the paper's Ideal column, confirming the threshold arises from Ψ.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Sympy substitution into the A2 bound yields exponent e(α)=7α/2+1/2, giving α<1/7; mutation test removing Ψ yields α<1/3 matching the paper's Ideal column; Table 1 Matérn entries reproduce to grid resolution.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Exhaustive 1040-config enumeration (10 seeds × 8 indices × 13 magnitudes up to 10¹²) shows RCGP posterior sup-deviation bounded at 1.4212 and converging as |c|→∞ (drift 9.93e-7 between 10⁶ and 10¹²), while standard GP deviation reaches 4.983e+11 and scales linearly in |c|; mutation test disabling P-IMQ yields unbounded deviation.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Symbolic check shows Ψ(0)=1 and both theorem bounds collapse to O(√(Tβ'_Tγ_T)); numeric Forrester benchmark at T_c=0 shows FC and A2 match GP-UCB bit-identically (max query and regret differences = 0.0, mean regret 34.9909 for all three); mutation test violating plateau condition causes divergence on 10/10 seeds.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "From-scratch CPU proxy with fixed RBF hyperparameters and grid argmax (not the paper's BoTorch/LOO-CV pipeline); RCGP beats GP-UCB by only 11.4%/5.8%—within one standard error over 10 seeds—and the ordering flips under an alternative endorsed configuration (adaptive T_c estimate: RCGP 793.61 vs GP-UCB 247.37); own DiagnosticsGP implementation disagrees with paper on worst baseline.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 9,
+ "overall": "The logbook provides solid algebraic and numerical verification of the four theoretical claims (bounds, thresholds, infinite-magnitude tolerance, zero-cost robustness) using sympy derivations, exhaustive posterior-deviation experiments, and bit-identical T_c=0 comparisons, each backed by mutation tests. The experimental claim (Claim 5) is only partially reproduced on a proxy implementation with insufficient seeds and configuration-sensitive results, correctly flagged as a toy.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4761,
+  "completion_tokens": 3082
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Sympy symbolic substitution of T_c=T^α into the stated bound yields growth exponent e(α)=2α+1/2, giving the α<1/4 threshold exactly; mutation test removing Ψ changes threshold to α<1/2, matching the paper's Ideal column, confirming the threshold arises from Ψ.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Sympy substitution into the A2 bound yields exponent e(α)=7α/2+1/2, giving α<1/7; mutation test removing Ψ yields α<1/3 matching the paper's Ideal column; Table 1 Matérn entries reproduce to grid resolution.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Exhaustive 1040-config enumeration (10 seeds × 8 indices × 13 magnitudes up to 10¹²) shows RCGP posterior sup-deviation bounded at 1.4212 and converging as |c|→∞ (drift 9.93e-7 between 10⁶ and 10¹²), while standard GP deviation reaches 4.983e+11 and scales linearly in |c|; mutation test disabling P-IMQ yields unbounded deviation.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Symbolic check shows Ψ(0)=1 and both theorem bounds collapse to O(√(Tβ'_Tγ_T)); numeric Forrester benchmark at T_c=0 shows FC and A2 match GP-UCB bit-identically (max query and regret differences = 0.0, mean regret 34.9909 for all three); mutation test violating plateau condition causes divergence on 10/10 seeds.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"From-scratch CPU proxy with fixed RBF hyperparameters and grid argmax (not the paper's BoTorch/LOO-CV pipeline); RCGP beats GP-UCB by only 11.4%/5.8%—within one standard error over 10 seeds—and the ordering flips under an alternative endorsed configuration (adaptive T_c estimate: RCGP 793.61 vs GP-UCB 247.37); own DiagnosticsGP implementation disagrees with paper on worst baseline.\"}\n  ],\n  \"overall\": \"The logbook provides solid algebraic and numerical verification of the four theoretical claims (bounds, thresholds, infinite-magnitude tolerance, zero-cost robustness) using sympy derivations, exhaustive posterior-deviation experiments, and bit-identical T_c=0 comparisons, each backed by mutation tests. The experimental claim (Claim 5) is only partially reproduced on a proxy implementation with insufficient seeds and configuration-sensitive results, correctly flagged as a toy.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 39.0
+}

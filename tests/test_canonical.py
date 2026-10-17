@@ -31,6 +31,16 @@ def test_read_claims_strips_numbering(tmp_path):
     assert judge.read_claims(str(f)) == ["first claim", "second", "third"]
 
 
+def test_grounding_failure_is_recorded_not_raised(monkeypatch):
+    def boom(*a, **k):
+        raise OverflowError("int too large to convert to float")
+
+    monkeypatch.setattr(judge.grounding, "check_verdict", boom)
+    rows = [{"claim": 1, "verdict": "verified", "evidence": "x"}]
+    judge.ground_rows(rows, "visible")
+    assert rows[0]["grounding"]["error"].startswith("OverflowError") and rows[0]["grounding"]["flagged"] is False
+
+
 def test_write_new_refuses_overwrite(tmp_path):
     p = tmp_path / "x.json"
     judge.write_new(p, {"a": 1})

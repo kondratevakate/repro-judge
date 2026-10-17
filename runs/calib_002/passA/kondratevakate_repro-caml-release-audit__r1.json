@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-caml-release-audit",
+ "sha": "90c6df5dea221030a8e7a062d2fc1228d52a1365",
+ "run": 1,
+ "judged_at": "2026-10-17T18:45:57+00:00",
+ "logbook_chars": 11058,
+ "cleaning": {
+  "comments": 15,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "36486bcc360f25e1",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "falsified",
+   "evidence": "The counterexample N(u)=u², f=1 yields two isolated global minimizers (u=±1, pairwise distance 2.0, solution set not connected) despite non-uniqueness, directly contradicting the theorem's conclusion that non-uniqueness implies a connected set of minimizers.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "Only a 10-epoch smoke run (seed 999) was executed with non-canonical settings (w_bc=1 vs paper's 5, target_l2=1e-3 vs paper's 2e-3), yielding L2=0.084—no five-seed canonical reproduction was performed.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The smoke run never reached the target L2 threshold (reached_target_epoch=-1) and used non-canonical settings; no convergence step counts were measured for either CAML or baseline.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No experiment compares baseline vs CAML gradient alignment fractions; the smoke run reports positive_cosine_rate=1.0 but is a single non-canonical run with no baseline comparison.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No ablation experiments were executed; the logbook confirms only component mechanics (offset and gate) were checked and that no ablation runner is released, with only 2 of 6 baseline loss methods available in code.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "Code inspection confirms three backbone implementations exist but entrypoints are hardcoded to MLP; no experiments were run with PirateNets or PINNsFormer, no optimizer compatibility tests were executed, and 4 of 6 baseline loss methods are absent from the release.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook provides a valid mathematical counterexample refuting Theorem 4.1 as stated, and confirms the aligned-constraint offset formula matches the official implementation exactly. However, no canonical benchmark experiments were run—only a single 10-epoch smoke test with mismatched settings—so all empirical claims about accuracy, convergence, gradient alignment, ablations, and cross-architecture evaluation remain unaddressed.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4673,
+  "completion_tokens": 2788
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"falsified\", \"evidence\": \"The counterexample N(u)=u², f=1 yields two isolated global minimizers (u=±1, pairwise distance 2.0, solution set not connected) despite non-uniqueness, directly contradicting the theorem's conclusion that non-uniqueness implies a connected set of minimizers.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"Only a 10-epoch smoke run (seed 999) was executed with non-canonical settings (w_bc=1 vs paper's 5, target_l2=1e-3 vs paper's 2e-3), yielding L2=0.084—no five-seed canonical reproduction was performed.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The smoke run never reached the target L2 threshold (reached_target_epoch=-1) and used non-canonical settings; no convergence step counts were measured for either CAML or baseline.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No experiment compares baseline vs CAML gradient alignment fractions; the smoke run reports positive_cosine_rate=1.0 but is a single non-canonical run with no baseline comparison.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation experiments were executed; the logbook confirms only component mechanics (offset and gate) were checked and that no ablation runner is released, with only 2 of 6 baseline loss methods available in code.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"Code inspection confirms three backbone implementations exist but entrypoints are hardcoded to MLP; no experiments were run with PirateNets or PINNsFormer, no optimizer compatibility tests were executed, and 4 of 6 baseline loss methods are absent from the release.\"}\n  ],\n  \"overall\": \"The logbook provides a valid mathematical counterexample refuting Theorem 4.1 as stated, and confirms the aligned-constraint offset formula matches the official implementation exactly. However, no canonical benchmark experiments were run—only a single 10-epoch smoke test with mismatched settings—so all empirical claims about accuracy, convergence, gradient alignment, ablations, and cross-architecture evaluation remain unaddressed.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 31.7
+}

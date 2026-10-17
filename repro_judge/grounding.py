@@ -7,7 +7,9 @@ flags verdicts for manual review and never changes them.
 """
 import re
 
-_NUMBER = re.compile(r"(?<![\w.])[-−+]?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?(?:[eE][-−+]?\d+)?%?")
+# A number may not continue into a hex digit or underscore, so hashes such as
+# "199e996c..." are not read as 199e996. Units like "1.89x" or "12ms" still parse.
+_NUMBER = re.compile(r"(?<![\w.])[-−+]?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?(?:[eE][-−+]?\d+)?%?(?![0-9a-fA-F_])")
 POINT_VERDICTS = {"verified", "falsified", "toy"}
 MIN_GROUNDED_SHARE = 0.5
 
@@ -25,7 +27,9 @@ def parse_numbers(text: str) -> list[tuple[float, float, bool]]:
         mantissa = re.split(r"[eE]", t)[0]
         decimals = len(mantissa.split(".")[1]) if "." in mantissa else 0
         exponent = int(re.split(r"[eE]", t)[1]) if re.search(r"[eE]", t) else 0
-        out.append((value, 0.5 * 10 ** (exponent - decimals), pct))
+        # parsed from text so an extreme exponent gives inf or 0.0 instead of OverflowError
+        half_step = float(f"5e{exponent - decimals - 1}")
+        out.append((value, half_step, pct))
     return out
 
 

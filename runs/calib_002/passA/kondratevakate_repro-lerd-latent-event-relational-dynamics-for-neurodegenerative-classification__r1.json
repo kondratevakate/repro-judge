@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-lerd-latent-event-relational-dynamics-for-neurodegenerative-classification",
+ "sha": "d5572da654ba1ba4ce8814e8b86142e3f3c3f697",
+ "run": 1,
+ "judged_at": "2026-10-17T18:45:25+00:00",
+ "logbook_chars": 14241,
+ "cleaning": {
+  "comments": 9,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "63f08dd541ebae8f",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The encoder/classifier path was implemented in lerd_eeg/, but the logbook explicitly states the dLIF and ERG prior modules were 'specified but not yet coded'; only a transcription/internal-consistency check was performed, not an implementation of the full architecture.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "thm41_audit.py computed the event-prior KL two independent ways (direct integral vs change-of-variables Eq 9) across three test configurations, matching to abs diff ≤1e-13; normalization Z_S=1−e^{−R(S)}, KL≥0, S→∞ convergence, and load-bearing hypotheses were all checked with concrete controls.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "On the synthetic toy benchmark, the logbook reproduced baseline IoU≈0 at CS≈0.99 and latent-rate estimates within 2–3.4% of LERD's reported medians, but explicitly states LERD's own IoU magnitudes (0.202–0.473) 'were not regenerated' because they require the trained model.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "Only a CPU smoke test was run (1 fold, 3/30 epochs, 63% accuracy); the full 5-fold × 30-epoch experiment was not completed, with the logbook citing ~19 h CPU infeasibility and no GPU run performed.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Cohort B (Sadegh-Zadeh et al.) has Data Availability 'Not applicable' and no public mirror was found; no experiments were run on this dataset.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The ablation results (Table 3) were not reproduced at all (requires full model training); the dLIF-inferred frequencies (Figure 2) were not regenerated; only the raw-EEG spectral-slowing biomarker signature was checked on Cohort A (AD centroid below HC in 19/19 channels), which is a proxy for the model-derived claim.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 3,
+ "overall": "The logbook provides a solid numerical audit of Theorem 4.1's KL identity (verified to machine precision) and partial reproduction of the toy benchmark's baseline-failure and rate-recovery aspects, but does not reproduce any of LERD's trained-model results (IoU magnitudes, classification accuracy, ablation contributions, or dLIF-inferred frequencies) due to compute and data-availability constraints.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5546,
+  "completion_tokens": 5326
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The encoder/classifier path was implemented in lerd_eeg/, but the logbook explicitly states the dLIF and ERG prior modules were 'specified but not yet coded'; only a transcription/internal-consistency check was performed, not an implementation of the full architecture.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"thm41_audit.py computed the event-prior KL two independent ways (direct integral vs change-of-variables Eq 9) across three test configurations, matching to abs diff ≤1e-13; normalization Z_S=1−e^{−R(S)}, KL≥0, S→∞ convergence, and load-bearing hypotheses were all checked with concrete controls.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"On the synthetic toy benchmark, the logbook reproduced baseline IoU≈0 at CS≈0.99 and latent-rate estimates within 2–3.4% of LERD's reported medians, but explicitly states LERD's own IoU magnitudes (0.202–0.473) 'were not regenerated' because they require the trained model.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"Only a CPU smoke test was run (1 fold, 3/30 epochs, 63% accuracy); the full 5-fold × 30-epoch experiment was not completed, with the logbook citing ~19 h CPU infeasibility and no GPU run performed.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Cohort B (Sadegh-Zadeh et al.) has Data Availability 'Not applicable' and no public mirror was found; no experiments were run on this dataset.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The ablation results (Table 3) were not reproduced at all (requires full model training); the dLIF-inferred frequencies (Figure 2) were not regenerated; only the raw-EEG spectral-slowing biomarker signature was checked on Cohort A (AD centroid below HC in 19/19 channels), which is a proxy for the model-derived claim.\"}\n  ],\n  \"overall\": \"The logbook provides a solid numerical audit of Theorem 4.1's KL identity (verified to machine precision) and partial reproduction of the toy benchmark's baseline-failure and rate-recovery aspects, but does not reproduce any of LERD's trained-model results (IoU magnitudes, classification accuracy, ablation contributions, or dLIF-inferred frequencies) due to compute and data-availability constraints.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 62.9
+}

@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-linear-bandits-beyond-inner-product-spaces-the-case-of-bandi",
+ "sha": "acc1666ed741007a1c12846b07f5cf1cd3043341",
+ "run": 1,
+ "judged_at": "2026-10-17T18:35:27+00:00",
+ "logbook_chars": 11447,
+ "cleaning": {
+  "comments": 8,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "772f03d43cdcfda0",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Unitary DFT on a discrete grid confirms Parseval/inner-product preservation to relative error 1.5e-16 and the pairing identity for both a random density and a Sinkhorn-computed OT coupling to relative gaps 6.6e-16 and 1.4e-15; a non-unitary mutation breaks the identity with gap 1.03e+3.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "On a genuine 4-point BOT instance (Birkhoff polytope, 24 permutations) with 60 seeds at T=400, the certified Theorem bound held in 60/60 runs (mean regret 51.29 vs bound 836.04), with sublinear log-log slopes 0.757/0.762 across T up to 6400; Cauchy-noise mutation collapses coverage to 0.00.",
+   "grounding": {
+    "cited": 10,
+    "grounded": 10,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Exact LP Kantorovich value vs log-domain Sinkhorn on 40-point OT confirms gap/(ε log(1/ε)) in [0.439, 0.758] across ε sweep; cumulated penalty under ε_t=ηt^{-η} matches T^{1-η} log T shape and is dominated by √T log T; constant-ε mutation yields exactly linear slope 1.0000.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Basis-truncation EntUCB over N∈{2…32}, T∈{250…4000}, 125 runs: bound held in 125/125, stripped log-log slopes are 0.50000 in N and 0.50000 in T; broken-feedback mutation yields linear regret slope 0.984.",
+   "grounding": {
+    "cited": 9,
+    "grounded": 9,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Analytic exponent (q+2)/(2q+2) ranges from 0.976 (q=0.05, →O(T)) to 0.515 (q=32, →Õ(√T)); full theorem expression fitted over T∈{10³…10⁶} yields ordered slopes 0.982…0.611 matching the analytic trend; frozen-truncation mutation gives linear slope 0.970.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "RLS estimator stationary-point gradient norm 3.8e-10; Sylvester identity for log-det width holds to gap 1.8e-15; coverage 1.000 over 400 runs (d=8, T=300) vs nominal 0.95; shrinking β by 6× collapses coverage to 0.000.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 12,
+ "overall": "The logbook provides concrete numerical evidence from executed experiments supporting all six claims, with each claim backed by specific quantitative results and a mutation that breaks the expected behavior. All experiments are finite-dimensional/discrete instantiations of the paper's infinite-dimensional theory—a limitation the logbook openly acknowledges—but they use genuine optimal transport problems and actual bandit algorithms rather than proxy tasks.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 9964,
+  "completion_tokens": 13705
+ },
+ "attempts": 2,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Unitary DFT on a discrete grid confirms Parseval/inner-product preservation to relative error 1.5e-16 and the pairing identity for both a random density and a Sinkhorn-computed OT coupling to relative gaps 6.6e-16 and 1.4e-15; a non-unitary mutation breaks the identity with gap 1.03e+3.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"On a genuine 4-point BOT instance (Birkhoff polytope, 24 permutations) with 60 seeds at T=400, the certified Theorem bound held in 60/60 runs (mean regret 51.29 vs bound 836.04), with sublinear log-log slopes 0.757/0.762 across T up to 6400; Cauchy-noise mutation collapses coverage to 0.00.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Exact LP Kantorovich value vs log-domain Sinkhorn on 40-point OT confirms gap/(ε log(1/ε)) in [0.439, 0.758] across ε sweep; cumulated penalty under ε_t=ηt^{-η} matches T^{1-η} log T shape and is dominated by √T log T; constant-ε mutation yields exactly linear slope 1.0000.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Basis-truncation EntUCB over N∈{2…32}, T∈{250…4000}, 125 runs: bound held in 125/125, stripped log-log slopes are 0.50000 in N and 0.50000 in T; broken-feedback mutation yields linear regret slope 0.984.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Analytic exponent (q+2)/(2q+2) ranges from 0.976 (q=0.05, →O(T)) to 0.515 (q=32, →Õ(√T)); full theorem expression fitted over T∈{10³…10⁶} yields ordered slopes 0.982…0.611 matching the analytic trend; frozen-truncation mutation gives linear slope 0.970.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"RLS estimator stationary-point gradient norm 3.8e-10; Sylvester identity for log-det width holds to gap 1.8e-15; coverage 1.000 over 400 runs (d=8, T=300) vs nominal 0.95; shrinking β by 6× collapses coverage to 0.000.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical evidence from executed experiments supporting all six claims, with each claim backed by specific quantitative results and a mutation that breaks the expected behavior. All experiments are finite-dimensional/discrete instantiations of the paper's infinite-dimensional theory—a limitation the logbook openly acknowledges—but they use genuine optimal transport problems and actual bandit algorithms rather than proxy tasks.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 152.7
+}

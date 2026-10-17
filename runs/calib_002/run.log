@@ -1,0 +1,87 @@
+pass A: 53 jobs, 52 to do, workers 3
+[1/52] kondratevakate/repro-accurate-evaluation-of-quickest-changepoint-detectors-via-non-parametric-surviva r1: 10/12 (official 10) 63.2s tokens 6016+5344 served_by=novita
+[2/52] kondratevakate/repro-bridging-the-gap-between-average-and-discounted-td-learning r1: 12/12 (official 11) 82.3s tokens 3691+7092 served_by=novita
+[3/52] kondratevakate/repro-compact-conformal-subgraphs r1: 10/12 (official 10) 53.8s tokens 4153+4583 served_by=novita
+[4/52] kondratevakate/repro-inference-aware-meta-alignment-of-llms-via-non-linear-grpo r1: 10/12 (official 10) 41.4s tokens 4712+3652 served_by=novita
+[5/52] kondratevakate/repro-linear-bandits-beyond-inner-product-spaces-the-case-of-bandi r1: 12/12 (official 12) 152.7s tokens 9964+13705 served_by=novita
+[6/52] kondratevakate/repro-model-monotonicity-in-autobidding-auctions-when-do-better-pr r1: 10/12 (official 10) 44.2s tokens 3390+3966 served_by=novita
+[7/52] kondratevakate/repro-off-policy-evaluation-for-missingness-aware-policies-in-mdps-with-rewards-missing-not-at-r r1: 8/10 (official 10) 56.0s tokens 32630+4266 served_by=novita
+[8/52] kondratevakate/repro-caffnet-hard-constraint-affine-neural-networks r1: 8/10 (official 9) 41.8s tokens 4067+3137 served_by=novita
+[9/52] kondratevakate/repro-a-graphop-analysis-of-graph-neural-networks-on-sparse-graphs r1: 11/12 (official 9) 83.5s tokens 12222+6566 served_by=novita
+[10/52] kondratevakate/repro-robust-bayesian-optimisation-with-unbounded-corruptions r1: 9/10 (official 9) 39.0s tokens 4761+3082 served_by=novita
+[11/52] kondratevakate/repro-coverage-length-metric-shorter-intervals-not-better r1: 8/10 (official 8) 24.5s tokens 5237+1954 served_by=novita
+[12/52] kondratevakate/repro-fixed-budget-no-harder-than-fixed-confidence-bai r1: 8/10 (official 8) 29.2s tokens 5708+2445 served_by=novita
+[13/52] kondratevakate/repro-sinkhorn-normalization-of-diffusion-kernels r1: 8/12 (official 8) 38.2s tokens 7986+3045 served_by=novita
+[14/52] kondratevakate/repro-a-solvable-high-dimensional-model-where-nonlinear-autoencoders-learn-structure-i r1: 5/10 (official 6) 49.3s tokens 2859+3991 served_by=novita
+[15/52] kondratevakate/repro-functional-decomposition-and-shapley-interactions-for-interpreting-survival-mode r1: 8/12 (official 8) 136.9s tokens 14548+12657 served_by=novita
+[16/52] kondratevakate/repro-accelerating-regression-tasks-with-quantum-algorithms r1: 6/12 (official 6) 53.9s tokens 8789+4678 served_by=novita
+[17/52] kondratevakate/repro-fluxnet-learning-capacity-constrained-local-transport-operators r1: 6/12 (official 6) 31.4s tokens 5278+2723 served_by=novita
+[18/52] kondratevakate/repro-allocating-variance-to-maximize-expectation r1: 4/12 (official 6) 58.0s tokens 4689+4634 served_by=novita
+[19/52] kondratevakate/repro-optimal-decision-making-based-on-prediction-sets r1: 6/8 (official 6) 30.0s tokens 3125+2343 served_by=novita
+[20/52] kondratevakate/repro-multi-distribution-robust-conformal-prediction r1: 6/12 (official 6) 79.9s tokens 5639+6795 served_by=novita
+[21/52] kondratevakate/repro-scratio-release-audit r1: 6/12 (official 6) 50.5s tokens 4000+4432 served_by=novita
+[22/52] kondratevakate/repro-subgroup-discovery-with-the-cox-model r1: 6/12 (official 6) 42.2s tokens 3591+3904 served_by=novita
+[23/52] kondratevakate/repro-online-packet-scheduling-with-deadlines-and-learning r1: 3/12 (official 5) 66.5s tokens 4997+5728 served_by=novita
+[24/52] kondratevakate/repro-on-the-theory-of-continual-learning-with-gradient-descent-fo r1: 8/12 (official 10) 467.2s tokens 39494+18330 served_by=novita
+[25/52] kondratevakate/repro-last-iterate-convergence-of-admm-on-multi-affine-quadratic-equality-constrained-problem r1: 4/12 (official 4) 54.9s tokens 5857+4764 served_by=novita
+[26/52] kondratevakate/repro-medmamba-implementation r1: 4/10 (official 4) 31.3s tokens 3283+2768 served_by=novita
+[27/52] kondratevakate/repro-supervised-graph-contrastive-learning-grn r1: 4/12 (official 4) 16.6s tokens 3683+1361 served_by=novita
+[28/52] kondratevakate/repro-sparse-bayesian-functional-deep-learning r1: 4/12 (official 4) 19.7s tokens 4014+1701 served_by=novita
+[29/52] kondratevakate/repro-online-learning-inference-cox-proportional-hazards-renewable-sieve r1: 4/4 (official 4) 53.3s tokens 3910+4562 served_by=novita
+[30/52] kondratevakate/repro-when-can-we-trust-survival-model-evaluation r1: 2/4 (official 4) 29.0s tokens 3100+2401 served_by=novita
+[31/52] kondratevakate/repro-calpro-prior-aware-evidential-conformal-prediction-with-structure-aware r1: 2/12 (official 3) 36.0s tokens 4729+3131 served_by=novita
+[32/52] kondratevakate/repro-learning-treatment-allocations-with-risk-control-under-partial-identifiability r1: 4/10 (official 3) 48.7s tokens 4542+4142 served_by=novita
+[33/52] kondratevakate/repro-smooth-multi-policy-causal-effect-estimation-in-longitudinal-settings r1: 3/12 (official 3) 37.4s tokens 4935+3413 served_by=novita
+[34/52] kondratevakate/repro-lerd-latent-event-relational-dynamics-for-neurodegenerative-classification r1: 3/12 (official 3) 62.9s tokens 5546+5326 served_by=novita
+[35/52] kondratevakate/repro-spmind-artifact-audit r1: 3/10 (official 3) 41.6s tokens 21632+3533 served_by=novita
+[36/52] kondratevakate/repro-caml-release-audit r1: 2/12 (official 2) 31.7s tokens 4673+2788 served_by=novita
+[37/52] kondratevakate/repro-plug-and-play-diffusion-meets-admm-dual-variable-coupling-for-robust-medical r1: 2/12 (official 2) 18.1s tokens 3869+1368 served_by=novita
+[38/52] kondratevakate/repro-explicitly-modeling-censoring-produces-superior-survival-predictors r1: 3/4 (official 2) 39.2s tokens 3511+3442 served_by=novita
+[39/52] kondratevakate/repro-stable-localized-conformal-prediction-via-transduction r1: 3/12 (official 3) 71.3s tokens 4562+6349 served_by=novita
+[40/52] kondratevakate/repro-principled-confidence-estimation-for-deep-computed-tomography r1: 2/12 (official 2) 23.5s tokens 2630+1949 served_by=novita
+[41/52] kondratevakate/repro-sprout-release-audit r1: 1/12 (official 2) 29.0s tokens 16586+2253 served_by=novita
+[42/52] kondratevakate/repro-a-conflict-aware-evidential-framework-for-reliable-sleep-stage-classification r1: 2/10 (official 1) 54.9s tokens 2690+4831 served_by=novita
+[43/52] kondratevakate/repro-came-grad-equation-audit r1: 2/10 (official 1) 43.8s tokens 9626+3360 served_by=novita
+ERROR kondratevakate/repro-lvcg-release-audit r1: OverflowError: int too large to convert to float
+[44/52] kondratevakate/repro-funcqnet-functional-censored-quantile-net-kidney-survival r1: 1/4 (official 1) 50.4s tokens 4292+4494 served_by=novita
+[45/52] kondratevakate/repro-ophiuchus-release-audit r1: 0/10 (official 1) 31.0s tokens 2539+2608 served_by=novita
+[46/52] kondratevakate/repro-causal-matrix-completion-under-multiple-treatments-via-mixed-synthetic-nearest-neighbors r1: 0/12 (official 0) 13.5s tokens 2535+1058 served_by=novita
+[47/52] kondratevakate/repro-beyond-text-to-sql-can-llms-really-debug-enterprise-etl-sql r1: 0/8 (official 0) 31.4s tokens 3110+2605 served_by=novita
+[48/52] kondratevakate/repro-safety-generalization-diabetes-testbed r1: 2/10 (official 1) 41.8s tokens 5959+3593 served_by=novita
+[49/52] kondratevakate/repro-ma-rag-release-audit r1: 0/12 (official 0) 15.7s tokens 11762+1246 served_by=novita
+[50/52] kondratevakate/repro-xmae-release-audit r1: 0/12 (official 0) 24.3s tokens 3336+2083 served_by=novita
+[51/52] kondratevakate/repro-medcrp-cl-release-audit r1: 0/10 (official 0) 30.1s tokens 13395+2512 served_by=novita
+done 51, errors 1, wall 944s
+1 job(s) failed; see C:\Projects\02_academia\studies\repro-judge\runs\calib_002\passA\errors; rerun the same command to retry them
+pass A: 53 jobs, 1 to do, workers 2
+ERROR kondratevakate/repro-lvcg-release-audit r1: OverflowError: int too large to convert to float
+done 0, errors 1, wall 26s
+1 job(s) failed; see C:\Projects\02_academia\studies\repro-judge\runs\calib_002\passA\errors; rerun the same command to retry them
+pass B: 20 jobs, 20 to do, workers 3
+[1/20] kondratevakate/repro-inference-aware-meta-alignment-of-llms-via-non-linear-grpo r2: 10/12 (official 10) 39.2s tokens 4712+3388 served_by=novita
+[2/20] kondratevakate/repro-conditional-coverage-diagnostics-for-conformal-prediction r2: 8/12 (official 12) 39.9s tokens 3714+3603 served_by=novita
+[3/20] kondratevakate/repro-conditional-coverage-diagnostics-for-conformal-prediction r3: 12/12 (official 12) 59.2s tokens 3709+5304 served_by=novita
+[4/20] kondratevakate/repro-caffnet-hard-constraint-affine-neural-networks r2: 8/10 (official 9) 23.7s tokens 4062+1931 served_by=novita
+[5/20] kondratevakate/repro-inference-aware-meta-alignment-of-llms-via-non-linear-grpo r3: 10/12 (official 10) 42.8s tokens 4712+3723 served_by=novita
+[6/20] kondratevakate/repro-caffnet-hard-constraint-affine-neural-networks r3: 8/10 (official 9) 25.2s tokens 4072+2033 served_by=novita
+[7/20] kondratevakate/repro-multi-distribution-robust-conformal-prediction r2: 6/12 (official 6) 34.5s tokens 5644+2936 served_by=novita
+[8/20] kondratevakate/repro-sinkhorn-normalization-of-diffusion-kernels r3: 8/12 (official 8) 50.4s tokens 8001+4071 served_by=novita
+[9/20] kondratevakate/repro-sinkhorn-normalization-of-diffusion-kernels r2: 8/12 (official 8) 83.8s tokens 7996+7116 served_by=novita
+[10/20] kondratevakate/repro-multi-distribution-robust-conformal-prediction r3: 6/12 (official 6) 57.1s tokens 5639+4803 served_by=novita
+[11/20] kondratevakate/repro-last-iterate-convergence-of-admm-on-multi-affine-quadratic-equality-constrained-problem r3: 4/12 (official 4) 40.9s tokens 5857+3672 served_by=novita
+[12/20] kondratevakate/repro-when-can-we-trust-survival-model-evaluation r2: 4/4 (official 4) 37.4s tokens 3110+3203 served_by=novita
+[13/20] kondratevakate/repro-last-iterate-convergence-of-admm-on-multi-affine-quadratic-equality-constrained-problem r2: 4/12 (official 4) 84.2s tokens 5862+7543 served_by=novita
+[14/20] kondratevakate/repro-when-can-we-trust-survival-model-evaluation r3: 2/4 (official 4) 38.2s tokens 3100+3279 served_by=novita
+[15/20] kondratevakate/repro-principled-confidence-estimation-for-deep-computed-tomography r2: 2/12 (official 2) 22.2s tokens 2625+1935 served_by=novita
+[16/20] kondratevakate/repro-spmind-artifact-audit r2: 3/10 (official 3) 49.8s tokens 21622+4216 served_by=novita
+[17/20] kondratevakate/repro-principled-confidence-estimation-for-deep-computed-tomography r3: 2/12 (official 2) 24.6s tokens 2625+2232 served_by=novita
+[18/20] kondratevakate/repro-spmind-artifact-audit r3: 3/10 (official 3) 65.5s tokens 21637+5810 served_by=novita
+ERROR kondratevakate/repro-lvcg-release-audit r2: OverflowError: int too large to convert to float
+ERROR kondratevakate/repro-lvcg-release-audit r3: OverflowError: int too large to convert to float
+done 18, errors 2, wall 297s
+2 job(s) failed; see C:\Projects\02_academia\studies\repro-judge\runs\calib_002\passB\errors; rerun the same command to retry them
+pass B: 20 jobs, 2 to do, workers 2
+ERROR kondratevakate/repro-lvcg-release-audit r3: OverflowError: int too large to convert to float
+ERROR kondratevakate/repro-lvcg-release-audit r2: OverflowError: int too large to convert to float
+done 0, errors 2, wall 23s
+2 job(s) failed; see C:\Projects\02_academia\studies\repro-judge\runs\calib_002\passB\errors; rerun the same command to retry them

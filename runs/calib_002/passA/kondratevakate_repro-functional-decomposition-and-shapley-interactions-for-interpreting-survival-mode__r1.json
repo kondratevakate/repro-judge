@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-functional-decomposition-and-shapley-interactions-for-interpreting-survival-mode",
+ "sha": "752bc8e8bbb7e631a529fe6ceec481da3ca70e16",
+ "run": 1,
+ "judged_at": "2026-10-17T18:39:40+00:00",
+ "logbook_chars": 23202,
+ "cleaning": {
+  "comments": 10,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "26b0c93dccee2946",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "The three-scale functional ANOVA audit uses exact enumeration on a 5^3=125 product grid with reconstruction error 8.88e-16, directly showing additive log-hazard has zero higher-order effects while the same model produces non-zero hazard pair effects (0.005–0.011 RMS) and time-dependent survival-scale higher-order effects; the 2-feature scenario tests confirm exact TD/TI partitioning with 15-order-of-magnitude margins across 12 seeds.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "On scenarios A–C (within Theorem 3.2's scope: independent features, linear/additive G), SurvFD exactly recovers ground-truth TD/TI partitions in 3/3 cases, stable across 12 seeds with TI effects at floating-point zero (~1e-15) versus the genuine TD effect spread of 0.748.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Using the paper's Appendix A.2 example, downward propagation to {x1} is confirmed (spread 2.818, 10/10 seeds) while upward propagation to {x1,x2,x3} is absent (spread 1.28e-15, 10/10 seeds), and the paper's closed-form f1(t|x)=x1^2+t*x1-1 matches numerical estimates within MC error.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "The ten Fig. 2 scenarios are transcribed and local accuracy is computed at machine precision (~1e-16) for ground-truth functions, but the specific <0.015 threshold applies to fitted CoxPH/GBSA models, which were explicitly not attempted due to missing scikit-survival; only the algebraic-identity case on ground truth is tested.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The TCGA-BRCA multi-modal application is not addressed anywhere in the logbook; no experiments with real patient data or cross-modality interaction analysis were run.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "Four synthetic coalition games at 10–16 features show regression RMSE lower than permutation in all 8 budget cells (ratios 0.10–0.31), matching the paper's direction, but the games are synthetic proxies—not the paper's four datasets—and only two of the paper's full method panel are compared.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides strong, exact-computation verification of the paper's theoretical claims (Theorem 3.2 exact recovery, Theorem 3.3 asymmetric propagation, and three-scale additivity-failure characterization) with seed-robustness sweeps. Empirical claims involving real data (TCGA-BRCA) and fitted models (Figure 2's <0.015 threshold, Figure 7's full method comparison) are either unaddressed or tested only via synthetic proxies.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 14548,
+  "completion_tokens": 12657
+ },
+ "attempts": 2,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"The three-scale functional ANOVA audit uses exact enumeration on a 5^3=125 product grid with reconstruction error 8.88e-16, directly showing additive log-hazard has zero higher-order effects while the same model produces non-zero hazard pair effects (0.005–0.011 RMS) and time-dependent survival-scale higher-order effects; the 2-feature scenario tests confirm exact TD/TI partitioning with 15-order-of-magnitude margins across 12 seeds.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"On scenarios A–C (within Theorem 3.2's scope: independent features, linear/additive G), SurvFD exactly recovers ground-truth TD/TI partitions in 3/3 cases, stable across 12 seeds with TI effects at floating-point zero (~1e-15) versus the genuine TD effect spread of 0.748.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Using the paper's Appendix A.2 example, downward propagation to {x1} is confirmed (spread 2.818, 10/10 seeds) while upward propagation to {x1,x2,x3} is absent (spread 1.28e-15, 10/10 seeds), and the paper's closed-form f1(t|x)=x1^2+t*x1-1 matches numerical estimates within MC error.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"The ten Fig. 2 scenarios are transcribed and local accuracy is computed at machine precision (~1e-16) for ground-truth functions, but the specific <0.015 threshold applies to fitted CoxPH/GBSA models, which were explicitly not attempted due to missing scikit-survival; only the algebraic-identity case on ground truth is tested.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The TCGA-BRCA multi-modal application is not addressed anywhere in the logbook; no experiments with real patient data or cross-modality interaction analysis were run.\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"Four synthetic coalition games at 10–16 features show regression RMSE lower than permutation in all 8 budget cells (ratios 0.10–0.31), matching the paper's direction, but the games are synthetic proxies—not the paper's four datasets—and only two of the paper's full method panel are compared.\"}\n  ],\n  \"overall\": \"The logbook provides strong, exact-computation verification of the paper's theoretical claims (Theorem 3.2 exact recovery, Theorem 3.3 asymmetric propagation, and three-scale additivity-failure characterization) with seed-robustness sweeps. Empirical claims involving real data (TCGA-BRCA) and fitted models (Figure 2's <0.015 threshold, Figure 7's full method comparison) are either unaddressed or tested only via synthetic proxies.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 136.9
+}

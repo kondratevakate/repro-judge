@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-accelerating-regression-tasks-with-quantum-algorithms",
+ "sha": "9e4f166644393a791379d902695f045cd73b42d4",
+ "run": 1,
+ "judged_at": "2026-10-17T18:40:05+00:00",
+ "logbook_chars": 24588,
+ "cleaning": {
+  "comments": 20,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "d25c30407cad9c10",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "Lewis-weight sparsifier accuracy tested on CPU with n=20, r=5: max relative objective error 0.206/0.236 ≤ eps=0.25, and simulated quantum query-count exponent 0.499 vs classical 1.000. However, the quantum cost is a query-count simulation (not hardware), n=20 is clearly reduced, and the log(s_max/s_min) factor was explicitly not isolated.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Linear regression sparsifier obj ratio 1.0013–1.0083 ≤ 1+eps with m-independent solve stage (exponent −0.51 vs full 0.49), and simulated cost exponent 0.488 vs 1.000. Same reduced n=20 setup with simulated quantum cost, not real quantum execution.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "Lasso obj ratio 0.998–1.007 after fixing the solver from ISTA to FISTA, with simulated cost exponent 0.488 vs 1.000. The poly(n,1/eps) degree was not isolated, and the setup is n=20 with simulated quantum cost.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Ridge obj ratio 1.001–1.008 with solve exponent −0.31 vs full 0.79, and simulated cost exponent 0.488 vs 1.000. Reduced n=20 setup with simulated quantum query counting rather than real quantum computation.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "Huber/gamma_p obj ratio ≤ 1.0004, but the simulated cost exponent is 0.129, well below the claimed 0.5 bound. The logbook itself notes this is 'consistent with — not evidence for — the claim' because the instance family makes the sampler cheaper than the worst-case bound; the check is one-sided.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "l_p regression (p=1.5 only) obj ratio ≤ 1.0006, but simulated cost exponent 0.351 is below 0.5 and the logbook states this is consistent but not confirmatory. Only one p value was tested from the claimed range p∈(0,2], on n=20 with simulated quantum cost.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 6,
+ "overall": "The logbook tests sparsifier correctness and m-scaling exponents on small synthetic instances (n=20, r=5) with a simulated quantum query-count model, showing results broadly consistent with the paper's asymptotic bounds but at clearly reduced scale and without real quantum hardware. The logbook is contaminated with unrelated pages from a different paper (CAML/PINNs), but the quantum-regression pages contain genuine CPU experiments with mutation tests and honest caveats.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 8789,
+  "completion_tokens": 4678
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"Lewis-weight sparsifier accuracy tested on CPU with n=20, r=5: max relative objective error 0.206/0.236 ≤ eps=0.25, and simulated quantum query-count exponent 0.499 vs classical 1.000. However, the quantum cost is a query-count simulation (not hardware), n=20 is clearly reduced, and the log(s_max/s_min) factor was explicitly not isolated.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Linear regression sparsifier obj ratio 1.0013–1.0083 ≤ 1+eps with m-independent solve stage (exponent −0.51 vs full 0.49), and simulated cost exponent 0.488 vs 1.000. Same reduced n=20 setup with simulated quantum cost, not real quantum execution.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"Lasso obj ratio 0.998–1.007 after fixing the solver from ISTA to FISTA, with simulated cost exponent 0.488 vs 1.000. The poly(n,1/eps) degree was not isolated, and the setup is n=20 with simulated quantum cost.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Ridge obj ratio 1.001–1.008 with solve exponent −0.31 vs full 0.79, and simulated cost exponent 0.488 vs 1.000. Reduced n=20 setup with simulated quantum query counting rather than real quantum computation.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"Huber/gamma_p obj ratio ≤ 1.0004, but the simulated cost exponent is 0.129, well below the claimed 0.5 bound. The logbook itself notes this is 'consistent with — not evidence for — the claim' because the instance family makes the sampler cheaper than the worst-case bound; the check is one-sided.\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"l_p regression (p=1.5 only) obj ratio ≤ 1.0006, but simulated cost exponent 0.351 is below 0.5 and the logbook states this is consistent but not confirmatory. Only one p value was tested from the claimed range p∈(0,2], on n=20 with simulated quantum cost.\"}\n  ],\n  \"overall\": \"The logbook tests sparsifier correctness and m-scaling exponents on small synthetic instances (n=20, r=5) with a simulated quantum query-count model, showing results broadly consistent with the paper's asymptotic bounds but at clearly reduced scale and without real quantum hardware. The logbook is contaminated with unrelated pages from a different paper (CAML/PINNs), but the quantum-regression pages contain genuine CPU experiments with mutation tests and honest caveats.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 53.9
+}

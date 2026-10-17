@@ -1,0 +1,91 @@
+{
+ "space_id": "kondratevakate/repro-medcrp-cl-release-audit",
+ "sha": "4b14e216d726ca263ce0243989535014cebe2ae0",
+ "run": 1,
+ "judged_at": "2026-10-17T18:48:38+00:00",
+ "logbook_chars": 47068,
+ "cleaning": {
+  "comments": 13,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "97c8f32927e96a76",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The checkpoint contains a K=5 modality partition with group sizes {1,5,1,7,2}, but alpha is 2.0 not the reported 5.0, the partition was a stored state not regenerated from prompt data, and the online CRP discovery process itself was never independently executed.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The audit found zero run-level metric files (run_level_metric_files: []) and no processed splits, predictions, or seeds in the release, so 73.3% Dice, 4.1% forgetting, 8.6M parameters, and baseline comparisons cannot be independently recovered.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states ablation numbers appear only in the paper and corresponding outputs and scripts are absent; no ablation experiment was run or output found.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The checkpoint stores similarity stats with an intra-inter separation of 0.493, roughly matching the claimed ~0.50 text gap, but no visual-embedding-based discovery was run and no per-task-pair (cardiac vs breast ultrasound) comparison was performed.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook states that task-ordering, prompt-perturbation, and robustness results appear only in the paper with no corresponding outputs or scripts present in the release.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 0,
+ "overall": "The logbook is a static file-and-checkpoint audit, not a training or inference run. It confirms the released checkpoint contains a coherent K=5 modality partition and a replay-free EWC state, but finds an alpha mismatch (2.0 vs 5.0) and zero metric output files, leaving all empirical performance, ablation, and robustness claims unsupported by executable evidence.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 13395,
+  "completion_tokens": 2512
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The checkpoint contains a K=5 modality partition with group sizes {1,5,1,7,2}, but alpha is 2.0 not the reported 5.0, the partition was a stored state not regenerated from prompt data, and the online CRP discovery process itself was never independently executed.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The audit found zero run-level metric files (run_level_metric_files: []) and no processed splits, predictions, or seeds in the release, so 73.3% Dice, 4.1% forgetting, 8.6M parameters, and baseline comparisons cannot be independently recovered.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states ablation numbers appear only in the paper and corresponding outputs and scripts are absent; no ablation experiment was run or output found.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The checkpoint stores similarity stats with an intra-inter separation of 0.493, roughly matching the claimed ~0.50 text gap, but no visual-embedding-based discovery was run and no per-task-pair (cardiac vs breast ultrasound) comparison was performed.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook states that task-ordering, prompt-perturbation, and robustness results appear only in the paper with no corresponding outputs or scripts present in the release.\"}\n  ],\n  \"overall\": \"The logbook is a static file-and-checkpoint audit, not a training or inference run. It confirms the released checkpoint contains a coherent K=5 modality partition and a replay-free EWC state, but finds an alpha mismatch (2.0 vs 5.0) and zero metric output files, leaving all empirical performance, ablation, and robustness claims unsupported by executable evidence.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 30.1
+}

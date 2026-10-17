@@ -1,0 +1,55 @@
+{
+ "space_id": "kondratevakate/repro-when-can-we-trust-survival-model-evaluation",
+ "sha": "7ea7f86fbf778c87573f9d9b323d4a8df97b7242",
+ "run": 2,
+ "judged_at": "2026-10-17T18:52:38+00:00",
+ "logbook_chars": 8520,
+ "cleaning": {
+  "comments": 7,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "7c4bd0a57b3ebd6a",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "The ST−OR bias table (n=4000, 8 reps, 3 mechanisms × 4 rates) shows systematic, rate-monotone distortions that are mechanism-dependent: IBS bias at 80% censoring is −0.0795 for administrative, −0.0323 for independent, and 0.0000 for covariate-dependent, while C-index bias is +0.0270/+0.0298/+0.0295 across mechanisms at 80%, confirming both rate- and mechanism-dependent variation.",
+   "grounding": {
+    "cited": 8,
+    "grounded": 8,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Ranking agreement between censored and oracle C-index for near-tied models drops from 1.00 at 0% censoring to 0.29–0.42 at 80% across all three mechanisms (24 reps each), while widely-separated models retain 1.00 everywhere, directly demonstrating that moderate bias makes close model comparisons unreliable under heavy censoring.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook implements the paper's ST-vs-OR design in a fully synthetic DGP with exact oracle event times, producing concrete numerical tables that support both claims: mechanism-dependent metric distortions (Claim 1) and ranking instability for near-tied models under heavy censoring (Claim 2). The setup is methodologically faithful to the paper's core experimental design, though it uses synthetic data rather than the paper's real clinical datasets (PBC, FLCHAIN, METABRIC).",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3110,
+  "completion_tokens": 3203
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"The ST−OR bias table (n=4000, 8 reps, 3 mechanisms × 4 rates) shows systematic, rate-monotone distortions that are mechanism-dependent: IBS bias at 80% censoring is −0.0795 for administrative, −0.0323 for independent, and 0.0000 for covariate-dependent, while C-index bias is +0.0270/+0.0298/+0.0295 across mechanisms at 80%, confirming both rate- and mechanism-dependent variation.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Ranking agreement between censored and oracle C-index for near-tied models drops from 1.00 at 0% censoring to 0.29–0.42 at 80% across all three mechanisms (24 reps each), while widely-separated models retain 1.00 everywhere, directly demonstrating that moderate bias makes close model comparisons unreliable under heavy censoring.\"}\n  ],\n  \"overall\": \"The logbook implements the paper's ST-vs-OR design in a fully synthetic DGP with exact oracle event times, producing concrete numerical tables that support both claims: mechanism-dependent metric distortions (Claim 1) and ranking instability for near-tied models under heavy censoring (Claim 2). The setup is methodologically faithful to the paper's core experimental design, though it uses synthetic data rather than the paper's real clinical datasets (PBC, FLCHAIN, METABRIC).\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 37.4
+}

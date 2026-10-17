@@ -1,0 +1,108 @@
+{
+ "space_id": "kondratevakate/repro-on-the-theory-of-continual-learning-with-gradient-descent-fo",
+ "sha": "77f5e23a9109d344f7d4b1ec5807627338aa525f",
+ "run": 1,
+ "judged_at": "2026-10-17T18:43:14+00:00",
+ "logbook_chars": 53247,
+ "cleaning": {
+  "comments": 23,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "3d3fe5e1c18428eb",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Monte-Carlo exponent recovery on the paper's Eq. 17 functional with d=40 and 40 reps/cell recovered log-log slopes 0.489 in (K−k) (predicted 0.5) and −0.488 in n (predicted −0.5); mutation breaking task-mean orthogonality inflated forgetting magnitude by 221×.",
+   "grounding": {
+    "cited": 8,
+    "grounded": 8,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "The required width m=Ω~(d⁸K⁴) (~3.5e11 at d=16,K=3) was never reached; m=8d² was substituted. The implementable n and ηT scalings showed forgetting decreasing from 0.157 to 0.0072 over d=8–20, but the full width regime is untested and the n-scaling mutation did not break the property even after hardening.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "Same width substitution (m=8d² for Ω~(d⁸K⁴)); uniform max-task error decreased from 0.0013 at d=8 to 0.0 at d=12–20, and the noise-violation mutation (σ×8) pushed error to ~0.51 as predicted, but the theorem's required width condition was not met.",
+   "grounding": {
+    "cited": 4,
+    "grounded": 4,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "n-sweep with Huberised hinge loss (1-Lipschitz, 1-smooth) recovered gap log-log slope −1.046 vs predicted −1.0; the literal bound held in all 5 cells; shrinking n 8× increased the gap by 10.7×, consistent with 1/n scaling.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Bound functionals evaluated on a real GD trajectory (logistic loss) over T∈[25,400]: Thm B.1 T-exponent 0.226 (poly-log) vs Thm 2.3 exponent 3.066; B.1 was ~8000× tighter at T_max; cumulative loss fit log³T (r=0.987) better than T (r=0.937); removing self-boundedness pushed the exponent to 1.0.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 6,
+    "share": 0.8571428571428571,
+    "flagged": false,
+    "ungrounded": [
+     25400.0
+    ]
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The decomposition identity is claimed exact (max_identity_residual=1.08e-19) but the sole example run gives F_tr=0.00237, F_gen=0.00043, F_ts=0.00108, a residual of −0.00173—contradicting the claimed exactness. The joint-control 2-D grid (m=4,32,2048 × n=16,64,1024) shows both_ratio=0.0055 vs m_only=0.048 and n_only=0.737, but only after the grid was hardened to m=4 where the finite-width term is active, and the decomposition foundation is internally inconsistent.",
+   "grounding": {
+    "cited": 11,
+    "grounded": 9,
+    "share": 0.8181818181818182,
+    "flagged": false,
+    "ungrounded": [
+     32204.0,
+     64102.0
+    ]
+   }
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides real Monte-Carlo and simulation evidence supporting the exponent structure of Theorems 1, 3, and 4, and the poly-log improvement of Theorem 4, but the width requirement m=Ω~(d⁸K⁴) is never met (capping claims 2 and 3 at toy), and the decomposition identity in claim 6 is contradicted by its own example numbers.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 39494,
+  "completion_tokens": 18330
+ },
+ "attempts": 2,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Monte-Carlo exponent recovery on the paper's Eq. 17 functional with d=40 and 40 reps/cell recovered log-log slopes 0.489 in (K−k) (predicted 0.5) and −0.488 in n (predicted −0.5); mutation breaking task-mean orthogonality inflated forgetting magnitude by 221×.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"The required width m=Ω~(d⁸K⁴) (~3.5e11 at d=16,K=3) was never reached; m=8d² was substituted. The implementable n and ηT scalings showed forgetting decreasing from 0.157 to 0.0072 over d=8–20, but the full width regime is untested and the n-scaling mutation did not break the property even after hardening.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"Same width substitution (m=8d² for Ω~(d⁸K⁴)); uniform max-task error decreased from 0.0013 at d=8 to 0.0 at d=12–20, and the noise-violation mutation (σ×8) pushed error to ~0.51 as predicted, but the theorem's required width condition was not met.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"n-sweep with Huberised hinge loss (1-Lipschitz, 1-smooth) recovered gap log-log slope −1.046 vs predicted −1.0; the literal bound held in all 5 cells; shrinking n 8× increased the gap by 10.7×, consistent with 1/n scaling.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Bound functionals evaluated on a real GD trajectory (logistic loss) over T∈[25,400]: Thm B.1 T-exponent 0.226 (poly-log) vs Thm 2.3 exponent 3.066; B.1 was ~8000× tighter at T_max; cumulative loss fit log³T (r=0.987) better than T (r=0.937); removing self-boundedness pushed the exponent to 1.0.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The decomposition identity is claimed exact (max_identity_residual=1.08e-19) but the sole example run gives F_tr=0.00237, F_gen=0.00043, F_ts=0.00108, a residual of −0.00173—contradicting the claimed exactness. The joint-control 2-D grid (m=4,32,2048 × n=16,64,1024) shows both_ratio=0.0055 vs m_only=0.048 and n_only=0.737, but only after the grid was hardened to m=4 where the finite-width term is active, and the decomposition foundation is internally inconsistent.\"}\n  ],\n  \"overall\": \"The logbook provides real Monte-Carlo and simulation evidence supporting the exponent structure of Theorems 1, 3, and 4, and the poly-log improvement of Theorem 4, but the width requirement m=Ω~(d⁸K⁴) is never met (capping claims 2 and 3 at toy), and the decomposition identity in claim 6 is contradicted by its own example numbers.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 467.2
+}

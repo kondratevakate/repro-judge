@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-bridging-the-gap-between-average-and-discounted-td-learning",
+ "sha": "74d5948245f08e5d093e33ce27c6bf71034c2f5e",
+ "run": 1,
+ "judged_at": "2026-10-17T18:34:16+00:00",
+ "logbook_chars": 8244,
+ "cleaning": {
+  "comments": 8,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "3e2f6ceb9c62270a",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "8 runs on n=8, d=3 MRPs show fixed-point spread 0.0284 and distance to analytic θ* 0.0497; η-sweep (0.110→0.0185) gives log-log exponent −1.64 (R²=0.991), consistent with Õ(ε⁻¹η⁻²); mutation reusing the same sample yields distance 1.071, confirming the independence mechanism.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Markov sampling with slowed mixing (gap=0.6) gives exponent −1.67 (R²=0.992), matching the i.i.d. rate; fixed-point distance 0.0665; coupled-chain mutation yields distance 1.774.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Dimension sweep d=2…32 (n=64) with decaying stepsizes shows flat normalized error (d-exponent 0.285); mutation dropping the normalization assumption gives d-exponent 5.65 with divergence at d=32, confirming the assumption is load-bearing.",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Double-chain exponents −1.64/−1.67 (quadratic) vs single-chain −3.76 (quartic), gap ≈2 in the exponent; however, prior-work algorithms [11,17,21] were not re-implemented and the discounted-TD matching uses a proxy η_disc, so the literature-attribution part is not independently checked.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Single-chain exponent −3.76 (R²=0.994) vs double-chain −1.91 (R²=0.996), gap 1.85, close to predicted −4 vs −2; the only structural change is replacing the independent second chain with a running average, and the exponent degrades by ~2 as the theorem predicts.",
+   "grounding": {
+    "cited": 7,
+    "grounded": 7,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "300 random instances (n∈[4,20), d∈[1,8)) with 0 violations of η₁ ≥ ½η₃ (min ratio 1.042); dropping the (μᵀΦx)² correction term causes 200/200 violations; Dirichlet identity verified numerically to 8.9e-16.",
+   "grounding": {
+    "cited": 6,
+    "grounded": 6,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 12,
+ "overall": "The logbook provides real experimental evidence on randomly generated MRPs supporting all six claims, including sample-complexity scaling exponents consistent with theory, fixed-point convergence checks, dimension-independence tests, and numerical lemma verification with mutation tests confirming mechanisms. Main limitations are small problem sizes (n=8–64), limited η-sweep ranges (4–6×), and the absence of prior-work re-implementation for the comparative claims in Claim 4.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3691,
+  "completion_tokens": 7092
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"8 runs on n=8, d=3 MRPs show fixed-point spread 0.0284 and distance to analytic θ* 0.0497; η-sweep (0.110→0.0185) gives log-log exponent −1.64 (R²=0.991), consistent with Õ(ε⁻¹η⁻²); mutation reusing the same sample yields distance 1.071, confirming the independence mechanism.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Markov sampling with slowed mixing (gap=0.6) gives exponent −1.67 (R²=0.992), matching the i.i.d. rate; fixed-point distance 0.0665; coupled-chain mutation yields distance 1.774.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Dimension sweep d=2…32 (n=64) with decaying stepsizes shows flat normalized error (d-exponent 0.285); mutation dropping the normalization assumption gives d-exponent 5.65 with divergence at d=32, confirming the assumption is load-bearing.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Double-chain exponents −1.64/−1.67 (quadratic) vs single-chain −3.76 (quartic), gap ≈2 in the exponent; however, prior-work algorithms [11,17,21] were not re-implemented and the discounted-TD matching uses a proxy η_disc, so the literature-attribution part is not independently checked.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Single-chain exponent −3.76 (R²=0.994) vs double-chain −1.91 (R²=0.996), gap 1.85, close to predicted −4 vs −2; the only structural change is replacing the independent second chain with a running average, and the exponent degrades by ~2 as the theorem predicts.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"300 random instances (n∈[4,20), d∈[1,8)) with 0 violations of η₁ ≥ ½η₃ (min ratio 1.042); dropping the (μᵀΦx)² correction term causes 200/200 violations; Dirichlet identity verified numerically to 8.9e-16.\"}\n  ],\n  \"overall\": \"The logbook provides real experimental evidence on randomly generated MRPs supporting all six claims, including sample-complexity scaling exponents consistent with theory, fixed-point convergence checks, dimension-independence tests, and numerical lemma verification with mutation tests confirming mechanisms. Main limitations are small problem sizes (n=8–64), limited η-sweep ranges (4–6×), and the absence of prior-work re-implementation for the comparative claims in Claim 4.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 82.3
+}

@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-smooth-multi-policy-causal-effect-estimation-in-longitudinal-settings",
+ "sha": "aff8cc40ec261e509ea66be93d2c019449c28ed0",
+ "run": 1,
+ "judged_at": "2026-10-17T18:45:07+00:00",
+ "logbook_chars": 14176,
+ "cleaning": {
+  "comments": 15,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "162b9984dc1bc629",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "No author code, executable DGP, processed MIMIC-III data, or hyperparameters/seeds were available; no experiments were run to produce RMSE numbers.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "Same blockers as Claim 1: no code, data, or hyperparameters available; the expanded DGP delegates to undefined limited-DGP equations and no comparison was executed.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No author code, executable DGP, processed data, or hyperparameters were available; no dynamic-policy RMSE experiments were run.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "An independent implementation on 5 threshold policies with 240 synthetic histories computed Gaussian-kernel MMD and metric MDS, achieving distance-order rank correlation 1.000 and finite 2D embeddings, but on a clearly reduced synthetic setup.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "falsified",
+   "evidence": "Concrete counterexample: identical initial Q values (0.5, 0.5) with bounded fluctuations (0.8, -0.8) and treatment probability 0.5 yield targeted Q values 0.689974 and 0.310026, a difference of 0.379949 despite zero initial difference, violating any finite Lipschitz bound.",
+   "grounding": {
+    "cited": 8,
+    "grounded": 8,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No cohort SQL, MIMIC item IDs, preprocessing rules, model code, checkpoints, or seeds were released; protected data download was incomplete; no experiments were run.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 3,
+ "overall": "The logbook independently implements the MMD-to-MDS policy embedding pipeline on a small synthetic setup and provides a concrete numerical counterexample to the Theorem 4.2 Lipschitz guarantee, but cannot reproduce any empirical RMSE comparison or the MIMIC-IV sepsis case study due to missing code and protected data.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4935,
+  "completion_tokens": 3413
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"No author code, executable DGP, processed MIMIC-III data, or hyperparameters/seeds were available; no experiments were run to produce RMSE numbers.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"Same blockers as Claim 1: no code, data, or hyperparameters available; the expanded DGP delegates to undefined limited-DGP equations and no comparison was executed.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No author code, executable DGP, processed data, or hyperparameters were available; no dynamic-policy RMSE experiments were run.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"An independent implementation on 5 threshold policies with 240 synthetic histories computed Gaussian-kernel MMD and metric MDS, achieving distance-order rank correlation 1.000 and finite 2D embeddings, but on a clearly reduced synthetic setup.\"},\n    {\"claim\": 5, \"verdict\": \"falsified\", \"evidence\": \"Concrete counterexample: identical initial Q values (0.5, 0.5) with bounded fluctuations (0.8, -0.8) and treatment probability 0.5 yield targeted Q values 0.689974 and 0.310026, a difference of 0.379949 despite zero initial difference, violating any finite Lipschitz bound.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No cohort SQL, MIMIC item IDs, preprocessing rules, model code, checkpoints, or seeds were released; protected data download was incomplete; no experiments were run.\"}\n  ],\n  \"overall\": \"The logbook independently implements the MMD-to-MDS policy embedding pipeline on a small synthetic setup and provides a concrete numerical counterexample to the Theorem 4.2 Lipschitz guarantee, but cannot reproduce any empirical RMSE comparison or the MIMIC-IV sepsis case study due to missing code and protected data.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 37.4
+}

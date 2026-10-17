@@ -1,0 +1,19 @@
+{
+ "model": "zai-org/GLM-5.2",
+ "provider": "novita",
+ "temperature": 0.1,
+ "max_tokens": 8000,
+ "attempts": 2,
+ "rubric": "icml2026_v2",
+ "rubric_sha256": "3815d3e82e7ee1271c3d5e9ab8a70abaf4757ad5eaf1b193f1c87f056ba2fcff",
+ "code_sha256": "7b24431625fe4069f5c81f3ad68909cd05c5fcdb6617cfd9d693e4acf9c59670",
+ "repro_judge_git": "7da86022100274ac0bcb3ec517405b2886489925",
+ "pricing_per_million": {
+  "input": 1.4,
+  "output": 4.4
+ },
+ "python": "3.11.9",
+ "httpx": "0.28.1",
+ "huggingface_hub": "1.24.0",
+ "created_at": "2026-10-17T18:31:33+00:00"
+}

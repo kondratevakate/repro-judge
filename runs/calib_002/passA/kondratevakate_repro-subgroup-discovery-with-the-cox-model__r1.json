@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-subgroup-discovery-with-the-cox-model",
+ "sha": "13cc38d58ce1e47d0f9eb99264dc514a920e021b",
+ "run": 1,
+ "judged_at": "2026-10-17T18:42:39+00:00",
+ "logbook_chars": 8799,
+ "cleaning": {
+  "comments": 12,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "2b4fbb8c3ff1a961",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "The logbook provides a correct algebraic argument (CE(p,q)−CE(p,p)=KL≥0) and a 20-seed numerical audit with 800 nonzero perturbations showing minimum EPE increase of 0.0001611, minimum Hessian eigenvalue 0.02105, and KL identity error at machine precision (2.22e-16).",
+   "grounding": {
+    "cited": 5,
+    "grounded": 5,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Numerical checks show the required-effect slope against log(1/ε) is 1.0000 with R²=1.0 for ε from 1/2 to 1/64, and the box-geometry inequality passed all 2,000 randomized trials with zero excess over the bound, supporting the O(log ε⁻¹) threshold and recovery claim.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states the Synth-Counter benchmark was not run; no experiments or data are provided.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "A fresh 10-seed CPU run from the official commit (n=2000, d=2, seeds 100–109) yields DDGroup box F1 0.969 (0.008) and test EPE 0.378 (0.016), versus Base F1 0.286 (0.000), matching the paper's reported 0.97 (0.01), 0.38 (0.02), and 0.29 (0.00) at reported precision.",
+   "grounding": {
+    "cited": 13,
+    "grounded": 13,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states the clinical benchmark (Table 3) was not run; no experiments or data are provided.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states the NASA turbofan case study was not run; no experiments or data are provided.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 6,
+ "overall": "The logbook provides concrete numerical and algebraic evidence supporting claims 1 (EPE properness), 2 (Theorem 6.1 recovery), and 4 (Synth-Nonlinear benchmark with a fresh 10-seed run matching paper values). Claims 3, 5, and 6 are explicitly not attempted, yielding no evidence either way.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3591,
+  "completion_tokens": 3904
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"The logbook provides a correct algebraic argument (CE(p,q)−CE(p,p)=KL≥0) and a 20-seed numerical audit with 800 nonzero perturbations showing minimum EPE increase of 0.0001611, minimum Hessian eigenvalue 0.02105, and KL identity error at machine precision (2.22e-16).\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Numerical checks show the required-effect slope against log(1/ε) is 1.0000 with R²=1.0 for ε from 1/2 to 1/64, and the box-geometry inequality passed all 2,000 randomized trials with zero excess over the bound, supporting the O(log ε⁻¹) threshold and recovery claim.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states the Synth-Counter benchmark was not run; no experiments or data are provided.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"A fresh 10-seed CPU run from the official commit (n=2000, d=2, seeds 100–109) yields DDGroup box F1 0.969 (0.008) and test EPE 0.378 (0.016), versus Base F1 0.286 (0.000), matching the paper's reported 0.97 (0.01), 0.38 (0.02), and 0.29 (0.00) at reported precision.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states the clinical benchmark (Table 3) was not run; no experiments or data are provided.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states the NASA turbofan case study was not run; no experiments or data are provided.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical and algebraic evidence supporting claims 1 (EPE properness), 2 (Theorem 6.1 recovery), and 4 (Synth-Nonlinear benchmark with a fresh 10-seed run matching paper values). Claims 3, 5, and 6 are explicitly not attempted, yielding no evidence either way.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 42.2
+}

@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-xmae-release-audit",
+ "sha": "1df2eeb92eacb3a0a660e74e8c15191f13b359b2",
+ "run": 1,
+ "judged_at": "2026-10-17T18:48:37+00:00",
+ "logbook_chars": 7997,
+ "cleaning": {
+  "comments": 11,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "8dd1642fb62d6b7e",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "Code inspection confirms the asymmetric core (ECG queries PPG, PPG unmasked, ECG mask starts at 0.8) but finds curriculum disabled (use_cl=false, no ladder promotion update) and no downstream task results were reproduced.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook states the protected MIMIC-III waveform cohort and post-preprocessing cohort manifest are absent; no data-scale verification was performed.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No pretrained weights, downstream datasets, splits, or baseline predictions were available; no classification AUROC values were independently reproduced.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No regression task outputs or MAE values were reproduced; the logbook marks downstream tasks as not rerun due to missing weights, datasets, and splits.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No real pretrained representations, paired held-out signals, or timing outputs were available; the 21.5ms delay error was not independently measured.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No ablation experiments were run; code inspection shows curriculum masking is disabled in the released config, but this does not constitute a run of the ablation itself.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 0,
+ "overall": "The logbook is a code-and-artifact audit, not an experimental reproduction: it confirms the asymmetric cross-modal reconstruction core exists in code but finds curriculum masking disabled and the released checkpoint producing NaN embeddings in eval mode. No downstream task results, pretraining data, timing analysis, or ablation experiments were independently reproduced, leaving all six empirical claims unverified.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3336,
+  "completion_tokens": 2083
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"Code inspection confirms the asymmetric core (ECG queries PPG, PPG unmasked, ECG mask starts at 0.8) but finds curriculum disabled (use_cl=false, no ladder promotion update) and no downstream task results were reproduced.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook states the protected MIMIC-III waveform cohort and post-preprocessing cohort manifest are absent; no data-scale verification was performed.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No pretrained weights, downstream datasets, splits, or baseline predictions were available; no classification AUROC values were independently reproduced.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No regression task outputs or MAE values were reproduced; the logbook marks downstream tasks as not rerun due to missing weights, datasets, and splits.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No real pretrained representations, paired held-out signals, or timing outputs were available; the 21.5ms delay error was not independently measured.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation experiments were run; code inspection shows curriculum masking is disabled in the released config, but this does not constitute a run of the ablation itself.\"}\n  ],\n  \"overall\": \"The logbook is a code-and-artifact audit, not an experimental reproduction: it confirms the asymmetric cross-modal reconstruction core exists in code but finds curriculum masking disabled and the released checkpoint producing NaN embeddings in eval mode. No downstream task results, pretraining data, timing analysis, or ablation experiments were independently reproduced, leaving all six empirical claims unverified.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 24.3
+}

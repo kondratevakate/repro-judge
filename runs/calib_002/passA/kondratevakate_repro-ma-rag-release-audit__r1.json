@@ -1,0 +1,103 @@
+{
+ "space_id": "kondratevakate/repro-ma-rag-release-audit",
+ "sha": "abc1454513e3cbb9a39232373332cb977a0e7d4c",
+ "run": 1,
+ "judged_at": "2026-10-17T18:48:22+00:00",
+ "logbook_chars": 42739,
+ "cleaning": {
+  "comments": 11,
+  "format_chars": 0,
+  "headers_neutralised": 0,
+  "tags_neutralised": 0,
+  "unterminated_comment": false,
+  "pages_with_unterminated_comment": 0
+ },
+ "nonce": "e7023e2d5bec76dd",
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only recomputes the mean of the paper's own Table 1 values (55.4 and 62.2) via paper_table_arithmetic(), explicitly labeled 'Source-table arithmetic only; not experimental reproduction.' No model was run and no fresh accuracy was measured.",
+   "grounding": {
+    "cited": 2,
+    "grounded": 2,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook computes ma_rag_minus_tc_rag as 5.3 from the paper's own reported table numbers, but no baseline or MA-RAG predictions were generated; the logbook states matched baseline predictions and complete environments are absent.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The dataset audit confirms MedXpertQA has 490 rows, and paper_table_arithmetic lists 22.2 and 16.1 from the paper's table, but no model inference was run on MedXpertQA to produce an independent accuracy.",
+   "grounding": {
+    "cited": 3,
+    "grounded": 3,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The logbook states the repository lacks canonical ablation outputs, evaluator training CSVs, and the fine-tuned evaluator checkpoint; no ablation experiments were executed.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No Qwen3-32B experiments appear anywhere in the logbook; the claim is not addressed by any executed work.",
+   "grounding": {
+    "cited": 1,
+    "grounded": 1,
+    "share": 1.0,
+    "flagged": false,
+    "ungrounded": []
+   }
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No test-time scaling experiments were run; the logbook only notes that rendered paper tables anchor the claim but cannot establish variance or efficiency independently.",
+   "grounding": {
+    "cited": 0,
+    "grounded": 0,
+    "share": null,
+    "flagged": false,
+    "ungrounded": []
+   }
+  }
+ ],
+ "points": 0,
+ "overall": "The logbook performs only static code audits (string checks in source files), dataset schema validation, and arithmetic on the paper's own reported table values. No model inference, RAG pipeline execution, or fresh accuracy measurement was conducted for any of the six claims, so none are experimentally verified or falsified.",
+ "quality": "low",
+ "usage": {
+  "prompt_tokens": 11762,
+  "completion_tokens": 1246
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only recomputes the mean of the paper's own Table 1 values (55.4 and 62.2) via paper_table_arithmetic(), explicitly labeled 'Source-table arithmetic only; not experimental reproduction.' No model was run and no fresh accuracy was measured.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook computes ma_rag_minus_tc_rag as 5.3 from the paper's own reported table numbers, but no baseline or MA-RAG predictions were generated; the logbook states matched baseline predictions and complete environments are absent.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The dataset audit confirms MedXpertQA has 490 rows, and paper_table_arithmetic lists 22.2 and 16.1 from the paper's table, but no model inference was run on MedXpertQA to produce an independent accuracy.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook states the repository lacks canonical ablation outputs, evaluator training CSVs, and the fine-tuned evaluator checkpoint; no ablation experiments were executed.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No Qwen3-32B experiments appear anywhere in the logbook; the claim is not addressed by any executed work.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No test-time scaling experiments were run; the logbook only notes that rendered paper tables anchor the claim but cannot establish variance or efficiency independently.\"}\n  ],\n  \"overall\": \"The logbook performs only static code audits (string checks in source files), dataset schema validation, and arithmetic on the paper's own reported table values. No model inference, RAG pipeline execution, or fresh accuracy measurement was conducted for any of the six claims, so none are experimentally verified or falsified.\",\n  \"quality\": \"low\"\n}\n```",
+ "elapsed_s": 15.7
+}
