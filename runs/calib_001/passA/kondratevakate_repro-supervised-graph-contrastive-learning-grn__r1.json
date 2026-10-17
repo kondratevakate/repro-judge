@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-supervised-graph-contrastive-learning-grn",
+ "sha": "ceb2760886a2200f4c3f8eca6570149b8fe75c4c",
+ "run": 1,
+ "judged_at": "2026-10-17T17:44:31+00:00",
+ "logbook_chars": 8323,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "100 independent probability tables confirmed the KL chain-rule decomposition to max absolute error 2.22e-16, and pinned source code anchors confirm LINCS knockdown graphs and metadata feed TeacherSampler."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Across 25 independent tables, increasing tau_a drove augmentation KL to 1.35e-10 and distance to the uniform node-loss limit to 3.38e-07 at tau_a=100000, with zero monotonicity failures."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were executed; the logbook states the 4.3 GB graph archive, GPU pretraining, and downstream evaluation were not available."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were executed; the logbook states the required graph archive and GPU compute were not available."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were executed; the logbook states the required data and compute were not available."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were executed; the logbook states the required data and compute were not available."
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook independently verifies the two mathematical claims (Theorem 1's KL decomposition and Corollary 1's temperature limit) with concrete numerical experiments on synthetic probability tables, and confirms the LINCS supervision mechanism via source-code inspection. All four empirical TCGA performance claims remain unexecuted due to missing data and GPU compute.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3458,
+  "completion_tokens": 897
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"100 independent probability tables confirmed the KL chain-rule decomposition to max absolute error 2.22e-16, and pinned source code anchors confirm LINCS knockdown graphs and metadata feed TeacherSampler.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Across 25 independent tables, increasing tau_a drove augmentation KL to 1.35e-10 and distance to the uniform node-loss limit to 3.38e-07 at tau_a=100000, with zero monotonicity failures.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were executed; the logbook states the 4.3 GB graph archive, GPU pretraining, and downstream evaluation were not available.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were executed; the logbook states the required graph archive and GPU compute were not available.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were executed; the logbook states the required data and compute were not available.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were executed; the logbook states the required data and compute were not available.\"}\n  ],\n  \"overall\": \"The logbook independently verifies the two mathematical claims (Theorem 1's KL decomposition and Corollary 1's temperature limit) with concrete numerical experiments on synthetic probability tables, and confirms the LINCS supervision mechanism via source-code inspection. All four empirical TCGA performance claims remain unexecuted due to missing data and GPU compute.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 11.0
+}

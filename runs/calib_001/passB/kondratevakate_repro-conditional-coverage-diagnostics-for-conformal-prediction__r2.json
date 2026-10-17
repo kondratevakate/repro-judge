@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-conditional-coverage-diagnostics-for-conformal-prediction",
+ "sha": "4d6129fc368f2e93d86105849cc812a22a460408",
+ "run": 2,
+ "judged_at": "2026-10-17T17:56:21+00:00",
+ "logbook_chars": 9530,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "The audit runs audit_metric_identities.py evaluating the supporting-score identity for L1, L2, and KL on a 99×100 grid, yielding max oracle identity error 0, max constant-target score 0, and max supporting-plane violation 1.11e-16, confirming the mathematical foundation of all three ERT metrics."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Re-aggregation of the authors' pinned results.csv (5,600 rows) yields LightGBM relative L1 power 68.929% vs PartitionWise 33.671% (2.05× ratio), closely matching the paper's LightGBM figure of 68.4% and strongly supporting the qualitative claim, though the PartitionWise value differs from the paper's 38.3%, likely due to released-code updates."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Independent synthetic experiment on the paper's 8D heteroscedastic model (3,000 calibration samples, up to 30,000 test points) shows L1-ERT recovering 92% of the analytic violation (0.0866 vs 0.0948) at 30k points, while unaligned CovGap recovers only 5% (0.0049), with oracle-group CovGap working well (0.0953)."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "The same 30,000-point synthetic run estimates over-coverage at 0.0445 (analytic 0.0460) and under-coverage at 0.0464 (analytic 0.0488), both nonzero and close to theory, confirming the asymmetric decomposition separates over- and under-coverage."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Reading all 80 rows of the official classification CSV confirms the additive identity (max residual 8.94e-8) and shows all 8 dataset/method groups have directional KL-ERT gaps above 0.01 (e.g., CIFAR100/cumulative: 0.0160 vs 0.1745), demonstrating divergent over/under-coverage components in practice."
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "A controlled experiment with 20 seeds, 2,000 observations, and 5 folds shows a label memorizer produces false in-sample L2-ERT of 0.08886 but zero cross-fitted ERT, while a genuine two-region signal is still detected (0.01013), with maximum train/evaluation overlap of 0, confirming k-fold cross-fitting prevents overfitting without erasing real signal."
+  }
+ ],
+ "points": 12,
+ "overall": "The logbook provides concrete evidence for all six claims through a mix of independent experiments (Claims 1, 3, 4, 6) and deterministic re-aggregations of the authors' hash-pinned released outputs (Claims 2, 5). The independent synthetic experiments use the paper's actual 8D heteroscedastic model at meaningful sample sizes, and the released-output replays are transparently distinguished from fresh training runs.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 3494,
+  "completion_tokens": 4014
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"The audit runs audit_metric_identities.py evaluating the supporting-score identity for L1, L2, and KL on a 99×100 grid, yielding max oracle identity error 0, max constant-target score 0, and max supporting-plane violation 1.11e-16, confirming the mathematical foundation of all three ERT metrics.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Re-aggregation of the authors' pinned results.csv (5,600 rows) yields LightGBM relative L1 power 68.929% vs PartitionWise 33.671% (2.05× ratio), closely matching the paper's LightGBM figure of 68.4% and strongly supporting the qualitative claim, though the PartitionWise value differs from the paper's 38.3%, likely due to released-code updates.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Independent synthetic experiment on the paper's 8D heteroscedastic model (3,000 calibration samples, up to 30,000 test points) shows L1-ERT recovering 92% of the analytic violation (0.0866 vs 0.0948) at 30k points, while unaligned CovGap recovers only 5% (0.0049), with oracle-group CovGap working well (0.0953).\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"The same 30,000-point synthetic run estimates over-coverage at 0.0445 (analytic 0.0460) and under-coverage at 0.0464 (analytic 0.0488), both nonzero and close to theory, confirming the asymmetric decomposition separates over- and under-coverage.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Reading all 80 rows of the official classification CSV confirms the additive identity (max residual 8.94e-8) and shows all 8 dataset/method groups have directional KL-ERT gaps above 0.01 (e.g., CIFAR100/cumulative: 0.0160 vs 0.1745), demonstrating divergent over/under-coverage components in practice.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"A controlled experiment with 20 seeds, 2,000 observations, and 5 folds shows a label memorizer produces false in-sample L2-ERT of 0.08886 but zero cross-fitted ERT, while a genuine two-region signal is still detected (0.01013), with maximum train/evaluation overlap of 0, confirming k-fold cross-fitting prevents overfitting without erasing real signal.\"}\n  ],\n  \"overall\": \"The logbook provides concrete evidence for all six claims through a mix of independent experiments (Claims 1, 3, 4, 6) and deterministic re-aggregations of the authors' hash-pinned released outputs (Claims 2, 5). The independent synthetic experiments use the paper's actual 8D heteroscedastic model at meaningful sample sizes, and the released-output replays are transparently distinguished from fresh training runs.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 50.4
+}

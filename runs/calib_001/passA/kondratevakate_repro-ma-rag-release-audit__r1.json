@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-ma-rag-release-audit",
+ "sha": "abc1454513e3cbb9a39232373332cb977a0e7d4c",
+ "run": 1,
+ "judged_at": "2026-10-17T17:49:45+00:00",
+ "logbook_chars": 44597,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only recomputes means from the paper's own Table 1 values (Qwen3-8B mean=55.4, MA-RAG-ext mean=62.2, diff=6.8), explicitly labeled 'Source-table arithmetic only; not experimental reproduction.' No model, corpus, or predictions were available for a fresh run."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook recomputes MA-RAG-ext minus TC-RAG = 5.3 from paper table numbers but states 'Matched baseline predictions and complete environments are absent, so no superiority result is claimed.' No baselines were actually run."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "MedXpertQA values (16.1 and 22.2) appear only in the paper-table arithmetic block; no fresh evaluation was executed on the 490-row MedXpertQA subset. The logbook marks this claim 'INCONCLUSIVE, NOT RERUN.'"
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The logbook states 'The repository lacks canonical ablation outputs, evaluator training CSVs, and the fine-tuned evaluator checkpoint' and does not run any ablation experiments; printed cumulative values are not treated as reproduced effects."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook does not mention Table 4, the Qwen3-32B backbone, or any 64.7%/70.2% figures; no scaling experiment was attempted."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The logbook does not mention Table 3, test-time scaling rounds, or any T=1/T=2/T=4-8 accuracy figures; no scaling analysis was executed."
+  }
+ ],
+ "points": 0,
+ "overall": "The logbook performs only static code/dataset audits and paper-table arithmetic recomputation; it never executes MA-RAG or any baseline on the benchmarks. All six accuracy and ablation claims remain unaddressed by actual experimental evidence, as the required corpus, model serving environment, evaluator checkpoint, and canonical predictions are absent.",
+ "quality": "low",
+ "usage": {
+  "prompt_tokens": 12276,
+  "completion_tokens": 1659
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only recomputes means from the paper's own Table 1 values (Qwen3-8B mean=55.4, MA-RAG-ext mean=62.2, diff=6.8), explicitly labeled 'Source-table arithmetic only; not experimental reproduction.' No model, corpus, or predictions were available for a fresh run.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook recomputes MA-RAG-ext minus TC-RAG = 5.3 from paper table numbers but states 'Matched baseline predictions and complete environments are absent, so no superiority result is claimed.' No baselines were actually run.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"MedXpertQA values (16.1 and 22.2) appear only in the paper-table arithmetic block; no fresh evaluation was executed on the 490-row MedXpertQA subset. The logbook marks this claim 'INCONCLUSIVE, NOT RERUN.'\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook states 'The repository lacks canonical ablation outputs, evaluator training CSVs, and the fine-tuned evaluator checkpoint' and does not run any ablation experiments; printed cumulative values are not treated as reproduced effects.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook does not mention Table 4, the Qwen3-32B backbone, or any 64.7%/70.2% figures; no scaling experiment was attempted.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook does not mention Table 3, test-time scaling rounds, or any T=1/T=2/T=4-8 accuracy figures; no scaling analysis was executed.\"}\n  ],\n  \"overall\": \"The logbook performs only static code/dataset audits and paper-table arithmetic recomputation; it never executes MA-RAG or any baseline on the benchmarks. All six accuracy and ablation claims remain unaddressed by actual experimental evidence, as the required corpus, model serving environment, evaluator checkpoint, and canonical predictions are absent.\",\n  \"quality\": \"low\"\n}\n```",
+ "elapsed_s": 18.8
+}

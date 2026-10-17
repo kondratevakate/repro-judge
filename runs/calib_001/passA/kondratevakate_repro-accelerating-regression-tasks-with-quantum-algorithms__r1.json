@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-accelerating-regression-tasks-with-quantum-algorithms",
+ "sha": "9e4f166644393a791379d902695f045cd73b42d4",
+ "run": 1,
+ "judged_at": "2026-10-17T17:40:25+00:00",
+ "logbook_chars": 28005,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "Real CPU runs show Lewis-weight sparsifier max relative objective error 0.206/0.236 ≤ eps=0.25 and simulated quantum query-count exponent 0.499 vs classical 1.000, but n=20/r=5 is small, the quantum cost is a query-count simulation not hardware, and the log(s_max/s_min) factor was explicitly not isolated."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Objective ratios 1.0013–1.0083 ≤ 1+eps and sparsified-solve exponent −0.51 vs full 0.49 on real CPU, with simulated quantum exponent 0.488 vs 1.000, but n=20 and quantum runtime is simulated query counting, not actual quantum execution."
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "Objective ratios 0.998–1.007 ≤ 1+eps after fixing the Lasso solver from ISTA to FISTA, with simulated quantum exponent 0.488 vs 1.000, but n=20, quantum cost is simulated, and the solver fix was ad-hoc rather than from the claim pipeline."
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Objective ratios 1.001–1.008 and sparsified-solve exponent −0.31 vs full 0.79 on real CPU, with simulated quantum exponent 0.488 vs 1.000, but n=20 and the quantum runtime is a query-count simulation."
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "Objective ratio ≤ 1.0004 and simulated quantum exponent 0.129 vs 1.000 (≤ 0.5 bound) on real CPU, but n=20, the quantum cost is simulated, and the exponent is below the 0.5 bound because the instance family makes sampling cheaper than worst-case (acknowledged as one-sided consistency, not confirmation)."
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "Objective ratio ≤ 1.0006 and simulated quantum exponent 0.351 vs 1.000 (≤ 0.5 bound) for p=1.5 on real CPU, but n=20, quantum cost is simulated, and only p=1.5 was tested out of the claimed p∈(0,2] range."
+  }
+ ],
+ "points": 6,
+ "overall": "The logbook provides real CPU evidence that the sparsify-then-solve approach preserves objectives within eps and yields near-optimal solutions with m-independent solve stages, plus simulated query-count exponents near 0.5 for the quantum sampling cost. However, all experiments use a small setup (n=20, r=5), the quantum runtime is a classical query-count simulation rather than quantum hardware, and factors such as log(s_max/s_min) and exact poly(n,1/eps) degrees were not isolated.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 9884,
+  "completion_tokens": 3488
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"Real CPU runs show Lewis-weight sparsifier max relative objective error 0.206/0.236 ≤ eps=0.25 and simulated quantum query-count exponent 0.499 vs classical 1.000, but n=20/r=5 is small, the quantum cost is a query-count simulation not hardware, and the log(s_max/s_min) factor was explicitly not isolated.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Objective ratios 1.0013–1.0083 ≤ 1+eps and sparsified-solve exponent −0.51 vs full 0.49 on real CPU, with simulated quantum exponent 0.488 vs 1.000, but n=20 and quantum runtime is simulated query counting, not actual quantum execution.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"Objective ratios 0.998–1.007 ≤ 1+eps after fixing the Lasso solver from ISTA to FISTA, with simulated quantum exponent 0.488 vs 1.000, but n=20, quantum cost is simulated, and the solver fix was ad-hoc rather than from the claim pipeline.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Objective ratios 1.001–1.008 and sparsified-solve exponent −0.31 vs full 0.79 on real CPU, with simulated quantum exponent 0.488 vs 1.000, but n=20 and the quantum runtime is a query-count simulation.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"Objective ratio ≤ 1.0004 and simulated quantum exponent 0.129 vs 1.000 (≤ 0.5 bound) on real CPU, but n=20, the quantum cost is simulated, and the exponent is below the 0.5 bound because the instance family makes sampling cheaper than worst-case (acknowledged as one-sided consistency, not confirmation).\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"Objective ratio ≤ 1.0006 and simulated quantum exponent 0.351 vs 1.000 (≤ 0.5 bound) for p=1.5 on real CPU, but n=20, quantum cost is simulated, and only p=1.5 was tested out of the claimed p∈(0,2] range.\"}\n  ],\n  \"overall\": \"The logbook provides real CPU evidence that the sparsify-then-solve approach preserves objectives within eps and yields near-optimal solutions with m-independent solve stages, plus simulated query-count exponents near 0.5 for the quantum sampling cost. However, all experiments use a small setup (n=20, r=5), the quantum runtime is a classical query-count simulation rather than quantum hardware, and factors such as log(s_max/s_min) and exact poly(n,1/eps) degrees were not isolated.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 41.0
+}

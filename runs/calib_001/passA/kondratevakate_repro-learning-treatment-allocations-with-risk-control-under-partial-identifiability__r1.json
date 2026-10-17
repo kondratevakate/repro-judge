@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-learning-treatment-allocations-with-risk-control-under-partial-identifiability",
+ "sha": "b21e448c01075452e77cb47caca2da458e1e00b2",
+ "run": 1,
+ "judged_at": "2026-10-17T17:46:07+00:00",
+ "logbook_chars": 14914,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "An exact-arithmetic finite-state audit enumerated 268,800 binary (X,U,A,L) models across both observational and randomized-trial regimes with Gamma in {1, 3/2, 2, 3}, finding zero excess over the bound and exact Gamma=1 equality; destructive controls with underestimated Gamma produced predicted violations (+0.24 to +0.50)."
+  },
+  {
+   "claim": 2,
+   "verdict": "falsified",
+   "evidence": "A concrete two-atom counterexample shows Eq. (18) exchanges an empirical constraint for a data-dependent policy with fresh-sample risk, yielding expected fresh-sample value 0.50 vs. tolerance 0.25 (excess +0.25); while the Bentkus UCB itself passed 165/165 coverage checks, the theorem's proof as stated is invalid and the repair requires assumptions not in the theorem."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "The full observational synthetic pipeline was independently implemented at paper scale (m=n=1000, 1000 datasets per arm, eight tolerances): all three valid-Gamma arms achieved ≥0.988 minimum coverage across all 8/8 tolerances, while the invalid-Gamma arm failed at three middle tolerances (coverage 0.257 at tau=0.25), with non-vacuous treated fractions of 75–91% at tau=0.40."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The Tennessee STAR cohort was not available in the local workspace and no substitute dataset was used; no experiments were run."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The International Stroke Trial data were not available under required data-sharing terms and no substitute was used; no experiments were run."
+  }
+ ],
+ "points": 6,
+ "overall": "The logbook independently verifies Lemma 4.1 via exhaustive exact-arithmetic finite-state checks with destructive controls, and reproduces the Section 5.1 synthetic experiments at paper scale showing valid coverage for correct Gamma and failure for underestimated Gamma. It falsifies Theorem 4.3's proof via a concrete counterexample at Eq. (18), though the Bentkus UCB and a repairable finite-grid certificate are shown to work under extra assumptions; the STAR and IST applications were not attempted due to data unavailability.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 4861,
+  "completion_tokens": 5108
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\n      \"claim\": 1,\n      \"verdict\": \"verified\",\n      \"evidence\": \"An exact-arithmetic finite-state audit enumerated 268,800 binary (X,U,A,L) models across both observational and randomized-trial regimes with Gamma in {1, 3/2, 2, 3}, finding zero excess over the bound and exact Gamma=1 equality; destructive controls with underestimated Gamma produced predicted violations (+0.24 to +0.50).\"\n    },\n    {\n      \"claim\": 2,\n      \"verdict\": \"falsified\",\n      \"evidence\": \"A concrete two-atom counterexample shows Eq. (18) exchanges an empirical constraint for a data-dependent policy with fresh-sample risk, yielding expected fresh-sample value 0.50 vs. tolerance 0.25 (excess +0.25); while the Bentkus UCB itself passed 165/165 coverage checks, the theorem's proof as stated is invalid and the repair requires assumptions not in the theorem.\"\n    },\n    {\n      \"claim\": 3,\n      \"verdict\": \"verified\",\n      \"evidence\": \"The full observational synthetic pipeline was independently implemented at paper scale (m=n=1000, 1000 datasets per arm, eight tolerances): all three valid-Gamma arms achieved ≥0.988 minimum coverage across all 8/8 tolerances, while the invalid-Gamma arm failed at three middle tolerances (coverage 0.257 at tau=0.25), with non-vacuous treated fractions of 75–91% at tau=0.40.\"\n    },\n    {\n      \"claim\": 4,\n      \"verdict\": \"inconclusive\",\n      \"evidence\": \"The Tennessee STAR cohort was not available in the local workspace and no substitute dataset was used; no experiments were run.\"\n    },\n    {\n      \"claim\": 5,\n      \"verdict\": \"inconclusive\",\n      \"evidence\": \"The International Stroke Trial data were not available under required data-sharing terms and no substitute was used; no experiments were run.\"\n    }\n  ],\n  \"overall\": \"The logbook independently verifies Lemma 4.1 via exhaustive exact-arithmetic finite-state checks with destructive controls, and reproduces the Section 5.1 synthetic experiments at paper scale showing valid coverage for correct Gamma and failure for underestimated Gamma. It falsifies Theorem 4.3's proof via a concrete counterexample at Eq. (18), though the Bentkus UCB and a repairable finite-grid certificate are shown to work under extra assumptions; the STAR and IST applications were not attempted due to data unavailability.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 66.2
+}

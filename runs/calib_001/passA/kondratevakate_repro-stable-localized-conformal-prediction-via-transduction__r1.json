@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-stable-localized-conformal-prediction-via-transduction",
+ "sha": "a9ac821d4adb05be4f8f6f9bcdd4c54f695de05a",
+ "run": 1,
+ "judged_at": "2026-10-17T17:46:57+00:00",
+ "logbook_chars": 14512,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook's Claim 1 page runs a variance-decomposition experiment (4000 constructions, law-of-total-variance residual 4.4e-16) but this addresses a stability criterion, not the architectural claim about conditional CDF estimator, empirical marginal distribution, and regularized optimization with λ (Equation 7). No experiment verifies the method's design components."
+  },
+  {
+   "claim": 2,
+   "verdict": "falsified",
+   "evidence": "A concrete counterexample with Uniform[0,2] target scores and a random source quantile (values 1 or 2 with equal probability) shows unconditional coverage deviation of 0.25, while on the realization where source quantile=1, δ_S=0, making the proof's RHS zero—demonstrating the proof's step bounding an unconditional expectation by realized δ_S fails."
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "A Gaussian surrogate with 200,000 repetitions reproduces the m⁻¹ + [n(1+λ)²]⁻¹ rate algebra with max relative error 0.0025, but this is a synthetic stand-in, not the actual conformal setup; additionally the logbook identifies that the proof invokes unstated local second-order smoothness and promotes an O_p rate to a second-moment rate without tail arguments."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The logbook states DermaMNIST and TissueMNIST data plus author checkpoints are present but no fresh multi-repeat execution was run; no prediction-set-size standard deviation reductions or coverage numbers are reported."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Only a single-repeat smoke run with reduced training was executed on the LogAbs pipeline; the logbook explicitly states this is insufficient to estimate stability and no standard deviation reduction percentages are reported."
+  },
+  {
+   "claim": 6,
+   "verdict": "falsified",
+   "evidence": "For iid continuous exchangeable scores, the k-th calibration order statistic has exact coverage k/(n+1); at n=30, α=0.1, α_tol=0.02, the lower endpoint uses k=ceil(30×0.88)=27 giving coverage 27/31=0.8710, below the claimed lower bound of 0.88; 8960 failures were found over a finite (n,p) grid."
+  }
+ ],
+ "points": 5,
+ "overall": "The logbook provides concrete mathematical counterexamples that falsify Theorem 4.2's coverage bound (Claim 2) and Theorem 4.7's selected-λ coverage interval (Claim 6), and shows Theorem 4.6's rate algebra holds only in a Gaussian surrogate with identified proof gaps (Claim 3). No empirical experiments on real or full synthetic data were executed, leaving the real-data and synthetic-data claims (Claims 4, 5) entirely unaddressed, and the method-architecture claim (Claim 1) not verified.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5330,
+  "completion_tokens": 2780
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook's Claim 1 page runs a variance-decomposition experiment (4000 constructions, law-of-total-variance residual 4.4e-16) but this addresses a stability criterion, not the architectural claim about conditional CDF estimator, empirical marginal distribution, and regularized optimization with λ (Equation 7). No experiment verifies the method's design components.\"},\n    {\"claim\": 2, \"verdict\": \"falsified\", \"evidence\": \"A concrete counterexample with Uniform[0,2] target scores and a random source quantile (values 1 or 2 with equal probability) shows unconditional coverage deviation of 0.25, while on the realization where source quantile=1, δ_S=0, making the proof's RHS zero—demonstrating the proof's step bounding an unconditional expectation by realized δ_S fails.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"A Gaussian surrogate with 200,000 repetitions reproduces the m⁻¹ + [n(1+λ)²]⁻¹ rate algebra with max relative error 0.0025, but this is a synthetic stand-in, not the actual conformal setup; additionally the logbook identifies that the proof invokes unstated local second-order smoothness and promotes an O_p rate to a second-moment rate without tail arguments.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook states DermaMNIST and TissueMNIST data plus author checkpoints are present but no fresh multi-repeat execution was run; no prediction-set-size standard deviation reductions or coverage numbers are reported.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Only a single-repeat smoke run with reduced training was executed on the LogAbs pipeline; the logbook explicitly states this is insufficient to estimate stability and no standard deviation reduction percentages are reported.\"},\n    {\"claim\": 6, \"verdict\": \"falsified\", \"evidence\": \"For iid continuous exchangeable scores, the k-th calibration order statistic has exact coverage k/(n+1); at n=30, α=0.1, α_tol=0.02, the lower endpoint uses k=ceil(30×0.88)=27 giving coverage 27/31=0.8710, below the claimed lower bound of 0.88; 8960 failures were found over a finite (n,p) grid.\"}\n  ],\n  \"overall\": \"The logbook provides concrete mathematical counterexamples that falsify Theorem 4.2's coverage bound (Claim 2) and Theorem 4.7's selected-λ coverage interval (Claim 6), and shows Theorem 4.6's rate algebra holds only in a Gaussian surrogate with identified proof gaps (Claim 3). No empirical experiments on real or full synthetic data were executed, leaving the real-data and synthetic-data claims (Claims 4, 5) entirely unaddressed, and the method-architecture claim (Claim 1) not verified.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 31.9
+}

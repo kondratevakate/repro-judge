@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-a-solvable-high-dimensional-model-where-nonlinear-autoencoders-learn-structure-i",
+ "sha": "fa78f632b94bac4760f67d417478427a83a00aa1",
+ "run": 1,
+ "judged_at": "2026-10-17T17:40:23+00:00",
+ "logbook_chars": 7612,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "The logbook implements the spiked-cumulant model at d=800, alpha={15,30}, and shows PCA/linear autoencoder theta_v values at the d^{-1/2} floor (0.042, 0.031 at k*=2; 0.015, 0.006 at k*=3), confirming the hidden spike v* is invisible to PCA while the visible spike u* resides in the covariance."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Real experiments at d=800 (paper uses d=2000) with only k*=2 and k*=3 tested: ReLU recovers v* convincingly at k*=2 (0.134→0.184 vs floor 0.035) but at k*=3 tanh is only marginally above floor (0.058, ~1.65×), and recovery of u* by the nonlinear AE is not reported; the 'provably' theoretical aspect is not addressed by numerical experiments."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No AMP experiments appear anywhere in the logbook; the executive summary explicitly lists AMP as part of the 'Full replication' scope not undertaken in this reproduction."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No spherical gradient flow experiments are present; the logbook uses full-batch Adam instead, and no convergence-time scaling with d is measured. Gradient-flow theory is listed as out-of-scope for this reproduction."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "At k*=2, d=800, alpha=30: linear AE has lower test recon MSE (799.12 vs 800.11) yet higher downstream error (0.497 vs 0.451) and fails to recover v* (theta_v=0.031 vs 0.205), concretely demonstrating the misalignment between self-supervised test loss and representation quality."
+  }
+ ],
+ "points": 5,
+ "overall": "The logbook provides concrete numerical experiments supporting the core empirical phenomena—PCA invisibility of the hidden spike and test-loss/generalization misalignment—at a reduced but reasonable scale (d=800). It does not address the AMP or gradient-flow theoretical claims at all, and the k*=3 recovery results are marginal, matching the paper's own near-floor regime.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3204,
+  "completion_tokens": 4256
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"The logbook implements the spiked-cumulant model at d=800, alpha={15,30}, and shows PCA/linear autoencoder theta_v values at the d^{-1/2} floor (0.042, 0.031 at k*=2; 0.015, 0.006 at k*=3), confirming the hidden spike v* is invisible to PCA while the visible spike u* resides in the covariance.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Real experiments at d=800 (paper uses d=2000) with only k*=2 and k*=3 tested: ReLU recovers v* convincingly at k*=2 (0.134→0.184 vs floor 0.035) but at k*=3 tanh is only marginally above floor (0.058, ~1.65×), and recovery of u* by the nonlinear AE is not reported; the 'provably' theoretical aspect is not addressed by numerical experiments.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No AMP experiments appear anywhere in the logbook; the executive summary explicitly lists AMP as part of the 'Full replication' scope not undertaken in this reproduction.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No spherical gradient flow experiments are present; the logbook uses full-batch Adam instead, and no convergence-time scaling with d is measured. Gradient-flow theory is listed as out-of-scope for this reproduction.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"At k*=2, d=800, alpha=30: linear AE has lower test recon MSE (799.12 vs 800.11) yet higher downstream error (0.497 vs 0.451) and fails to recover v* (theta_v=0.031 vs 0.205), concretely demonstrating the misalignment between self-supervised test loss and representation quality.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical experiments supporting the core empirical phenomena—PCA invisibility of the hidden spike and test-loss/generalization misalignment—at a reduced but reasonable scale (d=800). It does not address the AMP or gradient-flow theoretical claims at all, and the k*=3 recovery results are marginal, matching the paper's own near-floor regime.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 61.7
+}

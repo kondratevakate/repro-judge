@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-model-monotonicity-in-autobidding-auctions-when-do-better-pr",
+ "sha": "c948ff22d9da7d0cfa7afd8f078673844761851b",
+ "run": 1,
+ "judged_at": "2026-10-17T17:35:56+00:00",
+ "logbook_chars": 9101,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "20,000 random instance pairs yielded 0 violations of Rev(fine) ≥ Rev(coarse) (min gap −8.9e-16, float noise); mutation A (break calibration) produced 3,964 violations and mutation B (concave min aggregator) produced 19,626, confirming the test is non-vacuous."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Convexity of f(p)=max_i t_i p_i checked across 200,000 random convex combinations with 0 violations; the revenue difference exactly equals the summed Jensen gap to 1.6e-15, and the concave-min mutation yields strictly negative gaps in 4,898/5,000 instances, confirming convexity is load-bearing."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Across 2,000 instances × 300 multiplier profiles plus unilateral deviations, 0 feasible profiles beat mu=1 on revenue, welfare (v=t), or conversions; Corollary 5.3 welfare-monotonicity had 0 violations; the v≠t mutation breaks welfare-optimality in 1,732/2,000 cases."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "22 of 150 second-price instances show simultaneous revenue and welfare drops under refinement (best: −73.96%/−70.42%); the first-price mutation yields 0 drops, confirming mechanism specificity. The exact 6.2%/6.2% figure is not matched, but the existence claim and mechanism are reproduced."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "93 of 150 budget-constrained FPA instances show revenue drops under refinement, with a sampled loss of 16.82% matching the paper's 16.8%; equilibrium multipliers shift downward on the refined partition as stated; removing budgets (mutation) yields 0 drops, isolating budgets as the cause."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The Theorem 5.11 half is cleanly reproduced: 0 welfare-monotonicity violations across 400 LP instances, lifting feasible in 400/400 with objective error 4.4e-16. However, the Table 1 completeness conjunct ('exactly three settings where monotonicity holds') was not tested because the paper could not be retrieved."
+  }
+ ],
+ "points": 10,
+ "overall": "The logbook provides strong numerical evidence for claims 1–5 through large-scale randomized experiments with mutation controls that confirm each theorem's conditions are necessary. The principal limitation is that the paper body was unavailable, so the auction model and equilibrium concepts are reconstructions from claim statements and standard literature rather than faithful reproductions; claim 6 is only partially addressed.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3785,
+  "completion_tokens": 2770
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"20,000 random instance pairs yielded 0 violations of Rev(fine) ≥ Rev(coarse) (min gap −8.9e-16, float noise); mutation A (break calibration) produced 3,964 violations and mutation B (concave min aggregator) produced 19,626, confirming the test is non-vacuous.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Convexity of f(p)=max_i t_i p_i checked across 200,000 random convex combinations with 0 violations; the revenue difference exactly equals the summed Jensen gap to 1.6e-15, and the concave-min mutation yields strictly negative gaps in 4,898/5,000 instances, confirming convexity is load-bearing.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Across 2,000 instances × 300 multiplier profiles plus unilateral deviations, 0 feasible profiles beat mu=1 on revenue, welfare (v=t), or conversions; Corollary 5.3 welfare-monotonicity had 0 violations; the v≠t mutation breaks welfare-optimality in 1,732/2,000 cases.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"22 of 150 second-price instances show simultaneous revenue and welfare drops under refinement (best: −73.96%/−70.42%); the first-price mutation yields 0 drops, confirming mechanism specificity. The exact 6.2%/6.2% figure is not matched, but the existence claim and mechanism are reproduced.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"93 of 150 budget-constrained FPA instances show revenue drops under refinement, with a sampled loss of 16.82% matching the paper's 16.8%; equilibrium multipliers shift downward on the refined partition as stated; removing budgets (mutation) yields 0 drops, isolating budgets as the cause.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The Theorem 5.11 half is cleanly reproduced: 0 welfare-monotonicity violations across 400 LP instances, lifting feasible in 400/400 with objective error 4.4e-16. However, the Table 1 completeness conjunct ('exactly three settings where monotonicity holds') was not tested because the paper could not be retrieved.\"}\n  ],\n  \"overall\": \"The logbook provides strong numerical evidence for claims 1–5 through large-scale randomized experiments with mutation controls that confirm each theorem's conditions are necessary. The principal limitation is that the paper body was unavailable, so the auction model and equilibrium concepts are reconstructions from claim statements and standard literature rather than faithful reproductions; claim 6 is only partially addressed.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 36.5
+}

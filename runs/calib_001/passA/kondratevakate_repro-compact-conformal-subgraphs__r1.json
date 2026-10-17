@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-compact-conformal-subgraphs",
+ "sha": "109bd4dfbd9f165c8a873a35df1746d2ac03290c",
+ "run": 1,
+ "judged_at": "2026-10-17T17:35:46+00:00",
+ "logbook_chars": 10639,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "120 instances (24 random graphs n=12–21 × 5 κ values) show 0/120 violations of both the loss bound (1+κ)εW and size bound (1+1/κ)r; mutation testing at θ/3 and inflated θ produces 70 and 32 violations respectively, confirming the threshold θ=κ/(1+κ) is load-bearing."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Parametric min-cut implementation on 10 random graphs (n=10–17) × 21-point τ grid yields 0/200 nesting violations across consecutive threshold pairs; a non-monotone price mutation produces 44 violations, confirming monotone parametric structure drives nestedness."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Divide-and-conquer breakpoint enumeration on graphs up to n=24, m=98 shows γ≤n+1, nested chains on all instances, and empirical runtime exponent α=1.02≤2; a naive uniform grid mutation uses more min-cut solves while recovering no additional breakpoints."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Split-conformal calibration with n_cal=50 and 4000 trials per φ shows empirical coverage ≥ φ−δ at all five φ values (e.g., 0.759 vs 0.75−0.013); distribution-shift mutation drops coverage below φ−δ, and removing the +1 correction lowers coverage (0.919 vs 0.961 at φ=0.95)."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Brute-force check of the clique-to-conformal-subgraph reduction on all 1024 labelled n=5 graphs (4092 decision instances) and 386 random n=7,8 graphs shows perfect agreement; adding one edge of slack breaks equivalence on 637/4092 instances, confirming the threshold is exactly C(k,2)."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "On a 6×6 grid with 50 train/test routes, the LP yields 41.5 edges at φ=0.75 versus the claimed 52, and does not clearly outperform greedy baselines for φ≤0.8 (tied at φ=0.8, marginal at φ=0.75); the route generator and edge-weighting protocol are unspecified, so the discrepancy may stem from setup differences rather than a refutation."
+  }
+ ],
+ "points": 10,
+ "overall": "The logbook provides concrete experimental support for the five theoretical claims (Theorems 1–2, Corollary 1, Lemma 1, Theorem 4) through systematic testing on small synthetic graphs with informative mutation controls. Claim 6, the empirical grid experiment, remains inconclusive because the reproduced edge counts and comparative advantages do not match the paper's reported values and the exact experimental protocol is unavailable.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 4557,
+  "completion_tokens": 5379
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"120 instances (24 random graphs n=12–21 × 5 κ values) show 0/120 violations of both the loss bound (1+κ)εW and size bound (1+1/κ)r; mutation testing at θ/3 and inflated θ produces 70 and 32 violations respectively, confirming the threshold θ=κ/(1+κ) is load-bearing.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Parametric min-cut implementation on 10 random graphs (n=10–17) × 21-point τ grid yields 0/200 nesting violations across consecutive threshold pairs; a non-monotone price mutation produces 44 violations, confirming monotone parametric structure drives nestedness.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Divide-and-conquer breakpoint enumeration on graphs up to n=24, m=98 shows γ≤n+1, nested chains on all instances, and empirical runtime exponent α=1.02≤2; a naive uniform grid mutation uses more min-cut solves while recovering no additional breakpoints.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Split-conformal calibration with n_cal=50 and 4000 trials per φ shows empirical coverage ≥ φ−δ at all five φ values (e.g., 0.759 vs 0.75−0.013); distribution-shift mutation drops coverage below φ−δ, and removing the +1 correction lowers coverage (0.919 vs 0.961 at φ=0.95).\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Brute-force check of the clique-to-conformal-subgraph reduction on all 1024 labelled n=5 graphs (4092 decision instances) and 386 random n=7,8 graphs shows perfect agreement; adding one edge of slack breaks equivalence on 637/4092 instances, confirming the threshold is exactly C(k,2).\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"On a 6×6 grid with 50 train/test routes, the LP yields 41.5 edges at φ=0.75 versus the claimed 52, and does not clearly outperform greedy baselines for φ≤0.8 (tied at φ=0.8, marginal at φ=0.75); the route generator and edge-weighting protocol are unspecified, so the discrepancy may stem from setup differences rather than a refutation.\"}\n  ],\n  \"overall\": \"The logbook provides concrete experimental support for the five theoretical claims (Theorems 1–2, Corollary 1, Lemma 1, Theorem 4) through systematic testing on small synthetic graphs with informative mutation controls. Claim 6, the empirical grid experiment, remains inconclusive because the reproduced edge counts and comparative advantages do not match the paper's reported values and the exact experimental protocol is unavailable.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 63.8
+}

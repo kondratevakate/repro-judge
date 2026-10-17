@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-conditional-coverage-diagnostics-for-conformal-prediction",
+ "sha": "4d6129fc368f2e93d86105849cc812a22a460408",
+ "run": 3,
+ "judged_at": "2026-10-17T17:56:43+00:00",
+ "logbook_chars": 9530,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "An executed numerical audit on a 99×100 grid checks the supporting-score identity for L1, L2, and KL, yielding max oracle identity error of 0 and max supporting-plane violation of 1.11e-16, confirming the constant 1-alpha predictor is unbeatable under perfect conditional coverage."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only re-aggregates the authors' official results.csv (not a fresh run) and obtains 68.929% and 33.671%, which do not match the paper's claimed 68.4% and 38.3%; the discrepancy is unexplained and no independent experiment was executed."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "An independent synthetic experiment on the paper's 8D heteroscedastic model shows L1-ERT recovering 92% of the analytic violation (0.0866 vs 0.0948) at 30,000 test points, while unaligned CovGap recovers only 5% (0.0049), with oracle-group CovGap bounding the comparison at 0.0953."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "The same 30,000-point synthetic run estimates over-coverage at 0.0445 (analytic 0.0460) and under-coverage at 0.0464 (analytic 0.0488), both nonzero and close to theory, demonstrating the asymmetric decomposition."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only reads the authors' released classification CSV (80 rows) and checks the additive identity and divergence of directional components; no image classifiers were trained or evaluated independently, so this is a data audit rather than an executed experiment."
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "A controlled experiment with 20 seeds and 5 folds shows a label memorizer produces false in-sample L2-ERT of 0.08886, cross-fitted null ERT of 0, and cross-fitted signal ERT of 0.01013, with zero train/evaluation overlap, directly demonstrating that k-fold cross-fitting removes overfitting artifacts while preserving genuine signals."
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides independent experimental or numerical evidence for claims 1, 3, 4, and 6, with concrete numbers supporting each. Claims 2 and 5 rely solely on replaying the authors' released output files rather than executing fresh experiments, and the replayed numbers for claim 2 do not match the paper's reported values.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3494,
+  "completion_tokens": 6060
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"An executed numerical audit on a 99×100 grid checks the supporting-score identity for L1, L2, and KL, yielding max oracle identity error of 0 and max supporting-plane violation of 1.11e-16, confirming the constant 1-alpha predictor is unbeatable under perfect conditional coverage.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only re-aggregates the authors' official results.csv (not a fresh run) and obtains 68.929% and 33.671%, which do not match the paper's claimed 68.4% and 38.3%; the discrepancy is unexplained and no independent experiment was executed.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"An independent synthetic experiment on the paper's 8D heteroscedastic model shows L1-ERT recovering 92% of the analytic violation (0.0866 vs 0.0948) at 30,000 test points, while unaligned CovGap recovers only 5% (0.0049), with oracle-group CovGap bounding the comparison at 0.0953.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"The same 30,000-point synthetic run estimates over-coverage at 0.0445 (analytic 0.0460) and under-coverage at 0.0464 (analytic 0.0488), both nonzero and close to theory, demonstrating the asymmetric decomposition.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only reads the authors' released classification CSV (80 rows) and checks the additive identity and divergence of directional components; no image classifiers were trained or evaluated independently, so this is a data audit rather than an executed experiment.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"A controlled experiment with 20 seeds and 5 folds shows a label memorizer produces false in-sample L2-ERT of 0.08886, cross-fitted null ERT of 0, and cross-fitted signal ERT of 0.01013, with zero train/evaluation overlap, directly demonstrating that k-fold cross-fitting removes overfitting artifacts while preserving genuine signals.\"}\n  ],\n  \"overall\": \"The logbook provides independent experimental or numerical evidence for claims 1, 3, 4, and 6, with concrete numbers supporting each. Claims 2 and 5 rely solely on replaying the authors' released output files rather than executing fresh experiments, and the replayed numbers for claim 2 do not match the paper's reported values.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 72.3
+}

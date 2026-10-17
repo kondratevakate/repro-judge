@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-sparse-bayesian-functional-deep-learning",
+ "sha": "f6906e055b71d349f21f89a0d532c8a220eb55a7",
+ "run": 1,
+ "judged_at": "2026-10-17T17:44:20+00:00",
+ "logbook_chars": 12151,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "An independent group-normal Bayes derivation matches the released plug-in PIP at all 1201 tested column norms (max absolute error 7.22e-15), and an independent clamped-knot support implementation matches the released basis-to-region mapping exactly (interval_mapping_max_error 0.0), confirming the spike-and-slab mechanism and B-spline-to-region translation."
+  },
+  {
+   "claim": 2,
+   "verdict": "falsified",
+   "evidence": "A concrete counterexample sets E_n=1/n, width 1, X(t)=1, beta(t)=1, g(u)=u; all three stated assumptions hold, yet every admissible network output is O(1/n) giving uniform error tending to 1 (0.98→0.99998), while the claimed rate tends to 0 (0.11→0.003), with error/rate diverging from 8.91 to 319."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The logbook identifies that the proof requires a reverse inequality (complexity_n = O(ε_n²)) not stated in the theorem, with the ratio diverging from 10 to 1,000,000 at n=10 to 1,000,000, but explicitly notes this is a proof gap, not a counterexample to the contraction conclusion."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The logbook identifies that the proof transfers posterior-q results to MAP plug-in ĥat q_j via an 'appropriate choice of prior hyperparameters' not stated among Theorem 5.9's assumptions, but explicitly states this is a proof gap, not a standalone counterexample to the conclusion."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No ECG experiments were executed; the logbook reports that the official release has no ECG preprocessing, split, baseline, or repeated evaluation pipeline, and paper tables were not treated as independent evidence."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No Tecator experiments were executed; the logbook reports that the official release has no Tecator preprocessing, split, baseline, or repeated evaluation pipeline, and no RMSE or spectral-region verdict was inferred."
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook provides solid analytical verification of the spike-and-slab mechanism (Claim 1) and a concrete counterexample falsifying Theorem 5.4 as stated (Claim 2), but only identifies proof gaps without counterexamples for Theorems 5.7 and 5.9, and executes no experiments for the ECG and Tecator empirical claims.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4777,
+  "completion_tokens": 1786
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"An independent group-normal Bayes derivation matches the released plug-in PIP at all 1201 tested column norms (max absolute error 7.22e-15), and an independent clamped-knot support implementation matches the released basis-to-region mapping exactly (interval_mapping_max_error 0.0), confirming the spike-and-slab mechanism and B-spline-to-region translation.\"},\n    {\"claim\": 2, \"verdict\": \"falsified\", \"evidence\": \"A concrete counterexample sets E_n=1/n, width 1, X(t)=1, beta(t)=1, g(u)=u; all three stated assumptions hold, yet every admissible network output is O(1/n) giving uniform error tending to 1 (0.98→0.99998), while the claimed rate tends to 0 (0.11→0.003), with error/rate diverging from 8.91 to 319.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook identifies that the proof requires a reverse inequality (complexity_n = O(ε_n²)) not stated in the theorem, with the ratio diverging from 10 to 1,000,000 at n=10 to 1,000,000, but explicitly notes this is a proof gap, not a counterexample to the contraction conclusion.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook identifies that the proof transfers posterior-q results to MAP plug-in ĥat q_j via an 'appropriate choice of prior hyperparameters' not stated among Theorem 5.9's assumptions, but explicitly states this is a proof gap, not a standalone counterexample to the conclusion.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No ECG experiments were executed; the logbook reports that the official release has no ECG preprocessing, split, baseline, or repeated evaluation pipeline, and paper tables were not treated as independent evidence.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No Tecator experiments were executed; the logbook reports that the official release has no Tecator preprocessing, split, baseline, or repeated evaluation pipeline, and no RMSE or spectral-region verdict was inferred.\"}\n  ],\n  \"overall\": \"The logbook provides solid analytical verification of the spike-and-slab mechanism (Claim 1) and a concrete counterexample falsifying Theorem 5.4 as stated (Claim 2), but only identifies proof gaps without counterexamples for Theorems 5.7 and 5.9, and executes no experiments for the ECG and Tecator empirical claims.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 20.6
+}

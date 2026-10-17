@@ -1,0 +1,385 @@
+{
+ "run": "calib_001",
+ "manifest": {
+  "model": "zai-org/GLM-5.2",
+  "provider": "novita",
+  "temperature": 0.1,
+  "max_tokens": 8000,
+  "attempts": 2,
+  "rubric": "icml2026",
+  "rubric_sha256": "bb6ff3d2623fc795b94d02271167e8f8e2a7ab2e28b4b4ea1d086522b0ffc986",
+  "code_sha256": "95b6c4fa021ad933ae55a5e6946e6a953e9830d2b0d24093b9c0eeeadd3eee3c",
+  "repro_judge_git": "uncommitted",
+  "pricing_per_million": {
+   "input": 1.4,
+   "output": 4.4
+  },
+  "python": "3.11.9",
+  "httpx": "0.28.1",
+  "huggingface_hub": "1.24.0",
+  "created_at": "2026-10-17T17:32:24+00:00"
+ },
+ "n_population": 53,
+ "missing": [],
+ "n_judged": 53,
+ "n_claims": 284,
+ "exact_agreement": 0.9225352112676056,
+ "cohen_kappa": 0.8807246625813718,
+ "confusion_official_rows": {
+  "verified": {
+   "verified": 88,
+   "falsified": 0,
+   "toy": 9,
+   "inconclusive": 3
+  },
+  "falsified": {
+   "verified": 0,
+   "falsified": 9,
+   "toy": 0,
+   "inconclusive": 0
+  },
+  "toy": {
+   "verified": 2,
+   "falsified": 0,
+   "toy": 41,
+   "inconclusive": 4
+  },
+  "inconclusive": {
+   "verified": 0,
+   "falsified": 3,
+   "toy": 1,
+   "inconclusive": 124
+  }
+ },
+ "mean_abs_point_diff_per_claim": 0.09859154929577464,
+ "official_total": 265,
+ "judge_total": 255,
+ "max_total": 568,
+ "logbooks": [
+  {
+   "space_id": "kondratevakate/repro-conditional-coverage-diagnostics-for-conformal-prediction",
+   "official_points": 12,
+   "judge_points": 8,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-linear-bandits-beyond-inner-product-spaces-the-case-of-bandi",
+   "official_points": 12,
+   "judge_points": 12,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-bridging-the-gap-between-average-and-discounted-td-learning",
+   "official_points": 11,
+   "judge_points": 6,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-accurate-evaluation-of-quickest-changepoint-detectors-via-non-parametric-surviva",
+   "official_points": 10,
+   "judge_points": 10,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-compact-conformal-subgraphs",
+   "official_points": 10,
+   "judge_points": 10,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-inference-aware-meta-alignment-of-llms-via-non-linear-grpo",
+   "official_points": 10,
+   "judge_points": 10,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-model-monotonicity-in-autobidding-auctions-when-do-better-pr",
+   "official_points": 10,
+   "judge_points": 10,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-off-policy-evaluation-for-missingness-aware-policies-in-mdps-with-rewards-missing-not-at-r",
+   "official_points": 10,
+   "judge_points": 10,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-on-the-theory-of-continual-learning-with-gradient-descent-fo",
+   "official_points": 10,
+   "judge_points": 10,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-a-graphop-analysis-of-graph-neural-networks-on-sparse-graphs",
+   "official_points": 9,
+   "judge_points": 9,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-caffnet-hard-constraint-affine-neural-networks",
+   "official_points": 9,
+   "judge_points": 8,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-robust-bayesian-optimisation-with-unbounded-corruptions",
+   "official_points": 9,
+   "judge_points": 9,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-coverage-length-metric-shorter-intervals-not-better",
+   "official_points": 8,
+   "judge_points": 8,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-fixed-budget-no-harder-than-fixed-confidence-bai",
+   "official_points": 8,
+   "judge_points": 8,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-functional-decomposition-and-shapley-interactions-for-interpreting-survival-mode",
+   "official_points": 8,
+   "judge_points": 8,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-sinkhorn-normalization-of-diffusion-kernels",
+   "official_points": 8,
+   "judge_points": 8,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-a-solvable-high-dimensional-model-where-nonlinear-autoencoders-learn-structure-i",
+   "official_points": 6,
+   "judge_points": 5,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-accelerating-regression-tasks-with-quantum-algorithms",
+   "official_points": 6,
+   "judge_points": 6,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-allocating-variance-to-maximize-expectation",
+   "official_points": 6,
+   "judge_points": 4,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-fluxnet-learning-capacity-constrained-local-transport-operators",
+   "official_points": 6,
+   "judge_points": 6,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-multi-distribution-robust-conformal-prediction",
+   "official_points": 6,
+   "judge_points": 6,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-optimal-decision-making-based-on-prediction-sets",
+   "official_points": 6,
+   "judge_points": 6,
+   "max_points": 8
+  },
+  {
+   "space_id": "kondratevakate/repro-scratio-release-audit",
+   "official_points": 6,
+   "judge_points": 5,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-subgroup-discovery-with-the-cox-model",
+   "official_points": 6,
+   "judge_points": 6,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-online-packet-scheduling-with-deadlines-and-learning",
+   "official_points": 5,
+   "judge_points": 3,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-last-iterate-convergence-of-admm-on-multi-affine-quadratic-equality-constrained-problem",
+   "official_points": 4,
+   "judge_points": 4,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-medmamba-implementation",
+   "official_points": 4,
+   "judge_points": 4,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-online-learning-inference-cox-proportional-hazards-renewable-sieve",
+   "official_points": 4,
+   "judge_points": 4,
+   "max_points": 4
+  },
+  {
+   "space_id": "kondratevakate/repro-sparse-bayesian-functional-deep-learning",
+   "official_points": 4,
+   "judge_points": 4,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-supervised-graph-contrastive-learning-grn",
+   "official_points": 4,
+   "judge_points": 4,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-when-can-we-trust-survival-model-evaluation",
+   "official_points": 4,
+   "judge_points": 2,
+   "max_points": 4
+  },
+  {
+   "space_id": "kondratevakate/repro-calpro-prior-aware-evidential-conformal-prediction-with-structure-aware",
+   "official_points": 3,
+   "judge_points": 3,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-learning-treatment-allocations-with-risk-control-under-partial-identifiability",
+   "official_points": 3,
+   "judge_points": 6,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-lerd-latent-event-relational-dynamics-for-neurodegenerative-classification",
+   "official_points": 3,
+   "judge_points": 3,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-smooth-multi-policy-causal-effect-estimation-in-longitudinal-settings",
+   "official_points": 3,
+   "judge_points": 4,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-spmind-artifact-audit",
+   "official_points": 3,
+   "judge_points": 3,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-stable-localized-conformal-prediction-via-transduction",
+   "official_points": 3,
+   "judge_points": 5,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-caml-release-audit",
+   "official_points": 2,
+   "judge_points": 2,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-explicitly-modeling-censoring-produces-superior-survival-predictors",
+   "official_points": 2,
+   "judge_points": 2,
+   "max_points": 4
+  },
+  {
+   "space_id": "kondratevakate/repro-plug-and-play-diffusion-meets-admm-dual-variable-coupling-for-robust-medical",
+   "official_points": 2,
+   "judge_points": 2,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-principled-confidence-estimation-for-deep-computed-tomography",
+   "official_points": 2,
+   "judge_points": 2,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-sprout-release-audit",
+   "official_points": 2,
+   "judge_points": 2,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-a-conflict-aware-evidential-framework-for-reliable-sleep-stage-classification",
+   "official_points": 1,
+   "judge_points": 1,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-came-grad-equation-audit",
+   "official_points": 1,
+   "judge_points": 1,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-funcqnet-functional-censored-quantile-net-kidney-survival",
+   "official_points": 1,
+   "judge_points": 1,
+   "max_points": 4
+  },
+  {
+   "space_id": "kondratevakate/repro-lvcg-release-audit",
+   "official_points": 1,
+   "judge_points": 1,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-ophiuchus-release-audit",
+   "official_points": 1,
+   "judge_points": 1,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-safety-generalization-diabetes-testbed",
+   "official_points": 1,
+   "judge_points": 1,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-beyond-text-to-sql-can-llms-really-debug-enterprise-etl-sql",
+   "official_points": 0,
+   "judge_points": 2,
+   "max_points": 8
+  },
+  {
+   "space_id": "kondratevakate/repro-causal-matrix-completion-under-multiple-treatments-via-mixed-synthetic-nearest-neighbors",
+   "official_points": 0,
+   "judge_points": 0,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-ma-rag-release-audit",
+   "official_points": 0,
+   "judge_points": 0,
+   "max_points": 12
+  },
+  {
+   "space_id": "kondratevakate/repro-medcrp-cl-release-audit",
+   "official_points": 0,
+   "judge_points": 0,
+   "max_points": 10
+  },
+  {
+   "space_id": "kondratevakate/repro-xmae-release-audit",
+   "official_points": 0,
+   "judge_points": 0,
+   "max_points": 12
+  }
+ ],
+ "retest_logbooks": 10,
+ "retest_claims": 54,
+ "retest_identical_share": 0.9074074074074074,
+ "retest_fleiss_kappa": 0.9055834013288263,
+ "tokens_in": 515231,
+ "tokens_out": 278717,
+ "cost_usd": 1.95
+}

@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-spmind-artifact-audit",
+ "sha": "d9284f6a6c1b4be5ab413cd93997bc1d44116a8a",
+ "run": 1,
+ "judged_at": "2026-10-17T17:46:56+00:00",
+ "logbook_chars": 93560,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "An AST-based audit of the released code found 19 registered tools (≥10+), 8 stage modules, and a system prompt requiring stepwise tool execution via Claude Agent SDK streaming, but the actual end-to-end pipeline was never executed, the ReAct loop is delegated to the SDK rather than locally implemented, and the 'first' priority claim was not evaluated."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "No execution was attempted: the required model (claude-sonnet-4-20250514) is retired, the 306 original traces and predictions are not released, and the repository lacks an automatic success judge; paper-table concordance was explicitly not treated as reproduction evidence."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "An independent JSONL parser recomputed 102 records with 102 unique IDs/queries, 18 categories, 8 stages, and tier counts {basic:40, intermediate:28, advanced:21, challenging:13}, all matching the paper's declared split; schema, duplication, and tier-complexity consistency checks passed."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The released evaluator implements the five metric families, but the official dataset lacks CRC-CODEX evaluation inputs, generated quantification outputs, and the complete ground-truth bundle needed to recompute the reported 0.953/0.902/0.368 values."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Four ground-truth files (2,013,525 rows) pass structural schema checks, but original agent predictions are absent so the reported 0.681 average similarity cannot be recomputed; the evaluator also has a row-order sensitivity bug noted as a qualification."
+  }
+ ],
+ "points": 3,
+ "overall": "The logbook independently verifies the SP-Bench construction (102 queries, 8 stages, 18 categories, correct tier split) and partially verifies the agent architecture through static code analysis, but none of the three numerical performance claims (SP-Bench accuracy, CRC-CODEX metrics, cell-annotation similarity) could be reproduced because original traces, predictions, and evaluation inputs are missing.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 22266,
+  "completion_tokens": 4291
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"An AST-based audit of the released code found 19 registered tools (≥10+), 8 stage modules, and a system prompt requiring stepwise tool execution via Claude Agent SDK streaming, but the actual end-to-end pipeline was never executed, the ReAct loop is delegated to the SDK rather than locally implemented, and the 'first' priority claim was not evaluated.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"No execution was attempted: the required model (claude-sonnet-4-20250514) is retired, the 306 original traces and predictions are not released, and the repository lacks an automatic success judge; paper-table concordance was explicitly not treated as reproduction evidence.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"An independent JSONL parser recomputed 102 records with 102 unique IDs/queries, 18 categories, 8 stages, and tier counts {basic:40, intermediate:28, advanced:21, challenging:13}, all matching the paper's declared split; schema, duplication, and tier-complexity consistency checks passed.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The released evaluator implements the five metric families, but the official dataset lacks CRC-CODEX evaluation inputs, generated quantification outputs, and the complete ground-truth bundle needed to recompute the reported 0.953/0.902/0.368 values.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Four ground-truth files (2,013,525 rows) pass structural schema checks, but original agent predictions are absent so the reported 0.681 average similarity cannot be recomputed; the evaluator also has a row-order sensitivity bug noted as a qualification.\"}\n  ],\n  \"overall\": \"The logbook independently verifies the SP-Bench construction (102 queries, 8 stages, 18 categories, correct tier split) and partially verifies the agent architecture through static code analysis, but none of the three numerical performance claims (SP-Bench accuracy, CRC-CODEX metrics, cell-annotation similarity) could be reproduced because original traces, predictions, and evaluation inputs are missing.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 48.4
+}

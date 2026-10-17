@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-sinkhorn-normalization-of-diffusion-kernels",
+ "sha": "5238f594df9f340f223c0c61b614b90bb7f9adea",
+ "run": 2,
+ "judged_at": "2026-10-17T17:57:35+00:00",
+ "logbook_chars": 24186,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Three configurations (Gaussian 2D n=120, exponential 3D n=100, Gaussian 5D n=80) show row-sum errors ~1e-13 and mass-weighted self-adjointness residuals ~1e-16 after Sinkhorn iteration; mutations breaking symmetry or using row normalization raise errors to ~1e-2 and ~1e-1 respectively, confirming the test is discriminating."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Sup-norm errors on [0,1] and [0,1]^2 decrease monotonically with clean algebraic rates (e.g., Gaussian 1D rates 1.89–1.99, exponential 1D rates 1.96–2.00) for both kernel families; the sign-oscillating kernel mutation produces NaN, confirming positivity is load-bearing."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Across 40 configurations (n=200 each), iteration counts are min 6, median 9.5, max 11, with 90% landing in the 5–10 window at the 1e-3 error threshold; the mutation with extreme mass dynamic range (1e-3…1e3) honestly reports 14 iterations as an edge case outside the typical regime."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The Sinkhorn operator achieves 4/4 properties (symmetry err ~1e-16, mass err ~1e-12, positive entries, spectrum in [0,1]) for prescribed non-uniform mass, but row normalization evaluated against its own degree measure also satisfies all four (sym err 2.2e-16, mass err 4.4e-16, spectrum [5.4e-4, 1.0]), a genuine counter-example to the exclusivity sub-clause; additionally, an entrywise-positive but indefinite kernel yields eigenvalue −0.110, showing positive-definiteness is needed for spectral damping."
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "All three data types are tested with real numbers (Dirichlet energy decay, monotone damping, constant-annihilation), but the jaw-bone voxel scan is replaced by a synthetic sparse hollow shell (24³ grid, 773 voxels) and the GMM uses only n=300; Laplacian-fit residuals are 0.166 for the point cloud but 0.999 and 0.786 for the proxy and GMM cases (noted as n/a for curved/non-uniform settings)."
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "The Armadillo mesh is unavailable and replaced by a unit sphere with known Laplace–Beltrami spectrum; three sampling modalities (n=900 each) show cross-modality group-mean deviations of 1.9–3.1% growing with mode index, qualitatively matching the claim, but on a proxy shape rather than the paper's asset."
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides strong numerical evidence for the core theoretical claims (Theorems 4.1 and 4.2) and the empirical iteration-count claim, with discriminating mutations and honest edge-case reporting. Claims 5–6 are tested only on synthetic proxies due to unavailable original assets, and Claim 4's exclusivity sub-clause is partially falsified by a row-normalization counter-example.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 8359,
+  "completion_tokens": 4721
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Three configurations (Gaussian 2D n=120, exponential 3D n=100, Gaussian 5D n=80) show row-sum errors ~1e-13 and mass-weighted self-adjointness residuals ~1e-16 after Sinkhorn iteration; mutations breaking symmetry or using row normalization raise errors to ~1e-2 and ~1e-1 respectively, confirming the test is discriminating.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Sup-norm errors on [0,1] and [0,1]^2 decrease monotonically with clean algebraic rates (e.g., Gaussian 1D rates 1.89–1.99, exponential 1D rates 1.96–2.00) for both kernel families; the sign-oscillating kernel mutation produces NaN, confirming positivity is load-bearing.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Across 40 configurations (n=200 each), iteration counts are min 6, median 9.5, max 11, with 90% landing in the 5–10 window at the 1e-3 error threshold; the mutation with extreme mass dynamic range (1e-3…1e3) honestly reports 14 iterations as an edge case outside the typical regime.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The Sinkhorn operator achieves 4/4 properties (symmetry err ~1e-16, mass err ~1e-12, positive entries, spectrum in [0,1]) for prescribed non-uniform mass, but row normalization evaluated against its own degree measure also satisfies all four (sym err 2.2e-16, mass err 4.4e-16, spectrum [5.4e-4, 1.0]), a genuine counter-example to the exclusivity sub-clause; additionally, an entrywise-positive but indefinite kernel yields eigenvalue −0.110, showing positive-definiteness is needed for spectral damping.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"All three data types are tested with real numbers (Dirichlet energy decay, monotone damping, constant-annihilation), but the jaw-bone voxel scan is replaced by a synthetic sparse hollow shell (24³ grid, 773 voxels) and the GMM uses only n=300; Laplacian-fit residuals are 0.166 for the point cloud but 0.999 and 0.786 for the proxy and GMM cases (noted as n/a for curved/non-uniform settings).\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"The Armadillo mesh is unavailable and replaced by a unit sphere with known Laplace–Beltrami spectrum; three sampling modalities (n=900 each) show cross-modality group-mean deviations of 1.9–3.1% growing with mode index, qualitatively matching the claim, but on a proxy shape rather than the paper's asset.\"}\n  ],\n  \"overall\": \"The logbook provides strong numerical evidence for the core theoretical claims (Theorems 4.1 and 4.2) and the empirical iteration-count claim, with discriminating mutations and honest edge-case reporting. Claims 5–6 are tested only on synthetic proxies due to unavailable original assets, and Claim 4's exclusivity sub-clause is partially falsified by a row-normalization counter-example.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 52.2
+}

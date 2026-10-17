@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-a-conflict-aware-evidential-framework-for-reliable-sleep-stage-classification",
+ "sha": "4a9bfaf1053561fe6c1921559eaeea910998bd6e",
+ "run": 1,
+ "judged_at": "2026-10-17T17:48:51+00:00",
+ "logbook_chars": 8374,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only performs an analytic check of the aggregation equations (Eq. 4-9); it never implements or runs ConfSleepNet's multi-view evidence extraction from EEG/EOG or the CMAM in a sleep-staging pipeline. No code or model was built."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "Explicitly marked BLOCKED and not attempted: the upstream repo is README-only and SleepEDF data was still downloading. No evidence about the 5-class/3-class hybrid category structures or the evidence-mapping layer with matrix U was produced."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "Explicitly marked BLOCKED: no training runs on SleepEDF-20/78, MASS-SS3, or SHHS were executed. No accuracy numbers of any kind were produced."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No ablation experiments were run. The logbook does not address the MASS-SS3 ablation comparison (ConfSleepNet vs. average-fusion Case I) at all."
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "A numpy script (verify_prop.py) transcribed Eq. 4-9 and checked the propositions analytically: Proposition 1 (C→0) holds, but Proposition 2 (C→1) fails under Eq. 8 as printed (the limit yields u_a·u_b/(u_a+u_b) < u_o, a decrease) and only holds under a normalization-consistent formula u=1−Σb. This is a real but simplified isolated-equation check with mixed results, neither a full verification nor a full refutation of the claim that both propositions are proven."
+  }
+ ],
+ "points": 1,
+ "overall": "The logbook only addresses Claim 5 via a lightweight analytic check of the aggregation equations, finding that Proposition 1 holds but Proposition 2 fails with Eq. 8 as printed (only holding under a normalization correction). All four empirical claims (1-4) are unaddressed because no ConfSleepNet code was implemented and no datasets were trained on.",
+ "quality": "low",
+ "usage": {
+  "prompt_tokens": 3093,
+  "completion_tokens": 6945
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only performs an analytic check of the aggregation equations (Eq. 4-9); it never implements or runs ConfSleepNet's multi-view evidence extraction from EEG/EOG or the CMAM in a sleep-staging pipeline. No code or model was built.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"Explicitly marked BLOCKED and not attempted: the upstream repo is README-only and SleepEDF data was still downloading. No evidence about the 5-class/3-class hybrid category structures or the evidence-mapping layer with matrix U was produced.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"Explicitly marked BLOCKED: no training runs on SleepEDF-20/78, MASS-SS3, or SHHS were executed. No accuracy numbers of any kind were produced.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation experiments were run. The logbook does not address the MASS-SS3 ablation comparison (ConfSleepNet vs. average-fusion Case I) at all.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"A numpy script (verify_prop.py) transcribed Eq. 4-9 and checked the propositions analytically: Proposition 1 (C→0) holds, but Proposition 2 (C→1) fails under Eq. 8 as printed (the limit yields u_a·u_b/(u_a+u_b) < u_o, a decrease) and only holds under a normalization-consistent formula u=1−Σb. This is a real but simplified isolated-equation check with mixed results, neither a full verification nor a full refutation of the claim that both propositions are proven.\"}\n  ],\n  \"overall\": \"The logbook only addresses Claim 5 via a lightweight analytic check of the aggregation equations, finding that Proposition 1 holds but Proposition 2 fails with Eq. 8 as printed (only holding under a normalization correction). All four empirical claims (1-4) are unaddressed because no ConfSleepNet code was implemented and no datasets were trained on.\",\n  \"quality\": \"low\"\n}\n```",
+ "elapsed_s": 75.8
+}

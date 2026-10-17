@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-principled-confidence-estimation-for-deep-computed-tomography",
+ "sha": "1f27999340834eaf8272a67881b6a20d12d9ea0b",
+ "run": 2,
+ "judged_at": "2026-10-17T17:59:40+00:00",
+ "logbook_chars": 7740,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "The logbook instantiates the SLM confidence-sequence construction with a classical log-domain SART reconstruction on a synthetic phantom (r=32, 40 views, I0=1e4), confirming the level-set mechanism works, but the deep-learning applicability (U-Nets, ensembles, diffusion) is explicitly blocked on missing checkpoints and never tested."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "The logbook runs 300 Poisson realizations on a synthetic phantom and reports empirical coverage of 1.000 at δ=0.1 and δ=0.05, supporting the finite-sample coverage guarantee, but only on a reduced synthetic setup rather than at the paper's real CT scale."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The Lamino industrial CT dataset is never used; no diffusion, MLE, or FBP NLL-gap comparisons are run, so the specific numerical claims from Figure 3 are unaddressed."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No experiments on the Lamino dataset are performed; crossover/miscoverage rates from Figure 4 are not reproduced or addressed."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The Composite materials dataset is not used; no diffusion miscoverage rate or comparison to worst-case optimization or bootstrap baselines is conducted."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The hallucination-detection application (Section 4.7) is not mentioned or attempted in any part of the logbook."
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook reproduces only the classical-path coverage guarantee of the SLM framework on a small synthetic phantom (300 runs, 1.000 coverage), validating the core mechanism at toy scale. All claims involving real datasets (Lamino, Composite), deep learning reconstructors, tightness comparisons, and hallucination detection are entirely unaddressed due to missing checkpoints and GPU resources.",
+ "quality": "low",
+ "usage": {
+  "prompt_tokens": 2974,
+  "completion_tokens": 1467
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"The logbook instantiates the SLM confidence-sequence construction with a classical log-domain SART reconstruction on a synthetic phantom (r=32, 40 views, I0=1e4), confirming the level-set mechanism works, but the deep-learning applicability (U-Nets, ensembles, diffusion) is explicitly blocked on missing checkpoints and never tested.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"The logbook runs 300 Poisson realizations on a synthetic phantom and reports empirical coverage of 1.000 at δ=0.1 and δ=0.05, supporting the finite-sample coverage guarantee, but only on a reduced synthetic setup rather than at the paper's real CT scale.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The Lamino industrial CT dataset is never used; no diffusion, MLE, or FBP NLL-gap comparisons are run, so the specific numerical claims from Figure 3 are unaddressed.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments on the Lamino dataset are performed; crossover/miscoverage rates from Figure 4 are not reproduced or addressed.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The Composite materials dataset is not used; no diffusion miscoverage rate or comparison to worst-case optimization or bootstrap baselines is conducted.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The hallucination-detection application (Section 4.7) is not mentioned or attempted in any part of the logbook.\"}\n  ],\n  \"overall\": \"The logbook reproduces only the classical-path coverage guarantee of the SLM framework on a small synthetic phantom (300 runs, 1.000 coverage), validating the core mechanism at toy scale. All claims involving real datasets (Lamino, Composite), deep learning reconstructors, tightness comparisons, and hallucination detection are entirely unaddressed due to missing checkpoints and GPU resources.\",\n  \"quality\": \"low\"\n}\n```",
+ "elapsed_s": 17.4
+}

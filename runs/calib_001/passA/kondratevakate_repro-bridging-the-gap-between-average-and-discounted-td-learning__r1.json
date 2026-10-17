@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-bridging-the-gap-between-average-and-discounted-td-learning",
+ "sha": "74d5948245f08e5d093e33ce27c6bf71034c2f5e",
+ "run": 1,
+ "judged_at": "2026-10-17T17:34:42+00:00",
+ "logbook_chars": 9750,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "n=8, d=3 randomly generated MRP: 8 runs converge to a common fixed point (spread 0.0284, distance to analytic θ* 0.0497), η-sweep gives exponent −1.64 vs theoretical −2, and a mutation breaking independence causes divergence to 1.071 from θ*. Real numbers address the claim but on a clearly reduced synthetic setup."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Same small instances with Markov sampling (gap=0.6): η-sweep exponent −1.67 vs −2, fixed-point distance 0.0665, and coupled-chain mutation diverges to 1.774. Addresses the claim with real runs but on a reduced synthetic MRP."
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "n=64, d∈{2,…,32}: normalized error is flat across d (d-exponent 0.285, R²=0.34), and dropping the normalization assumption causes divergence (d-exponent 5.65). Real evidence but on a small synthetic MRP."
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Double-chain exponents −1.64/−1.67 (quadratic) vs single-chain −3.76 (quartic) show the exponent gap within the paper's own methods, but prior-work algorithms [11,17,21] were not re-implemented and the discounted-TD matching uses only a proxy η_disc, so the attribution and matching parts are not independently established."
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "Side-by-side comparison on same small instances: single-chain exponent −3.76 (R²=0.994) vs double-chain −1.91 (R²=0.996), exponent gap 1.85 vs predicted 2.0. Real contrast demonstrated but on reduced synthetic MRPs."
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "300 random instances (n∈[4,20), d∈[1,8)): 0 violations of η₁≥½η₃, min ratio 1.042; Mutation B (dropping correction term) yields 200/200 violations. Numerical evidence supports the lemma but on small synthetic instances; a lemma cannot be proven by sampling."
+  }
+ ],
+ "points": 6,
+ "overall": "The logbook provides well-designed empirical evidence—parameter sweeps, mutation tests, multi-seed runs—consistent with all six theoretical claims, but every experiment runs on small randomly generated MRPs (n≤64, d≤32) that constitute a clearly reduced setup. No claim is fully established at the paper's intended scale, and Claim 4's prior-work comparison and discounted-TD matching remain unverified.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4035,
+  "completion_tokens": 4044
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"n=8, d=3 randomly generated MRP: 8 runs converge to a common fixed point (spread 0.0284, distance to analytic θ* 0.0497), η-sweep gives exponent −1.64 vs theoretical −2, and a mutation breaking independence causes divergence to 1.071 from θ*. Real numbers address the claim but on a clearly reduced synthetic setup.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Same small instances with Markov sampling (gap=0.6): η-sweep exponent −1.67 vs −2, fixed-point distance 0.0665, and coupled-chain mutation diverges to 1.774. Addresses the claim with real runs but on a reduced synthetic MRP.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"n=64, d∈{2,…,32}: normalized error is flat across d (d-exponent 0.285, R²=0.34), and dropping the normalization assumption causes divergence (d-exponent 5.65). Real evidence but on a small synthetic MRP.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Double-chain exponents −1.64/−1.67 (quadratic) vs single-chain −3.76 (quartic) show the exponent gap within the paper's own methods, but prior-work algorithms [11,17,21] were not re-implemented and the discounted-TD matching uses only a proxy η_disc, so the attribution and matching parts are not independently established.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"Side-by-side comparison on same small instances: single-chain exponent −3.76 (R²=0.994) vs double-chain −1.91 (R²=0.996), exponent gap 1.85 vs predicted 2.0. Real contrast demonstrated but on reduced synthetic MRPs.\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"300 random instances (n∈[4,20), d∈[1,8)): 0 violations of η₁≥½η₃, min ratio 1.042; Mutation B (dropping correction term) yields 200/200 violations. Numerical evidence supports the lemma but on small synthetic instances; a lemma cannot be proven by sampling.\"}\n  ],\n  \"overall\": \"The logbook provides well-designed empirical evidence—parameter sweeps, mutation tests, multi-seed runs—consistent with all six theoretical claims, but every experiment runs on small randomly generated MRPs (n≤64, d≤32) that constitute a clearly reduced setup. No claim is fully established at the paper's intended scale, and Claim 4's prior-work comparison and discounted-TD matching remain unverified.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 58.3
+}

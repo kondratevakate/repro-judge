@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-linear-bandits-beyond-inner-product-spaces-the-case-of-bandi",
+ "sha": "acc1666ed741007a1c12846b07f5cf1cd3043341",
+ "run": 1,
+ "judged_at": "2026-10-17T17:36:27+00:00",
+ "logbook_chars": 13196,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Discrete DFT (unitary) tested as the finite analog of the Fourier isometry: Parseval/inner-product preservation to 1.5e-16, pairing identity for both a random density and a genuine Sinkhorn coupling to relative gaps ≤1.4e-15; mutation with non-unitary transform breaks the identity (gap 1.03e+3)."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Genuine 4-point BOT instance (Birkhoff polytope, 24 permutations), 60 seeds, T=400: certified Theorem bound held in 60/60 runs, uniform coverage 1.00, per-step regret decreasing (0.16→0.049); Cauchy-noise mutation collapses coverage to 0.00."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Discrete OT on 40 points with 1-Lipschitz cost, exact LP Kantorovich value vs Sinkhorn entropic value: gap/(ε log(1/ε)) stays in [0.439, 0.758] across ε sweep; cumulated penalty under ε_t=ηt^{-η} matches T^{1-η}log T shape and is dominated by √T term; constant-ε mutation gives slope 1.0000."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Basis-truncation EntUCB on N∈{2,…,32}, T∈{250,…,4000}, 125 runs: bound held in 125/125, leading term scales as √N (slope 0.500) and √T (slope 0.500); broken-feedback mutation yields linear regret (slope 0.984)."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Analytic exponent (q+2)/(2q+2) verified monotone in q with correct limits (0.976 at q=0.05, 0.515 at q=32); numerical slopes over T∈{10³,…,10⁶} for nine q values each ≥ analytic exponent and converging from above; frozen-truncation mutation gives slope 0.970."
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "RLS estimator stationary-point gradient norm 3.8e-10; Sylvester identity for log-det width gap 1.8e-15; uniform coverage 1.000 over 400 runs (d=8, T=300) vs nominal 0.95; β-shrink mutation drops coverage to 0.000."
+  }
+ ],
+ "points": 12,
+ "overall": "The logbook provides concrete numerical evidence supporting all six claims through finite-dimensional instantiations of the paper's infinite-dimensional framework, with each claim backed by specific numbers and a mutation that breaks the result. The honest limitation is that all bandit experiments are finite-dimensional/basis-truncated, so they verify the finite instantiations of the theorems rather than the full infinite-dimensional statements.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 10840,
+  "completion_tokens": 13527
+ },
+ "attempts": 2,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Discrete DFT (unitary) tested as the finite analog of the Fourier isometry: Parseval/inner-product preservation to 1.5e-16, pairing identity for both a random density and a genuine Sinkhorn coupling to relative gaps ≤1.4e-15; mutation with non-unitary transform breaks the identity (gap 1.03e+3).\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Genuine 4-point BOT instance (Birkhoff polytope, 24 permutations), 60 seeds, T=400: certified Theorem bound held in 60/60 runs, uniform coverage 1.00, per-step regret decreasing (0.16→0.049); Cauchy-noise mutation collapses coverage to 0.00.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Discrete OT on 40 points with 1-Lipschitz cost, exact LP Kantorovich value vs Sinkhorn entropic value: gap/(ε log(1/ε)) stays in [0.439, 0.758] across ε sweep; cumulated penalty under ε_t=ηt^{-η} matches T^{1-η}log T shape and is dominated by √T term; constant-ε mutation gives slope 1.0000.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Basis-truncation EntUCB on N∈{2,…,32}, T∈{250,…,4000}, 125 runs: bound held in 125/125, leading term scales as √N (slope 0.500) and √T (slope 0.500); broken-feedback mutation yields linear regret (slope 0.984).\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Analytic exponent (q+2)/(2q+2) verified monotone in q with correct limits (0.976 at q=0.05, 0.515 at q=32); numerical slopes over T∈{10³,…,10⁶} for nine q values each ≥ analytic exponent and converging from above; frozen-truncation mutation gives slope 0.970.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"RLS estimator stationary-point gradient norm 3.8e-10; Sylvester identity for log-det width gap 1.8e-15; uniform coverage 1.000 over 400 runs (d=8, T=300) vs nominal 0.95; β-shrink mutation drops coverage to 0.000.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical evidence supporting all six claims through finite-dimensional instantiations of the paper's infinite-dimensional framework, with each claim backed by specific numbers and a mutation that breaks the result. The honest limitation is that all bandit experiments are finite-dimensional/basis-truncated, so they verify the finite instantiations of the theorems rather than the full infinite-dimensional statements.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 162.7
+}

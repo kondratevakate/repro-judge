@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-online-packet-scheduling-with-deadlines-and-learning",
+ "sha": "6806419792fd2c41b18784cf840589cdc7e4167c",
+ "run": 1,
+ "judged_at": "2026-10-17T17:42:46+00:00",
+ "logbook_chars": 14080,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "R/√(KT) stays below 1 across the grid (max 0.579 for s=2, 0.759 for s=3), but the fitted T-exponent is ~1.06–1.08 rather than 0.5, and the mutation test was degenerate (regret 0 instead of linear), so neither the √T rate nor a discriminating mutation was established."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Exhaustive enumeration at T=3 finds θ_K values strictly inside [√2, Φ) for K=1–4 (e.g., 1.600 at K=2, 1.6154 at K=3), and the mutation (forcing θ=Φ with 8 types) yields ratio exactly Φ, but the logbook itself states these are 'lower estimates of the true worst-case ratios' due to the short horizon and coarse value-set grids."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "Upper bound mirrors Claim 1: R/√(KT) ≤ 0.579 but fitted T-exponent is 1.06, not 0.5. Lower bound proxy has exponent 1.04 (consistent with Ω(√T)) but the mutation failed—an easily-distinguishable gap (Δ=1.0) still grows with exponent 1.17, meaning the construction measures learner weakness, not information-theoretic hardness."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The tested naive mixing algorithm achieves ratio 1.2381 ≤ 1.25 for K=2 but 1.3333 > 1.25 for K=3; the logbook states the paper's actual ALG^R2 'could not be read' and may be value-dependent, so the wrong algorithm was tested. The regret part has the same unconfirmed T-exponent as Claim 1."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "At T=3 the randomized mixing ratio is 1.3846 ≤ e/(e−1)=1.5820 for s=3, but the logbook notes T=3 'cannot exhibit the asymptotic worst case.' The algorithm is a reconstruction that may differ from the paper's ALG^Rs, and the regret fit again shows T-exponent ~1.08 rather than 0.5."
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "Constructive reduction maps each available arm to a 1-bounded packet (deadline=t, forcing immediate transmission); pathwise reward difference between sleeping-bandit and OPSD runs is 8.9e-16 (floating-point noise) over 200 random instances, offline optima coincide exactly (diff 0.0), and the mutation—relaxing to 2-bounded deadlines—breaks equivalence in 58.3% of instances with mean gap 0.166."
+  }
+ ],
+ "points": 3,
+ "overall": "The logbook provides a solid constructive verification of the sleeping-bandit reduction (Claim 6) and partial support for the competitive-ratio interval (Claim 2) on a reduced T=3 horizon. The regret-rate claims (1, 3, 4, 5) remain unconfirmed because the experiments are pre-asymptotic (T-exponent ~1.06–1.08 vs. expected 0.5) and two algorithms (ALG^R2, ALG^Rs) could not be faithfully reconstructed from the claim text.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5554,
+  "completion_tokens": 3253
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"R/√(KT) stays below 1 across the grid (max 0.579 for s=2, 0.759 for s=3), but the fitted T-exponent is ~1.06–1.08 rather than 0.5, and the mutation test was degenerate (regret 0 instead of linear), so neither the √T rate nor a discriminating mutation was established.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Exhaustive enumeration at T=3 finds θ_K values strictly inside [√2, Φ) for K=1–4 (e.g., 1.600 at K=2, 1.6154 at K=3), and the mutation (forcing θ=Φ with 8 types) yields ratio exactly Φ, but the logbook itself states these are 'lower estimates of the true worst-case ratios' due to the short horizon and coarse value-set grids.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"Upper bound mirrors Claim 1: R/√(KT) ≤ 0.579 but fitted T-exponent is 1.06, not 0.5. Lower bound proxy has exponent 1.04 (consistent with Ω(√T)) but the mutation failed—an easily-distinguishable gap (Δ=1.0) still grows with exponent 1.17, meaning the construction measures learner weakness, not information-theoretic hardness.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The tested naive mixing algorithm achieves ratio 1.2381 ≤ 1.25 for K=2 but 1.3333 > 1.25 for K=3; the logbook states the paper's actual ALG^R2 'could not be read' and may be value-dependent, so the wrong algorithm was tested. The regret part has the same unconfirmed T-exponent as Claim 1.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"At T=3 the randomized mixing ratio is 1.3846 ≤ e/(e−1)=1.5820 for s=3, but the logbook notes T=3 'cannot exhibit the asymptotic worst case.' The algorithm is a reconstruction that may differ from the paper's ALG^Rs, and the regret fit again shows T-exponent ~1.08 rather than 0.5.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"Constructive reduction maps each available arm to a 1-bounded packet (deadline=t, forcing immediate transmission); pathwise reward difference between sleeping-bandit and OPSD runs is 8.9e-16 (floating-point noise) over 200 random instances, offline optima coincide exactly (diff 0.0), and the mutation—relaxing to 2-bounded deadlines—breaks equivalence in 58.3% of instances with mean gap 0.166.\"}\n  ],\n  \"overall\": \"The logbook provides a solid constructive verification of the sleeping-bandit reduction (Claim 6) and partial support for the competitive-ratio interval (Claim 2) on a reduced T=3 horizon. The regret-rate claims (1, 3, 4, 5) remain unconfirmed because the experiments are pre-asymptotic (T-exponent ~1.06–1.08 vs. expected 0.5) and two algorithms (ALG^R2, ALG^Rs) could not be faithfully reconstructed from the claim text.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 37.1
+}

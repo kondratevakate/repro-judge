@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-caffnet-hard-constraint-affine-neural-networks",
+ "sha": "9693236a712459acb34dfa9b3903afd74a9348af",
+ "run": 3,
+ "judged_at": "2026-10-17T17:57:38+00:00",
+ "logbook_chars": 9621,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "3200 numerical instances across a grid of n_out, m, rank-deficiency, and p values show 0 violations of the bound ||P*−f_t||_p < (3+3√n_out)K, with mutation tests (violating the w_phi norm premise → 617 violations; replacing argmin with argmax → 728 violations) confirming the bound depends on the stated hypotheses."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Across 280 instances, T1 shows ||A_g P_gamma−b_g||_inf ≤ 1.8e-13 for arbitrary w_phi, T2 shows the null-space term spans the entire feasible set (max error 1.7e-14), T3 confirms w_phi=0 recovers the fixed orthogonal projection, and T4 shows joint optimization beats fixed projection on 29/38 instances; a mutation deleting the null-space term eliminates all gains."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Exhaustive (27,900 cases) and random (8,800 cases) sweeps with forced rank-deficient rows show 0 CAffNet feasibility failures (max violation 0.0), while HardNet's single pseudo-inverse correction fails in 59.2%–77.3% of cases; cardinality |Gamma|=Σ_{k≤min(m,n_out)} C(m,k) is verified, and truncating to min(m,n_out)−1 causes 24%+ feasibility failures."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "CPU-scale training (8000 epochs vs paper's 50000, 5 seeds) yields CAffNet-TF MSE 0.000993 with 0 violations vs soft NN MSE 0.00407 with 26% violations, giving 75.58% MSE reduction (paper: 73.33%); removing the CAffine layer produces violations of 0.199, confirming its necessity."
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "Reduced-scale run (20 vs 300 initial states, 60 epochs, CPU) shows CAffNet with 0 collisions and 0 test violations, soft NN with 3 collisions, but HardNet also has 0 collisions (though 1.70 mean test violations), partially contradicting the claim that both baselines fail to avoid obstacles; the reduced initial-state count limits the collision comparison."
+  }
+ ],
+ "points": 9,
+ "overall": "The logbook provides strong numerical evidence for the three theoretical claims (1–3) through exhaustive grid testing, mutation controls, and baseline comparisons. The two training-based claims (4–5) are reproduced at reduced scale (fewer epochs, CPU, fewer initial states); claim 4's results closely match the paper, while claim 5's reduced setup yields only partial agreement with the stated obstacle-avoidance comparison.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 3847,
+  "completion_tokens": 5282
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"3200 numerical instances across a grid of n_out, m, rank-deficiency, and p values show 0 violations of the bound ||P*−f_t||_p < (3+3√n_out)K, with mutation tests (violating the w_phi norm premise → 617 violations; replacing argmin with argmax → 728 violations) confirming the bound depends on the stated hypotheses.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Across 280 instances, T1 shows ||A_g P_gamma−b_g||_inf ≤ 1.8e-13 for arbitrary w_phi, T2 shows the null-space term spans the entire feasible set (max error 1.7e-14), T3 confirms w_phi=0 recovers the fixed orthogonal projection, and T4 shows joint optimization beats fixed projection on 29/38 instances; a mutation deleting the null-space term eliminates all gains.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Exhaustive (27,900 cases) and random (8,800 cases) sweeps with forced rank-deficient rows show 0 CAffNet feasibility failures (max violation 0.0), while HardNet's single pseudo-inverse correction fails in 59.2%–77.3% of cases; cardinality |Gamma|=Σ_{k≤min(m,n_out)} C(m,k) is verified, and truncating to min(m,n_out)−1 causes 24%+ feasibility failures.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"CPU-scale training (8000 epochs vs paper's 50000, 5 seeds) yields CAffNet-TF MSE 0.000993 with 0 violations vs soft NN MSE 0.00407 with 26% violations, giving 75.58% MSE reduction (paper: 73.33%); removing the CAffine layer produces violations of 0.199, confirming its necessity.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"Reduced-scale run (20 vs 300 initial states, 60 epochs, CPU) shows CAffNet with 0 collisions and 0 test violations, soft NN with 3 collisions, but HardNet also has 0 collisions (though 1.70 mean test violations), partially contradicting the claim that both baselines fail to avoid obstacles; the reduced initial-state count limits the collision comparison.\"}\n  ],\n  \"overall\": \"The logbook provides strong numerical evidence for the three theoretical claims (1–3) through exhaustive grid testing, mutation controls, and baseline comparisons. The two training-based claims (4–5) are reproduced at reduced scale (fewer epochs, CPU, fewer initial states); claim 4's results closely match the paper, while claim 5's reduced setup yields only partial agreement with the stated obstacle-avoidance comparison.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 61.5
+}

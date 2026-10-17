@@ -1,0 +1,32 @@
+{
+ "space_id": "kondratevakate/repro-explicitly-modeling-censoring-produces-superior-survival-predictors",
+ "sha": "a885d542d0c9218faa446f3f154ff9fc8f079819",
+ "run": 1,
+ "judged_at": "2026-10-17T17:47:35+00:00",
+ "logbook_chars": 9098,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "falsified",
+   "evidence": "On semi-SUPPORT (coupled by construction: shared latent factor h2 enters both event and censoring processes), SALaD ties the baseline (ΔC-index = −0.0019, better in 1/5 seeds; ΔIBS = 0.0000; ΔMAE-Hinge = +0.04, better in 0/5). On real SUPPORT, SALaD loses on all 5 paired splits (ΔC-index = −0.0052, 0/5 wins). Independent replication on seeds 100–102 confirms the pattern. Experiments use the authors' own code verbatim with documented hyperparameters."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook tests only 2 of the 10 claimed datasets (SUPPORT and semi-SUPPORT) with a single survival layer (N-MTLR), and does not examine whether four disjoint factor categories are actually learned. While the 2 tested datasets show no gains for SALaD, 8 datasets and the factor-disentanglement claim remain unaddressed."
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook provides concrete, well-designed experimental evidence that SALaD's latent decomposition does not improve survival prediction in the coupled regime (semi-SUPPORT) or on real SUPPORT, using the authors' own code with proper paired comparisons across multiple seeds. However, it only covers one survival layer and two datasets, leaving the broader claims about 10 datasets and four factor categories largely untested.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 3291,
+  "completion_tokens": 3569
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"falsified\", \"evidence\": \"On semi-SUPPORT (coupled by construction: shared latent factor h2 enters both event and censoring processes), SALaD ties the baseline (ΔC-index = −0.0019, better in 1/5 seeds; ΔIBS = 0.0000; ΔMAE-Hinge = +0.04, better in 0/5). On real SUPPORT, SALaD loses on all 5 paired splits (ΔC-index = −0.0052, 0/5 wins). Independent replication on seeds 100–102 confirms the pattern. Experiments use the authors' own code verbatim with documented hyperparameters.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook tests only 2 of the 10 claimed datasets (SUPPORT and semi-SUPPORT) with a single survival layer (N-MTLR), and does not examine whether four disjoint factor categories are actually learned. While the 2 tested datasets show no gains for SALaD, 8 datasets and the factor-disentanglement claim remain unaddressed.\"}\n  ],\n  \"overall\": \"The logbook provides concrete, well-designed experimental evidence that SALaD's latent decomposition does not improve survival prediction in the coupled regime (semi-SUPPORT) or on real SUPPORT, using the authors' own code with proper paired comparisons across multiple seeds. However, it only covers one survival layer and two datasets, leaving the broader claims about 10 datasets and four factor categories largely untested.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 39.2
+}

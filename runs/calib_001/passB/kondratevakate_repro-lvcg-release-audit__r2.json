@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-lvcg-release-audit",
+ "sha": "d5309345120c1f76ac96b80dd6ee78d232049dc3",
+ "run": 2,
+ "judged_at": "2026-10-17T18:00:01+00:00",
+ "logbook_chars": 20100,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "A synthetic geometry check recovered latent trajectories with max error 6.90e-06 and reprojection error 3.74e-06, but this was on synthetic data only; the official package cannot import due to missing lvcg.data modules, so no real ECG/VCG inversion was executed."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook confirms the paper describes three objective terms, but training cannot import (ModuleNotFoundError), the released code adds a unit-weight base-beat loss absent from Equation 7, and a post-paper GRU shape fix was needed; no training was executed to verify the objective."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "Released splits are disjoint and Table-1 averages are arithmetically consistent (67.30 vs printed 67.3), but no checkpoints or result files are released, the checkpoint override is ineffective, and PTB-XL Sub-Class label ordering differs between train and val/test; the actual AUC numbers cannot be reproduced."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The repository contains no checkpoints, reconstruction predictions, per-lead outputs, or metric files; Table 2 MSE/MAE numbers cannot be regenerated."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No ablation configs, checkpoints, seeds, or outputs are released; the ablation table is display-only and cannot be reproduced."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The paper evaluates MIMIC-IV-ECG-Ext-ICD but the repository supplies an AI-READI provider instead, with no paper-dataset loader, folds, labels, checkpoint, or outputs; neither the CKD AUC nor the temporal-module ablation can be reproduced."
+  }
+ ],
+ "points": 1,
+ "overall": "The logbook establishes only that the VCG geometry equation is numerically coherent on synthetic data and that the released data splits are disjoint with arithmetically consistent Table-1 averages. No empirical results table can be reproduced because no checkpoints, result files, or runnable training/evaluation pipelines are available, and several paper-code mismatches (extra loss term, wrong non-cardiac dataset, label-ordering discrepancy) further block reproduction.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 6696,
+  "completion_tokens": 1746
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"A synthetic geometry check recovered latent trajectories with max error 6.90e-06 and reprojection error 3.74e-06, but this was on synthetic data only; the official package cannot import due to missing lvcg.data modules, so no real ECG/VCG inversion was executed.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook confirms the paper describes three objective terms, but training cannot import (ModuleNotFoundError), the released code adds a unit-weight base-beat loss absent from Equation 7, and a post-paper GRU shape fix was needed; no training was executed to verify the objective.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"Released splits are disjoint and Table-1 averages are arithmetically consistent (67.30 vs printed 67.3), but no checkpoints or result files are released, the checkpoint override is ineffective, and PTB-XL Sub-Class label ordering differs between train and val/test; the actual AUC numbers cannot be reproduced.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The repository contains no checkpoints, reconstruction predictions, per-lead outputs, or metric files; Table 2 MSE/MAE numbers cannot be regenerated.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation configs, checkpoints, seeds, or outputs are released; the ablation table is display-only and cannot be reproduced.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The paper evaluates MIMIC-IV-ECG-Ext-ICD but the repository supplies an AI-READI provider instead, with no paper-dataset loader, folds, labels, checkpoint, or outputs; neither the CKD AUC nor the temporal-module ablation can be reproduced.\"}\n  ],\n  \"overall\": \"The logbook establishes only that the VCG geometry equation is numerically coherent on synthetic data and that the released data splits are disjoint with arithmetically consistent Table-1 averages. No empirical results table can be reproduced because no checkpoints, result files, or runnable training/evaluation pipelines are available, and several paper-code mismatches (extra loss term, wrong non-cardiac dataset, label-ordering discrepancy) further block reproduction.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 20.6
+}

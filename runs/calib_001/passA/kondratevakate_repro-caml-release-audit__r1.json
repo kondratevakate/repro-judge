@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-caml-release-audit",
+ "sha": "90c6df5dea221030a8e7a062d2fc1228d52a1365",
+ "run": 1,
+ "judged_at": "2026-10-17T17:47:14+00:00",
+ "logbook_chars": 11599,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "falsified",
+   "evidence": "The logbook provides a concrete counterexample: N(u)=u², f=1 has two non-unique global minimizers {-1, 1} (both residual 0) that are isolated (pairwise distance 2.0) and disconnected, directly contradicting the theorem's claim that non-uniqueness implies a connected minimizer set."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The only Heat run executed is a 10-epoch smoke test (seed 999, L2=0.084) with non-canonical settings (w_bc=1 vs paper's 5, target_l2=1e-3 vs paper's 2e-3); the claimed 1.16e-3 vs 7.52e-3 error values are not reproduced."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No convergence-step counts are reported in any executed run; the 10-epoch smoke test does not measure or reproduce the claimed reduction from 10127±2839 to 1577±130 steps."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The aligned-constraint offset formula is verified to match the official implementation exactly (absolute difference 0.0), but the specific gradient cosine-similarity fractions (5.89%→39.16%) from Table 3 are never measured in any executed experiment."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook states no ablation runner is released and no ablation experiments were executed; only the offset and gate component mechanics are independently checked, which does not address the AC-vs-DR accuracy contribution claim."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The code release hardcodes all entrypoints to MLP with CAML loss, includes only 2 of 6 baseline loss implementations, has 5 paper-vs-code parameter mismatches, and contains no cached empirical outputs; the full optimizer×backbone×PDE evaluation matrix was not reproduced."
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook verifies the CAML aligned-constraint offset formula and delay schedule against the official code (exact match, absolute difference 0.0) and provides a valid mathematical counterexample falsifying Theorem 4.1 as stated. However, no canonical benchmark experiments were reproduced—only a 10-epoch Heat smoke run with mismatched parameters was executed—and the code release lacks the implementations and settings needed to regenerate the paper's tables.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4691,
+  "completion_tokens": 2608
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"falsified\", \"evidence\": \"The logbook provides a concrete counterexample: N(u)=u², f=1 has two non-unique global minimizers {-1, 1} (both residual 0) that are isolated (pairwise distance 2.0) and disconnected, directly contradicting the theorem's claim that non-uniqueness implies a connected minimizer set.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The only Heat run executed is a 10-epoch smoke test (seed 999, L2=0.084) with non-canonical settings (w_bc=1 vs paper's 5, target_l2=1e-3 vs paper's 2e-3); the claimed 1.16e-3 vs 7.52e-3 error values are not reproduced.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No convergence-step counts are reported in any executed run; the 10-epoch smoke test does not measure or reproduce the claimed reduction from 10127±2839 to 1577±130 steps.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The aligned-constraint offset formula is verified to match the official implementation exactly (absolute difference 0.0), but the specific gradient cosine-similarity fractions (5.89%→39.16%) from Table 3 are never measured in any executed experiment.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook states no ablation runner is released and no ablation experiments were executed; only the offset and gate component mechanics are independently checked, which does not address the AC-vs-DR accuracy contribution claim.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The code release hardcodes all entrypoints to MLP with CAML loss, includes only 2 of 6 baseline loss implementations, has 5 paper-vs-code parameter mismatches, and contains no cached empirical outputs; the full optimizer×backbone×PDE evaluation matrix was not reproduced.\"}\n  ],\n  \"overall\": \"The logbook verifies the CAML aligned-constraint offset formula and delay schedule against the official code (exact match, absolute difference 0.0) and provides a valid mathematical counterexample falsifying Theorem 4.1 as stated. However, no canonical benchmark experiments were reproduced—only a 10-epoch Heat smoke run with mismatched parameters was executed—and the code release lacks the implementations and settings needed to regenerate the paper's tables.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 29.0
+}

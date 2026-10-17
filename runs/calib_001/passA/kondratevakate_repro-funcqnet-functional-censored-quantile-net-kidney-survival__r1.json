@@ -1,0 +1,32 @@
+{
+ "space_id": "kondratevakate/repro-funcqnet-functional-censored-quantile-net-kidney-survival",
+ "sha": "7c7166b190b0e66249029a363ddfb3a61a244ab8",
+ "run": 1,
+ "judged_at": "2026-10-17T17:48:43+00:00",
+ "logbook_chars": 12086,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook runs no experiments on real kidney transplant data (UNOS/OPTN is private and no code was released). The simulation study only tests τ=0.5 (single quantile, not multi-quantile) on synthetic data using a linear B-spline estimator instead of the FunCQNet neural network, so it does not address the claim of precise multi-quantile predictions for kidney transplant survival."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "The simulation on synthetic data shows that an interaction-aware estimator reduces coefficient-function RMSE by 58–85% versus a Z-agnostic model when the true effect is Z-modulated (Table in Claim 1 page), which is a structural proxy for detecting interaction patterns. However, it uses generic covariates (Z₁~U(1,2), Z₂,Z₃~Bernoulli) rather than age and donor type, a linear estimator rather than FunCQNet, and synthetic rather than real transplant data, so it is a reduced stand-in for the clinical claim."
+  }
+ ],
+ "points": 1,
+ "overall": "The logbook faithfully reproduces the paper's simulation study showing that interaction-aware models recover Z-modulated coefficient functions, but it does not run any experiments on real kidney transplant data because the UNOS/OPTN registry is access-controlled and no code was released. Neither real-data claim about multi-quantile prediction precision or clinically significant age–donor-type interactions is directly tested.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4222,
+  "completion_tokens": 3653
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook runs no experiments on real kidney transplant data (UNOS/OPTN is private and no code was released). The simulation study only tests τ=0.5 (single quantile, not multi-quantile) on synthetic data using a linear B-spline estimator instead of the FunCQNet neural network, so it does not address the claim of precise multi-quantile predictions for kidney transplant survival.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"The simulation on synthetic data shows that an interaction-aware estimator reduces coefficient-function RMSE by 58–85% versus a Z-agnostic model when the true effect is Z-modulated (Table in Claim 1 page), which is a structural proxy for detecting interaction patterns. However, it uses generic covariates (Z₁~U(1,2), Z₂,Z₃~Bernoulli) rather than age and donor type, a linear estimator rather than FunCQNet, and synthetic rather than real transplant data, so it is a reduced stand-in for the clinical claim.\"}\n  ],\n  \"overall\": \"The logbook faithfully reproduces the paper's simulation study showing that interaction-aware models recover Z-modulated coefficient functions, but it does not run any experiments on real kidney transplant data because the UNOS/OPTN registry is access-controlled and no code was released. Neither real-data claim about multi-quantile prediction precision or clinically significant age–donor-type interactions is directly tested.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 40.0
+}

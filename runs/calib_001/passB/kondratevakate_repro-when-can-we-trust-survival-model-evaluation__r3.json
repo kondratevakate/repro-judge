@@ -1,0 +1,32 @@
+{
+ "space_id": "kondratevakate/repro-when-can-we-trust-survival-model-evaluation",
+ "sha": "7ea7f86fbf778c87573f9d9b323d4a8df97b7242",
+ "run": 3,
+ "judged_at": "2026-10-17T17:59:18+00:00",
+ "logbook_chars": 10041,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "The logbook runs a synthetic DGP (X~N(0,I_5), Cox-exponential, n=4000, 8 reps) with three censoring mechanisms and reports concrete ST−OR biases: IBS shows clear mechanism-dependence (admin −0.080 vs cov-dep 0.000 at 80%) while C-index drifts with rate but not mechanism. However, this is a fully synthetic stand-in for the paper's semi-synthetic experiments on real clinical datasets (PBC, FLCHAIN, METABRIC), and only covers 2 of the paper's metric families."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "The logbook reports ranking agreement between censored and oracle C-index on the same synthetic setup: near-tied models agree only 29–42% at 80% censoring (vs 100% at 0%), while widely-separated models stay at 100%. These are real numbers addressing the claim, but again on fully synthetic data rather than the paper's real clinical datasets, and using only Harrell's C-index rather than the full metric panel."
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook provides concrete experimental evidence supporting both claims—mechanism-dependent IBS distortion and ranking instability under heavy censoring for near-tied models—but entirely on a self-generated synthetic DGP rather than the semi-synthetic real-data setup (PBC, FLCHAIN, METABRIC) used in the paper, making this a reduced-scope reproduction rather than a full one.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3429,
+  "completion_tokens": 3123
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"The logbook runs a synthetic DGP (X~N(0,I_5), Cox-exponential, n=4000, 8 reps) with three censoring mechanisms and reports concrete ST−OR biases: IBS shows clear mechanism-dependence (admin −0.080 vs cov-dep 0.000 at 80%) while C-index drifts with rate but not mechanism. However, this is a fully synthetic stand-in for the paper's semi-synthetic experiments on real clinical datasets (PBC, FLCHAIN, METABRIC), and only covers 2 of the paper's metric families.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"The logbook reports ranking agreement between censored and oracle C-index on the same synthetic setup: near-tied models agree only 29–42% at 80% censoring (vs 100% at 0%), while widely-separated models stay at 100%. These are real numbers addressing the claim, but again on fully synthetic data rather than the paper's real clinical datasets, and using only Harrell's C-index rather than the full metric panel.\"}\n  ],\n  \"overall\": \"The logbook provides concrete experimental evidence supporting both claims—mechanism-dependent IBS distortion and ranking instability under heavy censoring for near-tied models—but entirely on a self-generated synthetic DGP rather than the semi-synthetic real-data setup (PBC, FLCHAIN, METABRIC) used in the paper, making this a reduced-scope reproduction rather than a full one.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 36.8
+}

@@ -1,0 +1,32 @@
+{
+ "space_id": "kondratevakate/repro-when-can-we-trust-survival-model-evaluation",
+ "sha": "7ea7f86fbf778c87573f9d9b323d4a8df97b7242",
+ "run": 1,
+ "judged_at": "2026-10-17T17:45:01+00:00",
+ "logbook_chars": 10041,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "The synthetic DGP (n=4000, 8 reps, 3 censoring mechanisms × 5 rates) produces concrete numbers showing systematic, rate-dependent distortions that differ by mechanism for IBS (admin: −0.0795 vs cov-dep: 0.0000 at 80%) while C-index drifts similarly across mechanisms (+0.027 to +0.030 at 80%), but this uses fully synthetic data rather than the paper's semi-synthetic real clinical datasets (PBC, FLCHAIN, METABRIC)."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Near-tied model ranking agreement with the oracle drops from 1.00 at 0% censoring to 0.29–0.42 at 80% across mechanisms (24 reps), directly supporting the claim, while widely-separated models retain 1.00 agreement everywhere; however, this is tested on synthetic fixed risk scores rather than the paper's real-data model panel (DeepHit, NMTLR, etc.)."
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook runs real experiments with real numbers that support both claims—censoring distortions are systematic and mechanism-dependent (especially for IBS), and near-tied model rankings become unreliable under heavy censoring—but the entire reproduction uses a fully synthetic data-generating process instead of the paper's semi-synthetic real clinical datasets, making it a reduced-scope demonstration rather than a full reproduction.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3429,
+  "completion_tokens": 2552
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"The synthetic DGP (n=4000, 8 reps, 3 censoring mechanisms × 5 rates) produces concrete numbers showing systematic, rate-dependent distortions that differ by mechanism for IBS (admin: −0.0795 vs cov-dep: 0.0000 at 80%) while C-index drifts similarly across mechanisms (+0.027 to +0.030 at 80%), but this uses fully synthetic data rather than the paper's semi-synthetic real clinical datasets (PBC, FLCHAIN, METABRIC).\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Near-tied model ranking agreement with the oracle drops from 1.00 at 0% censoring to 0.29–0.42 at 80% across mechanisms (24 reps), directly supporting the claim, while widely-separated models retain 1.00 agreement everywhere; however, this is tested on synthetic fixed risk scores rather than the paper's real-data model panel (DeepHit, NMTLR, etc.).\"}\n  ],\n  \"overall\": \"The logbook runs real experiments with real numbers that support both claims—censoring distortions are systematic and mechanism-dependent (especially for IBS), and near-tied model rankings become unreliable under heavy censoring—but the entire reproduction uses a fully synthetic data-generating process instead of the paper's semi-synthetic real clinical datasets, making it a reduced-scope demonstration rather than a full reproduction.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 30.7
+}

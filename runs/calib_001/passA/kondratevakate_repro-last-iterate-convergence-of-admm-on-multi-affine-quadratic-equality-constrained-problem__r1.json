@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-last-iterate-convergence-of-admm-on-multi-affine-quadratic-equality-constrained-problem",
+ "sha": "4571f56275d307db57bceb84c29f14e433b5f677",
+ "run": 1,
+ "judged_at": "2026-10-17T17:43:59+00:00",
+ "logbook_chars": 14806,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "450 runs on small synthetic multi-affine problems (q∈{0.5,2,5}, a few ρ values) all converge with residuals ~1e-16 and blockwise optimality error ~5e-10; mutation removing Assumption 2.6 causes infeasibility, confirming the mechanism—but only on toy-scale instances, not a proof check."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Sweeping ‖C‖ on a fixed-q toy problem shows contraction factors ~0.059 for small ‖C‖ (0–1) degrading to >0.99 at ‖C‖=25–50, qualitatively matching eq. 4's balance; however the exact threshold is untestable (constants m1,m2,m3 unspecified) and the setup is a small synthetic instance."
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "Box-constrained toy problems (4 cells, 12 seeds each) with all constraints active at the limit show geometric gap decay (factor ≤0.088) without second-order differentiability, and 19,200 perturbation probes find no better point; mutation breaking eq. 4 destroys the rate—but only on small synthetic instances."
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Sympy derivation on a planar instance (T=4, N=2) confirms all quadratic coefficients carry Δt³ exactly, and simulation (T=6, N=2, m=2 kg) shows contraction ~0.71 across Δt∈{0.002…0.1}; mutation rescaling away the Δt³ decay kills convergence—supporting the mechanism on a reduced-scale locomotion instance."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The q≥10 transition was tested (10 q-values × 6 hyperparameter settings × 6 seeds) but no sublinear regime was found below q=10 under any setting; the paper does not report μ_x, μ_z, ρ so the exact figure cannot be reproduced. The baseline comparison (PADMM, IPDS-ADMM, IADMM) was not attempted at all due to missing problem instances, dimensions, and hyperparameters."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "Real robot experiments (humanoid jump, quadruped bounding) are unreproducible—no code, robot models, logs, or cost weights released. The 2D simulation half is only partially covered by claim 4's eq.-6 runs; Figure 5's specific curves cannot be matched because T, contact schedule, target CoM, initial state, and ρ are unreported."
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook provides toy-scale numerical support for the four theoretical claims (Theorems 3.1–3.3, Corollary 4.2) via small synthetic experiments with thoughtful mutation tests confirming mechanisms, but does not verify the proofs themselves. The two empirical claims (baseline comparisons and real-robot validation) remain unreproduced due to missing problem specifications, no code release, and unavailable hardware.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5637,
+  "completion_tokens": 5100
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"450 runs on small synthetic multi-affine problems (q∈{0.5,2,5}, a few ρ values) all converge with residuals ~1e-16 and blockwise optimality error ~5e-10; mutation removing Assumption 2.6 causes infeasibility, confirming the mechanism—but only on toy-scale instances, not a proof check.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Sweeping ‖C‖ on a fixed-q toy problem shows contraction factors ~0.059 for small ‖C‖ (0–1) degrading to >0.99 at ‖C‖=25–50, qualitatively matching eq. 4's balance; however the exact threshold is untestable (constants m1,m2,m3 unspecified) and the setup is a small synthetic instance.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"Box-constrained toy problems (4 cells, 12 seeds each) with all constraints active at the limit show geometric gap decay (factor ≤0.088) without second-order differentiability, and 19,200 perturbation probes find no better point; mutation breaking eq. 4 destroys the rate—but only on small synthetic instances.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Sympy derivation on a planar instance (T=4, N=2) confirms all quadratic coefficients carry Δt³ exactly, and simulation (T=6, N=2, m=2 kg) shows contraction ~0.71 across Δt∈{0.002…0.1}; mutation rescaling away the Δt³ decay kills convergence—supporting the mechanism on a reduced-scale locomotion instance.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The q≥10 transition was tested (10 q-values × 6 hyperparameter settings × 6 seeds) but no sublinear regime was found below q=10 under any setting; the paper does not report μ_x, μ_z, ρ so the exact figure cannot be reproduced. The baseline comparison (PADMM, IPDS-ADMM, IADMM) was not attempted at all due to missing problem instances, dimensions, and hyperparameters.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"Real robot experiments (humanoid jump, quadruped bounding) are unreproducible—no code, robot models, logs, or cost weights released. The 2D simulation half is only partially covered by claim 4's eq.-6 runs; Figure 5's specific curves cannot be matched because T, contact schedule, target CoM, initial state, and ρ are unreported.\"}\n  ],\n  \"overall\": \"The logbook provides toy-scale numerical support for the four theoretical claims (Theorems 3.1–3.3, Corollary 4.2) via small synthetic experiments with thoughtful mutation tests confirming mechanisms, but does not verify the proofs themselves. The two empirical claims (baseline comparisons and real-robot validation) remain unreproduced due to missing problem specifications, no code release, and unavailable hardware.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 73.3
+}

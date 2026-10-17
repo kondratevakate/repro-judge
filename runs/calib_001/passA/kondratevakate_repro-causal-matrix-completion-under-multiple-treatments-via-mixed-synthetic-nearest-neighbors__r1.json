@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-causal-matrix-completion-under-multiple-treatments-via-mixed-synthetic-nearest-neighbors",
+ "sha": "8f8fe09c265977fd3cac1c60dcfb0cca7bf5c41c",
+ "run": 1,
+ "judged_at": "2026-10-17T17:49:34+00:00",
+ "logbook_chars": 4658,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The page names a script verify_claim1.py and a result file claim1.json but shows no code, no commands run, and no numbers; only the author's verdict label 'verified' appears, which is not evidence."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The page references verify_claim2.py and claim2.json but displays no actual derivation, code, or numerical output supporting the gain factor formula."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The page references verify_claim3.py and claim3.json but contains no code, computation, or numerical evidence about the quadratic-to-linear gap reduction."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The page names verify_claim4.py and claim4.json but shows no simulation setup, no code, and none of the claimed numbers (4.69% feasible rate, 3.91e-2 MRE, etc.) actually appearing as output."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The page explicitly states the script was unreachable due to an iteration cap (50 LLM turns) and no partial results were available; no MNAR experiments were run."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The page references verify_claim6.py and claim6.json but shows no code implementing or testing the bipartite clique construction or Assumption 2.5; only a verdict label is given."
+  }
+ ],
+ "points": 0,
+ "overall": "The logbook establishes nothing concrete: every claim page except claim 5 merely names a script and a result file while displaying no code, commands, or numerical output. Claim 5 is honestly reported as not attempted due to an iteration cap. No claim is supported by actual executed experimental evidence visible in the logbook.",
+ "quality": "low",
+ "usage": {
+  "prompt_tokens": 2315,
+  "completion_tokens": 1629
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The page names a script verify_claim1.py and a result file claim1.json but shows no code, no commands run, and no numbers; only the author's verdict label 'verified' appears, which is not evidence.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The page references verify_claim2.py and claim2.json but displays no actual derivation, code, or numerical output supporting the gain factor formula.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The page references verify_claim3.py and claim3.json but contains no code, computation, or numerical evidence about the quadratic-to-linear gap reduction.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The page names verify_claim4.py and claim4.json but shows no simulation setup, no code, and none of the claimed numbers (4.69% feasible rate, 3.91e-2 MRE, etc.) actually appearing as output.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The page explicitly states the script was unreachable due to an iteration cap (50 LLM turns) and no partial results were available; no MNAR experiments were run.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The page references verify_claim6.py and claim6.json but shows no code implementing or testing the bipartite clique construction or Assumption 2.5; only a verdict label is given.\"}\n  ],\n  \"overall\": \"The logbook establishes nothing concrete: every claim page except claim 5 merely names a script and a result file while displaying no code, commands, or numerical output. Claim 5 is honestly reported as not attempted due to an iteration cap. No claim is supported by actual executed experimental evidence visible in the logbook.\",\n  \"quality\": \"low\"\n}\n```",
+ "elapsed_s": 24.8
+}

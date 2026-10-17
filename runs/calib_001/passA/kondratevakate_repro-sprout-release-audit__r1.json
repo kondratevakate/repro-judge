@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-sprout-release-audit",
+ "sha": "51459d062ca982fa5cb3c9379532475d43d890e1",
+ "run": 1,
+ "judged_at": "2026-10-17T17:48:03+00:00",
+ "logbook_chars": 60242,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "The self-reference prototype-generation branch executes on a 128×128 synthetic image with nine synthetic nuclei (precision 1.0, recall 0.607), but end-to-end execution is blocked by the canonical POT AttributeError, unresolved default backbone (hf-hub:bioptimus/UNI2-h), and an empty dataset link; no real histology images were processed through the full SAM-prompting pipeline."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The release contains zero empirical artifacts (empirical_artifacts: []), no processed benchmark splits, no predictions, and no metric tables; no MoNuSeg experiments were executed."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "Same as Claim 2—no CPM17 data, predictions, or metric outputs exist in the release; no benchmark runs were performed."
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "The OptimalTransport class exists and, after manually patching numItermax=1000, produces a 4×3 plan on a tiny synthetic similarity matrix, but the canonical solve() crashes with AttributeError and the resulting real mass is 2.4 versus the paper's target 0.6; no evidence of OT being used with SAM for point-prompt generation on real data."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No ablation experiments (feature-extractor comparison, SAM patch-size variants, greedy vs partial-OT, hyperparameter sensitivity) were executed; only containment-aware soft-NMS was tested on three synthetic 20×20 boolean masks, which does not address the ablation claims."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No TNBC runtime experiments were executed; the logbook explicitly states that runtime results are present only in the paper and their run-level artifacts are not released."
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook demonstrates that individual SPROUT components (self-reference prototype generation, partial-OT solver, containment-aware NMS) can execute on small synthetic inputs, but the end-to-end pipeline is blocked by code errors and missing dependencies, and no real benchmark, ablation, or runtime experiments were performed. The release contains no empirical artifacts, so all quantitative performance claims remain unaddressed.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 16381,
+  "completion_tokens": 2694
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"The self-reference prototype-generation branch executes on a 128×128 synthetic image with nine synthetic nuclei (precision 1.0, recall 0.607), but end-to-end execution is blocked by the canonical POT AttributeError, unresolved default backbone (hf-hub:bioptimus/UNI2-h), and an empty dataset link; no real histology images were processed through the full SAM-prompting pipeline.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The release contains zero empirical artifacts (empirical_artifacts: []), no processed benchmark splits, no predictions, and no metric tables; no MoNuSeg experiments were executed.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"Same as Claim 2—no CPM17 data, predictions, or metric outputs exist in the release; no benchmark runs were performed.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"The OptimalTransport class exists and, after manually patching numItermax=1000, produces a 4×3 plan on a tiny synthetic similarity matrix, but the canonical solve() crashes with AttributeError and the resulting real mass is 2.4 versus the paper's target 0.6; no evidence of OT being used with SAM for point-prompt generation on real data.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation experiments (feature-extractor comparison, SAM patch-size variants, greedy vs partial-OT, hyperparameter sensitivity) were executed; only containment-aware soft-NMS was tested on three synthetic 20×20 boolean masks, which does not address the ablation claims.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No TNBC runtime experiments were executed; the logbook explicitly states that runtime results are present only in the paper and their run-level artifacts are not released.\"}\n  ],\n  \"overall\": \"The logbook demonstrates that individual SPROUT components (self-reference prototype generation, partial-OT solver, containment-aware NMS) can execute on small synthetic inputs, but the end-to-end pipeline is blocked by code errors and missing dependencies, and no real benchmark, ablation, or runtime experiments were performed. The release contains no empirical artifacts, so all quantitative performance claims remain unaddressed.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 34.9
+}

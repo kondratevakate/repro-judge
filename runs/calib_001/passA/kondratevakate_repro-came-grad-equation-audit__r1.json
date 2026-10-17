@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-came-grad-equation-audit",
+ "sha": "9639983d6636db9372264db1253d40a823a55463",
+ "run": 1,
+ "judged_at": "2026-10-17T17:48:19+00:00",
+ "logbook_chars": 35271,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "An independent implementation of equations 8–14 was run on 500 synthetic random gradient matrices (3 tasks, 7 parameters), confirming trust-region residual ≤4.44e-16, Stage-2 magnitude error ≤1.9e-12, and fusion residual 0.0. However, the logbook found that Stage 3's ν is fixed and tuned, not data-dependent, contradicting the 'adaptive' descriptor, and 'backbone-agnostic' was never tested on any real model."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only parsed published TeX table cells, obtaining mean CE differences of 0.0231 (MIMIC-CXR) and 0.0190 (IU X-Ray), matching the paper's rounded figures. No training runs were executed; the optimizer, dataset module, processed splits, and weights are all missing from the release."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The release contains a CheXbert module but with a placeholder ('xxxxxxxx') for weights, and no evaluation was run on any test set. The 3,858-sample count and 14-category measurement protocol could not be independently verified."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The seven comparator optimizer configurations and matching artifacts are absent from the release; no comparison experiments were executed and no results were inferred from Table 3 alone."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No official ablation runner or optimizer implementation was released; synthetic equation checks on random gradients cannot attribute radiology-report performance to individual stages S1, S2, or S3."
+  }
+ ],
+ "points": 1,
+ "overall": "The logbook independently verifies only the algebraic three-stage structure of CAME-Grad on synthetic random gradient matrices, while also exposing that the fusion coefficient ν is fixed rather than adaptive. All clinical, comparison, and ablation claims remain untested because the official release omits the optimizer source, dataset module, CheXbert weights, processed data splits, and comparator configurations.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 10073,
+  "completion_tokens": 3523
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"An independent implementation of equations 8–14 was run on 500 synthetic random gradient matrices (3 tasks, 7 parameters), confirming trust-region residual ≤4.44e-16, Stage-2 magnitude error ≤1.9e-12, and fusion residual 0.0. However, the logbook found that Stage 3's ν is fixed and tuned, not data-dependent, contradicting the 'adaptive' descriptor, and 'backbone-agnostic' was never tested on any real model.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only parsed published TeX table cells, obtaining mean CE differences of 0.0231 (MIMIC-CXR) and 0.0190 (IU X-Ray), matching the paper's rounded figures. No training runs were executed; the optimizer, dataset module, processed splits, and weights are all missing from the release.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The release contains a CheXbert module but with a placeholder ('xxxxxxxx') for weights, and no evaluation was run on any test set. The 3,858-sample count and 14-category measurement protocol could not be independently verified.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The seven comparator optimizer configurations and matching artifacts are absent from the release; no comparison experiments were executed and no results were inferred from Table 3 alone.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No official ablation runner or optimizer implementation was released; synthetic equation checks on random gradients cannot attribute radiology-report performance to individual stages S1, S2, or S3.\"}\n  ],\n  \"overall\": \"The logbook independently verifies only the algebraic three-stage structure of CAME-Grad on synthetic random gradient matrices, while also exposing that the fusion coefficient ν is fixed rather than adaptive. All clinical, comparison, and ablation claims remain untested because the official release omits the optimizer source, dataset module, CheXbert weights, processed data splits, and comparator configurations.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 43.1
+}

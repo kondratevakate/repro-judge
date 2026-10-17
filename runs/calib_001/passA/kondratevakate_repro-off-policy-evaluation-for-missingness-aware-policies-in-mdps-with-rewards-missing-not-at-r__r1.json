@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-off-policy-evaluation-for-missingness-aware-policies-in-mdps-with-rewards-missing-not-at-r",
+ "sha": "3b7667b50e955886c7b17aff4a8e18b43b401c3e",
+ "run": 1,
+ "judged_at": "2026-10-17T17:37:28+00:00",
+ "logbook_chars": 120045,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "falsified",
+   "evidence": "A wrapped-Gaussian counterexample (R~Uniform[-π,π), S_next=(R+wrapped_normal) mod 2π, σ=0.25) satisfies all named assumptions (positivity [0.172,0.828], relevance, completeness, no-future-dependence) yet the partial L2 norms of inverse Fourier coefficients diverge: 3.88, 21.25, 3.99e8, 6.13e21 at cutoffs 5/10/20/30, proving no square-integrable bridge exists under only the stated assumptions."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Source text contains the exact condition S_{t+1}⊥̸R_t|S_t,A_t,O_t=1; an independent simulation of 60,000 observations (52,580 observed) shows residual Pearson r=0.2528 (p=0) and MSE reduction from 0.01706 to 0.01596 when adding next state."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Source extraction confirms Theorem 5.8 contains ||b̂-b*||_2, τ_t δ_t, max{1,||b_t*||²}, and probability 1-3ζ; a finite-dimensional reduction across 2,000 random inverse problems (dims 3–13) yields 0 violations of ||e||≤τ||Te|| with worst ratio 0.871."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Source confirms T², τ_max, √(log(c₁T/ζ)), n^{-α_min/(2α_min+1)}, and log n in the theorem; backward recurrence unrolled for horizons 2–32 matches explicit weighted sums exactly, concentrability products stay below K=3.463, and nonparametric exponents α/(2α+1) remain below 1/2 for α∈{0.6,1,2,4}."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Source contains exact condition O_t⊥(S_{t+1:T},R_{t+1:T})|S_t,A_t,R_t; AST inspection confirms the simulator's missingness logit uses only current state/action/reward; nested logistic fit on 60,000 samples gives LR p=0.1468 and per-sample NLL gain 3.2e-5 when adding future states."
+  }
+ ],
+ "points": 10,
+ "overall": "The logbook rigorously falsifies Claim 1 via a mathematically sound infinite-dimensional counterexample showing the named assumptions alone do not guarantee bridge existence (the paper's appendix adds Hilbert-Schmidt and Picard summability conditions). Claims 2–5 are verified through systematic source-text extraction, AST inspection of the official simulator, and statistical diagnostics on 60,000 simulated observations.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 32588,
+  "completion_tokens": 5709
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"falsified\", \"evidence\": \"A wrapped-Gaussian counterexample (R~Uniform[-π,π), S_next=(R+wrapped_normal) mod 2π, σ=0.25) satisfies all named assumptions (positivity [0.172,0.828], relevance, completeness, no-future-dependence) yet the partial L2 norms of inverse Fourier coefficients diverge: 3.88, 21.25, 3.99e8, 6.13e21 at cutoffs 5/10/20/30, proving no square-integrable bridge exists under only the stated assumptions.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Source text contains the exact condition S_{t+1}⊥̸R_t|S_t,A_t,O_t=1; an independent simulation of 60,000 observations (52,580 observed) shows residual Pearson r=0.2528 (p=0) and MSE reduction from 0.01706 to 0.01596 when adding next state.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Source extraction confirms Theorem 5.8 contains ||b̂-b*||_2, τ_t δ_t, max{1,||b_t*||²}, and probability 1-3ζ; a finite-dimensional reduction across 2,000 random inverse problems (dims 3–13) yields 0 violations of ||e||≤τ||Te|| with worst ratio 0.871.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Source confirms T², τ_max, √(log(c₁T/ζ)), n^{-α_min/(2α_min+1)}, and log n in the theorem; backward recurrence unrolled for horizons 2–32 matches explicit weighted sums exactly, concentrability products stay below K=3.463, and nonparametric exponents α/(2α+1) remain below 1/2 for α∈{0.6,1,2,4}.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Source contains exact condition O_t⊥(S_{t+1:T},R_{t+1:T})|S_t,A_t,R_t; AST inspection confirms the simulator's missingness logit uses only current state/action/reward; nested logistic fit on 60,000 samples gives LR p=0.1468 and per-sample NLL gain 3.2e-5 when adding future states.\"}\n  ],\n  \"overall\": \"The logbook rigorously falsifies Claim 1 via a mathematically sound infinite-dimensional counterexample showing the named assumptions alone do not guarantee bridge existence (the paper's appendix adds Hilbert-Schmidt and Picard summability conditions). Claims 2–5 are verified through systematic source-text extraction, AST inspection of the official simulator, and statistical diagnostics on 60,000 simulated observations.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 101.9
+}

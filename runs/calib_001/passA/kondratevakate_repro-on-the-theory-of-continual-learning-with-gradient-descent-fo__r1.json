@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-on-the-theory-of-continual-learning-with-gradient-descent-fo",
+ "sha": "77f5e23a9109d344f7d4b1ec5807627338aa525f",
+ "run": 1,
+ "judged_at": "2026-10-17T17:55:30+00:00",
+ "logbook_chars": 57492,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Log-log Monte-Carlo sweeps on the paper's Eq. 17 functional recover the predicted exponents: slope 0.489 in (K−k) vs predicted 0.5, and −0.488 in n vs predicted −0.5, across two parameter readings; mutation breaking task-mean orthogonality inflates forgetting magnitude by 221×."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Width m=8d² substituted for the required Ω~(d⁸K⁴) (logged as 3.5e11 at d=16,K=3, infeasible on CPU); n and ηT scalings exercised with forgetting decreasing 0.157→0.007 over d=8–20, but the full width regime is untested and the mutation freezing n at 24 still showed decreasing forgetting."
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "Same width reduction (m=8d² vs Ω~(d⁸K⁴)); uniform max-task error decreases from 0.0013 (d=8) to 0.0 (d≥12) and noise-violation mutation (σ×8) breaks the property (error jumps to ~0.51), but at drastically reduced width."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Bound holds in all five n-sweep cells; 1/n exponent recovered (log-log slope −1.046 vs predicted −1.0); mutation shrinking n 8× increases gap by 10.7× consistent with 1/n scaling."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "T-exponent for Theorem B.1 bound measured at 0.226 (poly-log) vs 3.066 for Theorem 2.3 on a real GD trajectory; cumulative loss fits log³T (r=0.987) better than T (r=0.937); mutation removing self-boundedness jumps exponent to 1.0."
+  },
+  {
+   "claim": 6,
+   "verdict": "verified",
+   "evidence": "Decomposition identity F_ts=F_tr+F_gen exact to 1.08e-19 residual over 8 runs; 2-D (m,n) grid shows both_ratio=0.0055 vs m_only=0.048 and n_only=0.737, confirming joint rather than individual control of forgetting."
+  }
+ ],
+ "points": 10,
+ "overall": "The logbook verifies the paper's theoretical bound expressions and scaling exponents on synthetic XOR-cluster data at moderate d (8–40) with mutation tests on every claim, but the required width m=Ω~(d⁸K⁴) is computationally unreachable and was substituted with m=8d², capping claims 2 and 3 at toy level. The logbook is contaminated with pages from an unrelated paper (CAML/PDE solving), but the relevant continual-learning claim pages contain self-contained, executed evidence.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 42338,
+  "completion_tokens": 17882
+ },
+ "attempts": 2,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Log-log Monte-Carlo sweeps on the paper's Eq. 17 functional recover the predicted exponents: slope 0.489 in (K−k) vs predicted 0.5, and −0.488 in n vs predicted −0.5, across two parameter readings; mutation breaking task-mean orthogonality inflates forgetting magnitude by 221×.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Width m=8d² substituted for the required Ω~(d⁸K⁴) (logged as 3.5e11 at d=16,K=3, infeasible on CPU); n and ηT scalings exercised with forgetting decreasing 0.157→0.007 over d=8–20, but the full width regime is untested and the mutation freezing n at 24 still showed decreasing forgetting.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"Same width reduction (m=8d² vs Ω~(d⁸K⁴)); uniform max-task error decreases from 0.0013 (d=8) to 0.0 (d≥12) and noise-violation mutation (σ×8) breaks the property (error jumps to ~0.51), but at drastically reduced width.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Bound holds in all five n-sweep cells; 1/n exponent recovered (log-log slope −1.046 vs predicted −1.0); mutation shrinking n 8× increases gap by 10.7× consistent with 1/n scaling.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"T-exponent for Theorem B.1 bound measured at 0.226 (poly-log) vs 3.066 for Theorem 2.3 on a real GD trajectory; cumulative loss fits log³T (r=0.987) better than T (r=0.937); mutation removing self-boundedness jumps exponent to 1.0.\"},\n    {\"claim\": 6, \"verdict\": \"verified\", \"evidence\": \"Decomposition identity F_ts=F_tr+F_gen exact to 1.08e-19 residual over 8 runs; 2-D (m,n) grid shows both_ratio=0.0055 vs m_only=0.048 and n_only=0.737, confirming joint rather than individual control of forgetting.\"}\n  ],\n  \"overall\": \"The logbook verifies the paper's theoretical bound expressions and scaling exponents on synthetic XOR-cluster data at moderate d (8–40) with mutation tests on every claim, but the required width m=Ω~(d⁸K⁴) is computationally unreachable and was substituted with m=8d², capping claims 2 and 3 at toy level. The logbook is contaminated with pages from an unrelated paper (CAML/PDE solving), but the relevant continual-learning claim pages contain self-contained, executed evidence.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 323.2
+}

@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-inference-aware-meta-alignment-of-llms-via-non-linear-grpo",
+ "sha": "e7ab06265579359edb5187a36a79636b282fd8f6",
+ "run": 2,
+ "judged_at": "2026-10-17T17:56:04+00:00",
+ "logbook_chars": 10182,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Numerical experiments on 45 instances show the transformed objective is non-linear (chord gap [1.037e-4, 8.139e-2]) while untransformed E_π[r] is exactly linear (2.22e-16); multi-criterion adaptation tested on 60 instances with IAMA outperforming naive in 60/60 cases; mutation (N=1) collapses non-linearity as predicted."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Functional derivative matches finite differences (max rel error 7.33e-8 over 80 cases); drop-in replacement on standard GRPO reaches true optimum (max suboptimality 5.55e-16 over 30 instances); empirical π̂ convergence slope −1.024 vs theory −1; mutation with plain reward is strictly worse in 30/30 cases."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "2250 bound evaluations across 90 instances show 0 violations above 1e-12; max excess loss at T=25 is 2.04e-6; mutation with wrong step size (η=20/L) yields 11 macroscopic violations and mutation with plain reward yields 36/36 violations, confirming theorem conditions."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Full bound never violated over 60 configs × 200 runs with max LHS/RHS ratio 0.2611; ε and δ measured from actual iterates; dropping the 2(ε+δ)/β term causes violations in 36/36 noisy configs (max ratio 1.65e10); plateau grows monotonically with noise in 12/12 cells."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Sympy confirms the CDF integrates to 1; first-order optimality at claimed π* holds to machine precision (span ≤5.84e-16 for all N); naive optimum puts mass 1.0 at y≈0.5 (δ_0.5 collapse) vs IAMA N=8 with 0.922 mass outside [0.25,0.75]; mutations confirm α=1/(N−1) is the correct exponent."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were executed; blockers include GPU-scale 7B GRPO training, unreleased author-trained reward models and judges, no public code, and figure-only evidence with no numeric table to re-assert."
+  }
+ ],
+ "points": 10,
+ "overall": "The logbook provides thorough numerical verification of the paper's five mathematical claims (objective formulation, algorithm, two convergence theorems, and the bimodal-policy proposition) using synthetic reward functions, multiple seeds, mutation tests, and independent solvers. The sole empirical LLM claim (HH-RLHF/Alpaca-7B Pareto front) is not addressed at all due to GPU scale and unreleased model dependencies.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 4497,
+  "completion_tokens": 2788
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Numerical experiments on 45 instances show the transformed objective is non-linear (chord gap [1.037e-4, 8.139e-2]) while untransformed E_π[r] is exactly linear (2.22e-16); multi-criterion adaptation tested on 60 instances with IAMA outperforming naive in 60/60 cases; mutation (N=1) collapses non-linearity as predicted.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Functional derivative matches finite differences (max rel error 7.33e-8 over 80 cases); drop-in replacement on standard GRPO reaches true optimum (max suboptimality 5.55e-16 over 30 instances); empirical π̂ convergence slope −1.024 vs theory −1; mutation with plain reward is strictly worse in 30/30 cases.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"2250 bound evaluations across 90 instances show 0 violations above 1e-12; max excess loss at T=25 is 2.04e-6; mutation with wrong step size (η=20/L) yields 11 macroscopic violations and mutation with plain reward yields 36/36 violations, confirming theorem conditions.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Full bound never violated over 60 configs × 200 runs with max LHS/RHS ratio 0.2611; ε and δ measured from actual iterates; dropping the 2(ε+δ)/β term causes violations in 36/36 noisy configs (max ratio 1.65e10); plateau grows monotonically with noise in 12/12 cells.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Sympy confirms the CDF integrates to 1; first-order optimality at claimed π* holds to machine precision (span ≤5.84e-16 for all N); naive optimum puts mass 1.0 at y≈0.5 (δ_0.5 collapse) vs IAMA N=8 with 0.922 mass outside [0.25,0.75]; mutations confirm α=1/(N−1) is the correct exponent.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were executed; blockers include GPU-scale 7B GRPO training, unreleased author-trained reward models and judges, no public code, and figure-only evidence with no numeric table to re-assert.\"}\n  ],\n  \"overall\": \"The logbook provides thorough numerical verification of the paper's five mathematical claims (objective formulation, algorithm, two convergence theorems, and the bimodal-policy proposition) using synthetic reward functions, multiple seeds, mutation tests, and independent solvers. The sole empirical LLM claim (HH-RLHF/Alpaca-7B Pareto front) is not addressed at all due to GPU scale and unreleased model dependencies.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 33.1
+}

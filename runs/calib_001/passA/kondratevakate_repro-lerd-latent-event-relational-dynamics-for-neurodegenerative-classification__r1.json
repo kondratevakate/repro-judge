@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-lerd-latent-event-relational-dynamics-for-neurodegenerative-classification",
+ "sha": "d5572da654ba1ba4ce8814e8b86142e3f3c3f697",
+ "run": 1,
+ "judged_at": "2026-10-17T17:46:25+00:00",
+ "logbook_chars": 15754,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The architecture spec was transcribed and found internally consistent, but the dLIF/ERG prior modules are explicitly 'specified but not yet coded'; only the encoder and classifier path is implemented, so the combined architecture was never exercised."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "thm41_audit.py computed the event-prior KL two independent ways (direct integral vs change-of-variables Eq 9) with abs diff ≤1e-13 across three configurations, and controls showed both hypotheses (r bounded away from 0; Z_S normalization) are load-bearing."
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "On the toy dataset, reproduced latent-rate estimates match LERD's reported medians within 2–3.4% and a trajectory-only neural-ODE baseline scores IoU ~0 at CS ~0.99, but LERD's own IoU magnitudes (0.202–0.473) were not regenerated because they require the trained model."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "A faithful pipeline was built and smoke-tested (1 fold, 3/30 epochs, 63.16% accuracy on CPU), but the full 5-fold × 30-epoch run was not executed and the dLIF/ERG priors were not coded, so the claimed 75.03% accuracy was never evaluated."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Cohort B (Sadegh-Zadeh et al., 2023) has Data Availability 'Not applicable' and no public mirror was found; the underlying EEG is private, so no experiments could be run."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The ablation numbers (Table 3) were not generated (GPU-bound, full model not trained), and LERD-inferred dLIF frequencies (Figure 2) were not reproduced; only the raw-EEG spectral-slowing premise was verified on 88 subjects (AD centroid below HC in 19/19 channels), which is a proxy for the model-derived claim."
+  }
+ ],
+ "points": 3,
+ "overall": "The logbook provides concrete numerical verification of Theorem 4.1's KL-surrogate identity and partial reproduction of the toy benchmark's baseline-failure and rate-recovery aspects, plus a raw-EEG check of the AD spectral-slowing premise on 88 real subjects. However, the paper's central empirical claims—Cohort A/B classification accuracy, ablation contributions, and model-derived IoU and dLIF frequencies—were not reproduced due to compute constraints, unimplemented modules, and unavailable data.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5948,
+  "completion_tokens": 2811
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The architecture spec was transcribed and found internally consistent, but the dLIF/ERG prior modules are explicitly 'specified but not yet coded'; only the encoder and classifier path is implemented, so the combined architecture was never exercised.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"thm41_audit.py computed the event-prior KL two independent ways (direct integral vs change-of-variables Eq 9) with abs diff ≤1e-13 across three configurations, and controls showed both hypotheses (r bounded away from 0; Z_S normalization) are load-bearing.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"On the toy dataset, reproduced latent-rate estimates match LERD's reported medians within 2–3.4% and a trajectory-only neural-ODE baseline scores IoU ~0 at CS ~0.99, but LERD's own IoU magnitudes (0.202–0.473) were not regenerated because they require the trained model.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"A faithful pipeline was built and smoke-tested (1 fold, 3/30 epochs, 63.16% accuracy on CPU), but the full 5-fold × 30-epoch run was not executed and the dLIF/ERG priors were not coded, so the claimed 75.03% accuracy was never evaluated.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Cohort B (Sadegh-Zadeh et al., 2023) has Data Availability 'Not applicable' and no public mirror was found; the underlying EEG is private, so no experiments could be run.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The ablation numbers (Table 3) were not generated (GPU-bound, full model not trained), and LERD-inferred dLIF frequencies (Figure 2) were not reproduced; only the raw-EEG spectral-slowing premise was verified on 88 subjects (AD centroid below HC in 19/19 channels), which is a proxy for the model-derived claim.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical verification of Theorem 4.1's KL-surrogate identity and partial reproduction of the toy benchmark's baseline-failure and rate-recovery aspects, plus a raw-EEG check of the AD spectral-slowing premise on 88 real subjects. However, the paper's central empirical claims—Cohort A/B classification accuracy, ablation contributions, and model-derived IoU and dLIF frequencies—were not reproduced due to compute constraints, unimplemented modules, and unavailable data.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 32.4
+}

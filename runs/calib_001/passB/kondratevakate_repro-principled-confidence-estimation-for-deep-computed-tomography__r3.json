@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-principled-confidence-estimation-for-deep-computed-tomography",
+ "sha": "1f27999340834eaf8272a67881b6a20d12d9ea0b",
+ "run": 3,
+ "judged_at": "2026-10-17T17:59:59+00:00",
+ "logbook_chars": 7740,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "The SLM confidence-sequence construction is instantiated with a classical log-domain SART reconstruction on a synthetic phantom (r=32, 40 views, I0=1e4), confirming the level-set/NLL mechanism works, but the deep-learning instantiations (U-Net, ensembles, diffusion) are explicitly not reproduced due to missing checkpoints."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "300 Poisson realizations per delta on a synthetic phantom yield empirical coverage of 1.000 at delta=0.1 and 0.05, supporting the finite-sample coverage guarantee, but only on a reduced synthetic setup rather than the paper's real CT data."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The Lamino industrial CT dataset is never used; the logbook only runs on a synthetic phantom, so the specific NLL-gap numbers (4.4×10^4 vs 2.3×10^5 vs 1.6×10^6) are not addressed."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No experiments on the Lamino dataset are reported; the coverage results that exist are on a synthetic phantom, not Lamino with delta=0.05 crossover rates."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The Composite materials dataset is not used and no diffusion-based method is tested; the claim about ~3% miscoverage and tighter intervals vs baselines is not addressed."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No hallucination-detection experiments conditioning PSNR on confidence-set membership are described anywhere in the logbook."
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook reproduces only the classical-path coverage guarantee of the SLM framework on a small synthetic phantom (100% coverage at delta 0.1 and 0.05 over 300 runs each), confirming the mechanism works in principle. All claims involving real datasets (Lamino, Composite), deep learning reconstructors, tightness comparisons, and hallucination detection are unaddressed due to missing checkpoints and GPU resources.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 2974,
+  "completion_tokens": 2073
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"The SLM confidence-sequence construction is instantiated with a classical log-domain SART reconstruction on a synthetic phantom (r=32, 40 views, I0=1e4), confirming the level-set/NLL mechanism works, but the deep-learning instantiations (U-Net, ensembles, diffusion) are explicitly not reproduced due to missing checkpoints.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"300 Poisson realizations per delta on a synthetic phantom yield empirical coverage of 1.000 at delta=0.1 and 0.05, supporting the finite-sample coverage guarantee, but only on a reduced synthetic setup rather than the paper's real CT data.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The Lamino industrial CT dataset is never used; the logbook only runs on a synthetic phantom, so the specific NLL-gap numbers (4.4×10^4 vs 2.3×10^5 vs 1.6×10^6) are not addressed.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments on the Lamino dataset are reported; the coverage results that exist are on a synthetic phantom, not Lamino with delta=0.05 crossover rates.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The Composite materials dataset is not used and no diffusion-based method is tested; the claim about ~3% miscoverage and tighter intervals vs baselines is not addressed.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No hallucination-detection experiments conditioning PSNR on confidence-set membership are described anywhere in the logbook.\"}\n  ],\n  \"overall\": \"The logbook reproduces only the classical-path coverage guarantee of the SLM framework on a small synthetic phantom (100% coverage at delta 0.1 and 0.05 over 300 runs each), confirming the mechanism works in principle. All claims involving real datasets (Lamino, Composite), deep learning reconstructors, tightness comparisons, and hallucination detection are unaddressed due to missing checkpoints and GPU resources.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 22.9
+}

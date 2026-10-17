@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-scratio-release-audit",
+ "sha": "77c14aaed924116840cda2d61b912a5b5e7b9b04",
+ "run": 1,
+ "judged_at": "2026-10-17T17:42:48+00:00",
+ "logbook_chars": 11787,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "With exact Gaussian vector fields and scores, the public estimate_log_density_ratio path recovers three known analytic log-ratio values with maximum absolute error 1.06e-07, confirming the ODE implementation matches the mathematical proposition."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The executed MI notebook produces 0/5 stochastic-path MAEs matching Table 1 (largest difference 0.917), and the referenced ratio arrays live outside the clone as external .npy files, so neither the numbers nor the underlying data can be confirmed."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "Parsed executed notebook outputs show scRatio sigma_min=0.1 with corr_auc_score_p=0.99 and mean_auc_score=0.96 matching the claim, but the per-cell predictions used to calculate these metrics are external and not recomputable from the clone."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The notebooks preserve executed LLR matrix shapes and condition-group counts for NeurIPS (90,261 cells, 431 groups) and C. elegans (89,701 cells, 248 groups), but the NPZ ratio arrays are absent so the before/after magnitude decrease is not numerically recomputable."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Independent recomputation over 23 printed ComboSciPlex pairs yields Pearson 0.9449 and Spearman 0.9071, confirming the claimed positive correlation between scRatio likelihood ratios and classifier log-odds scores."
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "A fresh 1,200-step CPU run gives direct/naive MSE 1.6455/5.1616 with only 1.04x speedup; cached CSV shows 30/30 comparisons favoring direct with 1.89x–3.09x speedup, but TSM/Conditional TSM baselines are not addressed, raw predictions are absent, and paper-scale retraining was not performed."
+  }
+ ],
+ "points": 5,
+ "overall": "The logbook verifies the core single-ODE estimator against an analytic oracle and confirms positive correlation on ComboSciPlex, but application claims rely on external pre-computed prediction arrays that are not in the clone, and the MI notebook's MAEs do not match Table 1. The Gaussian runtime claim is supported only by a reduced-scale fresh run plus cached results, with no TSM baseline comparison.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4752,
+  "completion_tokens": 5758
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"With exact Gaussian vector fields and scores, the public estimate_log_density_ratio path recovers three known analytic log-ratio values with maximum absolute error 1.06e-07, confirming the ODE implementation matches the mathematical proposition.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The executed MI notebook produces 0/5 stochastic-path MAEs matching Table 1 (largest difference 0.917), and the referenced ratio arrays live outside the clone as external .npy files, so neither the numbers nor the underlying data can be confirmed.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"Parsed executed notebook outputs show scRatio sigma_min=0.1 with corr_auc_score_p=0.99 and mean_auc_score=0.96 matching the claim, but the per-cell predictions used to calculate these metrics are external and not recomputable from the clone.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The notebooks preserve executed LLR matrix shapes and condition-group counts for NeurIPS (90,261 cells, 431 groups) and C. elegans (89,701 cells, 248 groups), but the NPZ ratio arrays are absent so the before/after magnitude decrease is not numerically recomputable.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Independent recomputation over 23 printed ComboSciPlex pairs yields Pearson 0.9449 and Spearman 0.9071, confirming the claimed positive correlation between scRatio likelihood ratios and classifier log-odds scores.\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"A fresh 1,200-step CPU run gives direct/naive MSE 1.6455/5.1616 with only 1.04x speedup; cached CSV shows 30/30 comparisons favoring direct with 1.89x–3.09x speedup, but TSM/Conditional TSM baselines are not addressed, raw predictions are absent, and paper-scale retraining was not performed.\"}\n  ],\n  \"overall\": \"The logbook verifies the core single-ODE estimator against an analytic oracle and confirms positive correlation on ComboSciPlex, but application claims rely on external pre-computed prediction arrays that are not in the clone, and the MI notebook's MAEs do not match Table 1. The Gaussian runtime claim is supported only by a reduced-scale fresh run plus cached results, with no TSM baseline comparison.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 64.3
+}

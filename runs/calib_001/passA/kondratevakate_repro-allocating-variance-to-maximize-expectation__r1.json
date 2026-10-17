@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-allocating-variance-to-maximize-expectation",
+ "sha": "f710a82abce466ddf3a0dd4a9c7ed004f5187506",
+ "run": 1,
+ "judged_at": "2026-10-17T17:41:23+00:00",
+ "logbook_chars": 12054,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "Real runs on n=4,5 instances show gaps well within ε (worst gap 0.00338 vs ε=0.5, gap 2e-05 vs ε=0.2) and a discriminating mutation test (coarsened grid blows gaps to 0.116), but n=4–5 is a clearly reduced scale for a PTAS claim that applies to arbitrary n."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "n=3,4 instances compared against a 120k-sample MC reference have gaps (~4.5e-3) comparable to the MC standard error (~9.7e-4), and the mutation test (halving the budget) did not break the ε tolerance (gap 0.175 < ε=0.2), so the evidence cannot distinguish the PTAS from a weaker result."
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "12 instances at n=6,8,10 with m=12,16,20 show the achieved ratio (min 0.506) exceeding the 1/ln(n) bound (0.481 at n=8), with a discriminating mutation test (degenerate allocation scores 0), but n≤10 is too small to test the asymptotic O(log n) approximation behavior meaningfully."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "At finite n=8,12,16 the asymptotic signature is not uniformly reproduced: k·p wanders outside a constant band for n=8 (in_constant_band=false) and monotonicity fails for n=12 (non_increasing_in_p=false), so the Θ(1/p) concentration claim is neither confirmed nor refuted at these sizes."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Across ε from 0.5 to 0.02 (independent and correlated ρ=±0.9,0), the ratio C=E_max0/(ε√ln(1/ε)) stays bounded in [1.26, 1.77], and the mutation test (removing the per-coordinate cap Σ_ii≤ε²) causes C to diverge (up to 18.59 at ε=0.01), directly confirming both the bound and its mechanism."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "n=8 ER-graph MC simulations (16k samples) reproduce qualitative concentration (top-2 mass profiles show heavy concentration) but fail to confirm strict concavity (all_concave=false, second differences include positive convex segments) and concentration is not uniformly increasing across correlation settings."
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook provides real experimental evidence with concrete numbers and discriminating mutation tests for several claims, but most experiments run on very small instances (n=3–10) that constitute reduced setups. Claim 5 is the strongest verification; claims 1 and 3 demonstrate the claimed properties but only at toy scale; claims 2, 4, and 6 remain inconclusive due to MC noise, finite-size asymptotic mismatch, or unconfirmed qualitative properties.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5115,
+  "completion_tokens": 3927
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"Real runs on n=4,5 instances show gaps well within ε (worst gap 0.00338 vs ε=0.5, gap 2e-05 vs ε=0.2) and a discriminating mutation test (coarsened grid blows gaps to 0.116), but n=4–5 is a clearly reduced scale for a PTAS claim that applies to arbitrary n.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"n=3,4 instances compared against a 120k-sample MC reference have gaps (~4.5e-3) comparable to the MC standard error (~9.7e-4), and the mutation test (halving the budget) did not break the ε tolerance (gap 0.175 < ε=0.2), so the evidence cannot distinguish the PTAS from a weaker result.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"12 instances at n=6,8,10 with m=12,16,20 show the achieved ratio (min 0.506) exceeding the 1/ln(n) bound (0.481 at n=8), with a discriminating mutation test (degenerate allocation scores 0), but n≤10 is too small to test the asymptotic O(log n) approximation behavior meaningfully.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"At finite n=8,12,16 the asymptotic signature is not uniformly reproduced: k·p wanders outside a constant band for n=8 (in_constant_band=false) and monotonicity fails for n=12 (non_increasing_in_p=false), so the Θ(1/p) concentration claim is neither confirmed nor refuted at these sizes.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Across ε from 0.5 to 0.02 (independent and correlated ρ=±0.9,0), the ratio C=E_max0/(ε√ln(1/ε)) stays bounded in [1.26, 1.77], and the mutation test (removing the per-coordinate cap Σ_ii≤ε²) causes C to diverge (up to 18.59 at ε=0.01), directly confirming both the bound and its mechanism.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"n=8 ER-graph MC simulations (16k samples) reproduce qualitative concentration (top-2 mass profiles show heavy concentration) but fail to confirm strict concavity (all_concave=false, second differences include positive convex segments) and concentration is not uniformly increasing across correlation settings.\"}\n  ],\n  \"overall\": \"The logbook provides real experimental evidence with concrete numbers and discriminating mutation tests for several claims, but most experiments run on very small instances (n=3–10) that constitute reduced setups. Claim 5 is the strongest verification; claims 1 and 3 demonstrate the claimed properties but only at toy scale; claims 2, 4, and 6 remain inconclusive due to MC noise, finite-size asymptotic mismatch, or unconfirmed qualitative properties.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 59.5
+}

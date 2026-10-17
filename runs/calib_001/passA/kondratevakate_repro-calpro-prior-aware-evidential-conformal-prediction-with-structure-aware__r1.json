@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-calpro-prior-aware-evidential-conformal-prediction-with-structure-aware",
+ "sha": "16eebadc1382f79398f5d9c2b1bba474e05149cb",
+ "run": 1,
+ "judged_at": "2026-10-17T17:45:52+00:00",
+ "logbook_chars": 16482,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook never implements or tests CalPro's architecture (geometric evidential head, differentiable conformal layer, domain priors); the correction notice explicitly states 'None of this is implemented in the scripts.'"
+  },
+  {
+   "claim": 2,
+   "verdict": "falsified",
+   "evidence": "A text audit of the paper's own Section 4 (paper.txt extracted via PyMuPDF, authenticity confirmed by matching Table 3 numbers) found that Section 4.3 states the Theorem 4.2 bound is 'agnostic to the presence of priors,' directly contradicting 'structure-aware'; additionally, audit_thm42.py computed L_s*epsilon = 39.47, making the coverage lower bound deeply negative at all tested tau levels."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were run on held-out X-ray protein structures; the logbook's ECE experiments use a synthetic 1-D heteroscedastic regression, not protein data or CalPro's actual method."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly withdraws its earlier verdict and states 'NOT TESTED' — the scripts used a self-constructed synthetic covariate-shift regression with no proteins, no pLDDT baseline, and no CalPro implementation."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook states this claim is 'OUT OF SCOPE (not attempted)' — no docking pipeline, protein structures, or filtering experiments were run."
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "claim2_ece.py produced real ECE numbers on a synthetic 1-D heteroscedastic regression (81.5% reduction in-distribution, 26.4% under shift), addressing the calibration-error-reduction direction but on a proxy task without CalPro's actual method or protein data; the 0.83 Spearman correlation and near-nominal coverage across modalities were not tested."
+  }
+ ],
+ "points": 3,
+ "overall": "The logbook's substantive contribution is a text audit of the paper's Section 4 that finds the paper's own text contradicts Theorem 4.2's 'structure-aware' framing, supplemented by a toy numeric check showing the bound goes vacuous. All empirical claims involving protein structures, modality shift, and docking are either not tested or tested only on synthetic proxies far removed from the paper's actual experimental setup.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5212,
+  "completion_tokens": 5832
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook never implements or tests CalPro's architecture (geometric evidential head, differentiable conformal layer, domain priors); the correction notice explicitly states 'None of this is implemented in the scripts.'\"},\n    {\"claim\": 2, \"verdict\": \"falsified\", \"evidence\": \"A text audit of the paper's own Section 4 (paper.txt extracted via PyMuPDF, authenticity confirmed by matching Table 3 numbers) found that Section 4.3 states the Theorem 4.2 bound is 'agnostic to the presence of priors,' directly contradicting 'structure-aware'; additionally, audit_thm42.py computed L_s*epsilon = 39.47, making the coverage lower bound deeply negative at all tested tau levels.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were run on held-out X-ray protein structures; the logbook's ECE experiments use a synthetic 1-D heteroscedastic regression, not protein data or CalPro's actual method.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly withdraws its earlier verdict and states 'NOT TESTED' — the scripts used a self-constructed synthetic covariate-shift regression with no proteins, no pLDDT baseline, and no CalPro implementation.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook states this claim is 'OUT OF SCOPE (not attempted)' — no docking pipeline, protein structures, or filtering experiments were run.\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"claim2_ece.py produced real ECE numbers on a synthetic 1-D heteroscedastic regression (81.5% reduction in-distribution, 26.4% under shift), addressing the calibration-error-reduction direction but on a proxy task without CalPro's actual method or protein data; the 0.83 Spearman correlation and near-nominal coverage across modalities were not tested.\"}\n  ],\n  \"overall\": \"The logbook's substantive contribution is a text audit of the paper's Section 4 that finds the paper's own text contradicts Theorem 4.2's 'structure-aware' framing, supplemented by a toy numeric check showing the bound goes vacuous. All empirical claims involving protein structures, modality shift, and docking are either not tested or tested only on synthetic proxies far removed from the paper's actual experimental setup.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 63.6
+}

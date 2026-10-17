@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-functional-decomposition-and-shapley-interactions-for-interpreting-survival-mode",
+ "sha": "752bc8e8bbb7e631a529fe6ceec481da3ca70e16",
+ "run": 1,
+ "judged_at": "2026-10-17T17:39:44+00:00",
+ "logbook_chars": 24847,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "The three-scale functional ANOVA audit on a 125-point grid shows reconstruction error of 8.88e-16 and directly demonstrates additivity failure: additive log-hazard has zero higher-order effects, while hazard and survival scales develop non-zero pair and three-way effects. The TD/TI separation is confirmed exactly on 3/3 Theorem-3.2-covered scenarios across 12 seeds with 15-order-of-magnitude margins between time-dependent and time-independent spreads."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Scenarios A (additive TI), B (additive with one TD main effect), and C (linear with interaction) all show exact recovery of the ground-truth TD/TI partition, holding on 12/12 independent seeds with TI effects at floating-point zero (~1e-15) versus TD spread of 7.48e-01."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "On the paper's own Appendix A.2 example (G = x1² + x2 + x3 + x1·x2²·t), downward propagation to {x1} is confirmed (spread 2.818, 10/10 seeds) while upward propagation to {x1,x2,x3} is blocked (spread 1.28e-15, 10/10 seeds), and the paper's closed-form f₁(t|x) = x1² + t·x1 − 1 matches the numerical estimate within MC error."
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Local accuracy is verified at machine precision (~1e-16) for ground-truth functions on all ten scenarios, but the specific <0.015 threshold applies to fitted CoxPH/GBSA models, which were explicitly not attempted due to missing scikit-survival. The interaction extension is demonstrated on only 4 scenarios with a 1.96x separation ratio rather than the full ten-scenario panel with fitted models."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No page or experiment in the logbook addresses the TCGA-BRCA dataset; the executive summary states 'no external data' and the scope table lists real survival datasets under 'Full replication' but not under 'This reproduction.'"
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "Four synthetic coalition games with 10–16 features compare only regression vs. permutation estimators (not the paper's full method panel) and do not use the paper's actual datasets; regression RMSE is lower in all 8 budget cells, but this is a proxy mechanism check, not a reproduction of Figure 7."
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides strong, seed-robust verification of the paper's theoretical claims (Claims 1–3) through synthetic experiments that directly test the mathematical properties of SurvFD and Theorems 3.2–3.3. The empirical claims receive only partial or proxy treatment: Claim 4's fitted-model local accuracy threshold is untested, Claim 5's TCGA-BRCA application is absent entirely, and Claim 6 uses synthetic stand-ins rather than the paper's datasets.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 7662,
+  "completion_tokens": 5440
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"The three-scale functional ANOVA audit on a 125-point grid shows reconstruction error of 8.88e-16 and directly demonstrates additivity failure: additive log-hazard has zero higher-order effects, while hazard and survival scales develop non-zero pair and three-way effects. The TD/TI separation is confirmed exactly on 3/3 Theorem-3.2-covered scenarios across 12 seeds with 15-order-of-magnitude margins between time-dependent and time-independent spreads.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Scenarios A (additive TI), B (additive with one TD main effect), and C (linear with interaction) all show exact recovery of the ground-truth TD/TI partition, holding on 12/12 independent seeds with TI effects at floating-point zero (~1e-15) versus TD spread of 7.48e-01.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"On the paper's own Appendix A.2 example (G = x1² + x2 + x3 + x1·x2²·t), downward propagation to {x1} is confirmed (spread 2.818, 10/10 seeds) while upward propagation to {x1,x2,x3} is blocked (spread 1.28e-15, 10/10 seeds), and the paper's closed-form f₁(t|x) = x1² + t·x1 − 1 matches the numerical estimate within MC error.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Local accuracy is verified at machine precision (~1e-16) for ground-truth functions on all ten scenarios, but the specific <0.015 threshold applies to fitted CoxPH/GBSA models, which were explicitly not attempted due to missing scikit-survival. The interaction extension is demonstrated on only 4 scenarios with a 1.96x separation ratio rather than the full ten-scenario panel with fitted models.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No page or experiment in the logbook addresses the TCGA-BRCA dataset; the executive summary states 'no external data' and the scope table lists real survival datasets under 'Full replication' but not under 'This reproduction.'\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"Four synthetic coalition games with 10–16 features compare only regression vs. permutation estimators (not the paper's full method panel) and do not use the paper's actual datasets; regression RMSE is lower in all 8 budget cells, but this is a proxy mechanism check, not a reproduction of Figure 7.\"}\n  ],\n  \"overall\": \"The logbook provides strong, seed-robust verification of the paper's theoretical claims (Claims 1–3) through synthetic experiments that directly test the mathematical properties of SurvFD and Theorems 3.2–3.3. The empirical claims receive only partial or proxy treatment: Claim 4's fitted-model local accuracy threshold is untested, Claim 5's TCGA-BRCA application is absent entirely, and Claim 6 uses synthetic stand-ins rather than the paper's datasets.\",\n  \"quality\": \"high\"\n}",
+ "elapsed_s": 60.9
+}

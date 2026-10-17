@@ -1,0 +1,32 @@
+{
+ "space_id": "kondratevakate/repro-when-can-we-trust-survival-model-evaluation",
+ "sha": "7ea7f86fbf778c87573f9d9b323d4a8df97b7242",
+ "run": 2,
+ "judged_at": "2026-10-17T17:59:23+00:00",
+ "logbook_chars": 10041,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "The ST−OR bias table from n=4000, 8-rep synthetic runs shows IBS bias varying sharply by mechanism at 80% censoring (administrative −0.0795, independent −0.0323, covariate-dependent 0.0000) and increasing monotonically with censoring rate, while C-index bias grows with rate (+0.0022→+0.0270 for admin) — directly demonstrating systematic, rate- and mechanism-dependent distortions."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Ranking-agreement tables from 24-rep runs show near-tied model rankings matching the oracle only 29–42% of the time at 80% censoring (down from 100% at 0%), while widely-separated models retain 100% agreement — confirming that moderate metric bias (~0.03 C-index shift) destabilizes model comparison specifically in the near-tied regime as censoring increases."
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook executes a faithful ST-vs-OR experimental design with concrete numerical results that directly support both claims: mechanism-dependent metric distortions (especially in IBS) and ranking instability under heavy censoring for near-tied models. The purely synthetic DGP is a methodologically appropriate choice for isolating censoring effects with known ground truth, though it is a scope reduction from the paper's semi-synthetic real-dataset experiments.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3429,
+  "completion_tokens": 3988
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"The ST−OR bias table from n=4000, 8-rep synthetic runs shows IBS bias varying sharply by mechanism at 80% censoring (administrative −0.0795, independent −0.0323, covariate-dependent 0.0000) and increasing monotonically with censoring rate, while C-index bias grows with rate (+0.0022→+0.0270 for admin) — directly demonstrating systematic, rate- and mechanism-dependent distortions.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Ranking-agreement tables from 24-rep runs show near-tied model rankings matching the oracle only 29–42% of the time at 80% censoring (down from 100% at 0%), while widely-separated models retain 100% agreement — confirming that moderate metric bias (~0.03 C-index shift) destabilizes model comparison specifically in the near-tied regime as censoring increases.\"}\n  ],\n  \"overall\": \"The logbook executes a faithful ST-vs-OR experimental design with concrete numerical results that directly support both claims: mechanism-dependent metric distortions (especially in IBS) and ranking instability under heavy censoring for near-tied models. The purely synthetic DGP is a methodologically appropriate choice for isolating censoring effects with known ground truth, though it is a scope reduction from the paper's semi-synthetic real-dataset experiments.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 46.9
+}

@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-safety-generalization-diabetes-testbed",
+ "sha": "e0e6c83e3ff32d195b9569f7834a1fa4d19a8b5b",
+ "run": 1,
+ "judged_at": "2026-10-17T17:49:26+00:00",
+ "logbook_chars": 16168,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "Three environment IDs (t1d-v0, t2d-v0, t2d_no_pump-v0) were executed with 14-dim observations and MultiDiscrete([5,5]) actions, with deterministic 288-step trajectories confirmed by SHA-256 hashes, but the eight-algorithm benchmark was never rerun."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "A single CPO/T1D/adolescent/seed-0 checkpoint was rolled out over 7 days: ID patient TIR 100% / risk 1.12 vs OOD mean TIR 89.0% / risk 3.10, showing a gap, but only one algorithm, one age cohort, and one seed were tested—not the full stratification by children, adolescents, and adults."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "BA-NODE, ITransformer, and NODE were not trained; no MAE/FDE/RMSE values were produced. Source-level inspection of the released shield code found path mismatches and cohort-index bugs but no execution of the mechanism."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No shielding experiments were executed; the released predictive shield was found not runnable as documented (training writes ba_node_b... while shield loads fe_b5..., cohort indices all resolve to 0), so no TIR improvement numbers were generated."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No experiments comparing Risk Index under shielding vs. a Low Glucose Suspend baseline were run; the logbook only notes source-level divergences in the released shield code."
+  }
+ ],
+ "points": 1,
+ "overall": "The logbook concretely verifies the diabetes simulator infrastructure (three environments, deterministic trajectories) and demonstrates a safety generalization gap in a single scoped CPO/adolescent run, but does not execute BA-NODE training, shielding experiments, or any clinical-gain comparisons. The conditional safety theorem was checked exhaustively but is not among the five claims under review.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 6600,
+  "completion_tokens": 3312
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"Three environment IDs (t1d-v0, t2d-v0, t2d_no_pump-v0) were executed with 14-dim observations and MultiDiscrete([5,5]) actions, with deterministic 288-step trajectories confirmed by SHA-256 hashes, but the eight-algorithm benchmark was never rerun.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"A single CPO/T1D/adolescent/seed-0 checkpoint was rolled out over 7 days: ID patient TIR 100% / risk 1.12 vs OOD mean TIR 89.0% / risk 3.10, showing a gap, but only one algorithm, one age cohort, and one seed were tested—not the full stratification by children, adolescents, and adults.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"BA-NODE, ITransformer, and NODE were not trained; no MAE/FDE/RMSE values were produced. Source-level inspection of the released shield code found path mismatches and cohort-index bugs but no execution of the mechanism.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No shielding experiments were executed; the released predictive shield was found not runnable as documented (training writes ba_node_b... while shield loads fe_b5..., cohort indices all resolve to 0), so no TIR improvement numbers were generated.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments comparing Risk Index under shielding vs. a Low Glucose Suspend baseline were run; the logbook only notes source-level divergences in the released shield code.\"}\n  ],\n  \"overall\": \"The logbook concretely verifies the diabetes simulator infrastructure (three environments, deterministic trajectories) and demonstrates a safety generalization gap in a single scoped CPO/adolescent run, but does not execute BA-NODE training, shielding experiments, or any clinical-gain comparisons. The conditional safety theorem was checked exhaustively but is not among the five claims under review.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 37.9
+}

@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-lvcg-release-audit",
+ "sha": "d5309345120c1f76ac96b80dd6ee78d232049dc3",
+ "run": 1,
+ "judged_at": "2026-10-17T17:48:49+00:00",
+ "logbook_chars": 20100,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "A synthetic geometry check ran and produced max latent abs error 6.90e-06 and max reprojection error 3.74e-06, confirming the linear projection and SVD-based inversion math, but only on synthetic trajectories; the actual package cannot import due to missing lvcg.data modules (ModuleNotFoundError)."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The paper describes three loss terms (confirmed), but the released code adds a unit-weight base-beat loss absent from Equation 7, required a post-paper GRU shape fix, and training cannot import; no training was executed."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "Released splits are disjoint and Table-1 averages are arithmetically consistent (calculated 67.30 vs printed 67.3), but no checkpoints, results files, or actual linear-probing experiments were run; PTB-XL Sub-Class label ordering also differs between train and val/test."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The repository contains zero checkpoints, reconstruction predictions, per-lead outputs, or metric files; Table 2 cannot be regenerated and no reconstruction experiment was executed."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No ablation configs, checkpoints, seeds, or outputs are released; the ablation numbers in Table 4 are display-only with no executed experiments behind them."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The paper evaluates MIMIC-IV-ECG-Ext-ICD but the repository supplies an AI-READI provider instead, with no paper-dataset loader, folds, labels, checkpoint, or outputs; no CKD detection or temporal-module ablation experiment was run."
+  }
+ ],
+ "points": 1,
+ "overall": "The logbook establishes that the VCG geometric projection is numerically coherent on synthetic data and that the released data splits are disjoint with arithmetically consistent table averages. However, the package cannot import due to missing modules, no checkpoints or result files are released, and none of the paper's quantitative empirical claims were reproduced or refuted through executed experiments.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 6696,
+  "completion_tokens": 2521
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"A synthetic geometry check ran and produced max latent abs error 6.90e-06 and max reprojection error 3.74e-06, confirming the linear projection and SVD-based inversion math, but only on synthetic trajectories; the actual package cannot import due to missing lvcg.data modules (ModuleNotFoundError).\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The paper describes three loss terms (confirmed), but the released code adds a unit-weight base-beat loss absent from Equation 7, required a post-paper GRU shape fix, and training cannot import; no training was executed.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"Released splits are disjoint and Table-1 averages are arithmetically consistent (calculated 67.30 vs printed 67.3), but no checkpoints, results files, or actual linear-probing experiments were run; PTB-XL Sub-Class label ordering also differs between train and val/test.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The repository contains zero checkpoints, reconstruction predictions, per-lead outputs, or metric files; Table 2 cannot be regenerated and no reconstruction experiment was executed.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation configs, checkpoints, seeds, or outputs are released; the ablation numbers in Table 4 are display-only with no executed experiments behind them.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The paper evaluates MIMIC-IV-ECG-Ext-ICD but the repository supplies an AI-READI provider instead, with no paper-dataset loader, folds, labels, checkpoint, or outputs; no CKD detection or temporal-module ablation experiment was run.\"}\n  ],\n  \"overall\": \"The logbook establishes that the VCG geometric projection is numerically coherent on synthetic data and that the released data splits are disjoint with arithmetically consistent table averages. However, the package cannot import due to missing modules, no checkpoints or result files are released, and none of the paper's quantitative empirical claims were reproduced or refuted through executed experiments.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 29.3
+}

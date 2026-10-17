@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-xmae-release-audit",
+ "sha": "1df2eeb92eacb3a0a660e74e8c15191f13b359b2",
+ "run": 1,
+ "judged_at": "2026-10-17T17:50:05+00:00",
+ "logbook_chars": 9883,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "Code inspection confirmed the asymmetric cross-attention core (ECG queries, PPG KV, ECG reconstruction) is present, but found curriculum masking disabled (use_cl=false, no ladder promotion update) and a declared reverse bridge never called. No downstream task evaluation was run to test the '15 of 19 tasks' performance claim."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook states the protected MIMIC-III waveform cohort and a frozen post-preprocessing cohort manifest are absent; no independent verification of the 9.4k hours, 3.4M segments, or 2.4k subjects was performed."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The logbook reports that real pretrained weights, downstream datasets, splits, baseline predictions, and repeated-run outputs are all unreleased; no classification evaluation was rerun."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No regression task evaluation was executed; the logbook notes downstream datasets, splits, and baseline outputs are absent, so the MAE comparisons were not independently reproduced."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No timing analysis was run; the logbook states real pretrained representations, paired held-out signals, and peak/onset labels are absent. Separately, the released checkpoint produces 512/512 NaN embeddings in eval mode due to 873 negative BN running-variance values, but no timing experiment was attempted."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No ablation experiments were executed. Code inspection found curriculum masking disabled in the trainer (use_cl=false, no ladder promotion update), which is relevant to the curriculum ablation claim, but no ablation runs were performed to confirm or refute the reported AUROC deltas."
+  }
+ ],
+ "points": 0,
+ "overall": "The logbook performed a code and checkpoint audit of the released xMAE repository, finding the asymmetric reconstruction core present but curriculum masking unimplemented and the checkpoint broken in evaluation mode (NaN embeddings). No downstream evaluations, pretraining cohort verification, timing analyses, or ablation experiments were run, leaving all six empirical performance claims unaddressed.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3849,
+  "completion_tokens": 2634
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"Code inspection confirmed the asymmetric cross-attention core (ECG queries, PPG KV, ECG reconstruction) is present, but found curriculum masking disabled (use_cl=false, no ladder promotion update) and a declared reverse bridge never called. No downstream task evaluation was run to test the '15 of 19 tasks' performance claim.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook states the protected MIMIC-III waveform cohort and a frozen post-preprocessing cohort manifest are absent; no independent verification of the 9.4k hours, 3.4M segments, or 2.4k subjects was performed.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook reports that real pretrained weights, downstream datasets, splits, baseline predictions, and repeated-run outputs are all unreleased; no classification evaluation was rerun.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No regression task evaluation was executed; the logbook notes downstream datasets, splits, and baseline outputs are absent, so the MAE comparisons were not independently reproduced.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No timing analysis was run; the logbook states real pretrained representations, paired held-out signals, and peak/onset labels are absent. Separately, the released checkpoint produces 512/512 NaN embeddings in eval mode due to 873 negative BN running-variance values, but no timing experiment was attempted.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation experiments were executed. Code inspection found curriculum masking disabled in the trainer (use_cl=false, no ladder promotion update), which is relevant to the curriculum ablation claim, but no ablation runs were performed to confirm or refute the reported AUROC deltas.\"}\n  ],\n  \"overall\": \"The logbook performed a code and checkpoint audit of the released xMAE repository, finding the asymmetric reconstruction core present but curriculum masking unimplemented and the checkpoint broken in evaluation mode (NaN embeddings). No downstream evaluations, pretraining cohort verification, timing analyses, or ablation experiments were run, leaving all six empirical performance claims unaddressed.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 30.2
+}

@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-ophiuchus-release-audit",
+ "sha": "ebbaa8166e58db8e32acada149715ed3c6d337a1",
+ "run": 1,
+ "judged_at": "2026-10-17T17:49:09+00:00",
+ "logbook_chars": 6896,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "Cold-start SFT, reflection SFT, and ATRL scripts exist with decomposed rewards, but the preprocessor raises NameError, ATRL uses placeholder data/model paths, KL is enabled contrary to the paper, and only 2 SFT and 2 RL records are released with the 64k corpus absent—no runnable training path is demonstrated."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook states the trained Ophiuchus checkpoint, complete evaluation commands, benchmark inputs/splits, and baseline predictions are all absent; no benchmark was rerun."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No checkpoint or evaluation was run; the in-domain comparison against GPT-5 was not reproduced or tested in any form."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No checkpoint, benchmark data, or baseline predictions are available; the comparisons against VILA-M3-40B and MMedAgent-7B were not rerun."
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "Focused tests confirm three tool handlers, multi-image state, format/answer/tool rewards, and a local zoom path that yields reward 4.0 and final_won=true, but released SFT trajectories use an unparseable tool-call form, duplicate calls do not early-stop, and list-valued mask_path raises TypeError—partial functionality on a 2-trajectory subset with bugs."
+  }
+ ],
+ "points": 1,
+ "overall": "The logbook establishes that the released code contains a partial tool/reward core and all three training-stage scripts, but these are non-runnable due to placeholder paths, a broken preprocessor, parser mismatches, and missing data. No benchmark, checkpoint, or 64k corpus was available to test any performance or training claim, leaving most claims inconclusive.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 2993,
+  "completion_tokens": 1872
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"Cold-start SFT, reflection SFT, and ATRL scripts exist with decomposed rewards, but the preprocessor raises NameError, ATRL uses placeholder data/model paths, KL is enabled contrary to the paper, and only 2 SFT and 2 RL records are released with the 64k corpus absent—no runnable training path is demonstrated.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook states the trained Ophiuchus checkpoint, complete evaluation commands, benchmark inputs/splits, and baseline predictions are all absent; no benchmark was rerun.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No checkpoint or evaluation was run; the in-domain comparison against GPT-5 was not reproduced or tested in any form.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No checkpoint, benchmark data, or baseline predictions are available; the comparisons against VILA-M3-40B and MMedAgent-7B were not rerun.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"Focused tests confirm three tool handlers, multi-image state, format/answer/tool rewards, and a local zoom path that yields reward 4.0 and final_won=true, but released SFT trajectories use an unparseable tool-call form, duplicate calls do not early-stop, and list-valued mask_path raises TypeError—partial functionality on a 2-trajectory subset with bugs.\"}\n  ],\n  \"overall\": \"The logbook establishes that the released code contains a partial tool/reward core and all three training-stage scripts, but these are non-runnable due to placeholder paths, a broken preprocessor, parser mismatches, and missing data. No benchmark, checkpoint, or 64k corpus was available to test any performance or training claim, leaving most claims inconclusive.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 26.5
+}

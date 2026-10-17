@@ -1,0 +1,42 @@
+{
+ "space_id": "kondratevakate/repro-beyond-text-to-sql-can-llms-really-debug-enterprise-etl-sql",
+ "sha": "0c399a52579506c47144ce9b7fac7f4d82c7be54",
+ "run": 1,
+ "judged_at": "2026-10-17T17:49:35+00:00",
+ "logbook_chars": 6552,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only parsed the paper's own Table 1 and confirmed the numbers (469/516 tasks, >140 lines, width >11, depth >8.7) match the claim; no independent re-measurement of the benchmark data was performed, and the logbook itself labels independent re-measurement as inconclusive."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The logbook parsed the paper's Table 2 and verified Claude-4-Sonnet's GM scores (36.46/32.17) and arg-max over 24 rows, but no models were independently re-run; the logbook itself states 'inconclusive (independent re-measurement).'"
+  },
+  {
+   "claim": 3,
+   "verdict": "falsified",
+   "evidence": "The logbook confirmed the three per-model numbers from Table 2, then performed a concrete count of all 24 model rows at or below 20% GM: Squirrel-Syntax shows only 10/24 (41.67%) at or below 20%, meaning most models (58.33%) actually exceed 20%, contradicting the claim's 'most evaluated LLMs failing to exceed 20%' statement for the Syntax split."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "The logbook only parsed the paper's Table 1 and confirmed token counts (496.90/425.93) and function counts (21.62/17.34) match; no independent re-measurement of the benchmark scripts was performed, and the logbook itself labels independent re-measurement as inconclusive."
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook is essentially a paper-internal verification exercise: it parses the paper's own tables and checks claims against them, without running any independent experiments or re-measuring benchmark data. The one substantive finding is a concrete arithmetic check on the paper's Table 2 showing that the 'most LLMs fail to exceed 20%' statement is false for Squirrel-Syntax, falsifying part of Claim 3.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 2890,
+  "completion_tokens": 4127
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only parsed the paper's own Table 1 and confirmed the numbers (469/516 tasks, >140 lines, width >11, depth >8.7) match the claim; no independent re-measurement of the benchmark data was performed, and the logbook itself labels independent re-measurement as inconclusive.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook parsed the paper's Table 2 and verified Claude-4-Sonnet's GM scores (36.46/32.17) and arg-max over 24 rows, but no models were independently re-run; the logbook itself states 'inconclusive (independent re-measurement).'\"},\n    {\"claim\": 3, \"verdict\": \"falsified\", \"evidence\": \"The logbook confirmed the three per-model numbers from Table 2, then performed a concrete count of all 24 model rows at or below 20% GM: Squirrel-Syntax shows only 10/24 (41.67%) at or below 20%, meaning most models (58.33%) actually exceed 20%, contradicting the claim's 'most evaluated LLMs failing to exceed 20%' statement for the Syntax split.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook only parsed the paper's Table 1 and confirmed token counts (496.90/425.93) and function counts (21.62/17.34) match; no independent re-measurement of the benchmark scripts was performed, and the logbook itself labels independent re-measurement as inconclusive.\"}\n  ],\n  \"overall\": \"The logbook is essentially a paper-internal verification exercise: it parses the paper's own tables and checks claims against them, without running any independent experiments or re-measuring benchmark data. The one substantive finding is a concrete arithmetic check on the paper's Table 2 showing that the 'most LLMs fail to exceed 20%' statement is false for Squirrel-Syntax, falsifying part of Claim 3.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 44.0
+}

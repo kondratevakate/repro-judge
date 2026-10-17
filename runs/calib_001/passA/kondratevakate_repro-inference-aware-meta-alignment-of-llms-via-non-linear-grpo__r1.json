@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-inference-aware-meta-alignment-of-llms-via-non-linear-grpo",
+ "sha": "e7ab06265579359edb5187a36a79636b282fd8f6",
+ "run": 1,
+ "judged_at": "2026-10-17T17:35:20+00:00",
+ "logbook_chars": 10182,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "On simplex policies, the logbook shows the IAMA objective is genuinely non-linear (chord gap [1.037e-4, 8.139e-2] vs 2.22e-16 for linear), that optimizing it outperforms the naive transform-unaware base in 60/60 conflicting-reward instances, and that removing BoN (N=1) collapses the non-linearity and eliminates the advantage—confirming the formulation's mechanism."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Functional derivative matches finite differences (max abs error 8.285e-10), the standard GRPO update is left untouched with only the reward vector replaced, the algorithm reaches the true optimum (max suboptimality 5.55e-16), and empirical π̂ convergence rate matches theory (log-log slope −1.024 vs −1)."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Across 90 instances and 2250 bound evaluations with numerically estimated L (inflated ×1.25), zero violations above 1e-12; the 44 ratio>1 rows are double-precision noise (LHS ≤ 3.33e-16). Mutations with wrong step size (21/36 violations) or plain reward (36/36 violations) confirm the guarantee is specific to the stated update."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Across 60 configs and 200 runs each, with ε and δ measured from actual iterates, the full bound including 2(ε+δ)/β is never violated (max ratio 0.2611); dropping the additive term causes violations in 36/36 noisy configs (max ratio 1.65e10), and the plateau grows monotonically with noise in 12/12 cells."
+  },
+  {
+   "claim": 5,
+   "verdict": "verified",
+   "evidence": "Sympy confirms the density integrates to 1; at the claimed π* the functional-derivative span is machine precision (≤5.84e-16) for N=2–16; naive optimization puts mass 1.0 at y≈0.5 (δ_0.5 collapse) while IAMA N=8 puts 0.922 mass outside [0.25,0.75]; mutations confirm α=1/(N−1) is the correct exponent (wrong α=1/N gives span 14–15 orders of magnitude larger)."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were run: the 7B RL training requires GPU-cluster scale, the reward models and judges are unreleased, no public code exists, and the claim's evidence is a figure with no numeric table to re-assert."
+  }
+ ],
+ "points": 10,
+ "overall": "The logbook provides thorough numerical verification of the paper's mathematical claims (formulation, algorithm, convergence theorems, and analytical proposition) on simplex-policy setups with mutation tests and cross-checks, but does not address the sole empirical LLM claim (HH-RLHF/Alpaca-7B) due to GPU, code, and model-availability blockers.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 4497,
+  "completion_tokens": 3014
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"On simplex policies, the logbook shows the IAMA objective is genuinely non-linear (chord gap [1.037e-4, 8.139e-2] vs 2.22e-16 for linear), that optimizing it outperforms the naive transform-unaware base in 60/60 conflicting-reward instances, and that removing BoN (N=1) collapses the non-linearity and eliminates the advantage—confirming the formulation's mechanism.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Functional derivative matches finite differences (max abs error 8.285e-10), the standard GRPO update is left untouched with only the reward vector replaced, the algorithm reaches the true optimum (max suboptimality 5.55e-16), and empirical π̂ convergence rate matches theory (log-log slope −1.024 vs −1).\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Across 90 instances and 2250 bound evaluations with numerically estimated L (inflated ×1.25), zero violations above 1e-12; the 44 ratio>1 rows are double-precision noise (LHS ≤ 3.33e-16). Mutations with wrong step size (21/36 violations) or plain reward (36/36 violations) confirm the guarantee is specific to the stated update.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Across 60 configs and 200 runs each, with ε and δ measured from actual iterates, the full bound including 2(ε+δ)/β is never violated (max ratio 0.2611); dropping the additive term causes violations in 36/36 noisy configs (max ratio 1.65e10), and the plateau grows monotonically with noise in 12/12 cells.\"},\n    {\"claim\": 5, \"verdict\": \"verified\", \"evidence\": \"Sympy confirms the density integrates to 1; at the claimed π* the functional-derivative span is machine precision (≤5.84e-16) for N=2–16; naive optimization puts mass 1.0 at y≈0.5 (δ_0.5 collapse) while IAMA N=8 puts 0.922 mass outside [0.25,0.75]; mutations confirm α=1/(N−1) is the correct exponent (wrong α=1/N gives span 14–15 orders of magnitude larger).\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were run: the 7B RL training requires GPU-cluster scale, the reward models and judges are unreleased, no public code exists, and the claim's evidence is a figure with no numeric table to re-assert.\"}\n  ],\n  \"overall\": \"The logbook provides thorough numerical verification of the paper's mathematical claims (formulation, algorithm, convergence theorems, and analytical proposition) on simplex-policy setups with mutation tests and cross-checks, but does not address the sole empirical LLM claim (HH-RLHF/Alpaca-7B) due to GPU, code, and model-availability blockers.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 36.9
+}

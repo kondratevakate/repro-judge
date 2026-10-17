@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-fixed-budget-no-harder-than-fixed-confidence-bai",
+ "sha": "e3f37330275cb9b32851e535d9029da334bdd77d",
+ "run": 1,
+ "judged_at": "2026-10-17T17:38:43+00:00",
+ "logbook_chars": 13105,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Exact computation over 432 configurations shows 0 violations of the Theorem 3.2 bound when B≥2·B_min, with error decaying from 7.76e-01 to 1.60e-28 over a 128× budget range (linear fit R²=0.983); Monte Carlo cross-check (5 seeds × 200k runs) matches exact error within 2.9e-04; mutation tests confirm the doubly-exponential schedule is load-bearing."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Deterministic integer bisection over 420 grid points (A up to 10⁶, δ down to 10⁻¹⁰) shows max B_req/F = 24.41 as a single constant, with per-A maximum non-increasing across 6 orders of magnitude in A; mutation test dropping the inner logarithm shows unbounded growth (factor 6.91 blow-up), confirming the log factor is necessary."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Exhaustive enumeration of the full multinomial support over 8 target δ values shows 0 violations of Propositions 4.2 and 4.3; strongness verified by fitting T*_δ = L·f(δ₀) yielding slope 578.07 vs predicted 577.08 (R²=0.99993); simulation matches exact computation to 2.4e-20; mutation test replacing majority voting shows error jumping to 0.9935 with no decay."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "Phase lengths T_i = 2^i·Q depend only on (i,Q) with standing recommendation verified for all t∈[1,5000); Props D.3/D.4 show 0 violations over 80,004 consecutive horizons; Theorem D.5 bound has 0 violations over 21 pairs with error falling by factor 4.29e9; mutation tests show constant phases stall error at 1.0 and sub-geometric growth breaks Prop D.4."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "Heterogeneous-noise (Cor 5.2) is supported by Monte Carlo runs of the real PE-KHN algorithm inside FC2FB showing monotone error decay and K⁷ vs K⁹ separation confirmed via sympy, but linear bandits (Cor 5.4) and unimodal bandits (Cor 5.7) were not attempted due to dependence on external algorithms (Katz-Samuels et al. 2020, UniTT), leaving two of three sub-claims unaddressed."
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides strong computational verification of Claims 1–4 through exact arithmetic, exhaustive enumeration, Monte Carlo cross-checks, and mutation tests across wide parameter grids. Claim 5 is only partially addressed: the heterogeneous-noise application is verified with real algorithm runs, but the linear and unimodal applications are not attempted due to external dependencies.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 5498,
+  "completion_tokens": 2942
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Exact computation over 432 configurations shows 0 violations of the Theorem 3.2 bound when B≥2·B_min, with error decaying from 7.76e-01 to 1.60e-28 over a 128× budget range (linear fit R²=0.983); Monte Carlo cross-check (5 seeds × 200k runs) matches exact error within 2.9e-04; mutation tests confirm the doubly-exponential schedule is load-bearing.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Deterministic integer bisection over 420 grid points (A up to 10⁶, δ down to 10⁻¹⁰) shows max B_req/F = 24.41 as a single constant, with per-A maximum non-increasing across 6 orders of magnitude in A; mutation test dropping the inner logarithm shows unbounded growth (factor 6.91 blow-up), confirming the log factor is necessary.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Exhaustive enumeration of the full multinomial support over 8 target δ values shows 0 violations of Propositions 4.2 and 4.3; strongness verified by fitting T*_δ = L·f(δ₀) yielding slope 578.07 vs predicted 577.08 (R²=0.99993); simulation matches exact computation to 2.4e-20; mutation test replacing majority voting shows error jumping to 0.9935 with no decay.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"Phase lengths T_i = 2^i·Q depend only on (i,Q) with standing recommendation verified for all t∈[1,5000); Props D.3/D.4 show 0 violations over 80,004 consecutive horizons; Theorem D.5 bound has 0 violations over 21 pairs with error falling by factor 4.29e9; mutation tests show constant phases stall error at 1.0 and sub-geometric growth breaks Prop D.4.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"Heterogeneous-noise (Cor 5.2) is supported by Monte Carlo runs of the real PE-KHN algorithm inside FC2FB showing monotone error decay and K⁷ vs K⁹ separation confirmed via sympy, but linear bandits (Cor 5.4) and unimodal bandits (Cor 5.7) were not attempted due to dependence on external algorithms (Katz-Samuels et al. 2020, UniTT), leaving two of three sub-claims unaddressed.\"}\n  ],\n  \"overall\": \"The logbook provides strong computational verification of Claims 1–4 through exact arithmetic, exhaustive enumeration, Monte Carlo cross-checks, and mutation tests across wide parameter grids. Claim 5 is only partially addressed: the heterogeneous-noise application is verified with real algorithm runs, but the linear and unimodal applications are not attempted due to external dependencies.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 32.9
+}

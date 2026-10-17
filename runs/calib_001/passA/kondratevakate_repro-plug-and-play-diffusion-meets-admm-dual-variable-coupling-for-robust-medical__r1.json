@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-plug-and-play-diffusion-meets-admm-dual-variable-coupling-for-robust-medical",
+ "sha": "a60f9adb61f19f3f79656c3b722696ca179497f0",
+ "run": 1,
+ "judged_at": "2026-10-17T17:47:28+00:00",
+ "logbook_chars": 11700,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "A synthetic r=8-dimensional subspace of R^60 with an exact proximal shrink denoiser (not a real diffusion model) and 40 linear measurements shows dual-coupled ADMM achieving lower distance-to-manifold than loose-coupled (u=0) across 12 seeds and multiple softness levels, but this is a clearly reduced proxy for the paper's medical image reconstruction setting."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "The same synthetic subspace experiment demonstrates the fixed-point optimality characterization (dual-coupled residual goes to ~0 at s=0 while loose-coupled has a ~1e-2 floor), but the dispute about 'asymptotic convergence guarantee' framing is a theoretical argument citing the paper's own disclaimer about non-convex PnP convergence, not an experimental result; the setup is also reduced."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The Spectral Homogenization module is not mentioned anywhere in the logbook; no experiment or analysis addresses this claim."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "No CT experiments (LACT-90 or SVCT-20) are present in the logbook; the specific PSNR numbers are not reproduced or tested."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No MRI reconstruction experiments are present in the logbook; the 10x acceleration PSNR comparison is not addressed."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No step-count comparison, ablation table, or hallucination artifact analysis appears in the logbook; this claim is not addressed."
+  }
+ ],
+ "points": 2,
+ "overall": "The logbook only addresses Claims 1 and 2, both on a synthetic numpy/CPU toy setup (8-dimensional linear subspace, exact proximal denoiser, no real diffusion prior or medical data) that demonstrates the dual-variable coupling principle but is far from the paper's actual CT/MRI reconstruction scale. Claims 3–6, covering the SH module, quantitative CT/MRI results, and ablation studies, are entirely unaddressed.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 4227,
+  "completion_tokens": 2804
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"A synthetic r=8-dimensional subspace of R^60 with an exact proximal shrink denoiser (not a real diffusion model) and 40 linear measurements shows dual-coupled ADMM achieving lower distance-to-manifold than loose-coupled (u=0) across 12 seeds and multiple softness levels, but this is a clearly reduced proxy for the paper's medical image reconstruction setting.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"The same synthetic subspace experiment demonstrates the fixed-point optimality characterization (dual-coupled residual goes to ~0 at s=0 while loose-coupled has a ~1e-2 floor), but the dispute about 'asymptotic convergence guarantee' framing is a theoretical argument citing the paper's own disclaimer about non-convex PnP convergence, not an experimental result; the setup is also reduced.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The Spectral Homogenization module is not mentioned anywhere in the logbook; no experiment or analysis addresses this claim.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"No CT experiments (LACT-90 or SVCT-20) are present in the logbook; the specific PSNR numbers are not reproduced or tested.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No MRI reconstruction experiments are present in the logbook; the 10x acceleration PSNR comparison is not addressed.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No step-count comparison, ablation table, or hallucination artifact analysis appears in the logbook; this claim is not addressed.\"}\n  ],\n  \"overall\": \"The logbook only addresses Claims 1 and 2, both on a synthetic numpy/CPU toy setup (8-dimensional linear subspace, exact proximal denoiser, no real diffusion prior or medical data) that demonstrates the dual-variable coupling principle but is far from the paper's actual CT/MRI reconstruction scale. Claims 3–6, covering the SH module, quantitative CT/MRI results, and ablation studies, are entirely unaddressed.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 31.3
+}

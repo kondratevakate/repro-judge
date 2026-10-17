@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-a-graphop-analysis-of-graph-neural-networks-on-sparse-graphs",
+ "sha": "7bf34f397492a91deab77c34c6e2b1d9f02e2c33",
+ "run": 1,
+ "judged_at": "2026-10-17T17:37:37+00:00",
+ "logbook_chars": 40682,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Self-adjointness error |⟨Af,g⟩−⟨f,Ag⟩| is ~1e-17 (dense graphon) and 2.22e-16 (sparse 4-regular graph as graphop), with zero positivity violations in both; mutation tests with antisymmetric and symmetric signed kernels independently break the two properties, confirming the probes are not cross-contaminated."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Sweep over n∈{100,200,400,800,1600} shows fiber sup stays constant at 4 (exponent ≈0, |slope|<0.05) for bounded-degree graphs, while dense ER p=0.3 grows with exponent 0.947 and a single √n hub grows with exponent 0.413, demonstrating the condition discriminates sparse from unbounded connectivity."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "With n=200, r=4, D=3, tanh layer, the theoretical bound C_theory=20.5 is not exceeded by empirical ratios (4.195 for signal-only perturbation, 0.157 for joint perturbation), computed using exact SVD for the operator term; dense ER mutation gives ratio 94.63>20.5, confirming the fiber bound is necessary for finiteness."
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Greedy ε-net over N∈{10,20,40} sampled DIDMs shows saturation for bofops (2/3/3 net points) but not for unbounded fibers (9/19/35), and a dense-graph DIDM sits at W₁ distance 66.85 from all bofop-DIDMs; however, a finite ε-net is explicitly acknowledged as a surrogate for the infinite-dimensional compactness statement."
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "Random-feature MPNN with widths 8→256 on 220 train/120 test bofop graphs shows sup-norm error decreasing from 0.0516 to 0.0068 for a continuous DIDM target, while a discontinuous target plateaus at ~0.5–0.6; this is a finite-width, finite-sample proxy for the asymptotic universal approximation theorem."
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "Training-size sweep m∈{25,50,100,200,400} with 6 replicates shows bofop generalization gap decreasing from 2.78e-3 to 2.23e-4 (log-log slope −0.871), but the non-bofop mutation also vanishes (slope −1.350) and the experiment is a finite-m surrogate for the asymptotic bound; the caveat that compactness is not isolated as strictly necessary for the rate is honestly retained."
+  }
+ ],
+ "points": 9,
+ "overall": "The logbook provides machine-precision numerical verification for the three definitional/finite-level claims (1–3) through exact computations and well-designed mutation tests. Claims 4–6 are addressed with real experiments and honest caveats, but remain finite surrogates for infinite-dimensional topological or asymptotic statements, placing them at the toy level.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 13743,
+  "completion_tokens": 5820
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Self-adjointness error |⟨Af,g⟩−⟨f,Ag⟩| is ~1e-17 (dense graphon) and 2.22e-16 (sparse 4-regular graph as graphop), with zero positivity violations in both; mutation tests with antisymmetric and symmetric signed kernels independently break the two properties, confirming the probes are not cross-contaminated.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Sweep over n∈{100,200,400,800,1600} shows fiber sup stays constant at 4 (exponent ≈0, |slope|<0.05) for bounded-degree graphs, while dense ER p=0.3 grows with exponent 0.947 and a single √n hub grows with exponent 0.413, demonstrating the condition discriminates sparse from unbounded connectivity.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"With n=200, r=4, D=3, tanh layer, the theoretical bound C_theory=20.5 is not exceeded by empirical ratios (4.195 for signal-only perturbation, 0.157 for joint perturbation), computed using exact SVD for the operator term; dense ER mutation gives ratio 94.63>20.5, confirming the fiber bound is necessary for finiteness.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Greedy ε-net over N∈{10,20,40} sampled DIDMs shows saturation for bofops (2/3/3 net points) but not for unbounded fibers (9/19/35), and a dense-graph DIDM sits at W₁ distance 66.85 from all bofop-DIDMs; however, a finite ε-net is explicitly acknowledged as a surrogate for the infinite-dimensional compactness statement.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"Random-feature MPNN with widths 8→256 on 220 train/120 test bofop graphs shows sup-norm error decreasing from 0.0516 to 0.0068 for a continuous DIDM target, while a discontinuous target plateaus at ~0.5–0.6; this is a finite-width, finite-sample proxy for the asymptotic universal approximation theorem.\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"Training-size sweep m∈{25,50,100,200,400} with 6 replicates shows bofop generalization gap decreasing from 2.78e-3 to 2.23e-4 (log-log slope −0.871), but the non-bofop mutation also vanishes (slope −1.350) and the experiment is a finite-m surrogate for the asymptotic bound; the caveat that compactness is not isolated as strictly necessary for the rate is honestly retained.\"}\n  ],\n  \"overall\": \"The logbook provides machine-precision numerical verification for the three definitional/finite-level claims (1–3) through exact computations and well-designed mutation tests. Claims 4–6 are addressed with real experiments and honest caveats, but remain finite surrogates for infinite-dimensional topological or asymptotic statements, placing them at the toy level.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 70.5
+}

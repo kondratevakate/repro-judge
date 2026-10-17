@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-caffnet-hard-constraint-affine-neural-networks",
+ "sha": "9693236a712459acb34dfa9b3903afd74a9348af",
+ "run": 2,
+ "judged_at": "2026-10-17T17:57:21+00:00",
+ "logbook_chars": 9621,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "3200 numerical instances across n_out∈{1..4}, varying m, forced rank-deficient rows, and p values show 0 violations of the bound ||P*−f_t||_p < (3+3√n_out)K, with worst ratio 0.265; mutation tests (violating the w_phi norm premise or replacing argmin with argmax) produce 617–728 violations, confirming the bound depends on the stated premises."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "280 instances confirm the null-space term never breaks constraint satisfaction (max violation 1.8e-13), spans the entire feasible set (T2, max error 1.7e-14), reduces to fixed orthogonal projection when w_phi=0 (T3), and improves loss on 29/38 face-optimal instances (median reduction 0.847); mutation deleting the term eliminates all gains exactly."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "27,900 exhaustive cases and 8,800 random cases (1,275 rank-deficient) show 0 CAffNet feasibility failures with max violation 0.0, while HardNet's single pseudo-inverse correction fails in 59.2%–77.3% of the same cases; cardinality formula |Γ|=Σ C(m,k) for k≤min(m,n_out) verified; mutation truncating Γ causes 24% failures, confirming the bound is necessary."
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Reduced-scale run (8000 vs 50000 epochs, CPU torch) achieves 75.58% MSE reduction (paper: 73.33%) with 0 CAffNet violations and 26% soft-NN violations; results are consistent with the claim but training is 6× fewer epochs on CPU rather than GPU."
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "Reduced-scale run (20 vs 300 initial states, 60 epochs, CPU) shows CAffNet with 0 collisions and 0 violations and soft NN with 3 collisions, but HardNet also has 0 collisions—partially contradicting the claim that HardNet fails to avoid obstacles—though HardNet does have 1.70 mean test violations; the reduced initial-state count (15× fewer) limits definitive conclusions."
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides strong numerical verification of the three theoretical claims through thousands of instances with mutation controls confirming mechanism dependence. The two experimental claims are addressed only at reduced scale (6× fewer epochs, 15× fewer initial states, CPU), yielding qualitatively consistent but not full-scale results, with Claim 5 partially contradicting the paper regarding HardNet's collision count.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 3847,
+  "completion_tokens": 5794
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\n      \"claim\": 1,\n      \"verdict\": \"verified\",\n      \"evidence\": \"3200 numerical instances across n_out∈{1..4}, varying m, forced rank-deficient rows, and p values show 0 violations of the bound ||P*−f_t||_p < (3+3√n_out)K, with worst ratio 0.265; mutation tests (violating the w_phi norm premise or replacing argmin with argmax) produce 617–728 violations, confirming the bound depends on the stated premises.\"\n    },\n    {\n      \"claim\": 2,\n      \"verdict\": \"verified\",\n      \"evidence\": \"280 instances confirm the null-space term never breaks constraint satisfaction (max violation 1.8e-13), spans the entire feasible set (T2, max error 1.7e-14), reduces to fixed orthogonal projection when w_phi=0 (T3), and improves loss on 29/38 face-optimal instances (median reduction 0.847); mutation deleting the term eliminates all gains exactly.\"\n    },\n    {\n      \"claim\": 3,\n      \"verdict\": \"verified\",\n      \"evidence\": \"27,900 exhaustive cases and 8,800 random cases (1,275 rank-deficient) show 0 CAffNet feasibility failures with max violation 0.0, while HardNet's single pseudo-inverse correction fails in 59.2%–77.3% of the same cases; cardinality formula |Γ|=Σ C(m,k) for k≤min(m,n_out) verified; mutation truncating Γ causes 24% failures, confirming the bound is necessary.\"\n    },\n    {\n      \"claim\": 4,\n      \"verdict\": \"toy\",\n      \"evidence\": \"Reduced-scale run (8000 vs 50000 epochs, CPU torch) achieves 75.58% MSE reduction (paper: 73.33%) with 0 CAffNet violations and 26% soft-NN violations; results are consistent with the claim but training is 6× fewer epochs on CPU rather than GPU.\"\n    },\n    {\n      \"claim\": 5,\n      \"verdict\": \"toy\",\n      \"evidence\": \"Reduced-scale run (20 vs 300 initial states, 60 epochs, CPU) shows CAffNet with 0 collisions and 0 violations and soft NN with 3 collisions, but HardNet also has 0 collisions—partially contradicting the claim that HardNet fails to avoid obstacles—though HardNet does have 1.70 mean test violations; the reduced initial-state count (15× fewer) limits definitive conclusions.\"\n    }\n  ],\n  \"overall\": \"The logbook provides strong numerical verification of the three theoretical claims through thousands of instances with mutation controls confirming mechanism dependence. The two experimental claims are addressed only at reduced scale (6× fewer epochs, 15× fewer initial states, CPU), yielding qualitatively consistent but not full-scale results, with Claim 5 partially contradicting the paper regarding HardNet's collision count.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 60.2
+}

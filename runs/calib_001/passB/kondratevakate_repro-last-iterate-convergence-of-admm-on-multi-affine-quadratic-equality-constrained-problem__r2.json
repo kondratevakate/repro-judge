@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-last-iterate-convergence-of-admm-on-multi-affine-quadratic-equality-constrained-problem",
+ "sha": "4571f56275d307db57bceb84c29f14e433b5f677",
+ "run": 2,
+ "judged_at": "2026-10-17T17:58:41+00:00",
+ "logbook_chars": 14806,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "toy",
+   "evidence": "450 runs on small synthetic problems (q∈{0.5,2,5}, a few ρ values) confirm convergence to 1e-16 residuals and blockwise optimality to 5e-10; mutation removing Assumption 2.6 causes infeasibility. But the setup is a clearly reduced synthetic instance, not a full-scale problem."
+  },
+  {
+   "claim": 2,
+   "verdict": "toy",
+   "evidence": "Toy problem with scaled nonlinearity (q=2, 48 initializations × 3 ρ per cell) shows linear contraction factors ~0.06 for small ‖C‖ and degradation to >0.998 at ‖C‖=25–50. Real numbers address the claim but on a small synthetic stand-in; exact threshold untestable since constants m1,m2,m3 are unspecified."
+  },
+  {
+   "claim": 3,
+   "verdict": "toy",
+   "evidence": "Toy problem with box constraints (4 cells, 12 seeds each) shows geometric gap decay (factor ≤0.0881) with all constraints active at the limit (no second-order differentiability), and 19,200 local-min probes find no better point. Mutation breaking eq. 4 destroys convergence. Setup is a small synthetic instance."
+  },
+  {
+   "claim": 4,
+   "verdict": "toy",
+   "evidence": "Sympy derivation independently confirms all quadratic coefficients carry Δt-exponent exactly 3 (p=3.0000 fit), and simulation on a small instance (T=6, N=2, m=2kg) shows linear contraction ~0.71 across Δt∈{0.002…0.1}; mutation rescaling by Δt⁻³ destroys convergence. The simulation is a reduced setup, not the full locomotion pipeline."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The q≥10 transition was tested (10 q-values × 6 hyperparameter settings × 6 seeds) but no sublinear regime was found below q=10 and no transition at q=10; the paper does not report μ_x, μ_z, ρ so the exact setup cannot be matched. The baseline comparison (PADMM, IPDS-ADMM, IADMM) was not attempted at all due to missing problem instances, dimensions, and hyperparameters."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No experiments were run: real robot experiments require unavailable hardware with no released code/models/logs, and the 2D simulation curves of Figure 5 cannot be matched because T, contact schedule, target CoM, initial state, and ρ are not reported. Only partial overlap with Claim 4's small simulation exists."
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook provides toy-scale numerical evidence and mutation tests that support the paper's theoretical convergence claims (Theorems 3.1–3.3, Corollary 4.2) on small synthetic problems, including a symbolic verification of the O(Δt³) scaling. However, the empirical baseline comparisons and real-robot experiments are not reproduced due to missing problem specifications, unreleased code, and unavailable hardware.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5637,
+  "completion_tokens": 3360
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"toy\", \"evidence\": \"450 runs on small synthetic problems (q∈{0.5,2,5}, a few ρ values) confirm convergence to 1e-16 residuals and blockwise optimality to 5e-10; mutation removing Assumption 2.6 causes infeasibility. But the setup is a clearly reduced synthetic instance, not a full-scale problem.\"},\n    {\"claim\": 2, \"verdict\": \"toy\", \"evidence\": \"Toy problem with scaled nonlinearity (q=2, 48 initializations × 3 ρ per cell) shows linear contraction factors ~0.06 for small ‖C‖ and degradation to >0.998 at ‖C‖=25–50. Real numbers address the claim but on a small synthetic stand-in; exact threshold untestable since constants m1,m2,m3 are unspecified.\"},\n    {\"claim\": 3, \"verdict\": \"toy\", \"evidence\": \"Toy problem with box constraints (4 cells, 12 seeds each) shows geometric gap decay (factor ≤0.0881) with all constraints active at the limit (no second-order differentiability), and 19,200 local-min probes find no better point. Mutation breaking eq. 4 destroys convergence. Setup is a small synthetic instance.\"},\n    {\"claim\": 4, \"verdict\": \"toy\", \"evidence\": \"Sympy derivation independently confirms all quadratic coefficients carry Δt-exponent exactly 3 (p=3.0000 fit), and simulation on a small instance (T=6, N=2, m=2kg) shows linear contraction ~0.71 across Δt∈{0.002…0.1}; mutation rescaling by Δt⁻³ destroys convergence. The simulation is a reduced setup, not the full locomotion pipeline.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The q≥10 transition was tested (10 q-values × 6 hyperparameter settings × 6 seeds) but no sublinear regime was found below q=10 and no transition at q=10; the paper does not report μ_x, μ_z, ρ so the exact setup cannot be matched. The baseline comparison (PADMM, IPDS-ADMM, IADMM) was not attempted at all due to missing problem instances, dimensions, and hyperparameters.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No experiments were run: real robot experiments require unavailable hardware with no released code/models/logs, and the 2D simulation curves of Figure 5 cannot be matched because T, contact schedule, target CoM, initial state, and ρ are not reported. Only partial overlap with Claim 4's small simulation exists.\"}\n  ],\n  \"overall\": \"The logbook provides toy-scale numerical evidence and mutation tests that support the paper's theoretical convergence claims (Theorems 3.1–3.3, Corollary 4.2) on small synthetic problems, including a symbolic verification of the O(Δt³) scaling. However, the empirical baseline comparisons and real-robot experiments are not reproduced due to missing problem specifications, unreleased code, and unavailable hardware.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 38.9
+}

@@ -1,0 +1,47 @@
+{
+ "space_id": "kondratevakate/repro-medcrp-cl-release-audit",
+ "sha": "4b14e216d726ca263ce0243989535014cebe2ae0",
+ "run": 1,
+ "judged_at": "2026-10-17T17:50:05+00:00",
+ "logbook_chars": 47068,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "The checkpoint contains a K=5 partition with the expected group sizes, but checkpoint alpha is 2.0 not the reported 5.0, the state was not regenerated from processed prompt data, and the fixed-Gaussian tail error is 0.0327 (non-zero), contradicting the appendix's zero-error proposition."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "The release contains zero run-level metric files (run_level_metric_files: []) and only 19 tracked non-git files; no processed splits, predictions, seeds, or metric tables exist to independently recover the reported 73.3% Dice or 4.1% forgetting."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No ablation outputs, scripts, or metric tables are present in the release; the ablation numbers (15.55% forgetting without CRP, 45.39% Dice without LoRA) appear only in the paper with no corresponding artifacts."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "Stored checkpoint statistics show intra_mean=0.9133 and inter_mean=0.4200 (gap ~0.49, close to claimed ~0.50), but these were not independently recomputed from text embeddings, and the visual-embedding comparison (~0.22 gap) and specific cardiac/breast ultrasound similarity numbers are entirely absent from the release."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "No task-ordering experiments, prompt-perturbation outputs, or corresponding scripts are present in the release; the robustness numbers appear only in the paper."
+  }
+ ],
+ "points": 0,
+ "overall": "The logbook establishes that the released checkpoint contains a coherent five-way modality partition and a replay-free aggregate EWC state, but finds a CRP alpha mismatch (2.0 vs 5.0), a non-vanishing Gaussian overlap contradicting the appendix proof, and a complete absence of run-level metric files needed to verify any performance, ablation, or robustness claims.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 13175,
+  "completion_tokens": 2739
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"The checkpoint contains a K=5 partition with the expected group sizes, but checkpoint alpha is 2.0 not the reported 5.0, the state was not regenerated from processed prompt data, and the fixed-Gaussian tail error is 0.0327 (non-zero), contradicting the appendix's zero-error proposition.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"The release contains zero run-level metric files (run_level_metric_files: []) and only 19 tracked non-git files; no processed splits, predictions, seeds, or metric tables exist to independently recover the reported 73.3% Dice or 4.1% forgetting.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No ablation outputs, scripts, or metric tables are present in the release; the ablation numbers (15.55% forgetting without CRP, 45.39% Dice without LoRA) appear only in the paper with no corresponding artifacts.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"Stored checkpoint statistics show intra_mean=0.9133 and inter_mean=0.4200 (gap ~0.49, close to claimed ~0.50), but these were not independently recomputed from text embeddings, and the visual-embedding comparison (~0.22 gap) and specific cardiac/breast ultrasound similarity numbers are entirely absent from the release.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"No task-ordering experiments, prompt-perturbation outputs, or corresponding scripts are present in the release; the robustness numbers appear only in the paper.\"}\n  ],\n  \"overall\": \"The logbook establishes that the released checkpoint contains a coherent five-way modality partition and a replay-free aggregate EWC state, but finds a CRP alpha mismatch (2.0 vs 5.0), a non-vanishing Gaussian overlap contradicting the appendix proof, and a complete absence of run-level metric files needed to verify any performance, ablation, or robustness claims.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 31.3
+}

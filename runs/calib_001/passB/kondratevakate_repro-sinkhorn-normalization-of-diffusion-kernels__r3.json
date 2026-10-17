@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-sinkhorn-normalization-of-diffusion-kernels",
+ "sha": "5238f594df9f340f223c0c61b614b90bb7f9adea",
+ "run": 3,
+ "judged_at": "2026-10-17T17:58:02+00:00",
+ "logbook_chars": 24186,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "Sinkhorn iteration on symmetric positive W (Gaussian 2D n=120, exponential 3D n=100, Gaussian 5D n=80) yields row-sum errors ~1e-13 and mass-weighted self-adjointness residuals ~1e-16; breaking kernel symmetry or using row normalization raises the error to ~1e-2 and ~1e-1 respectively, confirming the test is discriminating."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "Sup-norm errors of T_N f − T_ref f decrease monotonically with clean algebraic rates (1D: ~2.0, 2D: ~1.0–1.3) across N=32→256 (1D) and 10²→32² (2D) for both Gaussian and exponential kernels on [0,1] and [0,1]²; a sign-oscillating kernel violating positivity causes NaN divergence, confirming the hypothesis is load-bearing."
+  },
+  {
+   "claim": 3,
+   "verdict": "verified",
+   "evidence": "Across 40 configurations (dim 2/3, Gaussian/exponential, eps 0.3–2.0, uniform/non-uniform mass, n=200), iteration counts to <0.1% error are min 6, median 9.5, max 11, with 90% in the 5–10 window; an extreme mass-ratio mutation needs 14 iterations, honestly reported as a boundary case."
+  },
+  {
+   "claim": 4,
+   "verdict": "inconclusive",
+   "evidence": "Sinkhorn achieves 4/4 properties (sym err ≤1e-16, mass err ≤1e-12, positive, spectrum [0,1]) for prescribed non-uniform mass, and row/symmetric normalization score only 3/4 and 2/4 against that same mass; however, row normalization scored against its own degree measure satisfies all four (sym err 2.2e-16, mass err 4.4e-16, spectrum [5.4e-4, 1.0]), a genuine counter-example to the exclusivity sub-clause as literally stated."
+  },
+  {
+   "claim": 5,
+   "verdict": "toy",
+   "evidence": "All three data types show Laplacian-like behavior (Dirichlet energy decay, monotone damping, constant annihilation), but the jaw-bone voxel scan is replaced by a synthetic 24³ hollow shell (773 voxels, 75% random occupancy), and scales are reduced (n=300–900); the paper's actual assets and Section-5 figures are not matched."
+  },
+  {
+   "claim": 6,
+   "verdict": "toy",
+   "evidence": "The Armadillo mesh is unavailable and replaced by a unit sphere (n=900, 3 modalities); group-mean spectral deviations across modalities are 1.9–3.1% and grow with mode index, qualitatively matching the claim, but on a proxy shape with known ground truth rather than the paper's asset."
+  }
+ ],
+ "points": 8,
+ "overall": "The logbook provides strong numerical evidence for the mathematical claims (Theorems 4.1 and 4.2, iteration counts) through independent re-implementations with discriminating mutations, but the experimental claims (5–6) are tested only on synthetic proxies at reduced scale because the paper's data assets are unavailable.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 8359,
+  "completion_tokens": 3450
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"Sinkhorn iteration on symmetric positive W (Gaussian 2D n=120, exponential 3D n=100, Gaussian 5D n=80) yields row-sum errors ~1e-13 and mass-weighted self-adjointness residuals ~1e-16; breaking kernel symmetry or using row normalization raises the error to ~1e-2 and ~1e-1 respectively, confirming the test is discriminating.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"Sup-norm errors of T_N f − T_ref f decrease monotonically with clean algebraic rates (1D: ~2.0, 2D: ~1.0–1.3) across N=32→256 (1D) and 10²→32² (2D) for both Gaussian and exponential kernels on [0,1] and [0,1]²; a sign-oscillating kernel violating positivity causes NaN divergence, confirming the hypothesis is load-bearing.\"},\n    {\"claim\": 3, \"verdict\": \"verified\", \"evidence\": \"Across 40 configurations (dim 2/3, Gaussian/exponential, eps 0.3–2.0, uniform/non-uniform mass, n=200), iteration counts to <0.1% error are min 6, median 9.5, max 11, with 90% in the 5–10 window; an extreme mass-ratio mutation needs 14 iterations, honestly reported as a boundary case.\"},\n    {\"claim\": 4, \"verdict\": \"inconclusive\", \"evidence\": \"Sinkhorn achieves 4/4 properties (sym err ≤1e-16, mass err ≤1e-12, positive, spectrum [0,1]) for prescribed non-uniform mass, and row/symmetric normalization score only 3/4 and 2/4 against that same mass; however, row normalization scored against its own degree measure satisfies all four (sym err 2.2e-16, mass err 4.4e-16, spectrum [5.4e-4, 1.0]), a genuine counter-example to the exclusivity sub-clause as literally stated.\"},\n    {\"claim\": 5, \"verdict\": \"toy\", \"evidence\": \"All three data types show Laplacian-like behavior (Dirichlet energy decay, monotone damping, constant annihilation), but the jaw-bone voxel scan is replaced by a synthetic 24³ hollow shell (773 voxels, 75% random occupancy), and scales are reduced (n=300–900); the paper's actual assets and Section-5 figures are not matched.\"},\n    {\"claim\": 6, \"verdict\": \"toy\", \"evidence\": \"The Armadillo mesh is unavailable and replaced by a unit sphere (n=900, 3 modalities); group-mean spectral deviations across modalities are 1.9–3.1% and grow with mode index, qualitatively matching the claim, but on a proxy shape with known ground truth rather than the paper's asset.\"}\n  ],\n  \"overall\": \"The logbook provides strong numerical evidence for the mathematical claims (Theorems 4.1 and 4.2, iteration counts) through independent re-implementations with discriminating mutations, but the experimental claims (5–6) are tested only on synthetic proxies at reduced scale because the paper's data assets are unavailable.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 40.9
+}

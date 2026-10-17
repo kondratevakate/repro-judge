@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-subgroup-discovery-with-the-cox-model",
+ "sha": "13cc38d58ce1e47d0f9eb99264dc514a920e021b",
+ "run": 1,
+ "judged_at": "2026-10-17T17:42:08+00:00",
+ "logbook_chars": 8799,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "verified",
+   "evidence": "A 20-seed numerical audit with 800 nonzero coefficient perturbations confirmed every perturbation increases EPE (min increase 0.0001611), KL identity errors at machine precision (2.22e-16), and positive-definite covariance (min eigenvalue 1.9368), directly supporting the properness and unique-identification claims."
+  },
+  {
+   "claim": 2,
+   "verdict": "verified",
+   "evidence": "A proof-dependency audit reconstructed the full argument chain, and numerical checks across epsilon values 1/2 to 1/64 confirmed the logarithmic effect threshold (fitted slope 1.0000, R²=1.0) and box-geometry bound (2,000 randomized trials, max excess zero)."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states the Synth-Counter benchmark was not run; no experiments or data are presented."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "A fresh 10-seed CPU run (seeds 100–109, n=2000, d=2) from the official commit produced DDGroup Box F1 0.969 (0.008), Test EPE 0.378 (0.016), and C-index 0.867 (0.006), matching the paper's reported 0.97, 0.38, and 0.87 at stated precision; Base F1 was 0.286 matching the paper's 0.29."
+  },
+  {
+   "claim": 5,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states the clinical benchmark panel was not run; no experiments or data are presented."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "The logbook explicitly states the NASA turbofan pipeline was not rerun; no experiments or data are presented."
+  }
+ ],
+ "points": 6,
+ "overall": "The logbook provides concrete numerical and algebraic evidence supporting the two theoretical claims (EPE properness, recovery theorem) and a faithful 10-seed reproduction of the Synth-Nonlinear benchmark matching the paper's reported values. Three empirical claims (Synth-Counter, clinical benchmark, NASA case study) were transparently left unattempted with no experiments run.",
+ "quality": "high",
+ "usage": {
+  "prompt_tokens": 3361,
+  "completion_tokens": 2105
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"verified\", \"evidence\": \"A 20-seed numerical audit with 800 nonzero coefficient perturbations confirmed every perturbation increases EPE (min increase 0.0001611), KL identity errors at machine precision (2.22e-16), and positive-definite covariance (min eigenvalue 1.9368), directly supporting the properness and unique-identification claims.\"},\n    {\"claim\": 2, \"verdict\": \"verified\", \"evidence\": \"A proof-dependency audit reconstructed the full argument chain, and numerical checks across epsilon values 1/2 to 1/64 confirmed the logarithmic effect threshold (fitted slope 1.0000, R²=1.0) and box-geometry bound (2,000 randomized trials, max excess zero).\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states the Synth-Counter benchmark was not run; no experiments or data are presented.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"A fresh 10-seed CPU run (seeds 100–109, n=2000, d=2) from the official commit produced DDGroup Box F1 0.969 (0.008), Test EPE 0.378 (0.016), and C-index 0.867 (0.006), matching the paper's reported 0.97, 0.38, and 0.87 at stated precision; Base F1 was 0.286 matching the paper's 0.29.\"},\n    {\"claim\": 5, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states the clinical benchmark panel was not run; no experiments or data are presented.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"The logbook explicitly states the NASA turbofan pipeline was not rerun; no experiments or data are presented.\"}\n  ],\n  \"overall\": \"The logbook provides concrete numerical and algebraic evidence supporting the two theoretical claims (EPE properness, recovery theorem) and a faithful 10-seed reproduction of the Synth-Nonlinear benchmark matching the paper's reported values. Three empirical claims (Synth-Counter, clinical benchmark, NASA case study) were transparently left unattempted with no experiments run.\",\n  \"quality\": \"high\"\n}\n```",
+ "elapsed_s": 24.9
+}

@@ -1,0 +1,1614 @@
+{
+ "created_at": "2026-10-17T17:16:18+00:00",
+ "user": "kondratevakate",
+ "n": 53,
+ "retest": [
+  "kondratevakate/repro-conditional-coverage-diagnostics-for-conformal-prediction",
+  "kondratevakate/repro-inference-aware-meta-alignment-of-llms-via-non-linear-grpo",
+  "kondratevakate/repro-caffnet-hard-constraint-affine-neural-networks",
+  "kondratevakate/repro-sinkhorn-normalization-of-diffusion-kernels",
+  "kondratevakate/repro-multi-distribution-robust-conformal-prediction",
+  "kondratevakate/repro-last-iterate-convergence-of-admm-on-multi-affine-quadratic-equality-constrained-problem",
+  "kondratevakate/repro-when-can-we-trust-survival-model-evaluation",
+  "kondratevakate/repro-spmind-artifact-audit",
+  "kondratevakate/repro-principled-confidence-estimation-for-deep-computed-tomography",
+  "kondratevakate/repro-lvcg-release-audit"
+ ],
+ "official_total": 265,
+ "items": [
+  {
+   "space_id": "kondratevakate/repro-conditional-coverage-diagnostics-for-conformal-prediction",
+   "sha": "4d6129fc368f2e93d86105849cc812a22a460408",
+   "orid": "vaApZm6MKM",
+   "title": "Conditional Coverage Diagnostics for Conformal Prediction",
+   "authors": [
+    "Sacha Braun",
+    "David Holzmüller",
+    "Michael I. Jordan",
+    "Francis Bach"
+   ],
+   "claims": [
+    "The paper introduces a family of Excess Risk of the Target Coverage (ERT) metrics—L1-ERT, L2-ERT, and KL-ERT—for evaluating conditional coverage in conformal prediction, built on the principle that no classifier can outperform a constant 1-alpha predictor under perfect conditional coverage (Table 1, Section 3.1).",
+    "Using LightGBM as the underlying classifier for L1-ERT achieves 68.4% relative statistical power (relative to maximum), compared to only 38.3% for the PartitionWise classifier underlying CovGap (Table 2, Section 4.1).",
+    "In synthetic experiments, group-based metrics like CovGap remain unreliable and unaligned with their theoretical values even at 5,000 test points, whereas ERT metrics such as L1-ERT converge with far fewer samples (Figure 4, Section 4.2).",
+    "The metrics decompose conditional coverage error into asymmetric components ell_plus-ERT and ell_minus-ERT, separating unnecessary conservatism (over-coverage) from excessive aggressiveness (under-coverage) (Section 3.3).",
+    "Classification experiments report divergent KL_plus-ERT and KL_minus-ERT values across conformal prediction methods, demonstrating the over/under-coverage decomposition in practice (Table 4, Section 4.3.2).",
+    "Algorithm 1 estimates the ERT metrics from finite samples using k-fold cross-validation to avoid overfitting the classifier used in the estimation (Algorithm 1)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "verified"
+   ],
+   "official_points": 12,
+   "official_judged_at": "2026-07-29T08:48:22+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-linear-bandits-beyond-inner-product-spaces-the-case-of-bandi",
+   "sha": "acc1666ed741007a1c12846b07f5cf1cd3043341",
+   "orid": "ugjBMARbyt",
+   "title": "Linear Bandits beyond Inner Product Spaces, the case of Bandit Optimal Transport",
+   "authors": [
+    "Lorenzo Croissant"
+   ],
+   "claims": [
+    "The EntUCB algorithm embeds transport plans into a Hilbert space via the Fourier isometry F on L²(ℝᵈ;ϱ), reducing the bandit optimal transport problem to linear bandit estimation in that space (Section 4.1, Equation 7).",
+    "Theorem 5.1 bounds the entropic regret as R_T^{H,ε}(A) ≤ σ√(2T log(2/δ)) + 2Cβ_T(δ)√(T log det(...)) with probability at least 1-δ (Theorem 5.1).",
+    "Theorem 5.2 shows that for Lipschitz costs with an entropy penalty decaying as ε_t = αt^{-α}, EntUCB achieves sublinear regret matching classical linear-bandit rates for the Kantorovich optimal transport problem (Theorem 5.2).",
+    "Corollary 5.3 establishes that in finite-dimensional/discrete settings with N basis coefficients, the algorithm attains Õ(√(NT)) regret, recovering the parametric OFUL-style rate (Corollary 5.3).",
+    "Corollary 5.4 shows that when basis coefficients decay at rate 1-n^{-q}, regret interpolates between Õ(√T) and Õ(T) depending on the decay exponent q (Corollary 5.4).",
+    "The confidence sets used by the algorithm are constructed via regularized least-squares in L²(ℝᵈ;ϱ), with width controlled by the log-determinant of the design operator, mirroring the classical OFUL confidence ellipsoid construction (Equations 11-12)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "verified"
+   ],
+   "official_points": 12,
+   "official_judged_at": "2026-08-03T08:06:48+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-bridging-the-gap-between-average-and-discounted-td-learning",
+   "sha": "74d5948245f08e5d093e33ce27c6bf71034c2f5e",
+   "orid": "omkG80XURl",
+   "title": "Bridging the Gap Between Average and Discounted TD Learning",
+   "authors": [
+    "Haoxing Tian",
+    "Zaiwei Chen",
+    "Ioannis Paschalidis",
+    "Alex Olshevsky"
+   ],
+   "claims": [
+    "Under i.i.d. sampling in the double-chain formulation, the algorithm converges to a unique, sample-independent fixed point of the projected Bellman equation with sample complexity Õ(ε^-1 η^-2) (Theorem 4.1).",
+    "Under Markovian sampling with constant stepsizes in the double-chain setting, the same Õ(ε^-1 η^-2) sample complexity is preserved (Theorem 4.2).",
+    "With decaying stepsizes, the method attains convergence guarantees with no explicit dimension-dependent terms (Theorem 4.3).",
+    "The paper reduces the condition-number dependence of average-reward TD learning from quartic (prior state of the art) to quadratic, matching the scaling known for discounted TD learning (Section 1, Table 1).",
+    "A single-chain variant of the algorithm is also analyzed but only attains quartic sample complexity Õ(1/η^4 T) due to decorrelation requirements, contrasting with the double-chain method's quadratic rate (Theorem 4.4).",
+    "The condition number η1, defined via min over unit vectors of ||Φx||²_Dir + (μᵀΦx)², is shown to satisfy η1 >= (1/2)η3 relative to prior condition-number definitions (Equation 3, Lemma B.3)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "toy",
+    "verified",
+    "verified"
+   ],
+   "official_points": 11,
+   "official_judged_at": "2026-08-03T07:57:15+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-accurate-evaluation-of-quickest-changepoint-detectors-via-non-parametric-surviva",
+   "sha": "cc6850d50aa7365e73bfe69d6cc6193fad7644a0",
+   "orid": "LhGxRnGmGJ",
+   "title": "Accurate Evaluation of Quickest Changepoint Detectors via Non-parametric Survival Analysis",
+   "authors": [
+    "Taiki Miyagawa",
+    "Akinori F. Ebihara"
+   ],
+   "claims": [
+    "Theorem 4.1 establishes that the finite-sample bias of the KM-ARL estimator decays exponentially with dataset size N.",
+    "Theorem 4.2 establishes finite-sample bias bounds for the KM-ADD estimator under independent censoring.",
+    "Theorems 4.3 and 4.4 show that the truncation bias of KM-ARL and KM-ADD is smaller than that of conventional (non-censoring-aware) ARL/ADD estimators.",
+    "KM-ARL and KM-ADD are shown to be asymptotically unbiased (Equation 11) whenever the support of the detection-point distribution does not exceed the censoring boundary, without requiring parametric assumptions (Section 4).",
+    "On the WISDM Actitracker dataset (51,326 sequences ranging from length 1 to 54,401), KM-ARL/KM-ADD show substantially reduced variance versus LB-ARL/LB-ADD baselines (Figure 1, Section 5).",
+    "Simulation experiments on Gaussian and Poisson process changepoint models show KM-ARL/KM-ADD remain accurate across censoring levels from 10% to 90% changepoint prevalence and irregular sequence lengths (Figures 2-4, Section 5)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "inconclusive",
+    "verified"
+   ],
+   "official_points": 10,
+   "official_judged_at": "2026-07-28T19:31:23+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-compact-conformal-subgraphs",
+   "sha": "109bd4dfbd9f165c8a873a35df1746d2ac03290c",
+   "orid": "KqMqJpSMnQ",
+   "title": "Compact Conformal Subgraphs",
+   "authors": [
+    "Sreenivas Gollapudi",
+    "Kostas Kollias",
+    "Kamesh Munagala",
+    "Aravindan Vijayaraghavan"
+   ],
+   "claims": [
+    "Theorem 1 gives a bicriteria (1+κ, 1+1/κ) approximation via LP rounding: the returned subgraph K satisfies coverage loss W−e(K)≤(1+κ)·ε·W and size |K|≤(1+1/κ)·r (Theorem 1, Section 4.1).",
+    "Theorem 2 proves a monotonicity/nestedness property (Kτ1⊆Kτ2 for τ1<τ2), derived from a connection to parametric minimum cuts, which is required for valid conformal calibration (Theorem 2, Section 4.2).",
+    "Corollary 1 shows the entire nested sequence of subgraphs across thresholds can be computed in Õ(γ(m+n)²) time (Corollary 1, Section 4.2).",
+    "Lemma 1 establishes a distribution-free marginal coverage guarantee ℙ(B*⊆Kτ*(A*))≥φ−δ under exchangeability, without requiring model probability estimates (Lemma 1).",
+    "Theorem 4 proves NP-hardness of the conformal subgraph problem even for constant ε via reduction from clique detection, in Appendix B (Theorem 4, Appendix B).",
+    "On a synthetic 6x6 grid navigation experiment with 50 train/test routes, the LP-based method compresses the calibration set to 52 edges at φ=0.75 coverage and outperforms greedy baselines for φ≤0.8 (Section 5)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "inconclusive"
+   ],
+   "official_points": 10,
+   "official_judged_at": "2026-08-03T07:57:24+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-inference-aware-meta-alignment-of-llms-via-non-linear-grpo",
+   "sha": "e7ab06265579359edb5187a36a79636b282fd8f6",
+   "orid": "Km8yqb7SfN",
+   "title": "Inference-Aware Meta-Alignment of LLMs via Non-Linear GRPO",
+   "authors": [
+    "Shokichi Takakura",
+    "Akifumi Wachi",
+    "Rei Higuchi",
+    "Kohei Miyaguchi",
+    "Taiji Suzuki"
+   ],
+   "claims": [
+    "IAMA optimizes the objective ℛ[π] = g(R1[π],...,Rm[π]) − β·KL[π||πref], where each Ri measures reward under an inference-time transformation such as Best-of-N sampling, allowing a single trained base policy π to adapt to multiple alignment criteria at inference time (Section 3, Equation 1).",
+    "Non-linear GRPO (Algorithm 1) replaces the standard scalar reward with an approximated functional derivative ∂R/∂π evaluated at the current policy's empirical distribution, requiring only a drop-in reward function on top of standard GRPO (Section 4, Algorithm 1).",
+    "Theorem 5.2 proves linear convergence of exact non-linear GRPO updates to the optimal policy, with excess loss bounded by β·KL[π*||π0] / ((L+β)/L)^T − 1 under a step size η=1/L (Section 5, Theorem 5.2).",
+    "Theorem 5.3 shows that with approximation error ε and optimization residual δ, inexact non-linear GRPO updates converge to a neighborhood of the optimum with an additive bias term of 2(ε+δ)/β (Section 5, Theorem 5.3).",
+    "Proposition 3.1 shows that naive weighted-sum training collapses to a degenerate policy outputting only a single medium value (δ0.5), whereas IAMA with Best-of-N yields a bimodal optimal policy π*(y) ∝ y^(α−1)(1−y)^(α−1)/(y^α+(1−y)^α)^2 with α=1/(N−1) (Section 3, Proposition 3.1).",
+    "On the HH-RLHF task with Alpaca-7B, IAMA trained with Best-of-N sampling (N=4) pushes the helpfulness-harmlessness Pareto front forward relative to standard alignment, while without Best-of-N sampling IAMA performs equivalently to standard alignment (Section 6.2)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "inconclusive"
+   ],
+   "official_points": 10,
+   "official_judged_at": "2026-08-02T08:50:51+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-model-monotonicity-in-autobidding-auctions-when-do-better-pr",
+   "sha": "c948ff22d9da7d0cfa7afd8f078673844761851b",
+   "orid": "uiw8P2JGbW",
+   "title": "Model Monotonicity in Autobidding Auctions: When Do Better Predictions Lead to Better Outcomes?",
+   "authors": [
+    "Ashwinkumar Badanidiyuru"
+   ],
+   "claims": [
+    "For target-CPA bidders without budget constraints using uniform bidding with multiplier mu=1 in first-price auctions, refining the prediction model (partitioning clusters into subclusters while preserving calibration) never decreases platform revenue, i.e., Rev(M_A) >= Rev(M_B) when M_A refines M_B (Theorem 5.1).",
+    "The first-price auction revenue monotonicity proof for tCPA bidders relies on convexity of f(p) = max_i(t_i · p_i) via Jensen's inequality, since model refinement corresponds to a mean-preserving spread of this convex function (Theorem 5.1, Section 5).",
+    "Uniform bidding at multiplier mu=1 is simultaneously conversion-maximizing, revenue-maximizing among equilibria, and welfare-maximizing for tCPA bidders in first-price auctions (Theorem 5.2), and welfare monotonicity follows as a corollary when per-conversion values equal targets (Corollary 5.3).",
+    "There exist instances with tCPA bidders where second-price (VCG) auctions exhibit non-monotonicity in both revenue and welfare under model refinement, with a constructed counterexample showing a simultaneous 6.2% decrease in both metrics (Theorem 5.8).",
+    "Introducing budget constraints breaks revenue monotonicity even in first-price auctions, as optimal bidder multipliers shift under refinement and reduce competitive pressure, exemplified by a counterexample with a 16.8% revenue loss (Theorem 5.10).",
+    "A centralized, non-strategic linear-programming benchmark allocation guarantees welfare monotonicity under budget constraints via a 'lifting' construction that preserves feasibility across refined partitions (Theorem 5.11), and the paper's overall characterization identifies exactly three settings where monotonicity holds (Table 1)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "inconclusive"
+   ],
+   "official_points": 10,
+   "official_judged_at": "2026-08-03T07:57:32+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-off-policy-evaluation-for-missingness-aware-policies-in-mdps-with-rewards-missing-not-at-r",
+   "sha": "3b7667b50e955886c7b17aff4a8e18b43b401c3e",
+   "orid": "vpSFJoxyDz",
+   "title": "Off-Policy Evaluation for Missingness-Aware Policies in MDPs with Rewards Missing Not at Random",
+   "authors": [
+    "Ziheng Wei",
+    "Annie Qu",
+    "Rui Miao"
+   ],
+   "claims": [
+    "Theorem 3.6 shows that under Assumptions 2.1, 2.2, and 3.2-3.4, bridge functions satisfying E[b_t(S_t, A_t, S_{t+1}) | R_t, S_t, A_t] = R_t exist and identify the full-data policy value without modeling the missing-not-at-random mechanism (Theorem 3.6, Section 3).",
+    "Assumption 3.2 (relevance condition) requires that the next state S_{t+1} is not conditionally independent of the reward R_t given S_t, A_t, O_t=1, formalizing the use of future states as shadow variables (Assumption 3.2, Section 3).",
+    "Theorem 5.8 bounds the RKHS-based bridge function estimation error as ||b̂_t − b_t*||_2 ≲ τ_t δ_t max{1, ||b_t*||^2} under polynomial eigenvalue decay of the conditional expectation operator (Theorem 5.8, Section 5).",
+    "Theorem 5.9 establishes an overall off-policy value estimation error rate of O(K τ_max T^2 √(log(T/ζ)) n^{-α_min/(2α_min+1)} log n) under the completeness assumption (Theorem 5.9, Section 5).",
+    "Assumption 2.1 (no future dependence) posits that the current missingness indicator O_t is independent of future states and rewards given the current state, action, and reward, distinguishing the setting from standard missing-at-random assumptions (Assumption 2.1, Section 2)."
+   ],
+   "official": [
+    "falsified",
+    "verified",
+    "verified",
+    "verified",
+    "verified"
+   ],
+   "official_points": 10,
+   "official_judged_at": "2026-07-29T16:27:06+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-on-the-theory-of-continual-learning-with-gradient-descent-fo",
+   "sha": "77f5e23a9109d344f7d4b1ec5807627338aa525f",
+   "orid": "l35QweVxgn",
+   "title": "On the Theory of Continual Learning with Gradient Descent for Neural Networks",
+   "authors": [
+    "Hossein Taheri",
+    "Avishek Ghosh",
+    "Arya Mazumdar"
+   ],
+   "claims": [
+    "Theorem 1 gives a closed-form bound on train-time forgetting for task k after training on K-k subsequent tasks, of order O~(ηT√(K-k)/(d√n) + ηT√(K-k)/(d²polylog(d)) + η²T²K²/√m) (Theorem 1).",
+    "The forgetting bounds hold under the parameter regime n = Θ~(d²K) samples, m = Ω~(d⁸K⁴) hidden-layer width, and ηT = Θ(d²) training iterations on a d-dimensional XOR cluster dataset with K tasks (Theorem 1).",
+    "Theorem 2 shows that under the same width/sample/iteration conditions as Theorem 1, the misclassification error remains uniformly small across all K tasks with high probability after KT gradient descent iterations (Theorem 2).",
+    "Theorem 3 bounds the delayed generalization gap by η T exp(ηT(K-k+1)/√m) / n for Lipschitz, smooth loss functions, showing the gap decays with sample size n (Theorem 3).",
+    "Theorem 4 gives an improved generalization gap bound for self-bounded losses that scales poly-logarithmically rather than linearly in the number of iterations T, depending on the cumulative training loss of later tasks (Theorem 4).",
+    "Test-time forgetting is decomposed as the sum of train-time forgetting (Theorem 1) and the delayed generalization gap (Theorem 3/4), showing that network width, sample size, and later tasks' data jointly, not individually, control forgetting (Theorem 1, Theorem 3)."
+   ],
+   "official": [
+    "verified",
+    "toy",
+    "toy",
+    "verified",
+    "verified",
+    "verified"
+   ],
+   "official_points": 10,
+   "official_judged_at": "2026-08-03T07:56:42+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-a-graphop-analysis-of-graph-neural-networks-on-sparse-graphs",
+   "sha": "7bf34f397492a91deab77c34c6e2b1d9f02e2c33",
+   "orid": "tRsnpaRO0m",
+   "title": "A Graphop Analysis of Graph Neural Networks on Sparse Graphs: Generalization and Universal Approximation",
+   "authors": [
+    "Ofek Amran",
+    "Tom Gilat",
+    "Ron Levie"
+   ],
+   "claims": [
+    "Graphops are introduced as self-adjoint, positivity-preserving operators over probability spaces, unifying dense graphons and sparse graphs as a single class of limit objects (Definition 3.1).",
+    "A restricted subclass called bounded-fiber operators (bofops) is defined via fiber measures nu_x satisfying ess sup_{x in Omega} nu_x(Omega) < infinity, capturing sparse connectivity patterns within the graphop framework (Definition 3.1).",
+    "Theorem 4.1 establishes that message passing neural networks (MPNNs) are Lipschitz (Holder) continuous with respect to an action metric d_M on bofop-signals: ||H(A_1,f_1) - H(A_2,f_2)||_2 <= C'_{D,r} d_M((A_1,f_1),(A_2,f_2)) (Theorem 4.1).",
+    "Corollary 5.3 shows the space of bofop-DIDMs (degree-indexed distribution measures) is compact under the DIDM-mover's distance, forming a proper subset of the corresponding dense-graph structure (Corollary 5.3).",
+    "Section 6.1 uses this compactness and continuity to prove a universal approximation theorem: any continuous function on bofop-DIDMs can be uniformly approximated by MPNNs directly on sparse graphs (Section 6.1).",
+    "Section 6.2 derives generalization bounds showing generalization error vanishes as sample size grows, exploiting the uniform equicontinuity and compactness established in Theorem 4.1 and Corollary 5.3 (Section 6.2)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "toy",
+    "toy",
+    "toy"
+   ],
+   "official_points": 9,
+   "official_judged_at": "2026-08-03T07:56:57+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-caffnet-hard-constraint-affine-neural-networks",
+   "sha": "9693236a712459acb34dfa9b3903afd74a9348af",
+   "orid": "20hdQQQrA4",
+   "title": "CAffNet: Hard Constraint-Affine Neural Networks",
+   "authors": [
+    "Yang Zhao",
+    "Jungeun Lee",
+    "Jeong hwan Jeon",
+    "Sze Zheng Yong"
+   ],
+   "claims": [
+    "Theorem 3.5 proves that if the unconstrained network class universally approximates the target function class F, then CAffNet universally approximates the constrained target class {f_t in F | A(x) f_t <= b(x)}, with approximation error bound ||P* - f_t||_p < (3 + 3*sqrt(n_out))K (Theorem 3.5).",
+    "The CAffine layer's projection formula includes a trainable null-space component w_phi(x), P_gamma(x) = f_theta(x) - A_gamma^dagger(x)(A_gamma(x) f_theta(x) - b_gamma(x)) + (I - A_gamma^dagger(x) A_gamma(x)) w_phi(x), allowing joint optimization across multiple feasible projections rather than a fixed orthogonal projection (Section 3).",
+    "Unlike prior work (HardNet), CAffNet guarantees hard constraint satisfaction A(x)y <= b(x) without requiring A(x) to have full row rank, and handles arbitrary constraint cardinality via decomposition into sub-constraint combinations of at most min(m, n_out) constraints (Section 3).",
+    "On the piecewise-constraint benchmark, CAffNet-TF (transformer variant) achieves a 73.33% MSE reduction relative to a soft-constrained neural network baseline while incurring zero constraint violations (Section on Experiments, piecewise constraints task).",
+    "In the safety-critical control experiment, CAffNet successfully avoids obstacles whereas both HardNet and the soft-constrained baseline fail to do so (Section on Experiments, safety-critical control task)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "toy"
+   ],
+   "official_points": 9,
+   "official_judged_at": "2026-08-02T18:34:28+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-robust-bayesian-optimisation-with-unbounded-corruptions",
+   "sha": "e3c3c2c7c7efc4a845152fbdbe596d01dc84492a",
+   "orid": "zlnoC4YPQ1",
+   "title": "Robust Bayesian Optimisation with Unbounded Corruptions",
+   "authors": [
+    "Abdelhamid Ezzerg",
+    "Ilija Bogunovic",
+    "Jeremias Knoblauch"
+   ],
+   "claims": [
+    "The Fixed-Center RCGP-UCB (FC-RCGP-UCB) algorithm achieves cumulative regret R_T = Õ(Ψ(T_c)(1+√T_c)√(β'_T T(γ_T+T_c))), yielding sublinear regret for corruption budgets T_c = O(T^α) with α < 1/4 (Theorem 2, Section 4.3).",
+    "The Anchor-Adapt RCGP-UCB (A2-RCGP-UCB) algorithm, which adaptively updates its centering function, achieves cumulative regret R_T = Õ((1+T_c Ψ(T_c)^2)√(β'_T T(γ_T+T_c))), yielding sublinear regret for α < 1/7 (Theorem 3, Section 4.3).",
+    "Both algorithms tolerate corruptions of possibly infinite magnitude, bounded only in frequency (number of corrupted points T_c), as formalized in the Frequency-Constrained Corruption model (Definition 1, Section 2.2).",
+    "When there are no corruptions (T_c = 0), both FC-RCGP-UCB and A2-RCGP-UCB recover the same asymptotic regret bound as standard GP-UCB, R_T = O(√(Tβ'_Tγ_T)), a zero-cost robustness property (Theorem 1, Section 4.3).",
+    "Experiments on the corrupted Forrester function benchmark show RCGP-based methods (FC-RCGP-UCB, A2-RCGP-UCB) achieve lower cumulative regret than baselines using standard GP, Student-t process, or the heuristic DiagnosticsGP approach, even though the theoretical analysis conservatively requires α < 1/4 and α < 1/7 while experiments use corruption budgets as large as O(T^(1/3)) (Section 5.3, Figure 1)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "toy"
+   ],
+   "official_points": 9,
+   "official_judged_at": "2026-08-02T08:50:03+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-coverage-length-metric-shorter-intervals-not-better",
+   "sha": "1ae72240183b2ad6b3fc89494b2966c7be65e686",
+   "orid": "r3h23Jv26a",
+   "title": "Questioning the Coverage-Length Metric in Conformal Prediction: When Shorter Intervals Are Not Better",
+   "authors": [
+    "Yizhou Min",
+    "Yizhou Lu",
+    "Lanqi Li",
+    "Zhen Zhang",
+    "Jiaye Teng"
+   ],
+   "claims": [
+    "The Prejudicial Trick (Algorithm 1) constructs prediction intervals by returning a null (empty or minimal) interval with probability (1-p) and an adjusted conformal interval with probability p, provably preserving valid marginal coverage per Theorem 6 while shrinking average interval length (Section on Prejudicial Trick, Algorithm 1, Theorem 6)",
+    "On synthetic data, PT applied to Vanilla Conformal Prediction (PT-VCP) reduces average interval length from 22.894 to 22.614 at alpha=0.10 while preserving nominal coverage (Table 1)",
+    "On real-world regression benchmarks (including MEPS and BIO), PT-VCP reduces interval length in 9 of 10 datasets while maintaining 90% marginal coverage (Table 2)",
+    "Despite valid marginal coverage, the Prejudicial Trick yields highly unstable predictions: Proposition 2 proves its interval stability metric IS(C_PT) = p(1-p)(E(L))^2 > 0, meaning the same input can receive completely different interval outputs across repeated conformal calibration runs (Definition 1, Proposition 2)",
+    "The proposed Interval Stability metric can flag methods, such as localized conformal prediction, that implicitly exploit PT-like randomness to shrink length, since Proposition 1 shows PT is a special case of localized CP when local scale estimators output extreme values (Definition 1, Proposition 1)"
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "inconclusive",
+    "verified",
+    "verified"
+   ],
+   "official_points": 8,
+   "official_judged_at": "2026-08-02T08:54:31+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-fixed-budget-no-harder-than-fixed-confidence-bai",
+   "sha": "e3f37330275cb9b32851e535d9029da334bdd77d",
+   "orid": "DUmWdZetqZ",
+   "title": "Fixed Budget is No Harder Than Fixed Confidence in Best-Arm Identification up to Logarithmic Factors",
+   "authors": [
+    "Kapilan Balagopalan",
+    "Yinan Li",
+    "Yao Zhao",
+    "Tuan Ngo Nguyen",
+    "Anton Daitche",
+    "Houssam Nassif",
+    "Kwang-Sung Jun"
+   ],
+   "claims": [
+    "Theorem 3.2 establishes that the FC2FB meta-algorithm converts a fixed-confidence algorithm into a fixed-budget algorithm whose error probability decays exponentially in the budget (Section 3, Theorem 3.2).",
+    "When the fixed-confidence sample complexity is T*_delta = A*ln(1/delta) + C, FC2FB yields a fixed-budget sample complexity of O(A*ln(1/delta)*ln(A*ln(1/delta)/Q) + C), matching the fixed-confidence complexity up to logarithmic factors (Section 3).",
+    "FCW2S (Algorithm 4) converts a weak fixed-confidence algorithm (Definition 4.1) into a strong one (Definition 3.1) via parallel execution and majority voting (Section 4).",
+    "FC2AT (Algorithm 6) is an anytime variant of the meta-algorithm using a doubling trick that requires no prior knowledge of the budget (Section 4).",
+    "The framework's sample-complexity improvements are demonstrated on heterogeneous noise bandits (Corollary 5.2), linear bandits (Corollary 5.4), and unimodal bandits (Corollary 5.7) (Section 5)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "verified",
+    "inconclusive"
+   ],
+   "official_points": 8,
+   "official_judged_at": "2026-08-02T08:54:21+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-functional-decomposition-and-shapley-interactions-for-interpreting-survival-mode",
+   "sha": "752bc8e8bbb7e631a529fe6ceec481da3ca70e16",
+   "orid": "SldP4LGjdz",
+   "title": "Functional Decomposition and Shapley Interactions for Interpreting Survival Models",
+   "authors": [
+    "Sophie Hanna Langbein",
+    "Hubert Baniecki",
+    "Fabian Fumagalli",
+    "Niklas Koenen",
+    "Marvin N. Wright",
+    "Julia Herbinger"
+   ],
+   "claims": [
+    "SurvFD decomposes higher-order feature effects on survival predictions into time-dependent and time-independent components, characterizing when additive explanations fail across log-hazard, hazard, and survival-function scales (Section 3).",
+    "Theorem 3.2 shows that under feature independence, SurvFD exactly recovers ground-truth effect decompositions when the underlying risk score is linear or additively separable in main effects (Theorem 3.2).",
+    "Theorem 3.3 establishes that time-dependent interaction effects can propagate downward to make lower-order feature subsets appear time-dependent, but cannot propagate upward (Theorem 3.3).",
+    "SurvSHAP-IQ extends Shapley interaction quantification to time-indexed survival functions, estimating higher-order time-dependent interactions and achieving local accuracy below 0.015 on ten simulated scenarios (Figure 2).",
+    "On the TCGA-BRCA multi-modal dataset (n=990 patients), SurvSHAP-IQ reveals within-modality (image-to-image, clinical-to-clinical) interactions but no cross-modality interactions between histopathological images and clinical features (Section 5, TCGA-BRCA application).",
+    "Scalability analysis across four additional datasets (10-16 features) shows regression-based Shapley interaction approximators achieve the highest fidelity among tested approximation algorithms (Figure 7)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "toy",
+    "inconclusive",
+    "toy"
+   ],
+   "official_points": 8,
+   "official_judged_at": "2026-07-29T09:23:46+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-sinkhorn-normalization-of-diffusion-kernels",
+   "sha": "5238f594df9f340f223c0c61b614b90bb7f9adea",
+   "orid": "LJdacnMXkr",
+   "title": "Sinkhorn Normalization of Diffusion Kernels",
+   "authors": [
+    "Nathan Kessler",
+    "Robin Magnet",
+    "Jean Feydy"
+   ],
+   "claims": [
+    "Theorem 4.1 shows a symmetric smoothing operator with positive coefficients can be rescaled by a diagonal matrix (via a symmetric Sinkhorn iteration) into a diffusion operator that is self-adjoint with respect to a mass-weighted inner product (Theorem 4.1).",
+    "Theorem 4.2 proves that for Gaussian and exponential kernels, the Sinkhorn-normalized operators converge uniformly on bounded domains to continuous diffusion operators as sampling resolution increases (Theorem 4.2).",
+    "The symmetric Sinkhorn algorithm empirically requires only 5 to 10 iterations to reduce normalization error below 0.1% (Section 4/5, empirical convergence results).",
+    "The normalized operators simultaneously satisfy symmetry, mass conservation, entrywise positivity, and spectral damping (eigenvalues in [0,1]), properties not jointly satisfied by standard row- or symmetric-normalization schemes (Theorem 4.1).",
+    "The method is demonstrated on point clouds, sparse voxel grids (jaw bone geometry), and Gaussian mixture models with covariance-aware kernels, showing Laplacian-like smoothing on each irregular data type (Section 5, experiments).",
+    "Shape analysis experiments on the Armadillo mesh show spectral distributions remain consistent across sampling modalities, with eigenvalue divergence appearing only at scales matching sampling resolution, validating the Theorem 4.2 convergence guarantee (Section 5)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "inconclusive",
+    "toy",
+    "toy"
+   ],
+   "official_points": 8,
+   "official_judged_at": "2026-08-03T07:57:06+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-a-solvable-high-dimensional-model-where-nonlinear-autoencoders-learn-structure-i",
+   "sha": "fa78f632b94bac4760f67d417478427a83a00aa1",
+   "orid": "wm3ABfhE7P",
+   "title": "A Solvable High-Dimensional Model Where Nonlinear Autoencoders Learn Structure Invisible to PCA While Test Loss Misaligns With Generalization",
+   "authors": [
+    "Vicente Conde Mendes",
+    "Lorenzo Bardone",
+    "Cédric Koller",
+    "Jorge Medina Moreira",
+    "Vittorio Erba",
+    "Emanuele Troiani",
+    "Lenka Zdeborová"
+   ],
+   "claims": [
+    "The spiked cumulant model introduces two latent factors, one recoverable by PCA from the covariance and one appearing only in higher-order moments and invisible to PCA (Section 3).",
+    "For correlation exponent 2 ≤ k* < ∞, a minimal nonlinear autoencoder x̂ = (w/√d) σ(wᵀx/√d) with tied encoder-decoder weights provably recovers both latent spikes while PCA and linear autoencoders recover only the covariance-visible one (Section 2, Result 3.1).",
+    "Approximate Message Passing weakly recovers both spikes once the sample-to-dimension ratio α exceeds a threshold α_weak^AMP determined by the moments of the coupling coefficients (Result 3.2).",
+    "Under conditions C2 < 0 and C3 ≠ 0, spherical gradient flow on the nonlinear autoencoder achieves weak recovery of the hidden spike in logarithmic time Θ(log d) (Theorem 4.2).",
+    "Linear autoencoders achieve lower reconstruction (test) loss than nonlinear autoencoders yet fail to recover the hidden spike, demonstrating that self-supervised test loss misaligns with representation quality (Figure 2)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "inconclusive",
+    "inconclusive",
+    "verified"
+   ],
+   "official_points": 6,
+   "official_judged_at": "2026-07-24T02:30:01+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-accelerating-regression-tasks-with-quantum-algorithms",
+   "sha": "9e4f166644393a791379d902695f045cd73b42d4",
+   "orid": "TBSyYj4VV6",
+   "title": "Accelerating Regression Tasks with Quantum Algorithms",
+   "authors": [
+    "Chenghua Liu",
+    "Zhengfeng Ji"
+   ],
+   "claims": [
+    "The proposed quantum algorithm constructs epsilon-approximate GLM sparsifiers in time O~(r*sqrt(mn)/epsilon + poly(n))*log(s_max/s_min), giving a quadratic speedup in sample count m over the classical O~(mr) algorithm (Theorem 10).",
+    "For linear regression, the quantum algorithm runs in O~(r*sqrt(mn)/epsilon + n^3) time versus O~(mr + n^3) classically (Corollary 23).",
+    "The paper gives the first quantum algorithm for Lasso regression, running in O~(r*sqrt(mn)/epsilon + poly(n,1/epsilon)) time versus O~(mn^2 + n^3) classically (Corollary 26).",
+    "Ridge regression is solved in O~(r*sqrt(mn)/epsilon + n^3) quantum time versus O~(mr + poly(n,1/epsilon)) classically (Corollary 25).",
+    "Huber regression is handled via a gamma_p-loss framework in O~(r*sqrt(mn)/epsilon + poly(n,1/epsilon)) quantum time (Corollary 12).",
+    "For l_p regression with p in (0,2], the algorithm achieves quadratic speedup in the sample parameter m, which the authors note dominates runtime when m >> n (Corollary 11)."
+   ],
+   "official": [
+    "toy",
+    "toy",
+    "toy",
+    "toy",
+    "toy",
+    "toy"
+   ],
+   "official_points": 6,
+   "official_judged_at": "2026-08-03T07:56:25+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-allocating-variance-to-maximize-expectation",
+   "sha": "f710a82abce466ddf3a0dd4a9c7ed004f5187506",
+   "orid": "vqxprtjuKH",
+   "title": "Allocating Variance to Maximize Expectation",
+   "authors": [
+    "Renato Paes Leme",
+    "Clifford Stein",
+    "Yifeng Teng",
+    "Pratik Worah"
+   ],
+   "claims": [
+    "For the independent Gaussian variance allocation problem, the paper gives a PTAS achieving E[max_i X_i] ≥ OPT - ε in polynomial time (Theorem 1.1, Section 1.2).",
+    "For correlated Gaussian variables, a PTAS with the same additive ε guarantee is established (Theorem 1.2, Section 1.2).",
+    "For the GraphVarAlloc problem with multiple constraint sets (general m>1), the paper gives an O(log n) multiplicative approximation guaranteeing Ω(1/log n)·OPT (Theorem 1.3, Section 1.2).",
+    "Theorem 1.6 proves that in the optimal allocation, only Θ(1/p) variables receive variance Ω(p), i.e., the allocation concentrates on a shrinking subset as the constraint parameter p grows (Theorem 1.6, Section 1.3).",
+    "Lemma 2.1 bounds the contribution of small-variance variables by O(ε√ln(1/ε)), which is used to limit the number of high-variance variables to O(1/ε²) and underlies the PTAS construction (Lemma 2.1, Section 2.1).",
+    "Monte Carlo simulations on Erdős–Rényi random graphs with n=8 nodes and edge probabilities p ranging from 1/8 to 8/8 are used to illustrate the concentration and concavity results across independent, positively, and negatively correlated settings (Figures 1-2, Section 1.3)."
+   ],
+   "official": [
+    "toy",
+    "toy",
+    "toy",
+    "inconclusive",
+    "verified",
+    "toy"
+   ],
+   "official_points": 6,
+   "official_judged_at": "2026-08-03T08:07:09+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-fluxnet-learning-capacity-constrained-local-transport-operators",
+   "sha": "915ec3d2fc1136c102cd54bd36f70552c53ec9c6",
+   "orid": "1KRpajnd6u",
+   "title": "FluxNet: Learning Capacity-Constrained Local Transport Operators for Conservative and Bounded PDE Surrogates",
+   "authors": [
+    "Zishuo Lan",
+    "Junjie Li",
+    "Lei Wang",
+    "Jincheng Wang"
+   ],
+   "claims": [
+    "Proposition 1 shows that under periodic boundary conditions with symmetric stencils, FluxNet's flux-based update rule (the same flux serves as outflow for the sender cell and inflow for the receiver cell) exactly preserves the global sum of the transported quantity, yielding conservation errors at the machine-precision level (~1e-7 to 1e-8) (Proposition 1).",
+    "The L-Head and U-Head mechanisms parameterize outflow as a fraction of the cell's available capacity above a lower bound (or below an upper bound), and Propositions 2 and 3 prove that this construction guarantees the next state stays within the prescribed bounds without any post-hoc clipping or projection (Propositions 2 and 3).",
+    "On the shallow-water equations rollout task at horizon T=2, FluxNet-LAP achieves a depth MAE of 3.12e-3 versus 6.74e-3 for the best baseline (a post-hoc projection method), while also reducing conservation error from 3.3e-7 (baseline) to 3.3e-8 (Table 3).",
+    "On the traffic flow benchmark at horizon T=2, FluxNet-D attains an MAE of 3.48e-3 compared to 15.9e-3 for a CNN-AR baseline, and reduces conservation error from 2.1e-2 to 7.7e-8, though FluxNet-D shows slightly higher upper-bound violation rates on some settings (1.87% vs 3.20% for CNN-AR) (Table 4).",
+    "On the spinodal decomposition experiment, a FluxNet model trained to take steps of 1000*dt achieves a 17.3x rollout speedup relative to the base timestep while preserving two-point correlation statistics of the simulated microstructure (Table 5).",
+    "The D-Head (dual bounds) variant enforces upper and lower capacity constraints via a dual consistency loss (DCL) rather than a strict architectural guarantee, achieving empirically near-zero bound violations rather than the exact guarantees proven for the single-bound L-Head and U-Head cases (Section on Bound Enforcement / D-Head)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "verified"
+   ],
+   "official_points": 6,
+   "official_judged_at": "2026-08-02T08:49:52+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-multi-distribution-robust-conformal-prediction",
+   "sha": "178965c8297b9b25b29b8e7171425ec816faef77",
+   "orid": "Vv4XRZDMM0",
+   "title": "Multi-Distribution Robust Conformal Prediction",
+   "authors": [
+    "Yuqi YANG",
+    "Ying Jin"
+   ],
+   "claims": [
+    "Theorem 1 (Section 2) establishes finite-sample uniform validity of max-p aggregation, showing it yields coverage guarantees under any mixture distribution of the K sources.",
+    "Theorem 2 (Section 3.1) characterizes the population-optimal prediction set as a superlevel set of a shared score function h_{λ*}(x,y) = Σ_k λ_k*(x) f_k(y|x), with complementary slackness ensuring exact 1−α coverage for at least one source.",
+    "Theorem 3 (Section 3.2) proves max-p aggregation with learned conformity scores is asymptotically optimal, converging to the oracle-optimal prediction set up to boundary regions.",
+    "In linear classification simulations, the method's prediction sets are 34.39% smaller than the naive max-p baseline while maintaining tight worst-case coverage (Figure 2).",
+    "In linear regression simulations, the method achieves a 22.44% average reduction in prediction set size while maintaining valid ~90% worst-case coverage (Figure 5).",
+    "On the FMoW satellite imagery dataset spanning six geographic regions (with 249 countries in the training data), the method achieves near-tight worst-case coverage with smaller sets than single-source methods (Section 6.1, Figure 8)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "verified",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 6,
+   "official_judged_at": "2026-07-29T08:19:49+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-optimal-decision-making-based-on-prediction-sets",
+   "sha": "86a9ebcfc9d5743c4925732a09aa80618001e6a0",
+   "orid": "VAXW59dyfk",
+   "title": "Optimal Decision-Making Based on Prediction Sets",
+   "authors": [
+    "Tao Wang",
+    "Edgar Dobriban"
+   ],
+   "claims": [
+    "The paper proposes a decision-theoretic framework that minimizes expected loss (risk) against a worst-case distribution consistent with a prediction set's coverage guarantee, characterizing the minimax-optimal policy for a fixed prediction set (abstract only).",
+    "Building on the minimax-optimal policy, the authors derive an optimal prediction-set construction that minimizes robust risk subject to a coverage constraint (abstract only).",
+    "Risk-Optimal Conformal Prediction (ROCP) is introduced as a practical algorithm that targets these risk-minimizing sets while maintaining finite-sample, distribution-free marginal coverage (abstract only).",
+    "Empirical evaluations on medical diagnosis and safety-critical decision-making tasks show ROCP reduces critical mistakes compared to baselines, with the largest gains when out-of-set errors are costly (abstract only)."
+   ],
+   "official": [
+    "verified",
+    "inconclusive",
+    "verified",
+    "verified"
+   ],
+   "official_points": 6,
+   "official_judged_at": "2026-07-29T12:25:22+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-scratio-release-audit",
+   "sha": "77c14aaed924116840cda2d61b912a5b5e7b9b04",
+   "orid": "5zbPdMNcl9",
+   "title": "Flow-Based Density Ratio Estimation for Intractable Distributions with Applications in Genomics",
+   "authors": [
+    "Egor Antipov",
+    "Alessandro Palma",
+    "Lorenzo Consoli",
+    "Stephan Günnemann",
+    "Andrea Dittadi",
+    "Fabian J Theis"
+   ],
+   "claims": [
+    "The proposed scRatio method derives a single ODE (Proposition 4.1) governing the time-derivative of the log-density ratio along generative flow-matching trajectories, expressed via the divergence and inner products of the two distributions' vector fields and score functions (Section 4, Proposition 4.1).",
+    "On the mutual information estimation benchmark, scRatio achieves best or second-best performance across all 5 tested dimensions d in {20,40,80,160,320}, with a mean absolute error of 0.46 +/- 0.15 at d=320 (Table 1).",
+    "On the differential abundance genomics task, scRatio attains a Spearman correlation of 0.99 +/- 0.01 with ground-truth differential abundance and an AUC of 0.96 +/- 0.00 in the high-DA regime (Table 2).",
+    "scRatio's estimated log-ratios decrease in magnitude after batch correction on the NeurIPS 2021 (90,261 cells) and C. elegans (89,701 cells) single-cell datasets, demonstrating sensitivity to batch effect removal (Figure 3).",
+    "On the ComboSciPlex dataset (63,378 cells), scRatio-estimated likelihood ratios for combinatorial drug perturbations correlate positively with an independent classifier's log-odds scores (Figure 4).",
+    "scRatio outperforms Time Score Matching (TSM) and Conditional TSM baselines on Gaussian benchmark tasks across dimensions d in {2,5,10,20,30}, while requiring substantially lower runtime than the naive likelihood-ratio computation approach (Section 5.1, Figure 2b)."
+   ],
+   "official": [
+    "verified",
+    "inconclusive",
+    "verified",
+    "inconclusive",
+    "verified",
+    "inconclusive"
+   ],
+   "official_points": 6,
+   "official_judged_at": "2026-07-29T20:41:48+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-subgroup-discovery-with-the-cox-model",
+   "sha": "13cc38d58ce1e47d0f9eb99264dc514a920e021b",
+   "orid": "3tlaoBZrSg",
+   "title": "Subgroup Discovery with the Cox Model",
+   "authors": [
+    "Zachary Izzo",
+    "Iain Melvin"
+   ],
+   "claims": [
+    "Introduces Expected Prediction Entropy (EPE, Definition 3.1) as a proper scoring rule for subgroup discovery in Cox proportional hazards models, proven to uniquely identify correct Cox coefficients when data follow the Cox model (Proposition 3.2).",
+    "Theorem 6.1 proves the DDGroup algorithm recovers the ground-truth subgroup region R* under five assumptions (A1-A5), with an effect-size threshold of O(log ε^{-1}) (Theorem 6.1).",
+    "On the synthetic Synth-Counter benchmark, DDGroup achieves an F1 score of 0.94 (0.01), versus 0.76 (0.04) for the C-Index variant and 0.81 (0.10) for the Partial Likelihood variant (Table 1).",
+    "On the Synth-Nonlinear benchmark, DDGroup attains F1 of 0.97 (0.01) and test EPE of 0.38 (0.02), compared to a Base (no subgroup selection) F1 of 0.29 (0.00) (Table 2).",
+    "DDGroup achieves the lowest EPE on 5 of 7 real clinical datasets (AIDS-CD4, AIDS-Karnof, AIDS-prior, GBSG2-tsize, METABRIC-MKI, VLC-Karnof, WHAS-DBP) (Section 7.2, Table 3).",
+    "In the NASA jet engine case study, the Cox Tree method achieves EPE of 0.52 (0.01) and C-index of 0.74 (0.01), and discovers subgroups with distinct Cox coefficients for high-altitude operation (β_Nc = 2.35, β_NRf = -1.19) mirroring design choices used in modern jet engines (Section 7.2, Table 4)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "inconclusive",
+    "verified",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 6,
+   "official_judged_at": "2026-07-29T10:09:57+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-online-packet-scheduling-with-deadlines-and-learning",
+   "sha": "6806419792fd2c41b18784cf840589cdc7e4167c",
+   "orid": "rZTiFcDihH",
+   "title": "Online Packet Scheduling with Deadlines and Learning",
+   "authors": [
+    "Gianmarco Genalti",
+    "Achraf Azize",
+    "Vianney Perchet"
+   ],
+   "claims": [
+    "For the deterministic algorithm EDF_Φ^L in 2- and 3-bounded K-OPSD, the Φ-regret upper bound is Õ(√(KT)), matching sleeping-bandit-style rates (Proposition 3.1).",
+    "The deterministic algorithm ALG^θ achieves competitive ratio θ_K in [√2, Φ) for finite K packet types, breaking the classical golden-ratio Φ = (1+√5)/2 competitive-ratio barrier for 2-bounded deadline instances (Proposition 4.1).",
+    "The learning variant ALG^θ,U attains a θ_K-regret upper bound of Õ(√(KT)), which is shown to be nearly tight against a matching Ω(√T) lower bound (Theorem 4.2, Theorem 4.3).",
+    "The randomized algorithm ALG^R2 for 2-bounded instances achieves a 5/4-regret bound of Õ(√(KT)) (Theorem 5.1).",
+    "The randomized algorithm ALG^Rs for s-bounded (unbounded slackness) instances achieves an e/(e-1)-regret bound of Õ(√(KT)) (Theorem 5.2).",
+    "Lemma 2.1 establishes that sleeping bandits are a special case of 1-bounded K-OPSD, formally connecting the packet scheduling model to the multi-armed bandit framework (Section 2.2, Lemma 2.1)."
+   ],
+   "official": [
+    "inconclusive",
+    "toy",
+    "inconclusive",
+    "toy",
+    "toy",
+    "verified"
+   ],
+   "official_points": 5,
+   "official_judged_at": "2026-08-03T08:06:58+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-last-iterate-convergence-of-admm-on-multi-affine-quadratic-equality-constrained-problem",
+   "sha": "4571f56275d307db57bceb84c29f14e433b5f677",
+   "orid": "MyBVUgacQ9",
+   "title": "Last-iterate Convergence of ADMM on Multi-affine Quadratic Equality Constrained Problem",
+   "authors": [
+    "Yutong Chao",
+    "Michal Ciebielski",
+    "Jalal Etesami",
+    "Majid Khadiv"
+   ],
+   "claims": [
+    "Theorem 3.1 establishes sublinear convergence of ADMM to stationary points on multi-affine quadratic equality constrained problems under Assumptions 2.3 and 2.6, given a sufficiently large penalty parameter rho (Section 3).",
+    "Theorem 3.2 proves a linear convergence rate when the nonlinearity norm ||C|| satisfies the bound in Equation 4 relative to Q's properties, provided the Lagrangian is second-order differentiable at limit points (Section 3).",
+    "Theorem 3.3 achieves linear convergence without requiring second-order differentiability when the constraint indicator functions {I_i} are polyhedral (Section 3).",
+    "For robotic locomotion dynamics, Corollary 4.2 shows linear convergence holds when the discretization step Δt is below a threshold t0, since nonlinear terms decay as O((Δt)^3) (Section 4).",
+    "Empirically, ADMM outperforms PADMM, IPDS-ADMM, and IADMM baselines on multi-affine constrained problems, and toy-problem experiments show q≥10 is sufficient to transition from sublinear to linear convergence (Figures 2 and 4).",
+    "The method is validated on 2D locomotion simulation and on real robot experiments including a humanoid jump and quadruped bounding task (Figures 5 and 6)."
+   ],
+   "official": [
+    "toy",
+    "toy",
+    "toy",
+    "toy",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 4,
+   "official_judged_at": "2026-08-02T08:50:38+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-medmamba-implementation",
+   "sha": "77f213a24cd4ea2d6487f745a1f98cba26a26416",
+   "orid": "qPqJH0heR0",
+   "title": "MedMamba: Multi-View State Space Models with Adaptive Graph Learning for Medical Time Series Classification",
+   "authors": [
+    "Da Zhang",
+    "Bingyu Li",
+    "Zhiyuan Zhao",
+    "Hongyuan Zhang",
+    "Junyu Gao",
+    "Xuelong Li"
+   ],
+   "claims": [
+    "MedMamba achieves top-1 accuracy of 92.13% on TDBRAIN, 89.36% on PTB, 84.48% on APAVA, 73.86% on PTB-XL, and 57.56% on ADFTD in the subject-independent setting, outperforming or matching the strongest baseline (MedGNN or KEMed) on four of five datasets (Section 5, Table with subject-independent results).",
+    "MedMamba obtains 20 top-1 and 3 top-2 results out of 30 total evaluation entries across the five datasets when compared against nine baselines including GPT4TS, PatchTST, Medformer, MedGNN, and KEMed (Section 5.2).",
+    "The Tri-Branch Differential State Space Encoder (TDSSE) fuses raw, temporal-difference, and frequency-domain views to suppress nonstationary artifacts such as baseline drift, as introduced in Section 4.2.",
+    "The Spatial Graph Mamba (SGM) module learns directed inter-channel dependencies with sparsity and acyclicity constraints, removing the need for a predefined anatomical graph (Section 4.3).",
+    "MedMamba maintains linear computational complexity in sequence length, in contrast to the quadratic scaling of Transformer-based baselines such as PatchTST and Medformer (Section 4, Section 5)."
+   ],
+   "official": [
+    "inconclusive",
+    "inconclusive",
+    "falsified",
+    "falsified",
+    "inconclusive"
+   ],
+   "official_points": 4,
+   "official_judged_at": "2026-07-29T18:12:53+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-online-learning-inference-cox-proportional-hazards-renewable-sieve",
+   "sha": "af356f5f5dc050b766035804012b8adc934b112a",
+   "orid": "TvLOddG9Ay",
+   "title": "Online Learning and Inference for Cox Proportional Hazards Model Using Renewable Sieve Estimation",
+   "authors": [
+    "Mengtong Hu",
+    "Ziyang Gong",
+    "Xu Shi",
+    "Ling Zhou",
+    "Peter Song"
+   ],
+   "claims": [
+    "COLSA achieves asymptotic normality and same statistical efficiency as pooled-data partial likelihood estimator with constant memory requirement",
+    "Outperforms existing online Cox methods while maintaining sufficient statistics for higher-order basis"
+   ],
+   "official": [
+    "verified",
+    "verified"
+   ],
+   "official_points": 4,
+   "official_judged_at": "2026-07-22T17:15:34+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-sparse-bayesian-functional-deep-learning",
+   "sha": "f6906e055b71d349f21f89a0d532c8a220eb55a7",
+   "orid": "3IFIedDIoN",
+   "title": "Sparse Bayesian Deep Functional Learning with Structured Region Selection",
+   "authors": [
+    "Xiaoxian Zhu",
+    "Yingmeng Li",
+    "Shuangge Ma",
+    "Mengyun Wu"
+   ],
+   "claims": [
+    "sBayFDNN uses a spike-and-slab prior on the first hidden layer, where the slab component (γ_j=1) admits large-variance weights and the spike component (γ_j=0) shrinks weights toward zero, translating B-spline feature selection into functional-domain region selection.",
+    "Theorem 5.4 gives an approximation error bound sup_X|μ_θ(X)−μ*(X)| ≲ H_n^{-2α₁} + J_n^{-αβα₁}, decomposing error into network-depth (H_n) and spline-resolution (J_n) components (Theorem 5.4).",
+    "Theorem 5.7 establishes posterior contraction at rate ε_n² ≲ (s_n log(J_n/s_n))/n + s_n(H_n log n + log J_n)/n + (H_n^{-2α₁}+J_n^{-αβα₁})², giving posterior consistency (Theorem 5.7).",
+    "Theorem 5.9 proves region selection consistency: feature-level inclusion probabilities converge in probability to the true indicator (max_j|q̂_j−e_j*|→0), exact support recovery P(Ŝ_{1/2}=S_{J_n}*)→1, and domain-level convergence |Ω̂ΔΩ*|→0 (Theorem 5.9).",
+    "On the ECG real-data application, sBayFDNN achieves RMSE 12.069 (versus 13-17 for competitors) and an F1 score of 0.634 with perfect recall (1.000), identifying posterior inclusion probabilities aligned with the clinically-relevant QRS interval.",
+    "On the Tecator spectroscopy dataset, sBayFDNN attains RMSE 2.138 versus 2.2-3.9 for competing methods, discovering active regions near 930nm consistent with known lipid/fat spectral associations (Figure 4)."
+   ],
+   "official": [
+    "verified",
+    "falsified",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 4,
+   "official_judged_at": "2026-07-30T08:28:07+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-supervised-graph-contrastive-learning-grn",
+   "sha": "ceb2760886a2200f4c3f8eca6570149b8fe75c4c",
+   "orid": "0Y7itV1kb7",
+   "title": "Supervised Graph Contrastive Learning for Gene Regulatory Networks",
+   "authors": [
+    "Sho Oshima",
+    "Yuji Okamoto",
+    "Taisei Tosaki",
+    "Ryosuke Kojima"
+   ],
+   "claims": [
+    "SupGCL uses gene knockdown perturbations from LINCS as supervised augmentations, and Theorem 1 shows the resulting loss decomposes into a node-level contrastive term weighted by the supervised distribution plus an augmentation-matching term (Theorem 1).",
+    "Corollary 1 proves that conventional (unsupervised) graph contrastive learning is recovered as a special case of SupGCL when the augmentation temperature parameter tau_a tends to infinity (Corollary 1).",
+    "On node-level tasks evaluated across breast, lung, and colorectal cancer TCGA cohorts, SupGCL improves over the GRACE baseline, e.g. on lung cancer biological-process classification SupGCL reaches 0.282+/-0.037 vs. 0.259+/-0.063 for GRACE (Table 2).",
+    "On graph-level tasks, SupGCL improves hazard prediction C-index on colorectal cancer to 0.698+/-0.085 versus 0.657+/-0.071 for the GraphCL baseline, and improves breast cancer disease-subtype classification accuracy to 0.847+/-0.036 versus 0.804+/-0.031 for the no-pretraining baseline (Table 3).",
+    "SupGCL outperforms five baselines (no-pretrain, GAE, GraphCL, GRACE, SGRL) across all 13 downstream node- and graph-level tasks spanning three cancer types (Table 2, Table 3).",
+    "Latent-space analysis shows GraphCL embeddings collapse, with 98.3% of variance captured by the first PCA component, whereas SupGCL embeddings show clearer disease-subtype separation across embedding dimensions 8-64 (Section on embedding-space/ablation analysis)."
+   ],
+   "official": [
+    "verified",
+    "verified",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 4,
+   "official_judged_at": "2026-07-31T09:52:04+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-when-can-we-trust-survival-model-evaluation",
+   "sha": "7ea7f86fbf778c87573f9d9b323d4a8df97b7242",
+   "orid": "Y9gsOEdaNE",
+   "title": "When Can We Trust Survival Model Evaluation ?",
+   "authors": [
+    "Ghanem BAHRINI",
+    "Sebastien Razakarivony",
+    "Jean-François Dupuy",
+    "Valerie Gares",
+    "Morgane Barbet-Massin"
+   ],
+   "claims": [
+    "Censoring induces systematic, mechanism-dependent distortions in survival evaluation metrics that vary by censoring rate and censoring mechanism.",
+    "Moderate numerical bias in censored data can lead to unreliable model comparison as censoring increases."
+   ],
+   "official": [
+    "verified",
+    "verified"
+   ],
+   "official_points": 4,
+   "official_judged_at": "2026-07-19T08:42:57+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-calpro-prior-aware-evidential-conformal-prediction-with-structure-aware",
+   "sha": "16eebadc1382f79398f5d9c2b1bba474e05149cb",
+   "orid": "3LRWjJTp0Y",
+   "title": "CalPro: Prior-Aware Evidential Conformal Prediction with Structure-Aware Sensitivity Bounds for Protein Structures",
+   "authors": [
+    "Ibne Farabi Shihab",
+    "Sanjeda Akter",
+    "Anuj Sharma"
+   ],
+   "claims": [
+    "CalPro combines a geometric evidential head producing Normal-Inverse-Gamma distributions, a differentiable conformal calibration layer for end-to-end training, and domain priors imposed as soft constraints (Section 3).",
+    "Theorem 4.2 provides structure-aware coverage guarantees via PAC-Bayesian bounds over ambiguity sets, formally controlling nonconformity drift under distribution shift (Section 4).",
+    "On held-out X-ray protein structures, CalPro attains 90.1% empirical coverage at a nominal 90% target with expected calibration error of 0.021 (Section 5.2, Table 2).",
+    "Under X-ray to cryo-EM modality shift, CalPro's coverage degrades by only about 3.8 percentage points, versus 14-18 points for pLDDT-based and vanilla conformal baselines (Section 5.2, Table 3).",
+    "Filtering docking candidates by CalPro interval width improves molecular docking success from 52.3% unfiltered to 74.8%, compared to 64.2% when filtering by pLDDT > 95 (Section 5.5, Table 6).",
+    "CalPro reduces calibration error by 30-50% relative to baseline conformal methods while maintaining near-nominal coverage across evaluated modalities, and achieves 0.83 Spearman correlation between predicted uncertainty and true error under synthetic perturbations (Section 5.4, Table 5)."
+   ],
+   "official": [
+    "inconclusive",
+    "falsified",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "toy"
+   ],
+   "official_points": 3,
+   "official_judged_at": "2026-07-21T07:03:29+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-learning-treatment-allocations-with-risk-control-under-partial-identifiability",
+   "sha": "b21e448c01075452e77cb47caca2da458e1e00b2",
+   "orid": "9kWVQtpvJi",
+   "title": "Learning Treatment Allocations with Risk Control Under Partial Identifiability",
+   "authors": [
+    "Sofia Ek",
+    "Dave Zachariah"
+   ],
+   "claims": [
+    "Lemma 4.1 derives upper bounds on population risk R(π) and treatment risk T(π) using weights that account for a miscalibration parameter Γ ≥ 1 in the propensity-score or selection model, formalizing risk under partial identifiability (Lemma 4.1).",
+    "Theorem 4.3 provides a finite-sample certification guarantee that a learned policy satisfies P(T(π) ≤ τ | S=s) ≥ 1−α simultaneously across all miscalibration levels up to Γ, via a two-sample-split procedure using the Bentkus inequality (Theorem 4.3).",
+    "On synthetic data with two-dimensional covariates in [30,80], the method is evaluated both without confounding (Γ=1) and with an unmeasured confounder (Γ=2), demonstrating valid coverage of the treatment-risk constraint across tolerance levels τ (Section 5.1).",
+    "Applied to the Tennessee STAR dataset (n=4,218 students, small vs. regular class size treatment), the method learns fast-and-frugal decision trees limited to three splits that achieve valid risk control across tested τ values (Section 5.2).",
+    "Applied to the International Stroke Trial data (n=18,298 patients, 23 covariates, aspirin treatment for acute ischemic stroke, six-month mortality outcome), the method confirms valid risk certification across specified tolerance levels (Section A.5)."
+   ],
+   "official": [
+    "toy",
+    "inconclusive",
+    "verified",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 3,
+   "official_judged_at": "2026-07-29T17:13:33+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-lerd-latent-event-relational-dynamics-for-neurodegenerative-classification",
+   "sha": "d5572da654ba1ba4ce8814e8b86142e3f3c3f697",
+   "orid": "B5DAV1EA8Z",
+   "title": "LERD: Latent Event-Relational Dynamics for Neurodegenerative Classification",
+   "authors": [
+    "Yicheng Feng",
+    "Hairong Chen",
+    "Ziyu Jia",
+    "Samir Bhatt",
+    "Hengguan Huang"
+   ],
+   "claims": [
+    "LERD combines an Event Posterior Differential Equation (EPDE), a Mean-Evolving Lognormal Process (MELP), a differentiable leaky-integrate-and-fire (dLIF) prior, and an Event-Relational Graph (ERG) to infer latent neural events and their cross-channel relations directly from multichannel EEG (Section on Architecture).",
+    "Theorem 4.1 derives a tractable integral-rate surrogate replacing the intractable KL divergence between the EPDE-induced path law and the dLIF prior, with a formal upper bound guaranteeing training stability (Theorem 4.1).",
+    "On the toy dataset spanning three frequency bands ([5-10], [10-15], [15-20] Hz), LERD achieves non-zero IoU scores between 0.202 and 0.473 for latent structure recovery, whereas baseline neural ODE methods achieve zero IoU despite strong prediction accuracy (Table 1).",
+    "On AD Cohort A (88 participants: 36 AD, 23 FTD, 29 HC), LERD attains 75.03±8.29% accuracy and 72.69±8.16% F1, outperforming LEAD (72.68%), ADFormer (69.35%), and other baselines (Table 2).",
+    "On AD Cohort B (168 participants: 59 AD, 7 MCI, 102 HC), LERD attains 89.82±8.39% accuracy and 64.87±10.67% F1 (Table 2).",
+    "Ablations show both the dLIF and ERG priors independently contribute to performance, with their combination yielding the best results on both EEG cohorts, and Figure 2 shows LERD-inferred dLIF frequencies exhibit disease-correlated 'oscillatory slowing' consistent with established AD biomarkers (Table 3, Figure 2)."
+   ],
+   "official": [
+    "inconclusive",
+    "verified",
+    "toy",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 3,
+   "official_judged_at": "2026-07-22T19:03:27+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-smooth-multi-policy-causal-effect-estimation-in-longitudinal-settings",
+   "sha": "aff8cc40ec261e509ea66be93d2c019449c28ed0",
+   "orid": "bIcz7bIZSo",
+   "title": "Smooth Multi-Policy Causal Effect Estimation in Longitudinal Settings",
+   "authors": [
+    "Wenxin Chen",
+    "Weishen Pan",
+    "Kyra Gan",
+    "Fei Wang"
+   ],
+   "claims": [
+    "PEQ-Net reduces RMSE compared to DeepLTMLE from 1.09-1.42 down to 0.25-0.72 in the limited-confounding semi-synthetic scenario with deterministic policy sequences (Table 1).",
+    "PEQ-Net reduces RMSE compared to DeepLTMLE from 0.81-1.42 down to 0.25-0.34 in the expanded-confounding semi-synthetic scenario (Table 1).",
+    "On dynamic policies that differ only in early time steps, PEQ-Net achieves RMSE of 0.0026-0.0148 versus 0.1255-0.1448 for baseline ICE-based methods (Table 2).",
+    "PEQ-Net's policy encoder uses kernel mean embeddings in an RKHS with maximum mean discrepancy (MMD) and metric multidimensional scaling (MDS) to produce fixed-dimensional policy representations that reflect population-level policy dissimilarities (Policy Embedding Approach section).",
+    "Theorem 4.2 establishes that the CATE estimation error is controlled by trajectory-level policy distance via a Lipschitz bound on the second-order remainder, preventing spurious non-smooth behavior across policies (Theorem 4.2).",
+    "In a case study of 999 sepsis patients, PEQ-Net's estimates show higher MAP vasopressor targets are associated with increased serum lactate at 72 hours, consistent with clinical evidence (Real-World Application, sepsis case study)."
+   ],
+   "official": [
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "toy",
+    "falsified",
+    "inconclusive"
+   ],
+   "official_points": 3,
+   "official_judged_at": "2026-07-29T17:22:03+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-spmind-artifact-audit",
+   "sha": "d9284f6a6c1b4be5ab413cd93997bc1d44116a8a",
+   "orid": "UJcB3XrffF",
+   "title": "SP-Mind: An Autonomous Reasoning Agent for Spatial Proteomics Analysis",
+   "authors": [
+    "YuCheng Yuan",
+    "Yuanfeng Ji",
+    "Zhongxiao Li",
+    "Ruijiang Li"
+   ],
+   "claims": [
+    "SP-Mind is presented as the first autonomous LLM-driven agent unifying spatial proteomics analysis end-to-end, from raw tissue imaging through downstream phenotype discovery, using a ReAct-style reasoning loop over a modular library of 10+ tools spanning 8 pipeline stages (Section 3.1, Section 3.2).",
+    "SP-Mind achieves 68.9% average execution accuracy on SP-Bench, versus 55.4% for Biomni-SP and 50.5% for ToolUniverse-SP, with the largest margins on the Advanced tier (61.9% vs. 36.5% and 25.4%) and Challenging tier (33.3% vs. 23.1% and 15.4%) (Table 1).",
+    "SP-Bench comprises 102 queries spanning 8 pipeline stages and 18 task categories, split into four difficulty tiers of 40 Basic, 28 Intermediate, 21 Advanced, and 13 Challenging queries, built from MCMICRO, MAPS cHL, and PDAC IMC datasets (Section 4.1).",
+    "On the CRC-CODEX Quantification Challenge, SP-Mind attains a Pearson correlation of 0.953 and Spearman correlation of 0.902 with the lowest (best) MMD score of 0.368 among compared agents (Table 2).",
+    "On the Cell Annotation Challenge, SP-Mind achieves the highest average CyteOnto similarity of 0.681 across evaluated agents, with a per-sample high of 0.765 on cHL_2_MIBI_5 (Table 3)."
+   ],
+   "official": [
+    "toy",
+    "inconclusive",
+    "verified",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 3,
+   "official_judged_at": "2026-07-29T18:20:13+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-stable-localized-conformal-prediction-via-transduction",
+   "sha": "a9ac821d4adb05be4f8f6f9bcdd4c54f695de05a",
+   "orid": "lSMTccAN61",
+   "title": "Stable Localized Conformal Prediction via Transduction",
+   "authors": [
+    "Yinjie Min",
+    "Liuhua Peng",
+    "Changliang Zou"
+   ],
+   "claims": [
+    "Stable (localized) Conformal Prediction (StCP/SLCP) uses a conditional CDF estimator trained on labeled source-task data plus an empirical marginal distribution estimated from unlabeled target data, calibrated via a regularized optimization with parameter λ (Equation 7, Section 3).",
+    "StCP's coverage error is bounded by O(min(ε + λ^{1/2} + n^{-1}, δ_S + λ^{-1/2} + n^{-1})), establishing robustness of marginal coverage to the choice of λ (Theorem 4.2).",
+    "Standard conformal prediction has set-size variance of order O(n^{-1}), while StCP achieves O(m^{-1} + {n(1+λ)²}^{-1}), yielding substantial stability gains when the unlabeled target sample size m greatly exceeds the calibration size n (Theorem 4.6).",
+    "On real data across five datasets, StCP/SLCP reduces prediction-set-size standard deviation by 20-48% when built on GLCP and by 6-29% when built on CQR, while maintaining marginal coverage near the nominal 90% level (Table 1).",
+    "On synthetic data, the largest stability gains occur at a small calibration size of n=30, with standard deviation reductions of 31.2% (GLCP-based) and 16.3% (CQR-based) (Table 2).",
+    "A data-driven procedure for selecting λ maintains empirical coverage within the interval [1-α-α_tol, 1-α+α_tol+(n+1)^{-1}] (Theorem 4.7)."
+   ],
+   "official": [
+    "inconclusive",
+    "inconclusive",
+    "toy",
+    "inconclusive",
+    "inconclusive",
+    "falsified"
+   ],
+   "official_points": 3,
+   "official_judged_at": "2026-07-29T17:26:45+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-caml-release-audit",
+   "sha": "90c6df5dea221030a8e7a062d2fc1228d52a1365",
+   "orid": "Fisw2kc7EY",
+   "title": "Mitigating Gradient Pathology in PINNs through Aligned Constraint",
+   "authors": [
+    "Yichen Luo",
+    "Peiyu Zhu",
+    "Dongxiao Hu",
+    "Jia Wang",
+    "Tailin Wu",
+    "Dapeng Lan",
+    "Yu Liu",
+    "Zhibo Pang"
+   ],
+   "claims": [
+    "Theorem 4.1 shows that when the PDE constraint does not uniquely determine a solution in function space, the PDE residual loss admits a flat and connected set of global minimizers.",
+    "CAML reduces the relative L2 error on the Heat equation to 1.16e-3 +/- 8e-5, versus 7.52e-3 for a standard PINN baseline (Table 2, Section 6.2).",
+    "CAML reduces convergence steps needed on the Heat benchmark from 10127+/-2839 to 1577+/-130 (Section 6.2).",
+    "CAML increases the fraction of positively-aligned residual/boundary gradients from 5.89% to 39.16%, an order-of-magnitude improvement in gradient cosine similarity (Table 3).",
+    "Ablation results show aligned constraints (AC) provide the primary accuracy benefit, while the delay-residual (DR) mechanism gives additional gains specifically on problems with composite/complex boundary conditions (Table 4).",
+    "CAML is evaluated for optimizer compatibility with Adam, L-BFGS, DCGD, and ConFIG, and with three backbone architectures (MLP, PirateNets, PINNsFormer) across Heat, Poisson, Navier-Stokes, and Helmholtz benchmarks (Table 5, Table 2)."
+   ],
+   "official": [
+    "falsified",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 2,
+   "official_judged_at": "2026-08-03T11:48:14+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-explicitly-modeling-censoring-produces-superior-survival-predictors",
+   "sha": "a885d542d0c9218faa446f3f154ff9fc8f079819",
+   "orid": "0xJt4PqPJv",
+   "title": "Explicitly Modeling Censoring Produces Superior Survival Predictors",
+   "authors": [
+    "Shi-ang Qi",
+    "Yakun Yu",
+    "Russell Greiner"
+   ],
+   "claims": [
+    "Explicitly modeling censoring improves representation learning when event and censoring processes are coupled",
+    "Latent decomposition learns four disjoint factor categories with consistent gains on 10 datasets (2 semi-synthetic, 8 real-world)"
+   ],
+   "official": [
+    "falsified",
+    "inconclusive"
+   ],
+   "official_points": 2,
+   "official_judged_at": "2026-07-23T15:26:18+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-plug-and-play-diffusion-meets-admm-dual-variable-coupling-for-robust-medical",
+   "sha": "a60f9adb61f19f3f79656c3b722696ca179497f0",
+   "orid": "jEBkuuETjr",
+   "title": "Plug-and-Play Diffusion Meets ADMM: Dual-Variable Coupling for Robust Medical Image Reconstruction",
+   "authors": [
+    "Chenhe Du",
+    "Xuanyu Tian",
+    "Qing Wu",
+    "Muyu Liu",
+    "Jingyi Yu",
+    "Hongjiang Wei",
+    "Yuyao Zhang"
+   ],
+   "claims": [
+    "The method (DC-PnPDP) introduces explicit ADMM dual variables that act as an integral controller accumulating historical constraint-violation feedback, in contrast to standard memoryless plug-and-play operators, to reduce steady-state reconstruction bias (Section 3, dual-variable coupling).",
+    "Theorem C.1 shows that dual-coupled fixed points satisfy the first-order optimality condition 0 ∈ ∇f(x*) + ∂φ(x*) of the original reconstruction problem, formalizing the asymptotic convergence guarantee (Appendix C, Theorem C.1).",
+    "A Spectral Homogenization (SH) module addresses the bias-hallucination trade-off by modulating colored/structured dual-variable residuals into pseudo-AWGN inputs so they match the diffusion denoiser's valid statistical manifold (Proposition 3.1, Section 3.2).",
+    "On limited-angle CT (LACT-90), the method attains 36.98 dB PSNR versus 31.03 dB for the DiffPIR baseline (+5.95 dB), and on sparse-view CT (SVCT-20) it attains 39.81 dB versus 36.71 dB for DDS (+3.1 dB) (Table 1, Section 4).",
+    "On accelerated MRI reconstruction at 10x acceleration, the method reaches 26.21 dB PSNR versus 25.24 dB for the DAPS baseline (Table 1, Section 4).",
+    "The method matches DiffPIR's 100-step reconstruction quality using only 30 sampling steps, an approximately 3.3x acceleration, and an ablation on LACT-90 shows dual coupling alone contributes +4.55 dB over base PnP-HQS while spectral homogenization prevents hallucination artifacts (Figure 4; Table 2, Section 4.3)."
+   ],
+   "official": [
+    "toy",
+    "toy",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 2,
+   "official_judged_at": "2026-07-20T19:03:09+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-principled-confidence-estimation-for-deep-computed-tomography",
+   "sha": "1f27999340834eaf8272a67881b6a20d12d9ea0b",
+   "orid": "a6vCNSBBeq",
+   "title": "Principled Confidence Estimation for Deep Computed Tomography",
+   "authors": [
+    "Matteo Gätzner",
+    "Johannes Kirschner"
+   ],
+   "claims": [
+    "The paper's sequential likelihood-mixing framework (Section 3, Section 3.1) constructs confidence sets as level sets of negative log-likelihood with data-driven thresholds, applicable to both classical reconstruction algorithms and deep learning methods including U-Nets, U-Net ensembles (K=10), and diffusion models (K=16 samples) (Section 4.2).",
+    "Proposition 3.2 guarantees the constructed (1−δ)-confidence sequence maintains coverage probability at least 1−δ for the true image at arbitrary (anytime) stopping times, i.e., finite-sample anytime validity.",
+    "On the Lamino industrial CT dataset, the sequential negative log-likelihood gap at intensity 10^9 is roughly 4.4×10^4 for the diffusion model versus about 2.3×10^5 for MLE and about 1.6×10^6 for FBP, indicating tighter confidence sets for the diffusion approach (Figure 3).",
+    "On the Lamino dataset with δ=0.05, empirical crossover (miscoverage) rates remain below the nominal 5% level, confirming the method's validity in practice (Figure 4).",
+    "On the Composite materials dataset, the diffusion-based method achieves approximately 3% miscoverage error, close to the theoretical 5% nominal level, while yielding significantly tighter confidence intervals than worst-case optimization or bootstrap baselines (Figure 7, Section 4.6).",
+    "Section 4.7 demonstrates a hallucination-detection application by conditioning reconstruction PSNR on membership in the confidence set, distinguishing plausible reconstructions from hallucinated artifacts."
+   ],
+   "official": [
+    "toy",
+    "toy",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 2,
+   "official_judged_at": "2026-07-24T08:44:47+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-sprout-release-audit",
+   "sha": "51459d062ca982fa5cb3c9379532475d43d890e1",
+   "orid": "qYfNhYenuu",
+   "title": "Supervise Less, See More: Training-free Nuclear Instance Segmentation with Prototype-Guided Prompting",
+   "authors": [
+    "Wen Zhang",
+    "Qin Ren",
+    "Wenjing Liu",
+    "Haibin Ling",
+    "Chenyu You"
+   ],
+   "claims": [
+    "SPROUT (Stain Priors with pRototypical partial Optimal transport for Unlabeled prompTing) performs training-free and annotation-free nuclear instance segmentation by prompting SAM with slide-specific reference prototypes derived from histology-informed priors (Abstract, Section 3).",
+    "On MoNuSeg, SPROUT achieves AJI 0.621 (an 8.2% absolute gain over prior training-free work), PQ 0.601, DQ 0.817, SQ 0.736, and Dice 0.795 (Table 1).",
+    "On CPM17, SPROUT achieves AJI 0.662, PQ 0.616, DQ 0.796, SQ 0.774, and Dice 0.821 (Table 1).",
+    "Feature alignment uses partial optimal transport in the POT-Scan and Activation Prompting stage to guide point-prompt generation for SAM without any parameter updates (Section 3.2).",
+    "Ablations compare pathology-specific versus natural-image feature extractors, SAM patch-size variants, greedy versus partial-OT point generation, and containment-aware NMS post-processing, with hyperparameter sensitivity varying by less than 3% (Section 4.2, Figure 11).",
+    "On the TNBC dataset, SPROUT processes each image in 2.449 seconds of wall-clock time, demonstrating practical inference speed without retraining (Section 4, TNBC results)."
+   ],
+   "official": [
+    "toy",
+    "inconclusive",
+    "inconclusive",
+    "toy",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 2,
+   "official_judged_at": "2026-07-31T09:51:07+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-a-conflict-aware-evidential-framework-for-reliable-sleep-stage-classification",
+   "sha": "4a9bfaf1053561fe6c1921559eaeea910998bd6e",
+   "orid": "fve4MEzeSp",
+   "title": "A Conflict-aware Evidential Framework for Reliable Sleep Stage Classification",
+   "authors": [
+    "Yunzhi Tian",
+    "Dekui Wang",
+    "Qirong Bu",
+    "Wei Zhou",
+    "Xingxing Hao",
+    "Jun Feng"
+   ],
+   "claims": [
+    "ConfSleepNet integrates multi-view evidence extraction from EEG and EOG signals with a Conflict-aware Multi-view Aggregation Module (CMAM) for sleep stage classification (Section 3).",
+    "ConfSleepNet uses hybrid category structures, a fine-grained 5-class evidence representation for EEG and a coarse-grained 3-class representation for EOG, unified via an evidence-mapping layer with matrix U (Section 3).",
+    "On SleepEDF-20, SleepEDF-78, MASS-SS3, and SHHS, ConfSleepNet achieves 87.2%, 85.3%, 88.9%, and 88.2% overall accuracy respectively (Table 1).",
+    "On MASS-SS3, full ConfSleepNet reaches 88.9% accuracy and 84.2 macro-F1, outperforming an average-fusion ablation variant (Case I, ConfSleepNet-) that achieves 87.4% accuracy and 82.5 macro-F1 (Table 2).",
+    "Proposition 1 and Proposition 2 formally show that aggregating consistent opinions reduces overall uncertainty while aggregating conflicting, high-uncertainty opinions increases it, proven for the extreme conflict cases C→0 and C→1 (Section 3.5)."
+   ],
+   "official": [
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "toy"
+   ],
+   "official_points": 1,
+   "official_judged_at": "2026-07-24T02:27:29+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-came-grad-equation-audit",
+   "sha": "9639983d6636db9372264db1253d40a823a55463",
+   "orid": "T7y2wavrFM",
+   "title": "The Double Dilemma in Multi-Task Radiology Report Generation: A Gradient Dynamics Analysis and Solution",
+   "authors": [
+    "Erjian Zhang",
+    "Yatong Hao",
+    "Liejun Wang",
+    "Zhiqing Guo"
+   ],
+   "claims": [
+    "CAME-Grad (Conflict-Averse Magnitude-Enhanced Gradient Descent) is a backbone-agnostic optimizer with three cascaded stages: conflict-averse direction rectification, magnitude-enhanced energy injection, and adaptive gradient fusion (Section 3.3).",
+    "Applied to eight diverse radiology report generation methods (WCL, XProNet, DCL, PromptMRG, CAMANet, DDaTR, TGRG, REVTAF), CAME-Grad yields an average clinical-efficacy improvement of 2.3% on MIMIC-CXR (Table 1) and 1.9% on IU X-Ray (Table 2).",
+    "Clinical efficacy is measured via CheXbert-labeled precision, recall, and F1 across 14 observation categories, evaluated on a MIMIC-CXR test set of 3,858 samples (Table 1).",
+    "CAME-Grad is compared against seven multi-task-learning optimizers—UW, GradNorm, CAGrad, RotoGrad, FAMO, MMPareto, and STGU—in a dedicated comparison (Table 3).",
+    "An ablation study on PromptMRG and DDaTR isolates the contribution of each of CAME-Grad's three stages to overall performance (Table 4)."
+   ],
+   "official": [
+    "toy",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 1,
+   "official_judged_at": "2026-07-29T18:26:54+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-funcqnet-functional-censored-quantile-net-kidney-survival",
+   "sha": "7c7166b190b0e66249029a363ddfb3a61a244ab8",
+   "orid": "wNL0qGb2MN",
+   "title": "FunCQNet: A Functional Censored Quantile Neural Network for Predicting Long-Term Post-Transplant Kidney Survival",
+   "authors": [
+    "Jiaqi Men",
+    "Hua Liu",
+    "Yiming Tang",
+    "Jinhong You",
+    "Jianghu James Dong",
+    "Jiguo Cao"
+   ],
+   "claims": [
+    "FunCQNet yields precise multi-quantile predictions for kidney transplant survival",
+    "FunCQNet reveals clinically significant age-dependent interaction patterns between donor type and recipient survival"
+   ],
+   "official": [
+    "inconclusive",
+    "toy"
+   ],
+   "official_points": 1,
+   "official_judged_at": "2026-07-23T11:09:52+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-lvcg-release-audit",
+   "sha": "d5309345120c1f76ac96b80dd6ee78d232049dc3",
+   "orid": "hS6iw4PM8K",
+   "title": "Learning Cardiac Latent Representations in Vectorcardiogram Space",
+   "authors": [
+    "Bosong Huang",
+    "Panzhen Zhao",
+    "Zengxiang Li",
+    "Patricia Lee",
+    "Wei Jin",
+    "Alan Wee-Chung Liew",
+    "Ming Jin",
+    "Shirui Pan"
+   ],
+   "claims": [
+    "LVCG models multi-lead ECG as a linear projection E(t) = Av(t) of a latent 3D vectorcardiogram trajectory v(t), recovering beat-level VCG via Tikhonov-regularized least-squares with SVD-based inversion (Section 3, Algorithm 1, Appendix A.2).",
+    "The training objective combines ECG reconstruction on masked leads, VCG patch reconstruction, and temporal token difference consistency losses (Equation 7, Section 3).",
+    "Pre-trained on MIMIC-IV-ECG (800,035 records), LVCG achieves 71.09 AUC on CPSC2018 and 62.47 AUC on CSN under 1% linear-probe label regimes, versus 60.44 and 57.94 for HeartLang, with an average of 67.30 vs. 63.80 across six datasets (Table 1).",
+    "On multi-lead reconstruction with the (3,12)-lead setting, LVCG attains MSE/MAE of 0.49/0.37 on CPSC2018 and 0.47/0.36 on PTB, compared to 0.68/0.40 and 1.56/0.52 for Nef-Net (Table 2).",
+    "Ablating the VCG-space geometry shows AUC rising from 51.26 (ECG-space baseline) to 65.02 (learnable transformation) to 75.33 (full LVCG) at the 1% label regime for the superclass task (Table 4).",
+    "On the non-cardiac Chronic Kidney Disease detection task with 1% labels, LVCG reaches 69.04 AUC versus 58.92 for HeartLang, and removing the temporal module drops superclass AUC from 75.33 to 71.69 (Table 3, Table 5)."
+   ],
+   "official": [
+    "toy",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 1,
+   "official_judged_at": "2026-07-31T09:51:28+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-ophiuchus-release-audit",
+   "sha": "ebbaa8166e58db8e32acada149715ed3c6d337a1",
+   "orid": "coJqVkqb03",
+   "title": "Ophiuchus: Incentivizing Tool-augmented ''Think with Images'' for Joint Medical Segmentation, Understanding and Reasoning",
+   "authors": [
+    "Yankai Jiang",
+    "Yujie Zhang",
+    "Peng Zhang",
+    "Wenjie Li",
+    "Yichen Li",
+    "Jintai Chen",
+    "Xiaoming Shi",
+    "Shihui Zhen"
+   ],
+   "claims": [
+    "Ophiuchus is trained via a three-stage pipeline: Cold-Start SFT on 30k tool-integrated reasoning trajectories, Self-Reflection Fine-Tuning on 3k self-correction cases, and Agentic Tool Reinforcement Learning (ATRL) with fine-grained reward signals on 30k samples, totaling 64k curated samples (Section 3.2, Section 3.3).",
+    "Relative to the Qwen2.5-VL-7B baseline, Ophiuchus improves accuracy by +17.4 points on SLAKE (83.9% vs. 66.5%), +30.2 points on In-House-VQA (50.4% vs. 20.2%), and +19.3 points on MMMU(H&M) (76.0% vs. 56.7%), for an average +18.7 point gain across seven zero-shot benchmarks (Section 4.2).",
+    "On an in-domain test, Ophiuchus outperforms the closed-source GPT-5 model, 59.4% vs. 37.3% (Section 4.2).",
+    "Ophiuchus exceeds open-source tool-augmented medical agents VILA-M3-40B (68.0 vs. 51.9 average) and MMedAgent-7B (68.0 vs. 48.1 average) despite having far fewer parameters (Section 4.2).",
+    "The framework (Section 3.1) equips an MLLM to decide when additional visual evidence is needed and to invoke external tools for fine-grained visual inspection during joint medical segmentation, understanding, and reasoning (Section 3.1)."
+   ],
+   "official": [
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "toy"
+   ],
+   "official_points": 1,
+   "official_judged_at": "2026-07-29T20:39:33+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-safety-generalization-diabetes-testbed",
+   "sha": "e0e6c83e3ff32d195b9569f7834a1fa4d19a8b5b",
+   "orid": "kSUGLBHd0T",
+   "title": "Safety Generalization Under Distribution Shift in Safe Reinforcement Learning: A Diabetes Testbed",
+   "authors": [
+    "Minjae Kwon",
+    "Josephine Lamp",
+    "Lu Feng"
+   ],
+   "claims": [
+    "Introduces a unified clinical simulator supporting Type 1 and Type 2 diabetes with pump and non-pump insulin therapies, and benchmarks eight safe RL algorithms (PPO-Lag, TRPO-Lag, CPO, RCPO, FOCOPS, PCPO, CRPO, CUP) under out-of-distribution patient populations (Section on OOD safety benchmark).",
+    "Demonstrates a 'safety generalization gap' whereby policies achieving high Time-in-Range and low clinical risk on training patients frequently violate safety margins on unseen patients stratified by age (children 23.7-45.5 kg, adolescents 37.9-68.7 kg, adults 63.0-111.1 kg).",
+    "Proposes a test-time predictive shielding mechanism built on a Basis-Adaptive Neural ODE (BA-NODE) that combines an inverted Transformer history encoder, a latent Neural ODE ensemble, and function-space adaptation to mask actions predicted to cause hypo- or hyperglycemia within a two-hour horizon.",
+    "Shows test-time shielding improves Time-in-Range on Type 2 diabetes patients by +14.15% for PPO-Lag and +13.54% for CPO, and by an average of +6.08% across algorithms on Type 1 diabetes patients.",
+    "Reports Risk Index reductions of 2-2.8 points for strong baseline algorithms under shielding, compared to a rule-based Low Glucose Suspend shield baseline."
+   ],
+   "official": [
+    "inconclusive",
+    "toy",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 1,
+   "official_judged_at": "2026-07-29T21:02:57+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-beyond-text-to-sql-can-llms-really-debug-enterprise-etl-sql",
+   "sha": "0c399a52579506c47144ce9b7fac7f4d82c7be54",
+   "orid": "4ltyJqAHMg",
+   "title": "Beyond Text-to-SQL: Can LLMs Really Debug Enterprise ETL SQL?",
+   "authors": [
+    "Jing Ye",
+    "Yiwen Duan",
+    "Yonghong Yu",
+    "Xinpei Zhao",
+    "Yang Gao",
+    "Xing Chen"
+   ],
+   "claims": [
+    "SQLBench (Squirrel) comprises 469 syntax-error tasks (Squirrel-Syntax) and 516 semantic-error tasks (Squirrel-Semantic), built from over 1,000 seed SQL scripts spanning 26 business scenarios, with scripts averaging over 140 lines, AST width >11, and AST depth >8.7 (Benchmark Construction section).",
+    "Claude-4-Sonnet achieves only 36.46% Graph Match score on Squirrel-Syntax debugging and 32.17% on Squirrel-Semantic debugging, the best performance among evaluated models (Main Results table).",
+    "DeepSeek-V3 scores 30.28% (Graph Match) on Squirrel-Syntax and 21.32% on Squirrel-Semantic, while Qwen-2.5-Coder-32B scores 23.45% on Squirrel-Semantic, with most evaluated LLMs failing to exceed 20% success rate on enterprise SQL debugging (Main Results table).",
+    "SQLBench scripts contain on the order of 420+ tokens and 17.34-21.62 functions per script on average, reflecting enterprise-scale ETL SQL complexity rather than the short queries used in prior Text-to-SQL benchmarks (Benchmark Statistics section)."
+   ],
+   "official": [
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 0,
+   "official_judged_at": "2026-08-02T08:51:18+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-causal-matrix-completion-under-multiple-treatments-via-mixed-synthetic-nearest-neighbors",
+   "sha": "8f8fe09c265977fd3cac1c60dcfb0cca7bf5c41c",
+   "orid": "Ir6N7U5Kea",
+   "title": "Causal Matrix Completion under Multiple Treatments via Mixed Synthetic Nearest Neighbors",
+   "authors": [
+    "Minrui Luo",
+    "Zhiheng Zhang"
+   ],
+   "claims": [
+    "MSNN provably preserves Synthetic Nearest Neighbors' entry-wise finite-sample error bound (Theorem 4.5) and asymptotic normality with convergence rate scaling as K_MSNN^(-1/2) (Theorem 4.6) (Section 4.2).",
+    "Corollary 4.10 shows the expected number of usable data subgroups under MCAR grows by a multiplicative factor of [∑_d' (p_d'/p_d)^(r+1)]^c for MSNN relative to standard SNN, formalizing the effective-sample-size gain from mixed anchor sets (Section 4.3).",
+    "Corollary 4.11 shows the relative efficiency gap between data-sparse and data-rich treatment levels is reduced from quadratic to linear order under MSNN (Section 4.3).",
+    "On MCAR-generated data at a low treatment probability p(d)=0.01, MSNN achieves a 4.69% feasible rate and mean relative error of 3.91e-2, versus a 0.03% feasible rate and 0.806 MRE for standard SNN (Table 1).",
+    "Under MNAR data, MSNN consistently attains 3-26% feasible imputation rates versus under 5% for SNN, with 2-3x error reductions across treatment levels (Tables 2-3).",
+    "Mixed anchor rows/columns are constructed via bipartite cliques spanning multiple treatment levels while preserving the target row's same-treatment data, relying on the shared latent row factor assumption (Assumption 2.5) (Section 3.2-3.3, Algorithms 2-3)."
+   ],
+   "official": [
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 0,
+   "official_judged_at": "2026-08-02T08:50:58+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-ma-rag-release-audit",
+   "sha": "abc1454513e3cbb9a39232373332cb977a0e7d4c",
+   "orid": "S7lpdz7NAW",
+   "title": "From Conflict to Consensus: Boosting Medical Reasoning via Multi-Round Agentic RAG",
+   "authors": [
+    "Wenhao Wu",
+    "Zhentao Tang",
+    "Yafu Li",
+    "Shixiong Kai",
+    "Mingxuan Yuan",
+    "Zhenhong Sun",
+    "Chunlin Chen",
+    "Zhi Wang"
+   ],
+   "claims": [
+    "On the Qwen3-8B backbone, MA-RAG-ext reaches 62.2% average accuracy across 7 medical QA benchmarks versus 55.4% for the backbone alone, a +6.8 point improvement (Table 1).",
+    "MA-RAG-ext outperforms the strongest RAG baseline (TC-RAG at 56.9%) by +5.3 points and inference-time scaling baselines Self-Consistency (56.7%) and Multi-Refine (58.7%) (Table 1, Figure 3).",
+    "On MedXpertQA specifically, MA-RAG-ext improves accuracy by +6.1 points to 22.2%, described as a 37% relative improvement over baselines (Table 1).",
+    "Progressive ablation shows the Retrieval Agent adds +1.9 points and the Ranking Agent adds a further +1.6 points on top of Multi-Refine, reaching the full 62.2% MA-RAG accuracy (Table 2).",
+    "Scaling to a Qwen3-32B backbone, MA-RAG improves accuracy from 64.7% to 70.2%, a +5.5 point average gain (Table 4).",
+    "Test-time scaling analysis shows accuracy rises from 57.5% at T=1 refinement round to 61.5% at T=2 rounds, saturating around 62.1-62.2% by T=4-8 rounds (Table 3)."
+   ],
+   "official": [
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 0,
+   "official_judged_at": "2026-07-29T20:05:27+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-medcrp-cl-release-audit",
+   "sha": "4b14e216d726ca263ce0243989535014cebe2ae0",
+   "orid": "v0DWbfP3b9",
+   "title": "MedCRP-CL: Continual Medical Image Segmentation via Bayesian Nonparametric Semantic Modality Discovery",
+   "authors": [
+    "Ziyuan Gao"
+   ],
+   "claims": [
+    "MedCRP-CL uses the Chinese Restaurant Process to perform online, unsupervised discovery of semantic modality groupings from clinical text prompts, identifying K=5 clinically meaningful clusters (e.g., separating cardiac ultrasound CAMUS from breast ultrasound BUSI) rather than grouping by physical imaging modality (Figure 6).",
+    "Across 16 medical segmentation tasks spanning endoscopy, dermoscopy, ultrasound, and chest X-ray, MedCRP-CL achieves 73.3% Dice with 4.1% forgetting using 8.6M trainable parameters, versus the best baseline MoE-Adapters at 65.3% Dice, 7.1% forgetting, and 51.9M parameters, an 8.0-point Dice improvement with roughly 6x fewer parameters (Table 2).",
+    "Ablations show removing the Chinese Restaurant Process component causes catastrophic forgetting of 15.55%, and removing LoRA adaptation degrades performance to 45.39% Dice, versus 4.1% forgetting and 73.3% Dice for the full model (Table 4).",
+    "Text-embedding-based modality discovery yields a substantially larger intra-/inter-cluster gap (~0.50) than visual-embedding-based discovery (~0.22), with cardiac and breast ultrasound tasks showing visual similarity above 0.95 but text similarity of only ~0.45, justifying the use of text prompts for task grouping (Table 7).",
+    "The discovered K=5 semantic modality structure remains stable across four different task orderings (Dice range 0.72-0.74, forgetting range 0.04-0.06) and under prompt perturbations including typos up to 20% and keyword drops up to 30% (Figure 5, Table 9)."
+   ],
+   "official": [
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 0,
+   "official_judged_at": "2026-07-31T09:50:45+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  },
+  {
+   "space_id": "kondratevakate/repro-xmae-release-audit",
+   "sha": "1df2eeb92eacb3a0a660e74e8c15191f13b359b2",
+   "orid": "NxbSbkLNMc",
+   "title": "Physiology-Aware Masked Cross-Modal Reconstruction for Biosignal Representation Learning",
+   "authors": [
+    "Hao Zhou",
+    "Simon A. Lee",
+    "Cyrus Tanade",
+    "Keum San Chun",
+    "Juhyeon Lee",
+    "Migyeong Gwak",
+    "Megha Thukral",
+    "Justin Sung",
+    "Eugene Hwang",
+    "Mehrab Bin Morshed",
+    "Li Zhu",
+    "Viswam Nathan",
+    "Md Mahbubur Rahman",
+    "Subramaniam Venkatraman",
+    "Sharanya Arcot Desai"
+   ],
+   "claims": [
+    "xMAE pretraining, using asymmetric masking (80-90% of ECG masked while PPG remains fully visible) combined with directional cross-attention where ECG tokens query PPG representations, outperforms unimodal and multimodal baselines on 15 of 19 downstream tasks (Section 3.2, Tables 1-2).",
+    "xMAE is pretrained on approximately 9.4k hours and 3.4M synchronized 10-second ECG-PPG segments (100 Hz) drawn from the MIMIC-III waveform-matched subset covering 2.4k subjects (Section 4).",
+    "On classification tasks, xMAE outperforms baselines on 9 of 12 tasks, including hypertension detection (68.8 vs 56.8 AUROC) and ectopic beat detection (87.8 vs 86.2), with statistically significant gains (p<0.05) on 5 tasks (Table 1).",
+    "On regression tasks, xMAE outperforms baselines on 6 of 7 continuous-valued tasks, including free-living systolic blood pressure estimation (11.60 vs 11.83 MAE) (Table 2).",
+    "xMAE reconstructions preserve physiological ECG-PPG pulse transit timing, achieving a 21.5ms median delay error, a 53.3% reduction versus a multimodal MAE baseline (Figure 3, Section 5.2).",
+    "Ablations show continuous (versus random) masking contributes +5.8 AUROC, curriculum (versus fixed) masking ratio contributes +1.9 AUROC, and cross-reconstruction (versus multi-reconstruction) contributes +3.0 AUROC on the hypertension task (Table 4, Section 5.3)."
+   ],
+   "official": [
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive",
+    "inconclusive"
+   ],
+   "official_points": 0,
+   "official_judged_at": "2026-07-29T20:38:16+00:00",
+   "official_model": "zai-org/GLM-5.2"
+  }
+ ]
+}

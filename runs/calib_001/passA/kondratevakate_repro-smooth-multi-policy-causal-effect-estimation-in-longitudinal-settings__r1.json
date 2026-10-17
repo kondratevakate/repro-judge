@@ -1,0 +1,52 @@
+{
+ "space_id": "kondratevakate/repro-smooth-multi-policy-causal-effect-estimation-in-longitudinal-settings",
+ "sha": "aff8cc40ec261e509ea66be93d2c019449c28ed0",
+ "run": 1,
+ "judged_at": "2026-10-17T17:46:45+00:00",
+ "logbook_chars": 16713,
+ "verdicts": [
+  {
+   "claim": 1,
+   "verdict": "inconclusive",
+   "evidence": "No author code, processed data, hyperparameters, or seeds were available; no experiments were executed. The logbook also notes the printed DGP contains a division-by-zero in its first lag coefficient, preventing faithful reproduction."
+  },
+  {
+   "claim": 2,
+   "verdict": "inconclusive",
+   "evidence": "Same blockers as Claim 1: no author PEQ-Net or DeepLTMLE code, no processed MIMIC-III trajectories, no hyperparameters or seeds. The expanded DGP delegates to undefined limited-DGP equations, so no independent comparison was run."
+  },
+  {
+   "claim": 3,
+   "verdict": "inconclusive",
+   "evidence": "No author code, data, hyperparameters, or seeds were available; no experiments were executed. The same DGP division-by-zero issue is noted, preventing any faithful comparison."
+  },
+  {
+   "claim": 4,
+   "verdict": "verified",
+   "evidence": "An independent implementation applied 5 threshold policies to 240 synthetic histories, computed Gaussian-kernel MMD matrices (shown in full), ran metric MDS, and confirmed distance-order rank correlation of 1.000 with finite, symmetric, zero-diagonal outputs, demonstrating the pipeline produces fixed-dimensional representations reflecting policy dissimilarities."
+  },
+  {
+   "claim": 5,
+   "verdict": "falsified",
+   "evidence": "A concrete counterexample uses identical initial Q values (0.5, 0.5), strictly positive treatment probability 0.5, and bounded fluctuations (0.8, -0.8), yielding targeted Q values 0.689974 and 0.310026—a difference of 0.379949 while the initial difference and RHS are zero, directly violating the claimed Lipschitz bound."
+  },
+  {
+   "claim": 6,
+   "verdict": "inconclusive",
+   "evidence": "No cohort SQL, MIMIC item IDs, preprocessing code, model code, checkpoints, or seeds were released, and the protected-data download was not completed. No patient-level data or experiments are present in the logbook."
+  }
+ ],
+ "points": 4,
+ "overall": "The logbook independently verified the policy embedding pipeline (MMD + MDS) on a controlled synthetic setup and provided a concrete numerical counterexample falsifying the Lipschitz guarantee in Theorem 4.2. The four empirical claims (Tables 1–2 and the MIMIC-IV sepsis case study) remain unaddressed because no author code, data, or hyperparameters were available to execute any comparison.",
+ "quality": "medium",
+ "usage": {
+  "prompt_tokens": 5718,
+  "completion_tokens": 2872
+ },
+ "attempts": 1,
+ "finish_reason": "stop",
+ "model_id": "zai-org/GLM-5.2:novita",
+ "served_by": "novita",
+ "raw_content": "```json\n{\n  \"claims\": [\n    {\"claim\": 1, \"verdict\": \"inconclusive\", \"evidence\": \"No author code, processed data, hyperparameters, or seeds were available; no experiments were executed. The logbook also notes the printed DGP contains a division-by-zero in its first lag coefficient, preventing faithful reproduction.\"},\n    {\"claim\": 2, \"verdict\": \"inconclusive\", \"evidence\": \"Same blockers as Claim 1: no author PEQ-Net or DeepLTMLE code, no processed MIMIC-III trajectories, no hyperparameters or seeds. The expanded DGP delegates to undefined limited-DGP equations, so no independent comparison was run.\"},\n    {\"claim\": 3, \"verdict\": \"inconclusive\", \"evidence\": \"No author code, data, hyperparameters, or seeds were available; no experiments were executed. The same DGP division-by-zero issue is noted, preventing any faithful comparison.\"},\n    {\"claim\": 4, \"verdict\": \"verified\", \"evidence\": \"An independent implementation applied 5 threshold policies to 240 synthetic histories, computed Gaussian-kernel MMD matrices (shown in full), ran metric MDS, and confirmed distance-order rank correlation of 1.000 with finite, symmetric, zero-diagonal outputs, demonstrating the pipeline produces fixed-dimensional representations reflecting policy dissimilarities.\"},\n    {\"claim\": 5, \"verdict\": \"falsified\", \"evidence\": \"A concrete counterexample uses identical initial Q values (0.5, 0.5), strictly positive treatment probability 0.5, and bounded fluctuations (0.8, -0.8), yielding targeted Q values 0.689974 and 0.310026—a difference of 0.379949 while the initial difference and RHS are zero, directly violating the claimed Lipschitz bound.\"},\n    {\"claim\": 6, \"verdict\": \"inconclusive\", \"evidence\": \"No cohort SQL, MIMIC item IDs, preprocessing code, model code, checkpoints, or seeds were released, and the protected-data download was not completed. No patient-level data or experiments are present in the logbook.\"}\n  ],\n  \"overall\": \"The logbook independently verified the policy embedding pipeline (MMD + MDS) on a controlled synthetic setup and provided a concrete numerical counterexample falsifying the Lipschitz guarantee in Theorem 4.2. The four empirical claims (Tables 1–2 and the MIMIC-IV sepsis case study) remain unaddressed because no author code, data, or hyperparameters were available to execute any comparison.\",\n  \"quality\": \"medium\"\n}\n```",
+ "elapsed_s": 39.0
+}
