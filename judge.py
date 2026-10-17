@@ -1,10 +1,11 @@
 """repro-judge command line.
 
-  python judge.py judge --space USER/SPACE --claims claims.txt [--rubric icml2026]
+  python judge.py judge --space USER/SPACE --claims claims.txt [--rubric icml2026_v2]
   python judge.py prepare --run calib_001 --user kondratevakate --verdicts verdicts.json
-  python judge.py run --run calib_001 --pass A [--limit 1]
-  python judge.py run --run calib_001 --pass B
-  python judge.py report --run calib_001
+  python judge.py prepare --run calib_002 --copy-from calib_001
+  python judge.py run --run calib_002 --pass A [--limit 1] [--dry-run]
+  python judge.py run --run calib_002 --pass B
+  python judge.py report --run calib_002 [--baseline calib_001]
 """
 import argparse
 import concurrent.futures as cf
@@ -22,7 +23,7 @@ import httpx
 import huggingface_hub
 from huggingface_hub import get_token
 
-from repro_judge import agreement, logbook, prompt, router, verdicts
+from repro_judge import agreement, grounding, logbook, prompt, router, verdicts
 
 ROOT = Path(__file__).resolve().parent
 RUNS = ROOT / "runs"
@@ -30,7 +31,7 @@ CACHE = ROOT / "cache"
 CHALLENGE_INDEX = "https://huggingface.co/spaces/ICML-2026-agent-repro/challenge/resolve/main/index.json"
 ROUTER_MODELS = "https://router.huggingface.co/v1/models"
 DEFAULTS = {"model": "zai-org/GLM-5.2", "provider": "novita", "temperature": 0.1,
-            "max_tokens": 8000, "attempts": 2, "rubric": "icml2026"}
+            "max_tokens": 8000, "attempts": 2, "rubric": "icml2026_v2"}
 RETEST_POSITIONS = range(0, 50, 5)  # 1-based positions 1, 6, ..., 46
 
 
@@ -117,6 +118,16 @@ def cmd_prepare(a) -> None:
     out = RUNS / a.run / "population.json"
     if out.exists():
         sys.exit(f"{out} exists; a frozen population is never rebuilt in place")
+    if a.copy_from:
+        src = RUNS / a.copy_from / "population.json"
+        raw = src.read_bytes()
+        pop = json.loads(raw)
+        pop["copied_from"] = {"run": a.copy_from, "sha256": hashlib.sha256(raw).hexdigest(), "at": now()}
+        write_new(out, pop)
+        print(f"population copied from {a.copy_from}: {pop['n']} logbooks, official total {pop['official_total']}")
+        return
+    if not (a.user and a.verdicts):
+        sys.exit("prepare needs --user and --verdicts, or --copy-from")
     all_verdicts = json.loads(Path(a.verdicts).read_text(encoding="utf-8"))
     spaces = httpx.get("https://huggingface.co/api/spaces",
                        params={"author": a.user, "full": "true", "limit": 1000}, timeout=120).json()
@@ -147,31 +158,39 @@ def cmd_prepare(a) -> None:
 
 # ---------------------------------------------------------------- run
 
-def cached_logbook(space_id: str, sha: str, token: str) -> tuple[str, list[str]]:
-    path = CACHE / f"{safe_name(space_id)}__{sha}.json"
+def cached_logbook(space_id: str, sha: str, token: str) -> tuple[str, list[str], dict]:
+    """Raw pages are cached; cleaning runs on every call so its version cannot go stale."""
+    path = CACHE / f"{safe_name(space_id)}__{sha}.pages.json"
     if path.exists():
-        d = json.loads(path.read_text(encoding="utf-8"))
-        return d["text"], d["failed_pages"]
-    text, failed = logbook.fetch_space_logbook(space_id, sha, token)
-    if not failed:  # only complete fetches are cached
-        CACHE.mkdir(exist_ok=True)
-        path.write_text(json.dumps({"text": text, "failed_pages": failed}), encoding="utf-8")
-    return text, failed
+        pages = [tuple(p) for p in json.loads(path.read_text(encoding="utf-8"))["pages"]]
+        failed = []
+    else:
+        pages, failed = logbook.fetch_space_pages(space_id, sha, token)
+        if not failed:  # only complete fetches are cached
+            CACHE.mkdir(exist_ok=True)
+            path.write_text(json.dumps({"pages": pages}), encoding="utf-8")
+    text, stats = logbook.assemble(pages)
+    return text, failed, stats
 
 
 def judge_item(item: dict, run_no: int, cfg: dict, rubric: str, token: str) -> dict:
     t0 = time.time()
-    text, failed = cached_logbook(item["space_id"], item["sha"], token)
+    text, failed, clean_stats = cached_logbook(item["space_id"], item["sha"], token)
     if failed:
         raise RuntimeError(f"{item['space_id']}: {len(failed)} page(s) could not be fetched")
+    nonce = prompt.new_nonce(text)
     messages = prompt.build_messages(rubric, {"title": item["title"], "orid": item["orid"],
-                                              "authors": item["authors"]}, item["claims"], text)
+                                              "authors": item["authors"]}, item["claims"], text, nonce)
     res = router.judge_call(messages, token=token, model=cfg["model"], provider=cfg["provider"],
                             temperature=cfg["temperature"], max_tokens=cfg["max_tokens"],
                             attempts=cfg["attempts"])
     rows = verdicts.normalize(res["parsed"], len(item["claims"]))
+    visible = text + "\n" + "\n".join(item["claims"])
+    for row in rows:
+        row["grounding"] = grounding.check_verdict(row["evidence"], row["verdict"], visible)
     return {"space_id": item["space_id"], "sha": item["sha"], "run": run_no, "judged_at": now(),
-            "logbook_chars": len(text), "verdicts": rows, "points": verdicts.points(rows),
+            "logbook_chars": len(text), "cleaning": clean_stats, "nonce": nonce,
+            "verdicts": rows, "points": verdicts.points(rows),
             "overall": str(res["parsed"].get("overall", "")), "quality": str(res["parsed"].get("quality", "")),
             "usage": res["usage"], "attempts": res["attempts"], "finish_reason": res["finish_reason"],
             "model_id": res["model_id"], "served_by": res["served_by"], "raw_content": res["content"],
@@ -212,16 +231,21 @@ def dry_run(todo: list, cfg: dict, rubric: str, token: str) -> None:
     """
     pricing = provider_pricing(cfg["model"], cfg["provider"])
     chars, failures = 0, []
+    cleaned = {k: 0 for k in ("comments", "format_chars", "headers_neutralised", "tags_neutralised",
+                              "pages_with_unterminated_comment")}
     for it, _ in todo:
-        text, failed = cached_logbook(it["space_id"], it["sha"], token)
+        text, failed, stats = cached_logbook(it["space_id"], it["sha"], token)
         if failed:
             failures.append((it["space_id"], failed))
+        for k in cleaned:
+            cleaned[k] += stats[k]
         msgs = prompt.build_messages(rubric, {"title": it["title"], "orid": it["orid"],
                                               "authors": it["authors"]}, it["claims"], text)
         chars += sum(len(m["content"]) for m in msgs)
     tok_in = chars / 4
     tok_out_max = len(todo) * cfg["max_tokens"]
     print(f"dry run: {len(todo)} judgments, {chars:,} prompt characters, about {tok_in:,.0f} input tokens")
+    print(f"cleaning: {cleaned}")
     if pricing:
         lo = tok_in / 1e6 * pricing["input"]
         hi = lo + tok_out_max / 1e6 * pricing["output"]
@@ -330,6 +354,22 @@ def summarize(pop: dict, A: dict, B: dict, pricing: dict | None) -> dict:
         res.update(retest_logbooks=len(retest_ids), retest_claims=len(triples),
                    retest_identical_share=sum(len(set(t)) == 1 for t in triples) / len(triples),
                    retest_fleiss_kappa=agreement.fleiss_kappa(triples))
+    point_rows = [(r["space_id"], v) for r in A.values() for v in r["verdicts"]
+                  if v["verdict"] in grounding.POINT_VERDICTS and "grounding" in v]
+    if point_rows:
+        flagged = [{"space_id": s, "claim": v["claim"], "verdict": v["verdict"],
+                    "ungrounded": v["grounding"]["ungrounded"], "evidence": v["evidence"]}
+                   for s, v in point_rows if v["grounding"]["flagged"]]
+        with_numbers = [v for _, v in point_rows if v["grounding"]["cited"]]
+        res.update(grounding_point_verdicts=len(point_rows), grounding_with_numbers=len(with_numbers),
+                   grounding_flagged=len(flagged), grounding_flagged_share=len(flagged) / len(point_rows),
+                   grounding_mean_share=(sum(v["grounding"]["share"] for v in with_numbers) / len(with_numbers)
+                                         if with_numbers else None),
+                   grounding_flagged_list=flagged)
+    if any("cleaning" in r for r in A.values()):
+        keys = ("comments", "format_chars", "headers_neutralised", "tags_neutralised",
+                "pages_with_unterminated_comment")
+        res["cleaning_totals_pass_a"] = {k: sum(r["cleaning"][k] for r in A.values()) for k in keys}
     recs = list(A.values()) + list(B.values())
     tok_in = sum(r["usage"]["prompt_tokens"] for r in recs)
     tok_out = sum(r["usage"]["completion_tokens"] for r in recs)
@@ -342,13 +382,28 @@ def cmd_report(a) -> None:
     run_dir = RUNS / a.run
     pop = json.loads((run_dir / "population.json").read_text(encoding="utf-8"))
     man = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
+    A = load_pass(run_dir, "A")
     res = {"run": a.run, "manifest": man,
-           **summarize(pop, load_pass(run_dir, "A"), load_pass(run_dir, "B"), man.get("pricing_per_million"))}
+           **summarize(pop, A, load_pass(run_dir, "B"), man.get("pricing_per_million"))}
+    if a.baseline:
+        base = load_pass(RUNS / a.baseline, "A")
+        x, y = [], []
+        for key, rec in A.items():
+            if key in base:
+                x += [v["verdict"] for v in base[key]["verdicts"]]
+                y += [v["verdict"] for v in rec["verdicts"]]
+        res.update(baseline=a.baseline, baseline_claims=len(x),
+                   baseline_exact_agreement=agreement.exact_share(x, y),
+                   baseline_cohen_kappa=agreement.cohen_kappa(x, y),
+                   baseline_confusion_rows=agreement.confusion(x, y))
     path = run_dir / f"report_{dt.datetime.now().strftime('%Y%m%dT%H%M%S')}.json"
     write_new(path, res)
     for k in ["n_judged", "n_claims", "exact_agreement", "cohen_kappa", "mean_abs_point_diff_per_claim",
               "official_total", "judge_total", "max_total", "retest_logbooks", "retest_claims",
-              "retest_identical_share", "retest_fleiss_kappa", "tokens_in", "tokens_out", "cost_usd"]:
+              "retest_identical_share", "retest_fleiss_kappa", "baseline", "baseline_claims",
+              "baseline_exact_agreement", "baseline_cohen_kappa", "grounding_point_verdicts",
+              "grounding_with_numbers", "grounding_flagged", "grounding_flagged_share",
+              "grounding_mean_share", "cleaning_totals_pass_a", "tokens_in", "tokens_out", "cost_usd"]:
         if k in res:
             v = res[k]
             print(f"{k:32} {v:.3f}" if isinstance(v, float) else f"{k:32} {v}")
@@ -369,19 +424,22 @@ def cmd_judge(a) -> None:
     rubric, _ = prompt.load_rubric(a.rubric)
     token = require_token()
     if a.space:
-        text, failed = logbook.fetch_space_logbook(a.space, a.revision, token)
+        text, failed, stats = logbook.fetch_space_logbook(a.space, a.revision, token)
         if failed:
             sys.exit(f"{len(failed)} page(s) could not be fetched: {failed}")
     else:
-        text = logbook.assemble([(a.logbook, Path(a.logbook).read_text(encoding="utf-8"))])
+        text, stats = logbook.assemble([(a.logbook, Path(a.logbook).read_text(encoding="utf-8"))])
     claims = read_claims(a.claims)
     messages = prompt.build_messages(rubric, {"title": a.title or "", "orid": a.orid or ""}, claims, text)
     res = router.judge_call(messages, token=token, model=a.model, provider=a.provider)
     rows = verdicts.normalize(res["parsed"], len(claims))
+    visible = text + "\n" + "\n".join(claims)
+    for row in rows:
+        row["grounding"] = grounding.check_verdict(row["evidence"], row["verdict"], visible)
     print(json.dumps({"verdicts": rows, "points": verdicts.points(rows), "max_points": 2 * len(claims),
                       "overall": res["parsed"].get("overall"), "quality": res["parsed"].get("quality"),
-                      "model_id": res["model_id"], "served_by": res["served_by"], "usage": res["usage"]},
-                     ensure_ascii=False, indent=1))
+                      "cleaning": stats, "model_id": res["model_id"], "served_by": res["served_by"],
+                      "usage": res["usage"]}, ensure_ascii=False, indent=1))
 
 
 def main(argv=None) -> None:
@@ -400,8 +458,9 @@ def main(argv=None) -> None:
     j.add_argument("--provider", default=DEFAULTS["provider"])
     pr = sub.add_parser("prepare")
     pr.add_argument("--run", required=True)
-    pr.add_argument("--user", required=True)
-    pr.add_argument("--verdicts", required=True)
+    pr.add_argument("--user")
+    pr.add_argument("--verdicts")
+    pr.add_argument("--copy-from", help="reuse another run's frozen population unchanged")
     r = sub.add_parser("run")
     r.add_argument("--run", required=True)
     r.add_argument("--pass", dest="pass_", choices=["A", "B"], required=True)
@@ -410,6 +469,7 @@ def main(argv=None) -> None:
     r.add_argument("--dry-run", action="store_true", help="build prompts and estimate cost, no model calls")
     rp = sub.add_parser("report")
     rp.add_argument("--run", required=True)
+    rp.add_argument("--baseline", help="another run to compare pass A verdicts with")
     a = p.parse_args(argv)
     {"judge": cmd_judge, "prepare": cmd_prepare, "run": cmd_run, "report": cmd_report}[a.cmd](a)
 

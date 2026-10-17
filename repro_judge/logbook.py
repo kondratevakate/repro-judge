@@ -1,5 +1,12 @@
-"""Fetch a trackio logbook from a Hugging Face Space and turn it into judge input."""
+"""Fetch a trackio logbook from a Hugging Face Space and turn it into judge input.
+
+The logbook is untrusted text. Cleaning removes what a reader of the rendered page
+cannot see (HTML comments, Unicode format characters) and neutralises lines that
+could imitate the judge's own framing. Counts of everything removed are returned so
+nothing is dropped silently.
+"""
 import re
+import unicodedata
 
 import httpx
 from huggingface_hub import HfApi, hf_hub_url
@@ -7,8 +14,10 @@ from huggingface_hub import HfApi, hf_hub_url
 MAX_LOGBOOK_CHARS = 120_000
 MAX_RAW_BLOCK_CHARS = 4_000
 
-_TRACKIO_CELL = re.compile(r"<!-- trackio-cell\n[\s\S]*?\n-->")
 _FENCED_BLOCK = re.compile(r"(`{3,4}|~{3,4})([^\n]*)\n([\s\S]*?)\n\1")
+_COMMENT = re.compile(r"<!--[\s\S]*?-->")
+_FAKE_HEADER = re.compile(r"^(\s*=====)", re.M)
+_FAKE_TAG = re.compile(r"<(/?)logbook-", re.I)
 
 
 def _shrink_block(match: re.Match) -> str:
@@ -21,10 +30,51 @@ def _shrink_block(match: re.Match) -> str:
     return match.group(0)
 
 
-def clean_page(text: str) -> str:
-    """Drop trackio cell metadata and figure payloads that carry no evidence text."""
-    text = _TRACKIO_CELL.sub("", text)
-    return _FENCED_BLOCK.sub(_shrink_block, text)
+def _strip_comments(prose: str, stats: dict) -> str:
+    """Remove HTML comments from text outside code fences, including an unterminated one."""
+    stats["comments"] += len(_COMMENT.findall(prose))
+    prose = _COMMENT.sub("", prose)
+    cut = prose.find("<!--")
+    if cut >= 0:
+        stats["unterminated_comment"] = True
+        prose = prose[:cut] + "[unterminated html comment removed]"
+    return prose
+
+
+def _strip_format_chars(text: str, stats: dict) -> str:
+    kept = [ch for ch in text if unicodedata.category(ch) != "Cf"]
+    stats["format_chars"] += len(text) - len(kept)
+    return "".join(kept)
+
+
+def _neutralise(text: str, stats: dict) -> str:
+    text, n = _FAKE_HEADER.subn(r"> \1", text)
+    stats["headers_neutralised"] += n
+    text, n = _FAKE_TAG.subn(r"[\1logbook-", text)
+    stats["tags_neutralised"] += n
+    return text
+
+
+def new_stats() -> dict:
+    return {"comments": 0, "format_chars": 0, "headers_neutralised": 0, "tags_neutralised": 0,
+            "unterminated_comment": False}
+
+
+def clean_page(text: str, stats: dict | None = None) -> str:
+    """Return the text a reader of the rendered page would see, made safe to embed."""
+    stats = stats if stats is not None else new_stats()
+    text = _strip_format_chars(text, stats)
+    out, pos = [], 0
+    for m in _FENCED_BLOCK.finditer(text):
+        prose = _strip_comments(text[pos:m.start()], stats)
+        out.append(prose)
+        if stats["unterminated_comment"]:
+            break  # the rest of the page is hidden in the rendered view
+        out.append(_shrink_block(m))
+        pos = m.end()
+    else:
+        out.append(_strip_comments(text[pos:], stats))
+    return _neutralise("".join(out), stats)
 
 
 def page_order(files: list[str]) -> list[str]:
@@ -34,11 +84,18 @@ def page_order(files: list[str]) -> list[str]:
     return head + [p for p in pages if p != "pages/index.md"]
 
 
-def assemble(pages: list[tuple[str, str]], max_chars: int = MAX_LOGBOOK_CHARS) -> str:
+def assemble(pages: list[tuple[str, str]], max_chars: int = MAX_LOGBOOK_CHARS) -> tuple[str, dict]:
     """Join cleaned pages under file headers, stopping at the character budget."""
+    stats = new_stats()
+    stats["pages_with_unterminated_comment"] = 0
     parts, used = [], 0
     for path, text in pages:
-        block = f"\n\n===== FILE {path} =====\n{clean_page(text)}"
+        page_stats = new_stats()
+        body = clean_page(text, page_stats)
+        for k in ("comments", "format_chars", "headers_neutralised", "tags_neutralised"):
+            stats[k] += page_stats[k]
+        stats["pages_with_unterminated_comment"] += page_stats["unterminated_comment"]
+        block = f"\n\n===== FILE {path} =====\n{body}"
         room = max_chars - used
         if room <= 0:
             break
@@ -46,16 +103,16 @@ def assemble(pages: list[tuple[str, str]], max_chars: int = MAX_LOGBOOK_CHARS) -
             block = block[:room] + "\n[page truncated at the logbook length limit]"
         parts.append(block)
         used += len(block)
-    return "".join(parts)
+    stats["unterminated_comment"] = stats["pages_with_unterminated_comment"] > 0
+    return "".join(parts), stats
 
 
-def fetch_space_logbook(space_id: str, revision: str | None, token: str | None,
-                        client: httpx.Client | None = None) -> tuple[str, list[str]]:
-    """Return (assembled logbook, "page: error" for each page that could not be downloaded).
+def fetch_space_pages(space_id: str, revision: str | None, token: str | None,
+                      client: httpx.Client | None = None) -> tuple[list[tuple[str, str]], list[str]]:
+    """Return (raw pages in reading order, "page: error" for each page that failed).
 
     Pages are read over HTTP into memory. The Hub file cache is not used because
     long Space and page names push its paths past the Windows 260-character limit.
-    Missing pages are returned to the caller instead of being skipped silently.
     """
     files = HfApi(token=token).list_repo_files(space_id, repo_type="space", revision=revision, token=token)
     headers = {"Authorization": f"Bearer {token}"} if token else {}
@@ -75,4 +132,12 @@ def fetch_space_logbook(space_id: str, revision: str | None, token: str | None,
     finally:
         if own:
             client.close()
-    return assemble(pages), failed
+    return pages, failed
+
+
+def fetch_space_logbook(space_id: str, revision: str | None, token: str | None,
+                        client: httpx.Client | None = None) -> tuple[str, list[str], dict]:
+    """Return (cleaned logbook, failed pages, cleaning stats)."""
+    pages, failed = fetch_space_pages(space_id, revision, token, client)
+    text, stats = assemble(pages)
+    return text, failed, stats
