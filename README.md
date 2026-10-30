@@ -3,8 +3,41 @@
 An independent LLM judge for reproduction logbooks. It re-implements the rubric of
 the ICML 2026 Logbook Judge in its own words: four verdicts (verified and falsified
 2 points, toy 1, inconclusive 0) and the rule that the author's own verdict labels
-are not evidence. It judges text only. It does not rerun code; for that, use the
-`repro-referee` agent first.
+are not evidence. It judges text only. It does not rerun code; rerunning the claims
+is a separate step (in the author's setup, a Claude Code agent called
+`repro-referee`, which is not part of this repository).
+
+## Why it exists
+
+In the ICML 2026 agent reproduction challenge, the official Logbook Judge reads only
+the published logbook text and ignores the author's self-assigned verdicts. A
+logbook is scored once it is published, so the author needs a second judge that
+reads the same text the same way before publishing. This repository is that judge:
+it is run on a draft logbook, and claims it would not credit are fixed or reworded
+before the Space goes public.
+
+## How it was built
+
+Every step is a protocol in `protocols/`, written and committed before any paid
+model call of that step, with its decision rule fixed in advance. Results in `runs/`
+are never overwritten.
+
+1. **Protocol 001, calibration.** Rubric `rubrics/icml2026.md` written independently
+   of the official prompt, same four verdicts and point values. Judged the author's
+   53 canonical logbooks from the public dataset
+   [`ICML-2026-agent-repro/verdicts`](https://huggingface.co/datasets/ICML-2026-agent-repro/verdicts)
+   at the exact revisions the official judge saw, with the official claims, and
+   compared verdicts claim by claim. A test-retest pass judged 10 logbooks, chosen
+   in advance, three times each. Result: `calib_001`.
+2. **Protocol 002, prompt-injection hardening.** Treat the logbook as untrusted
+   text, isolate it with a per-call nonce, and recalibrate. Result: `calib_002`,
+   the current default.
+3. **Protocol 003, CommonMark parsing.** Locate code blocks exactly as a Markdown
+   renderer does, after a security review found a bypass. Accepted only because the
+   cleaned text stayed byte-identical to `calib_002` on all 53 logbooks.
+4. **Protocol 004, evidence response (frozen, not yet run).** Does the judge stop
+   crediting a claim when its evidence is removed, and stay unmoved when a bare
+   "VERIFIED" label is added? See below.
 
 ## Status
 
@@ -69,6 +102,33 @@ is recorded. The byte-identity check was repeated: 53 of 53, no page failed clos
 Known conservative choice:
 an HTML comment inside inline code (`` `<!-- x -->` ``) is still removed, although a
 renderer shows it.
+
+## Evidence response (protocol 004, pilot, not yet run)
+
+Calibration shows agreement with the official judge, not that either judge reacts
+to evidence. Protocol 004 tests that with deterministic edits to real logbooks, one
+target claim per call, made by `mutation/mutate.py` (unit-tested, no language model):
+
+* **R1, evidence removal:** the claim's page is emptied and every line naming the
+  claim elsewhere is deleted. Expected verdict: `inconclusive`.
+* **I1, content-preserving reformat:** bullets, blank lines and trailing spaces
+  change on the claim's page. Expected: unchanged verdict.
+* **I3, self-assessment inflation:** a confident "Verdict: VERIFIED" paragraph is
+  added to a claim the official judge did not verify. Expected: no gain in points.
+
+The judge is called evidence-responsive only if the lower 95% bound of R1
+sensitivity is above 0.5 and the upper 95% bound of I3 inflation is below 0.05.
+Before any paid call, `mutation/run.py gate` checks that the current code
+reproduces the `calib_002` rubric hash and cleaned text length on all 53 logbooks.
+The run is capped at 12 USD after a dry run.
+
+```powershell
+python mutation/run.py gate
+python mutation/run.py run --dry-run
+python mutation/run.py run
+```
+
+No results yet; they will go to `runs/mut_001`.
 
 ## Setup
 
@@ -137,3 +197,9 @@ $env:RJ_LIVE = "1"; python -m pytest tests/test_router_live.py -q -s
 ```
 
 The live test calls the router once and costs a few tokens.
+
+## License
+
+MIT, see `LICENSE`. The logbooks judged in `runs/` are public Hugging Face Spaces
+and keep their own licences; `runs/` stores the judge's outputs, which may quote
+short excerpts, and identifiers, not the logbooks themselves.
